@@ -1,0 +1,63 @@
+[{
+    "id": 1,
+    "mot": "Lettre",
+    "choix": ["الرسالة", "الكلمة", "الخطاب"],
+    "reponseCorrecte": "الرسالة"
+  },
+    {
+        "id": 2,
+        "mot": "Père",
+        "choix": ["الأم", "الأب", "الأخ"],
+        "reponseCorrecte": "الأب"
+      },
+      {
+        "id": 3,
+        "mot": "Berger",
+        "choix": ["المزارع", "الراعي", "الصياد"],
+        "reponseCorrecte": "الراعي"
+      },
+      {
+        "id": 4,
+        "mot": "Village",
+        "choix": ["المدينة", "القرية", "البلدة"],
+        "reponseCorrecte": "القرية"
+      },
+      {
+        "id": 5,
+        "mot": "Montagne",
+        "choix": ["الصحراء", "الجبل", "الوديان"],
+        "reponseCorrecte": "الجبل"
+      },
+      {
+        "id": 6,
+        "mot": "Chien",
+        "choix": ["القطة", "الكلب", "الأرنب"],
+        "reponseCorrecte": "الكلب"
+      },
+      {
+        "id": 7,
+        "mot": "Moutons",
+        "choix": ["البقر", "الغنم", "الخنازير"],
+        "reponseCorrecte": "الغنم"
+      },
+      {
+        "id": 8,
+        "mot": "Oiseaux",
+        "choix": ["الطيور", "الحيوانات", "الأسماك"],
+        "reponseCorrecte": "الطيور"
+      },
+      {
+        "id": 9,
+        "mot": "Pâturages",
+        "choix": ["المزارع", "الحقول", "المراعي"],
+        "reponseCorrecte": "المراعي"
+      },
+      {
+        "id": 10,
+        "mot": "Ciel",
+        "choix": ["السماء", "الأرض", "البحر"],
+        "reponseCorrecte": "السماء"
+      }
+      
+ 
+]

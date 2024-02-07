@@ -1,0 +1,71 @@
+{
+    "mots_importants": [
+      {
+        "id": 1,
+        "mot": "Samedi",
+        "choix": ["الأحد", "السبت", "الثلاثاء"],
+        "réponse_correcte": "السبت"
+      },
+      {
+        "id": 2,
+        "mot": "amis",
+        "choix": ["أصدقاء", "عائلة", "جيران"],
+        "réponse_correcte": "أصدقاء"
+      },
+      {
+        "id": 3,
+        "mot": "gâteaux",
+        "choix": ["كعكة", "خبز", "حلوى"],
+        "réponse_correcte": "كعكة"
+      },
+      {
+        "id": 4,
+        "mot": "boissons",
+        "choix": ["مشروبات", "طعام", "حلوى"],
+        "réponse_correcte": "مشروبات"
+      },
+      {
+        "id": 5,
+        "mot": "cadeaux",
+        "choix": ["هدايا", "كتب", "ألعاب"],
+        "réponse_correcte": "هدايا"
+      },
+      {
+        "id": 6,
+        "mot": "midi",
+        "choix": ["منتصف الليل", "الظهر", "الفجر"],
+        "réponse_correcte": "الظهر"
+      },
+      {
+        "id": 7,
+        "mot": "après-midi",
+        "choix": ["صباحاً", "ظهراً", "مساءً"],
+        "réponse_correcte": "مساءً"
+      },
+      {
+        "id": 8,
+        "mot": "joué",
+        "choix": ["لعب", "غنى", "كتب"],
+        "réponse_correcte": "لعب"
+      },
+      {
+        "id": 9,
+        "mot": "promenés",
+        "choix": ["تجولنا", "سبحنا", "ركضنا"],
+        "réponse_correcte": "تجولنا"
+      },
+      {
+        "id": 10,
+        "mot": "maison",
+        "choix": ["منزل", "حديقة", "مدرسة"],
+        "réponse_correcte": "منزل"
+      },
+      {
+        "id": 11,
+        "mot": "cadeau",
+        "choix": ["هدية", "كتاب", "لعبة"],
+        "réponse_correcte": "هدية"
+      }
+    ]
+  }
+  

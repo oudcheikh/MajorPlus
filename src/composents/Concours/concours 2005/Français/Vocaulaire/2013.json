@@ -1,0 +1,89 @@
+
+{
+  "mots_importants": [
+    {
+      "id": 1,
+      "mot": "récréation",
+      "choix": ["استراحة", "دراسة", "امتحان"],
+      "réponse_correcte": "استراحة"
+    },
+    {
+      "id": 2,
+      "mot": "bras",
+      "choix": ["أذرع", "أرجل", "أصابع"],
+      "réponse_correcte": "أذرع"
+    },
+    {
+      "id": 3,
+      "mot": "garçons",
+      "choix": ["أولاد", "بنات", "رجال"],
+      "réponse_correcte": "أولاد"
+    },
+    {
+      "id": 4,
+      "mot": "filles",
+      "choix": ["بنات", "أولاد", "رجال"],
+      "réponse_correcte": "بنات"
+    },
+    {
+      "id": 5,
+      "mot": "sortaient",
+      "choix": ["خرجوا", "دخلوا", "تركوا"],
+      "réponse_correcte": "خرجوا"
+    },
+    {
+      "id": 6,
+      "mot": "silence",
+      "choix": ["صمت", "صراخ", "غضب"],
+      "réponse_correcte": "صمت"
+    },
+    {
+      "id": 7,
+      "mot": "cour",
+      "choix": ["فناء", "حديقة", "صف"],
+      "réponse_correcte": "فناء"
+    },
+    {
+      "id": 8,
+      "mot": "garçons",
+      "choix": ["أولاد", "بنات", "رجال"],
+      "réponse_correcte": "أولاد"
+    },
+    {
+      "id": 9,
+      "mot": "fillettes",
+      "choix": ["بنات", "أولاد", "رجال"],
+      "réponse_correcte": "بنات"
+    },
+    {
+      "id": 10,
+      "mot": "turbulentes",
+      "choix": ["مضطربات", "هادئات", "مشاغبات"],
+      "réponse_correcte": "مضطربات"
+    },
+    {
+      "id": 11,
+      "mot": "sautillaient",
+      "choix": ["قفزوا", "مشيوا", "جلسوا"],
+      "réponse_correcte": "قفزوا"
+    },
+    {
+      "id": 12,
+      "mot": "maître",
+      "choix": ["معلم", "تلميذ", "والد"],
+      "réponse_correcte": "معلم"
+    },
+    {
+      "id": 13,
+      "mot": "chaise",
+      "choix": ["كرسي", "طاولة", "سرير"],
+      "réponse_correcte": "كرسي"
+    },
+    {
+      "id": 14,
+      "mot": "surveillait",
+      "choix": ["راقب", "درس", "كتب"],
+      "réponse_correcte": "راقب"
+    }
+  ]
+}

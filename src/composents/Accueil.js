@@ -47,7 +47,7 @@ function Acceuil() {
         <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/Histoire" />
         <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/Islamique" />
         <Card title="Français" content="" icon={Fraçais} full navigateTo="/Français" />
-
+        <Card title="Concours" content="" icon={Fraçais} full navigateTo="/Concours " />
       </div>
     </div>
   );

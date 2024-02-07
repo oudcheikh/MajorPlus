@@ -1,0 +1,83 @@
+{
+    "mots_importants": [
+      {
+        "id": 1,
+        "mot": "lièvre",
+        "choix": ["الأرنب", "القمري", "الأرنب"],
+        "réponse_correcte": "الأرنب"
+      },
+      {
+        "id": 2,
+        "mot": "hyène",
+        "choix": ["الضبع", "الثعلب", "الضبع"],
+        "réponse_correcte": "الضبع"
+      },
+      {
+        "id": 3,
+        "mot": "amis",
+        "choix": ["أصدقاء", "عائلة", "جيران"],
+        "réponse_correcte": "أصدقاء"
+      },
+      {
+        "id": 4,
+        "mot": "savane",
+        "choix": ["السافانا", "الغابة", "الصحراء"],
+        "réponse_correcte": "السافانا"
+      },
+      {
+        "id": 5,
+        "mot": "partageaient",
+        "choix": ["تقاسموا", "احتفظوا", "باعوا"],
+        "réponse_correcte": "تقاسموا"
+      },
+      {
+        "id": 6,
+        "mot": "travail",
+        "choix": ["العمل", "المدرسة", "الجامعة"],
+        "réponse_correcte": "العمل"
+      },
+      {
+        "id": 7,
+        "mot": "ménage",
+        "choix": ["النظافة", "الطهي", "الغسيل"],
+        "réponse_correcte": "النظافة"
+      },
+      {
+        "id": 8,
+        "mot": "chassait",
+        "choix": ["صيد", "زراعة", "رقص"],
+        "réponse_correcte": "صيد"
+      },
+      {
+        "id": 9,
+        "mot": "nourriture",
+        "choix": ["طعام", "ماء", "هواء"],
+        "réponse_correcte": "طعام"
+      },
+      {
+        "id": 10,
+        "mot": "couché",
+        "choix": ["مستلقي", "واقف", "جالس"],
+        "réponse_correcte": "مستلقي"
+      },
+      {
+        "id": 11,
+        "mot": "maison",
+        "choix": ["منزل", "سيارة", "مدرسة"],
+        "réponse_correcte": "منزل"
+      },
+      {
+        "id": 12,
+        "mot": "crier",
+        "choix": ["يصرخ", "يبكي", "يضحك"],
+        "réponse_correcte": "يصرخ"
+      },
+      {
+        "id": 13,
+        "mot": "forces",
+        "choix": ["قوة", "ضعف", "ذكاء"],
+        "réponse_correcte": "قوة"
+      }
+    ]
+  }
+  

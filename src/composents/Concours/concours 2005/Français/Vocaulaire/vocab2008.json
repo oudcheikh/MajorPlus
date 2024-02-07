@@ -1,0 +1,69 @@
+[
+    {
+      "id": 2,
+      "mot": "Place",
+      "choix": ["المكان", "الحديقة", "الساحة"],
+      "reponseCorrecte": "الساحة"
+    },
+    {
+      "id": 3,
+      "mot": "Village",
+      "choix": ["البلدة", "المدينة", "القرية"],
+      "reponseCorrecte": "القرية"
+    },
+    {
+      "id": 4,
+      "mot": "Jeunes",
+      "choix": ["الشباب", "الكبار", "الأطفال"],
+      "reponseCorrecte": "الشباب"
+    },
+    {
+      "id": 5,
+      "mot": "Lutte",
+      "choix": ["الحرب", "الصراع", "النزال"],
+      "reponseCorrecte": "النزال"
+    },
+    {
+      "id": 6,
+      "mot": "Spectateurs",
+      "choix": ["المشاهدين", "المتسابقين", "الحكام"],
+      "reponseCorrecte": "المشاهدين"
+    },
+    {
+      "id": 7,
+      "mot": "Encourager",
+      "choix": ["التشجيع", "التحفيز", "الانتصار"],
+      "reponseCorrecte": "التشجيع"
+    },
+    {
+      "id": 8,
+      "mot": "Corps",
+      "choix": ["الجسم", "الروح", "العقل"],
+      "reponseCorrecte": "الجسم"
+    },
+    {
+      "id": 9,
+      "mot": "Poussière",
+      "choix": ["الأتربة", "الرمال", "الطين"],
+      "reponseCorrecte": "الأتربة"
+    },
+    {
+      "id": 10,
+      "mot": "Dos",
+      "choix": ["الظهر", "البطن", "اليد"],
+      "reponseCorrecte": "الظهر"
+    },
+    {
+      "id": 11,
+      "mot": "Applaudir",
+      "choix": ["التصفيق", "الصراخ", "الهتاف"],
+      "reponseCorrecte": "التصفيق"
+    },
+    {
+      "id": 12,
+      "mot": "Vainqueur",
+      "choix": ["الفائز", "الخاسر", "المنافس"],
+      "reponseCorrecte": "الفائز"
+    }
+  ]
+  
