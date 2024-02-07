@@ -6,6 +6,7 @@ import '../composents/home/Major.css'; // Importer les styles
 function Accueil() {
   const navigate = useNavigate();
 
+  
   const CardButton = ({ title, navigateTo }) => (
     <div className="card full-card" onClick={() => navigate(navigateTo)}>
       <img src={prayingIcon} alt={title} className="card-icon" />
