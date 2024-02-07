@@ -72,7 +72,7 @@
   
   .option-button.selected {
     color: #fff;
-     text-align: center;
+    text-align: center;
   }
   
   .option-button-suivant {
@@ -135,7 +135,7 @@
   
   
   .boutonVert {
-    background-color: green;
+    background-color: hsl(120, 100%, 25%);
     color: white;
     padding: 10px 15px;
     border: none;

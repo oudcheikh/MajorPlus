@@ -1,0 +1,105 @@
+[
+    {
+      "id": 1,
+      "word": "Lettre",
+      "choices": ["الرسالة", "الكلمة", "الخطاب"],
+      "correctAnswer": "الرسالة"
+    },
+    {
+      "id": 2,
+      "word": "Mois",
+      "choices": ["الأسبوع", "الشهر", "اليوم"],
+      "correctAnswer": "الشهر"
+    },
+    {
+      "id": 3,
+      "word": "Études",
+      "choices": ["العلم", "الدراسة", "التعليم"],
+      "correctAnswer": "الدراسة"
+    },
+    {
+      "id": 4,
+      "word": "Vacances",
+      "choices": ["الإجازة", "العمل", "الراحة"],
+      "correctAnswer": "الإجازة"
+    },
+    {
+      "id": 5,
+      "word": "Fin d'année",
+      "choices": ["نهاية العام", "بداية العام", "فترة الاختبارات"],
+      "correctAnswer": "نهاية العام"
+    },
+    {
+      "id": 6,
+      "word": "Santé",
+      "choices": ["الصحة", "المرض", "العلاج"],
+      "correctAnswer": "الصحة"
+    },
+    {
+      "id": 7,
+      "word": "Amis",
+      "choices": ["الأصدقاء", "العائلة", "الجيران"],
+      "correctAnswer": "الأصدقاء"
+    },
+    {
+      "id": 8,
+      "word": "École",
+      "choices": ["الجامعة", "المدرسة", "المعهد"],
+      "correctAnswer": "المدرسة"
+    },
+    {
+      "id": 9,
+      "word": "Fête",
+      "choices": ["الحفلة", "الاحتفال", "المأدبة"],
+      "correctAnswer": "الاحتفال"
+    },
+    {
+      "id": 10,
+      "word": "Directeur",
+      "choices": ["الرئيس", "المدير", "المشرف"],
+      "correctAnswer": "المدير"
+    },
+    {
+      "id": 11,
+      "word": "Autorités locales",
+      "choices": ["الحكومة", "الشرطة", "السلطات المحلية"],
+      "correctAnswer": "السلطات المحلية"
+    },
+    {
+      "id": 12,
+      "word": "Parents d'élèves",
+      "choices": ["الآباء والأمهات", "الأقارب", "الأصدقاء"],
+      "correctAnswer": "الآباء والأمهات"
+    },
+    {
+      "id": 13,
+      "word": "Chansons",
+      "choices": ["الأفلام", "المسرحيات", "الأغاني"],
+      "correctAnswer": "الأغاني"
+    },
+    {
+      "id": 14,
+      "word": "Jeux",
+      "choices": ["الأفلام", "الألعاب", "الرياضة"],
+      "correctAnswer": "الألعاب"
+    },
+    {
+      "id": 15,
+      "word": "Cérémonie",
+      "choices": ["الحدث", "الاحتفال", "المراسم"],
+      "correctAnswer": "المراسم"
+    },
+    {
+      "id": 16,
+      "word": "Meilleurs élèves",
+      "choices": ["الطلاب النشيطين", "الطلاب المتفوقين", "الطلاب الكسولين"],
+      "correctAnswer": "الطلاب المتفوقين"
+    },
+    {
+      "id": 17,
+      "word": "Prix",
+      "choices": ["الهدايا", "الجوائز", "المكافآت"],
+      "correctAnswer": "الجوائز"
+    }
+  ]
+  

@@ -1,0 +1,65 @@
+
+{
+  "mots_importants": [
+    {
+      "id": 1,
+      "mot": "Travaillez",
+      "choix": ["اعملوا", "درسوا", "ناموا"],
+      "réponse_correcte": "اعملوا"
+    },
+    {
+      "id": 2,
+      "mot": "polis",
+      "choix": ["مهذبون", "قوي", "واضح"],
+      "réponse_correcte": "مهذبون"
+    },
+    {
+      "id": 3,
+      "mot": "dociles",
+      "choix": ["طيعون", "متمردون", "حادون"],
+      "réponse_correcte": "طيعون"
+    },
+    {
+      "id": 4,
+      "mot": "attentifs",
+      "choix": ["منتبهين", "غافلين", "شجاعين"],
+      "réponse_correcte": "منتبهين"
+    },
+    {
+      "id": 5,
+      "mot": "renvoyer",
+      "choix": ["يطرد", "يشجع", "يمنع"],
+      "réponse_correcte": "يطرد"
+    },
+    {
+      "id": 6,
+      "mot": "bêtises",
+      "choix": ["حماقات", "انجازات", "مساعدات"],
+      "réponse_correcte": "حماقات"
+    },
+    {
+      "id": 7,
+      "mot": "proverbes",
+      "choix": ["أمثال", "قوانين", "مواعظ"],
+      "réponse_correcte": "أمثال"
+    },
+    {
+      "id": 8,
+      "mot": "conseiller",
+      "choix": ["ينصح", "يعاقب", "يحاول"],
+      "réponse_correcte": "ينصح"
+    },
+    {
+      "id": 9,
+      "mot": "Instruisez",
+      "choix": ["علموا", "تعلموا", "نسوا"],
+      "réponse_correcte": "علموا"
+    },
+    {
+      "id": 10,
+      "mot": "coutumes",
+      "choix": ["تقاليد", "أفكار", "تحديات"],
+      "réponse_correcte": "تقاليد"
+    }
+  ]
+}

@@ -119,6 +119,11 @@ import ExamenQCM from './composents/home/QuizTest'
 import ExamenOrthographe from './composents/Français/Orthographe/ExamenOrthographe'
 import Quiz from './composents/Français/Orthographe/ExercicesOrth'
 import RangeExample from './composents/Français/Orthographe/boot'
+
+import Concours from './composents/Concours/Concours'
+import ConcoursFrançais from './composents/Concours/concours 2005/Français/ConcFrançais'
+import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/Orth2005'
+import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
 function App() {
   return (
     <Router>
@@ -245,6 +250,13 @@ function App() {
           <Route path= "/Acueilvocabulaire" element={<Acueilvocabulaire/>} />
           <Route path= "/Vocabulaireecoleville" element={<Vocabulaireecoleville/>} />
           <Route path= "/RangeExample" element={<RangeExample/>} />
+
+          {/*----------------------------Concours ------------------------*/}
+          <Route path= "/Concours" element={<Concours/>} />
+          {/*----------------------------Concours 2005 ------------------------*/}
+          <Route path= "/ConcoursFrançais" element={<ConcoursFrançais/>} />
+          <Route path= "/Orth2005" element={<Orth2005/>} />
+          <Route path= "/ConcoursFrançais2005" element={<ConcoursFrançais2005/>} />
         </Routes>
       
       </div>
