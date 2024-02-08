@@ -1,6 +1,6 @@
 // Importer React et les hooks nécessaires
 import React from 'react';
-import VocabularyTrainer from './V1'; // Chemin vers votre composant VocabularyTrainer
+import VocabularyTrainer from './Testvocabulaire'; // Chemin vers votre composant VocabularyTrainer
 
 // Importer les sons
 import useSound from 'use-sound';

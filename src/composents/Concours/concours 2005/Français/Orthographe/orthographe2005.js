@@ -5,6 +5,7 @@ import {
   Title, Subtitle, FormulaBox, FormulaText, ContinueButton
 } from '../../../../Styles/MajorStyles';
 
+import { Button } from '@mui/material';
 import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../../../Styles/MajorStyles'
 const Orthographe2005 = ({ quizzes }) => {
 
@@ -15,8 +16,60 @@ const Orthographe2005 = ({ quizzes }) => {
   const [userSelection, setUserSelection] = useState(null); // Ajout de l'état de la sélection
   const [showReport, setShowReport] = useState(false);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
- const [elboutontemchi, setElboutontemchi] = useState(false)
+  const [elboutontemchi, setElboutontemchi] = useState(false)
+  const [repCorrecte, setRepCorrecte] = useState(0)
+  const [donnees, setDonnees] = useState([]);
 
+
+//Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
+  const RemplirtableauFinale=(x)=>{
+    
+
+/*
+console.log("le quiz  est:",currentQuizIndex)
+console.log("le question est:",currentQuestionIndex)
+console.log("la reponse correcte")
+*/
+//console.log(quizzes[currentQuizIndex].questions[currentQuestionIndex][correctAnswerIndex])
+//console.log( quizzes[currentQuizIndex].concours)
+//if(x==)
+
+const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
+
+console.log(currentQuizIndex)
+const currQ=quizzes[currentQuizIndex].questions[currentQuestionIndex]
+
+const correcte=quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
+const mot=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
+console.log("mot correcte ",mot )
+console.log("xxxxxxxxxx",x)
+
+const userRepindex=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
+const userRep=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
+console.log("rep user",userRepindex )
+if(userRepindex==mot){
+  console.log("correcte");
+  setRepCorrecte(repCorrecte+1)
+}
+  else{
+    console.log("incorrecte")
+  }
+
+ console.log("totale correcte",repCorrecte)
+
+  
+
+    const nouvelElement = {
+      id: donnees.length + 1,
+      concours :quizzes[currentQuizIndex].concours,
+      question: currQ,
+      RepCorrecte: mot,
+      userRep:userRepindex
+    };
+    setDonnees([...donnees, nouvelElement]);
+ console.log(donnees)
+
+  };
   const handleAnswerSelect = (selectedOptionIndex) => {
     console.log(selectedOptionIndex)
 
@@ -25,6 +78,7 @@ const Orthographe2005 = ({ quizzes }) => {
     }
 
     else {
+      console.log(userAnswers)
       setUserAnswers((prevAnswers) => {
         const newAnswers = [...prevAnswers];
         newAnswers[currentQuizIndex * quizzes[currentQuizIndex].questions.length + currentQuestionIndex] = selectedOptionIndex;
@@ -45,6 +99,7 @@ const Orthographe2005 = ({ quizzes }) => {
         setShowReport(true);
       }
     }
+    RemplirtableauFinale(selectedOptionIndex)
   };
 
   const BoutonNext = () => {
@@ -57,10 +112,9 @@ const Orthographe2005 = ({ quizzes }) => {
   };
 
 
-  const test = () => {
-    console.log(elboutontemchi)
-  }
-
+  const Verifier = () => {
+    console.log(donnees)
+  };
 
 
 
@@ -104,9 +158,7 @@ const Orthographe2005 = ({ quizzes }) => {
                 <button
 
                   onClick={() => setUserSelection(optionIndex)}
-                  className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`}
-
-                >
+                  className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`} >
 
 
                   <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
@@ -117,17 +169,24 @@ const Orthographe2005 = ({ quizzes }) => {
           </div >
         </div>
         <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
 
-          <button className='option-button-suivant' disabled={elboutontemchi} onClick={BoutonNext}  >
-            <span ><FormulaTextF>  Suivant</FormulaTextF></span>
-          </button>
+            <Button  className='option-button-suivant' disabled={elboutontemchi} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
+              <span ><FormulaTextF>  Suivant  </FormulaTextF></span>
+            </Button>
 
-    
+
+            <Button  onClick={Verifier}  variant="contained" color="primary" style={{ marginTop: '10px', display: 'block' }}>
+              <span ><FormulaTextF>  Verifier</FormulaTextF></span>
+            </Button>
+
+          </div>
         </div>
 
 
-
       </div>
+
+
     );
   };
 
@@ -202,33 +261,43 @@ const Orthographe2005 = ({ quizzes }) => {
         )}
       </Container>
 
-
+    {/*
       <div class="card text-center">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="true" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        </div>
+        
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <table>
+        <thead>
+          <tr>
+            <th>concours</th>
+            <th>question</th>
+            <th>RepCorrecte</th>
+            <th>userRep</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {donnees.map((element, index) => (
+
+
+            <tr key={index}>
+              <td>{element.concours}</td>
+              <td>{element.question}</td>
+              <td>{element.RepCorrecte}</td>
+              <td>{element.userRep}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
         </div>
       </div>
-
+          */}
     </div>
 
   );
 };
-
 export default Orthographe2005;
+
+
+
 
 
