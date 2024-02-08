@@ -30,9 +30,8 @@ function ConcoursFrançais2005() {
     <div className="app-container">
       <div className="card-grid">
         
-        <Card title="Vocabulaire"  icon={statsIcon} navigateTo="/vocab2005" />
-        <Card title="Orthographe" icon={statsIcon} navigateTo="/Orth2005" />
-        <Card title="Orthographe" icon={statsIcon} navigateTo="/Orth2005" />
+        <Card title="Compréhension"  icon={statsIcon} navigateTo="/Orth2005" />
+        
       </div>
     
     </div>
