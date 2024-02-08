@@ -36,8 +36,8 @@ function Concours() {
   return (
     <div className="app-container">
       <div className="card-grid">
-        <Card title="Concours 2005"  icon={statsIcon} navigateTo="/ConcoursFrançais2005" />
-        <Card title="Concours 2006" icon={statsIcon} />
+        <Card title="Concours Français"  icon={statsIcon} navigateTo="/ConcoursFrançais2005" />
+        
        {/* <Card title="Concours 2007" content="Test aléatoire sur tes matières!" icon={quiz} navigateTo="/QuizTest" />
         <Card title="Concours 2008" content="Travailler sur tes points faibles!" icon={rocketIcon} />
         <Card title="Concours 209" content="Travailler sur tes points faibles!" icon={rocketIcon} />

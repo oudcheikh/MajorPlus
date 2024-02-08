@@ -2,15 +2,15 @@
     {"concours":2005,
       "text": "Cher ami Amadou Il y a quelques mois que je ne t'ai pas écrit de lettre. C'est parce que j'étais très pris par les études et surtout, je n'avais pas de nouvelles à te donner.Maintenant que les vacances commencent et que nous avons fini notre fête de fin d'années, je peux t'écrire.Je suis en bonne santé ainsi que tous les amis ici. Cette année notre école a organisé une fête de fin d'année. Le directeur a invité les autorités locales et les parents d'élèves. Les élèves ont chanté de belles chansons et ont présenté des jeux très amusants.A la fin de la cérémonie, les meilleurs élèves ont reçu des prix. Tout le monde était content. Ecris - moi une lettre pour me dire comment la fin d'année s'est passée dans votre école. Ton Ami Sidi. ",
       "questions": [
+    {
+       "question": "1 – Où habite Sidi?  ",
+       "options": ["à Mouritanya", "La réponse n'est pas donnée dans le texte.", "Paris", "Tunis"],
+       "correctAnswer": 0
+      },
         {
-          "question": "1 – Où habite Sidi?  ",
-          "options": ["à Mouritanya", "La réponse n'est pas donnée dans le texte.", "Paris", "Tunis"],
-          "correctAnswer": 0
-        },
-        {
-         "question": "2 – A qui est envoyée la lettre ?  ",
-          "options": [" La lettre est envoyée à Amadou ", " La lettre est envoyée à Nour", " La lettre est envoyée à Ali", " La lettre est envoyée à Sidi "],
-          "correctAnswer": 0
+       "question": "2 – A qui est envoyée la lettre ?  ",
+       "options": [" La lettre est envoyée à Amadou ", " La lettre est envoyée à Nour", " La lettre est envoyée à Ali", " La lettre est envoyée à Sidi "],
+       "correctAnswer": 0
         }
       ]
     },

@@ -1,142 +1,122 @@
-import React, { useState,useEffect } from 'react';
-
-
-
-const Orthographe2005 = ({ quizzes }) => {
-  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState(Array(quizzes.length).fill(null));
-  const [userSelection, setUserSelection] = useState(null);
-  const [showReport, setShowReport] = useState(false);
-  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
-
-  const handleAnswerSelect = (selectedOptionIndex) => {
-    setUserSelection(selectedOptionIndex);
-  
-    setUserAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuestionIndex] = selectedOptionIndex;
-      return newAnswers;
-    });
-  
-    setIsNextButtonDisabled(true);
-  };
-  
-  useEffect(() => {
-    if (userSelection === null) {
-      setIsNextButtonDisabled(true);
-    }
-  }, [userSelection]);
-
-  const handleNextButtonClick = () => {
-    if (userSelection !== null) {
-      handleAnswerSelect(userSelection);
-      setIsNextButtonDisabled(true);
-    }
-  };
-
-  const renderQuiz = () => {
-    const currentQuiz = quizzes[currentQuizIndex];
-    const currentQuestion = currentQuiz.questions[currentQuestionIndex];
-
-    return (
-      <div>
-        <h2>Quiz</h2>
-        <p>{currentQuiz.text}</p>
-        <p>{currentQuestion.question}</p>
-        <ul>
-          {currentQuestion.options.map((option, optionIndex) => (
-            <li key={optionIndex}>
-              <button 
-                onClick={() => setUserSelection(optionIndex)}
-                className={`option-button ${userSelection === optionIndex ? 'selected' : ''}`}
-              >
-                {option}
-              </button>
-            </li>
-          ))}
-        </ul>
-        <button 
-          className='option-button-suivant' 
-          onClick={handleNextButtonClick} 
-          disabled={isNextButtonDisabled}
-        >
-          Suivant
-        </button>
-      </div>
-    );
-  };
-
-  const renderReport = () => {
-    // Logique pour afficher le rapport de quiz
-  };
-
-  return (
-    <div>
-      {showReport ? renderReport() : renderQuiz()}
-    </div>
-  );
-};
-
-export default Orthographe2005;
-
-
-
-
-
-{/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 //import './QuizApp.css';
 import {
-    Container, SectionContainer, ImageContainer, Card, BodyText,
-    Title, Subtitle, FormulaBox, FormulaText, ContinueButton
+  Container, SectionContainer, ImageContainer, Card, BodyText,
+  Title, Subtitle, FormulaBox, FormulaText, ContinueButton
 } from '../../../../Styles/MajorStyles';
 
-
+import { Button } from '@mui/material';
+import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../../../Styles/MajorStyles'
 const Orthographe2005 = ({ quizzes }) => {
 
-const [showSections, setShowSections] = useState([true]);
+  const [showSections, setShowSections] = useState([true]);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(Array(quizzes.length).fill(null));
   const [userSelection, setUserSelection] = useState(null); // Ajout de l'état de la sélection
   const [showReport, setShowReport] = useState(false);
-  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
+  const [elboutontemchi, setElboutontemchi] = useState(false)
+  const [repCorrecte, setRepCorrecte] = useState(0)
+  const [donnees, setDonnees] = useState([]);
 
 
-  const handleAnswerSelect = (selectedOptionIndex) => {
-   console.log("answeer")
-    setUserSelection(selectedOptionIndex);
+//Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
+  const RemplirtableauFinale=(x)=>{
+    
 
-    setIsNextButtonDisabled(false);
+/*
+console.log("le quiz  est:",currentQuizIndex)
+console.log("le question est:",currentQuestionIndex)
+console.log("la reponse correcte")
+*/
+//console.log(quizzes[currentQuizIndex].questions[currentQuestionIndex][correctAnswerIndex])
+//console.log( quizzes[currentQuizIndex].concours)
+//if(x==)
 
-    setUserAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuizIndex * quizzes[currentQuizIndex].questions.length + currentQuestionIndex] = selectedOptionIndex;
-      return newAnswers;
-    });
+const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
+
+console.log(currentQuizIndex)
+const currQ=quizzes[currentQuizIndex].questions[currentQuestionIndex]
+
+const correcte=quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
+const mot=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
+console.log("mot correcte ",mot )
+console.log("xxxxxxxxxx",x)
+
+const userRepindex=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
+const userRep=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
+console.log("rep user",userRepindex )
+if(userRepindex==mot){
+  console.log("correcte");
+  setRepCorrecte(repCorrecte+1)
+}
+  else{
+    console.log("incorrecte")
+  }
+
+ console.log("totale correcte",repCorrecte)
+
   
+
+    const nouvelElement = {
+      id: donnees.length + 1,
+      concours :quizzes[currentQuizIndex].concours,
+      question: currQ,
+      RepCorrecte: mot,
+      userRep:userRepindex
+    };
+    setDonnees([...donnees, nouvelElement]);
+ console.log(donnees)
+
+  };
+  const handleAnswerSelect = (selectedOptionIndex) => {
+    console.log(selectedOptionIndex)
+
+    if (userSelection === null) {
+      console.log("cliquer sur une bouton")
+    }
+
+    else {
+      console.log(userAnswers)
+      setUserAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuizIndex * quizzes[currentQuizIndex].questions.length + currentQuestionIndex] = selectedOptionIndex;
+        return newAnswers;
+      });
+
+    }
+
     if (currentQuestionIndex < quizzes[currentQuizIndex].questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+
     } else {
       setCurrentQuestionIndex(0);
-  
+
       if (currentQuizIndex < quizzes.length - 1) {
         setCurrentQuizIndex(currentQuizIndex + 1);
       } else {
         setShowReport(true);
       }
     }
+    RemplirtableauFinale(selectedOptionIndex)
   };
-  
 
-  const handleNextButtonClick = () => {
-    console.log("l'option est nour")
-    // Seulement passer à la question ou au quiz suivant si l'utilisateur a fait une sélection
+  const BoutonNext = () => {
+
+    console.log("---------------")
     if (userSelection !== null) {
-        handleAnswerSelect(userSelection);
-        setIsNextButtonDisabled(true); // Désactiver le bouton "Suivant" après le clic
-      }
-    };
+      handleAnswerSelect(userSelection);
+      setUserSelection(null)
+    }
+  };
+
+
+  const Verifier = () => {
+    console.log(donnees)
+  };
+
+
 
   const renderProgressBar = () => {
     const progressPercentage = ((currentQuizIndex + 0) / quizzes.length) * 100;
@@ -152,64 +132,82 @@ const [showSections, setShowSections] = useState([true]);
   };
 
 
-  
+
   const renderQuiz = () => {
     const currentQuiz = quizzes[currentQuizIndex];
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
 
     return (
       <div>
-       
-        
+
+
         {renderProgressBar()}
-        {currentQuiz.text}
+        <span ><FormulaTextF>concour{currentQuiz.concours}</FormulaTextF></span>
+        <span ><FormulaTextF>{currentQuiz.text}</FormulaTextF></span>
+
         <div>
-            <div> 
-                <br></br>
-                <h3>Exercices</h3></div>
-         
-          <p>{currentQuestion.question}</p>
-          <ul>
+          <div>
+            <br></br>
+            <h3>Exercices</h3></div>
+
+          <span ><FormulaTextF> {currentQuestion.question}</FormulaTextF></span>
+
+          <div className="choices">
             {currentQuestion.options.map((option, optionIndex) => (
-              <li key={optionIndex}>
-                <button 
+              <div key={optionIndex}>
+                <button
+
                   onClick={() => setUserSelection(optionIndex)}
-                  className={`option-button ${userSelection === optionIndex ? 'selected' : ''}`}
-                >
-                  {option}
+                  className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`} >
+
+
+                  <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
+
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div >
         </div>
-        
-        <button  className='option-button-suivant' onClick={handleNextButtonClick} disabled={isNextButtonDisabled}>
-          Suivant
-        </button>
-        
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+
+            <Button  className='option-button-suivant' disabled={elboutontemchi} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
+              <span ><FormulaTextF>  Suivant  </FormulaTextF></span>
+            </Button>
+
+
+            <Button  onClick={Verifier}  variant="contained" color="primary" style={{ marginTop: '10px', display: 'block' }}>
+              <span ><FormulaTextF>  Verifier</FormulaTextF></span>
+            </Button>
+
+          </div>
+        </div>
 
 
       </div>
+
+
     );
   };
 
-  
+
 
   const renderReport2 = () => {
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
     const correctAnswersCount = userAnswers.reduce((count, answer, index) => {
       const quizIndex = Math.floor(index / quizzes[currentQuizIndex].questions.length);
+      console.log(userAnswers)
       const questionIndex = index % quizzes[currentQuizIndex].questions.length;
-  
+
       const currentQuiz = quizzes[quizIndex];
-      if (currentQuiz && currentQuiz.questions) {
+      if (currentQuiz && currentQuiz.questions && currentQuiz.questions[questionIndex]) { // Check if currentQuiz and currentQuiz.questions are defined
         return count + (answer === currentQuiz.questions[questionIndex].correctAnswer ? 1 : 0);
       }
       return count;
     }, 0);
-  
+
     const score = (correctAnswersCount / totalQuestions) * 100;
-  
+    console.log(score)
     return (
       <div>
         <h2>Rapport du Quiz</h2>
@@ -218,11 +216,13 @@ const [showSections, setShowSections] = useState([true]);
           {quizzes.map((quiz, quizIndex) => (
             quiz.questions.map((question, questionIndex) => {
               const userAnswer = userAnswers[quizIndex * quiz.questions.length + questionIndex];
+              if (!question || !question.correctAnswer) return null; // Skip if question or correctAnswer is not defined
               const correctAnswerIndex = question.correctAnswer;
               const isCorrect = userAnswer === correctAnswerIndex;
-  
+
               return (
                 <li key={`${quizIndex}-${questionIndex}`}>
+
                   Texte {quizIndex + 1}: Question {questionIndex + 1} - Réponse: {question.options[userAnswer]} - {isCorrect ? 'Correcte' : 'Incorrecte'}
                 </li>
               );
@@ -232,45 +232,72 @@ const [showSections, setShowSections] = useState([true]);
       </div>
     );
   };
-  
-    
 
   return (
- 
 
-        <div >
-           <Container>
-            <div>
-                <Title> Orthographes</Title>
-               
 
-            </div>
-
-            {showSections[0] && (
-                <><SectionContainer> 
-                    
-                     <BodyText>
-          {showReport ? renderReport2() : renderQuiz()}
-
-          
-          </BodyText>
-          <BodyText>
-         
-                        </BodyText>
-                   
-                    </SectionContainer>
-                    </>
-            )}
-           </Container>
+    <div >
+      <Container>
+        <div>
+          <Title> Orthographes</Title>
 
 
         </div>
-     
+
+        {showSections[0] && (
+          <><SectionContainer>
+
+            <BodyText>
+              {showReport ? renderReport2() : renderQuiz()}
+
+
+            </BodyText>
+            <BodyText>
+
+            </BodyText>
+
+          </SectionContainer>
+          </>
+        )}
+      </Container>
+
+    {/*
+      <div class="card text-center">
+        
+        <div class="card-body">
+        <table>
+        <thead>
+          <tr>
+            <th>concours</th>
+            <th>question</th>
+            <th>RepCorrecte</th>
+            <th>userRep</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {donnees.map((element, index) => (
+
+
+            <tr key={index}>
+              <td>{element.concours}</td>
+              <td>{element.question}</td>
+              <td>{element.RepCorrecte}</td>
+              <td>{element.userRep}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+        </div>
+      </div>
+          */}
+    </div>
+
   );
 };
-
 export default Orthographe2005;
 
-*/}
+
+
 
 
