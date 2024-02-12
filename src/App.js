@@ -124,6 +124,10 @@ import Concours from './composents/Concours/Concours'
 import ConcoursFrançais from './composents/Concours/concours 2005/Français/ConcFrançais'
 import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/Orth2005'
 import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
+import Accueilarab from './composents/Accueilarab' 
+import Acceuilfrançais from './composents/Acceuilfrançais' 
+
+
 function App() {
   return (
     <Router>
@@ -132,6 +136,8 @@ function App() {
         <Routes>
            
           <Route path= "/" element={<Accueil/>} />
+          <Route path= "/Accueilarab" element={<Accueilarab/>} />
+          <Route path= "/Acceuilfrançais" element={<Acceuilfrançais/>} />
           <Route path= "/QuizTest" element={<QuizTest/>} />
           <Route path="/C1" element ={<C1/>}/>
           <Route path="/C2" element ={<C2/>}/>
