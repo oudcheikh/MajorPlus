@@ -207,7 +207,7 @@ const QCMComponent = ({ questions }) => {
             </FormulaText>
           ) : (
             <FormulaText style={{ color: failureColor }}>
-             Tu a choisie un mal réponse! 
+             Tu a choisie une mauvaise  réponse! 
             </FormulaText>
           )}
           <FormulaText> {response.explanation} </FormulaText>
