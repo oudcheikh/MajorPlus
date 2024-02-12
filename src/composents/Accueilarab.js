@@ -38,7 +38,7 @@ function Acceuil() {
       <div className="card-grid">
       <Card title="الوقت المستغرق" content="معرفة الوقت المستغرق في كل مادة" icon={timeIcon} />
 <Card title="النتائج" content="نتائج الاختبارات حسب المادة" icon={statsIcon} />
-<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTest" />
+<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTestarab" />
 
 
 <Card title="تدرب" content="تدرب على نقاط ضعفك" icon={rocketIcon} />

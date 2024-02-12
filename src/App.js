@@ -4,6 +4,8 @@ import Accueil from './composents/Accueil';
 import Math from './composents/Math';
 import Français from './composents/Français';
 import QuizTest from './composents/home/QuizTest';
+import QuizTestarab from './composents/home/QuizTestarab';
+
 import Vocabulaire from './composents/Français/Vocabulaire/Vocabulaire';
 import Acueilvocabulaire from './composents/Français/Vocabulaire/Acueilvocabulaire';
 import Vocabulaireecoleville from'./composents/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
@@ -139,6 +141,7 @@ function App() {
           <Route path= "/Accueilarab" element={<Accueilarab/>} />
           <Route path= "/Acceuilfrançais" element={<Acceuilfrançais/>} />
           <Route path= "/QuizTest" element={<QuizTest/>} />
+          <Route path= "/QuizTestarab" element={<QuizTestarab/>} />
           <Route path="/C1" element ={<C1/>}/>
           <Route path="/C2" element ={<C2/>}/>
           <Route path="/C3" element ={<C3/>}/>
