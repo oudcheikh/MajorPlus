@@ -4,7 +4,7 @@
       "questions": [
     {
        "question": "1 – Où habite Sidi?  ",
-       "options": ["à Mouritanya", "La réponse n'est pas donnée dans le texte.", "Paris", "Tunis"],
+       "options": ["mauritanie", "La réponse n'est pas donnée dans le texte.", "Paris", "Tunis"],
        "correctAnswer": 0
       },
         {
@@ -158,7 +158,7 @@
            }
       ]
     },
-    {"concours":20011,
+    {"concours":2011,
       "text": "Samedi dernier, j’ai invité mes amis, Sidi, Ali, et Amadou. Ils sont tous venus à la maison pour fêter mon anniversaire.  Ma mère nous a préparé des gâteaux délicieux. Elle a aussi acheté des biscuits, des boissons et des cadeaux. A midi, nous avons mangé les gâteaux, et les biscuits et chacun de nous a pris une boisson fraîche.  L’après-midi, nous avons joué au ballon et nous nous sommes  promenés non loin de notre maison. A la fin de cette journée, ma mère a donné à chacun de nous un joli cadeau. ",
       "questions": [
         {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import './QuizApp.css';
+
 import {
   Container, SectionContainer, ImageContainer, Card, BodyText,
   Title, Subtitle, FormulaBox, FormulaText, ContinueButton
@@ -7,6 +7,7 @@ import {
 
 import { Button } from '@mui/material';
 import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../../../Styles/MajorStyles'
+
 const Orthographe2005 = ({ quizzes }) => {
 
   const [showSections, setShowSections] = useState([true]);
@@ -16,58 +17,59 @@ const Orthographe2005 = ({ quizzes }) => {
   const [userSelection, setUserSelection] = useState(null); // Ajout de l'état de la sélection
   const [showReport, setShowReport] = useState(false);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
-  const [elboutontemchi, setElboutontemchi] = useState(false)
+  //const [elboutontemchi, setElboutontemchi] = useState(false)
   const [repCorrecte, setRepCorrecte] = useState(0)
   const [donnees, setDonnees] = useState([]);
 
 
-//Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
-  const RemplirtableauFinale=(x)=>{
-    
+  //Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
+  const RemplirtableauFinale = (x) => {
 
-/*
-console.log("le quiz  est:",currentQuizIndex)
-console.log("le question est:",currentQuestionIndex)
-console.log("la reponse correcte")
-*/
-//console.log(quizzes[currentQuizIndex].questions[currentQuestionIndex][correctAnswerIndex])
-//console.log( quizzes[currentQuizIndex].concours)
-//if(x==)
 
-const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
 
-console.log(currentQuizIndex)
-const currQ=quizzes[currentQuizIndex].questions[currentQuestionIndex]
+    const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
 
-const correcte=quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
-const mot=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
-console.log("mot correcte ",mot )
-console.log("xxxxxxxxxx",x)
+    console.log(currentQuizIndex)
+    const currQ = quizzes[currentQuizIndex].questions[currentQuestionIndex]
+    console.log("the current question is ", currQ)
+    const currQPhrase = currQ.question
+    console.log("the phrase oh the question is  ", currQPhrase)
 
-const userRepindex=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
-const userRep=quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
-console.log("rep user",userRepindex )
-if(userRepindex==mot){
-  console.log("correcte");
-  setRepCorrecte(repCorrecte+1)
-}
-  else{
-    console.log("incorrecte")
-  }
 
- console.log("totale correcte",repCorrecte)
+    const correcte = quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
+    const mot = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
+    console.log("mot correcte ", mot)
+    console.log("xxxxxxxxxx", x)
 
-  
+    const userRepindex = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
+    const userRep = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
+    console.log("rep user", userRepindex)
+
+
+    if (userRepindex == mot) {
+      console.log("correcte");
+      setRepCorrecte(repCorrecte + 1)
+    }
+    else {
+      console.log("incorrecte")
+    }
+
+    console.log("totale correcte", repCorrecte)
+
+
 
     const nouvelElement = {
       id: donnees.length + 1,
-      concours :quizzes[currentQuizIndex].concours,
-      question: currQ,
+      QQI: currentQuestionIndex + 1,
+      concours: quizzes[currentQuizIndex].concours,
+      question: currQPhrase,
       RepCorrecte: mot,
-      userRep:userRepindex
+      userRep: userRepindex
     };
+
+    console.log("la nouvelle valeur est ", nouvelElement)
     setDonnees([...donnees, nouvelElement]);
- console.log(donnees)
+    console.log(donnees)
 
   };
   const handleAnswerSelect = (selectedOptionIndex) => {
@@ -99,9 +101,13 @@ if(userRepindex==mot){
         setShowReport(true);
       }
     }
+
+    
     RemplirtableauFinale(selectedOptionIndex)
   };
 
+
+  //s'il clique sur un choix il peut passer si non il reste bloqué
   const BoutonNext = () => {
 
     console.log("---------------")
@@ -110,12 +116,6 @@ if(userRepindex==mot){
       setUserSelection(null)
     }
   };
-
-
-  const Verifier = () => {
-    console.log(donnees)
-  };
-
 
 
   const renderProgressBar = () => {
@@ -132,7 +132,44 @@ if(userRepindex==mot){
   };
 
 
+  const Modal = () => {
+    const [modal, setModal] = useState(false);
+    const currentQuiz = quizzes[currentQuizIndex];
 
+    const toggleModal = () => {
+      setModal(!modal);
+    };
+
+    if (modal) {
+      document.body.classList.add('active-modal')
+    } else {
+      document.body.classList.remove('active-modal')
+    }
+
+    return (
+      <>
+        <button color="primary" onClick={toggleModal} className="btn-modal">
+          Lire le texte
+        </button>
+
+        {modal && (
+          <div className="modal">
+            <div onClick={toggleModal} className="overlay"></div>
+            <div className="modal-content">
+
+              <p>
+                <span ><FormulaTextF>{currentQuiz.text}</FormulaTextF>  </span>
+              </p>
+
+            </div>
+          </div>
+        )}
+
+      </>
+    );
+  }
+
+//fonction de base 
   const renderQuiz = () => {
     const currentQuiz = quizzes[currentQuizIndex];
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
@@ -143,7 +180,8 @@ if(userRepindex==mot){
 
         {renderProgressBar()}
         <span ><FormulaTextF>concour{currentQuiz.concours}</FormulaTextF></span>
-        <span ><FormulaTextF>{currentQuiz.text}</FormulaTextF></span>
+      
+      <Modal />
 
         <div>
           <div>
@@ -171,14 +209,12 @@ if(userRepindex==mot){
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
 
-            <Button  className='option-button-suivant' disabled={elboutontemchi} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
+            <Button className='option-button-suivant' disabled={isNextButtonDisabled} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
               <span ><FormulaTextF>  Suivant  </FormulaTextF></span>
             </Button>
 
 
-            <Button  onClick={Verifier}  variant="contained" color="primary" style={{ marginTop: '10px', display: 'block' }}>
-              <span ><FormulaTextF>  Verifier</FormulaTextF></span>
-            </Button>
+
 
           </div>
         </div>
@@ -193,42 +229,35 @@ if(userRepindex==mot){
 
 
   const renderReport2 = () => {
+
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
-    const correctAnswersCount = userAnswers.reduce((count, answer, index) => {
-      const quizIndex = Math.floor(index / quizzes[currentQuizIndex].questions.length);
-      console.log(userAnswers)
-      const questionIndex = index % quizzes[currentQuizIndex].questions.length;
-
-      const currentQuiz = quizzes[quizIndex];
-      if (currentQuiz && currentQuiz.questions && currentQuiz.questions[questionIndex]) { // Check if currentQuiz and currentQuiz.questions are defined
-        return count + (answer === currentQuiz.questions[questionIndex].correctAnswer ? 1 : 0);
-      }
-      return count;
-    }, 0);
-
-    const score = (correctAnswersCount / totalQuestions) * 100;
+    const score = (repCorrecte / totalQuestions) * 100
     console.log(score)
     return (
       <div>
-        <h2>Rapport du Quiz</h2>
-        <p>Score: {score}%</p>
-        <ul>
-          {quizzes.map((quiz, quizIndex) => (
-            quiz.questions.map((question, questionIndex) => {
-              const userAnswer = userAnswers[quizIndex * quiz.questions.length + questionIndex];
-              if (!question || !question.correctAnswer) return null; // Skip if question or correctAnswer is not defined
-              const correctAnswerIndex = question.correctAnswer;
-              const isCorrect = userAnswer === correctAnswerIndex;
 
-              return (
-                <li key={`${quizIndex}-${questionIndex}`}>
+        <div>
+          <h2> votre score est :{score}% </h2>
+          <div>
+            {donnees.map((item, index) => (
+              <div key={index}>
+                {/* Afficher les informations de l'item */}
+                N°C:{item.concours}
+                <p>Q°{item.QQI}:{item.question}--Reponse:{item.userRep}-<strong>RéponseCorrecte:</strong>{item.RepCorrecte}</p>
+                <p></p>
 
-                  Texte {quizIndex + 1}: Question {questionIndex + 1} - Réponse: {question.options[userAnswer]} - {isCorrect ? 'Correcte' : 'Incorrecte'}
-                </li>
-              );
-            })
-          ))}
-        </ul>
+
+
+
+              </div>
+            ))}
+
+          </div>
+        </div>
+
+
+
+
       </div>
     );
   };
@@ -239,7 +268,7 @@ if(userRepindex==mot){
     <div >
       <Container>
         <div>
-          <Title> Orthographes</Title>
+
 
 
         </div>
@@ -261,42 +290,13 @@ if(userRepindex==mot){
         )}
       </Container>
 
-    {/*
-      <div class="card text-center">
-        
-        <div class="card-body">
-        <table>
-        <thead>
-          <tr>
-            <th>concours</th>
-            <th>question</th>
-            <th>RepCorrecte</th>
-            <th>userRep</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {donnees.map((element, index) => (
 
 
-            <tr key={index}>
-              <td>{element.concours}</td>
-              <td>{element.question}</td>
-              <td>{element.RepCorrecte}</td>
-              <td>{element.userRep}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-        </div>
-      </div>
-          */}
     </div>
 
   );
 };
 export default Orthographe2005;
-
 
 
 
