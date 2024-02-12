@@ -17,7 +17,7 @@ const Orthographe2005 = ({ quizzes }) => {
   const [userSelection, setUserSelection] = useState(null); // Ajout de l'état de la sélection
   const [showReport, setShowReport] = useState(false);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
-  //const [elboutontemchi, setElboutontemchi] = useState(false)
+  
   const [repCorrecte, setRepCorrecte] = useState(0)
   const [donnees, setDonnees] = useState([]);
 
@@ -38,23 +38,22 @@ const Orthographe2005 = ({ quizzes }) => {
 
     const correcte = quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
     const mot = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
-    console.log("mot correcte ", mot)
-    console.log("xxxxxxxxxx", x)
+   
 
     const userRepindex = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
     const userRep = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
-    console.log("rep user", userRepindex)
+    
 
 
     if (userRepindex == mot) {
-      console.log("correcte");
+     
       setRepCorrecte(repCorrecte + 1)
     }
     else {
       console.log("incorrecte")
     }
 
-    console.log("totale correcte", repCorrecte)
+    
 
 
 
@@ -67,20 +66,20 @@ const Orthographe2005 = ({ quizzes }) => {
       userRep: userRepindex
     };
 
-    console.log("la nouvelle valeur est ", nouvelElement)
+  
     setDonnees([...donnees, nouvelElement]);
     console.log(donnees)
 
   };
   const handleAnswerSelect = (selectedOptionIndex) => {
-    console.log(selectedOptionIndex)
+    
 
     if (userSelection === null) {
       console.log("cliquer sur une bouton")
     }
 
     else {
-      console.log(userAnswers)
+     
       setUserAnswers((prevAnswers) => {
         const newAnswers = [...prevAnswers];
         newAnswers[currentQuizIndex * quizzes[currentQuizIndex].questions.length + currentQuestionIndex] = selectedOptionIndex;
@@ -110,7 +109,6 @@ const Orthographe2005 = ({ quizzes }) => {
   //s'il clique sur un choix il peut passer si non il reste bloqué
   const BoutonNext = () => {
 
-    console.log("---------------")
     if (userSelection !== null) {
       handleAnswerSelect(userSelection);
       setUserSelection(null)
@@ -232,7 +230,7 @@ const Orthographe2005 = ({ quizzes }) => {
 
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
     const score = (repCorrecte / totalQuestions) * 100
-    console.log(score)
+   
     return (
       <div>
 
