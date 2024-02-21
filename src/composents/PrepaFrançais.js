@@ -5,12 +5,10 @@ import statsIcon from '../composents/home/Icones/stats.png';
 import timeIcon from '../composents/home/Icones/time-twenty-four.png';
 import quiz from '../composents/home/Icones/quiz.png';
 import flask from '../composents/home/Icones/flask-potion.png';
-import historyIcon from '../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
-import praying from '../composents/home/Icones/praying.png';
 import Fraçais from '../composents/home/Icones/language-learning.png';
-
 import calculator from '../composents/home/Icones/calculator-simple.png';
 import '../composents/home/Major.css';
+
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
   const navigate = useNavigate();
@@ -35,20 +33,11 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
 function Acceuil() {
   return (
     <div className="app-container">
-      <div className="card-grid">
-      <Card title="الوقت المستغرق" content="معرفة الوقت المستغرق في كل مادة" icon={timeIcon} />
-<Card title="النتائج" content="نتائج الاختبارات حسب المادة" icon={statsIcon} />
-<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTestarab" />
-
-
-<Card title="تدرب" content="تدرب على نقاط ضعفك" icon={rocketIcon} navigateTo="/PrepaArabe" />
-      </div>
+      
       <div className="full-width-container">
-       
-        <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/Histoire" />
-        <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/Islamique" />
-        
-        <Card title="مواضيع كونكور" content="" icon={Fraçais} full navigateTo="/Concours " />
+        <Card title="Science" content="" icon={flask} full navigateTo="/QuizTest" />
+        <Card title="Math" content="" icon={calculator} full navigateTo="/QuizTest" />
+        <Card title="Français" content="" icon={Fraçais} full navigateTo="/QuizTest" />
       </div>
     </div>
   );

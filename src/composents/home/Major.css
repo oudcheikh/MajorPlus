@@ -147,3 +147,20 @@
     top: 10px;
     right: 100px;
 }
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card-clicked {
+  animation: clickAnimation 0.4s ease;
+}
+

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import calculatorIcon from '../composents/home/Icones/calculator-simple.png'; // Assurez-vous d'avoir le bon chemin
 import '../composents/home/Major.css'; // Importer les styles
 
-function Accueil() {
+function Acceuil() {
   const navigate = useNavigate();
 
   const CardButton = ({ title, navigateTo }) => (
@@ -18,12 +18,11 @@ function Accueil() {
   return (
     <div className="app-container">
       <div className="card-grid">
-        <CardButton title="Periode1" navigateTo="/Periode1" />
-        <CardButton title="Periode2" navigateTo="/Periode2" />
-        <CardButton title="Periode3" navigateTo="/Period3" />
+        <CardButton title="Soustraction et Adition des fractions" navigateTo="/SousEtAddFraction" />
+    
       </div>
     </div>
   );
 }
 
-export default Accueil;
+export default Acceuil;
