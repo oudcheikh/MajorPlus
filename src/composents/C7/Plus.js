@@ -58,12 +58,15 @@ function EditableDiv() {
   const [explanation, setExplanation] = useState("Entrez les numéros et cliquez sur 'Résoudre'");
 
   const handleAnimationStep = () => {
+   
     if (currentStep >= 0) {
       const firstNumber = values.firstNumber.replace(/\s+/g, '').padStart(8, ' ');
+     
       const secondNumber = values.secondNumber.replace(/\s+/g, '').padStart(8, ' ');
       const firstDigit = firstNumber[currentStep] === ' ' ? null : parseInt(firstNumber[currentStep], 10);
+    
       const secondDigit = secondNumber[currentStep] === ' ' ? null : parseInt(secondNumber[currentStep], 10);
-  
+      
       if (firstDigit === null && secondDigit === null) {
         setResult(prevResult => prevResult.substr(0, currentStep) + ' ' + prevResult.substr(currentStep + 1));
         setExplanation("");

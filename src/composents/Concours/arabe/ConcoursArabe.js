@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './arabe.css'
 
 import {
   Container, SectionContainer, ImageContainer, Card, BodyText,
   Title, Subtitle, FormulaBox, FormulaText, ContinueButton
-} from '../../../../Styles/MajorStyles';
+} from '../../Styles/MajorStyles';
 
 import { Button } from '@mui/material';
-import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../../../Styles/MajorStyles'
+import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../Styles/MajorStyles'
+import valide from'./valide.png'
 
-const Orthographe2005 = ({ quizzes }) => {
+import invalide from './inv.PNG'
+const ConcoursArabe = ({ quizzes }) => {
 
   const [showSections, setShowSections] = useState([true]);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
@@ -20,8 +24,18 @@ const Orthographe2005 = ({ quizzes }) => {
   
   const [repCorrecte, setRepCorrecte] = useState(0)
   const [donnees, setDonnees] = useState([]);
-const [showDiv, setShowDiv]=useState(false)
+  const [showDiv, setShowDiv]=useState(false)
+  
 
+  const navigate = useNavigate();
+
+  const jouerAutreFoix = () => {
+    
+    navigate('/ConcoursArabe/');
+  };
+  const handleRefresh = () => {
+    window.location.reload();
+  };
   //Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
   const RemplirtableauFinale = (x) => {
 
@@ -69,6 +83,10 @@ const [showDiv, setShowDiv]=useState(false)
   
     setDonnees([...donnees, nouvelElement]);
    
+  };
+
+  const toggleDiv = () => {
+    setShowDiv(!showDiv);
   };
   const handleAnswerSelect = (selectedOptionIndex) => {
     
@@ -146,7 +164,7 @@ const [showDiv, setShowDiv]=useState(false)
     return (
       <>
         <button color="primary" onClick={toggleModal} className="btn-modal">
-          Lire le texte
+         <span className='arabic-text'>اقرا النص</span>
         </button>
 
         {modal && (
@@ -155,7 +173,7 @@ const [showDiv, setShowDiv]=useState(false)
             <div className="modal-content">
 
               <p>
-                <span ><FormulaTextF>{currentQuiz.text}</FormulaTextF>  </span>
+                <span className='arabic-text'><FormulaTextF>{currentQuiz.text}</FormulaTextF>  </span>
               </p>
 
             </div>
@@ -172,22 +190,24 @@ const [showDiv, setShowDiv]=useState(false)
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
 
     return (
-      <div>
 
+   
+      <div className="app-container">
+      {renderProgressBar()}
 
-        {renderProgressBar()}
-        <span ><FormulaTextF>concour{currentQuiz.concours}</FormulaTextF></span>
+        <span  className='arabic-text'><FormulaTextF>كونكور سنة {currentQuiz.concours}</FormulaTextF></span>
       
       <Modal />
 
         <div>
           <div>
             <br></br>
-            <h3>Exercices</h3></div>
+            <h3 className='arabic-text'>دراسة النص</h3></div>
+            
 
-          <span ><FormulaTextF> {currentQuestion.question}</FormulaTextF></span>
+          <span className='arabic-text'><FormulaTextF> {currentQuestion.question}</FormulaTextF></span>
 
-          <div className="choices">
+          <div className="full-width-container">
             {currentQuestion.options.map((option, optionIndex) => (
               <div key={optionIndex}>
                 <button
@@ -204,10 +224,10 @@ const [showDiv, setShowDiv]=useState(false)
           </div >
         </div>
         <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-
+        
+          <div >
             <Button className='option-button-suivant' disabled={isNextButtonDisabled} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
-              <span ><FormulaTextF>  Suivant  </FormulaTextF></span>
+              <span className='arabic-text'><FormulaTextF>  التالي  </FormulaTextF></span>
             </Button>
 
 
@@ -229,32 +249,60 @@ const [showDiv, setShowDiv]=useState(false)
 
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
     const score = (repCorrecte / totalQuestions) * 100
-   
+   const repFausse=totalQuestions-repCorrecte
     return (
-      <div>
+      <div className="app-container">
 
-        <div>
-          <h2> votre score est :{score}% </h2>
-          <div>
+       
+        <div >
+           {/* <h1>  &nbsp; &nbsp;&nbsp;&nbsp;النتيجة</h1>*/}
+          
+            { score > 50 ? (
+
+    <img className="app-container" src={valide} alt="Image 1"  width="100" height="100" />
+      ) : (
+
+        <img className="app-container" src={invalide} alt="Image 2" width="100" height="100"  />
+      )}
+           <div className="app-container">
+            <div className="quiz-details">
+                <h2>%{score.toFixed(3)}:المعدل</h2>
+                <p>{totalQuestions} : عدد الاسئلة</p>
+                <p>{repCorrecte}: عدد الاجابات الصحيحة</p>
+                <p>{repFausse}: عدد الاجابات الخاطئة</p>
+            </div>
+            </div>
+       
+            </div>
+        <div className="app-container">
+        
+   <Button onClick={toggleDiv}>تثبت من اجاباتك</Button>
+   <Button onClick={handleRefresh}> &nbsp;&nbsp; &nbsp;&nbsp;العب مرة اخرى &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</Button>
+
+
+
+   {showDiv && (
+   
+          <div >
             {donnees.map((item, index) => (
               <div key={index}>
                 {/* Afficher les informations de l'item */}
-                N°C:{item.concours}
-                <p>Q°{item.QQI}:{item.question}--Reponse:{item.userRep}-<strong>RéponseCorrecte:</strong>{item.RepCorrecte}</p>
+                كونكور سنة :{item.concours}🎉
+                <p>سؤال °{item.QQI}:{item.question}<strong >  <span>&larr;</span> الاجابة الصحيحة</strong>{item.RepCorrecte}</p>
                 <p></p>
-
-
-
 
               </div>
             ))}
 
           </div>
+           )}
+
+
         </div>
 
 
 
-
+      
       </div>
     );
   };
@@ -262,14 +310,9 @@ const [showDiv, setShowDiv]=useState(false)
   return (
 
 
-    <div >
-      <Container>
-        <div>
-
-
-
-        </div>
-
+    <div className="container">
+     
+        
         {showSections[0] && (
           <><SectionContainer>
 
@@ -278,22 +321,20 @@ const [showDiv, setShowDiv]=useState(false)
 
 
             </BodyText>
-            <BodyText>
-
-            </BodyText>
+            
 
           </SectionContainer>
           </>
         )}
-      </Container>
+     
 
 
 
     </div>
-
+    
   );
 };
-export default Orthographe2005;
+export default ConcoursArabe;
 
 
 
