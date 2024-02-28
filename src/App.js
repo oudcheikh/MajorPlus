@@ -132,8 +132,9 @@ import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/
 import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
 import Accueilarab from './composents/Accueilarab' 
 import Acceuilfrançais from './composents/Acceuilfrançais' 
+import ConcoursArabe from './composents/Concours/arabe/Arabe'
 
-
+import Test from './composents/C11/DivisionEuclid'
 function App() {
   return (
     <Router>
@@ -275,6 +276,8 @@ function App() {
           <Route path= "/ConcoursFrançais" element={<ConcoursFrançais/>} />
           <Route path= "/Orth2005" element={<Orth2005/>} />
           <Route path= "/ConcoursFrançais2005" element={<ConcoursFrançais2005/>} />
+          <Route path= "/ConcoursArabe" element={<ConcoursArabe/>} />
+          <Route path= "/Test" element={<Test/>} />
         </Routes>
       
       </div>
