@@ -1,15 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import rocketIcon from '../composents/home/Icones/rocket-lunch.png';
-import statsIcon from '../composents/home/Icones/stats.png';
-import timeIcon from '../composents/home/Icones/time-twenty-four.png';
-import quiz from '../composents/home/Icones/quiz.png';
-import flask from '../composents/home/Icones/flask-potion.png';
+
 import historyIcon from '../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
 import praying from '../composents/home/Icones/praying.png';
-import Fraçais from '../composents/home/Icones/language-learning.png';
 
-import calculator from '../composents/home/Icones/calculator-simple.png';
 import '../composents/home/Major.css';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
