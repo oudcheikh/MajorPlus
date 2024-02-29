@@ -5,9 +5,14 @@ import {
   BodyText,
   FormulaTextF,
   Card,
-  ProgressBarFiller,
-  Button
+  PositionedButton,
+  Button,
+  SmallCard
 } from './Orthographe2005Styles';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
+import { IconButton } from '@mui/material';
 
 
 const Orthographe2005 = ({ quizzes }) => {
@@ -20,6 +25,7 @@ const Orthographe2005 = ({ quizzes }) => {
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
   const [repCorrecte, setRepCorrecte] = useState(0);
   const [donnees, setDonnees] = useState([]);
+  const navigate = useNavigate();
 
   const RemplirtableauFinale = (x) => {
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
@@ -78,6 +84,8 @@ const Orthographe2005 = ({ quizzes }) => {
     }
   };
 
+  
+
   const renderProgressBar = () => {
     // Calculer le nombre total de questions dans tous les quiz
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
@@ -95,6 +103,10 @@ const Orthographe2005 = ({ quizzes }) => {
       </div>
     );
   };
+
+  const handleClick = () => {
+    navigate("/Concours");
+  };
   
 
   const renderQuiz = () => {
@@ -102,17 +114,26 @@ const Orthographe2005 = ({ quizzes }) => {
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
 
     return (
-      <div>
+      <div style={{ padding: '2px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', width: "100%" }}>
+        <IconButton variant="outlined" color="primary" onClick={handleClick} style={{top:'-10px',marginRight:'8px'}}>
+          <CloseIcon />
+        </IconButton>
+        
         {renderProgressBar()}
-
+      </div>
+<br></br>
         <Card>
-        <span><FormulaTextF>Concours {currentQuiz.concours}</FormulaTextF></span>
+        
         
         {/* Affichage direct du texte du quiz actuel */}
         <p><FormulaTextF>{currentQuiz.text}</FormulaTextF></p>
         </Card>
-        <h3>Exercices</h3>
-        <span><FormulaTextF>{currentQuestion.question}</FormulaTextF></span>
+      
+        <br/>
+        
+        
+        <span><SmallCard><FormulaTextF>{currentQuestion.question}</FormulaTextF></SmallCard></span>
 
         <div className="choices">
           {currentQuestion.options.map((option, optionIndex) => (
@@ -126,15 +147,17 @@ const Orthographe2005 = ({ quizzes }) => {
           ))}
         </div>
 
-        <Button
-          className='option-button-suivant'
-          disabled={isNextButtonDisabled}
-          onClick={BoutonNext}
-          variant="contained"
-          style={{ marginTop: '10px' }}
-        >
-          Suivant
-        </Button>
+        <div style={{ position: 'fixed', right: 20, bottom: 20, zIndex: 1000 }}>
+  <ArrowForward 
+    disabled={isNextButtonDisabled}
+    onClick={BoutonNext}
+    // Vous pouvez supprimer cette ligne si le style est déjà défini dans CSS
+  >
+    {/* Assurez-vous d'avoir importé ArrowForward correctement */}
+  </ArrowForward>
+</div>
+
+
       </div>
     );
   };
@@ -158,11 +181,11 @@ const Orthographe2005 = ({ quizzes }) => {
   return (
     <Container>
       {showSections[0] && (
-        <SectionContainer>
+       
           <BodyText>
             {showReport ? renderReport2() : renderQuiz()}
           </BodyText>
-        </SectionContainer>
+        
       )}
     </Container>
   );

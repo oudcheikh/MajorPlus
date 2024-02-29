@@ -24,9 +24,9 @@ font-family: 'Comic Sans MS', sans-serif;
 `;
 
 export const FormulaTextF = styled.p`
-padding: 0px 0px;
+padding: -10px 0px;
 align-items: center;
-font-size: 1.2em;
+font-size: 1.1em;
 font-family: 'Comic Sans MS', sans-serif;
 `;
 
@@ -77,11 +77,21 @@ export const Card = styled.div`
   }
 `;
 
+// Ajout ou modification dans Orthographe2005Styles.js
+
+export const PositionedButton = styled(Button)` // Assurez-vous que Button est le bouton stylisé que vous avez déjà défini
+  position: fixed; // Reste fixe lors du défilement de la page
+  bottom: 20px; // 20 pixels du bas
+  right: 20px; // 20 pixels de droite
+  margin-top: 0; // Pas de marge supérieure nécessaire pour le positionnement fixe
+`;
+
+
 export const SmallCard = styled.div`
   all: unset;
   border-radius: 8px;
   border: 1px solid #eee;
-  background-color: #fafafa;
+  background-color: #8ceb8f;
   height: 60px;
     width: 98%;
   margin: 0 8px 16px;

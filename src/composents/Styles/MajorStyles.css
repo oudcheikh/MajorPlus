@@ -11,3 +11,11 @@
     width: calc(100% - 10px); /* Adjusts the width to account for the margins */
     margin-bottom: 20px; /* This adds a margin below each full-width card */
   }
+
+  /* Dans votre fichier CSS global ou CSS module */
+.option-button-suivant {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  margin-top: 0;
+}
