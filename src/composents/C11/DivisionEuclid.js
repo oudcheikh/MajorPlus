@@ -1398,12 +1398,9 @@ function DivisionComponent() {
 
   //fonction mere
   const resoudre = () => {
-    setMessageSuivant("")
-    console.log(dividend)
-    console.log(divisor)
-
-
-
+   const int_divident=parseInt(dividend)
+   const int_divisor=parseInt(divisor)
+  
     if (dividend == "" | divisor == "") {
 
 
@@ -1417,6 +1414,17 @@ function DivisionComponent() {
 
     }
     else {
+      if (int_divident<int_divisor){
+        setResult(
+          <div>
+  
+            <span style={{ color: 'red' }}>Le dividende doit etre superieur au diviseur</span>
+  
+          </div>
+        );
+  
+      }
+      else {
       if (divisor == 0) {
         Diviseur0()
         setMessageSuivant("")
@@ -1439,6 +1447,7 @@ function DivisionComponent() {
             toDo()
 
           }
+        }
         }
       }
     }

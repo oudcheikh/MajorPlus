@@ -45,6 +45,8 @@ function Acceuil() {
       </div>
       <div className="full-width-container">
        
+        <Card title="العربية" content="" icon={historyIcon} full navigateTo="/AcceiulArabic" />
+
         <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/Histoire" />
         <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/Islamique" />
         

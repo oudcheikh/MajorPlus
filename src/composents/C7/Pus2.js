@@ -2,23 +2,20 @@ import React, { useState, useRef } from 'react';
 import { Card } from '../Styles/MajorStyles';
 import { Button } from '@mui/material';
 
-// Style CSS pour le carreau avec bordure rouge
-const squareStyle = {
-  border: '1px solid red', // Bordure rouge d'un pixel
-  borderRadius: '5px', // Coins arrondis
-  textAlign: 'center', // Centrage du texte
-  width: 'fit-content', // Ajustement de la largeur au contenu
-  padding: '5px', // Espacement intérieur du carreau
-  display: 'inline-block', // Affichage en ligne
-};
-
-// Style pour le conteneur éditable
 const editableContainerStyle = {
   position: 'relative',
   display: 'inline-block',
 };
+const squareStyle = {
+    border: '1px solid black', // Bordure noire d'un pixel
+    borderRadius: '5px', // Coins arrondis
+    textAlign: 'center', // Centrage du texte
+    width: 'fit-content', // Ajustement de la largeur au contenu
+    padding: '5px', // Espacement intérieur du carreau
+    display: 'inline-block', // Affichage en ligne
+    color:'red'
+  };
 
-// Style pour le texte éditable
 const editableStyle = {
   border: 'none',
   outline: 'none',
@@ -33,7 +30,6 @@ const editableStyle = {
   minWidth: '30px', 
 };
 
-// Style pour le texte de remplacement
 const placeholderStyle = {
   top: 0,
   left: 0,
@@ -64,10 +60,6 @@ function EditableDiv() {
   const [result, setResult] = useState(initialResult);
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [carry, setCarry] = useState(initialCarry);
-  const[first,setFirst]=useState(initialState.firstNumber)
-  const[second,setSecond]=useState(initialState.secondNumber)
-  const[x,setX]=useState(true)
-  const [y,setY]=useState(false)
 
   const firstNumberRef = useRef(null);
   const secondNumberRef = useRef(null);
@@ -75,46 +67,31 @@ function EditableDiv() {
   const [explanation, setExplanation] = useState("Entrez les numéros et cliquez sur 'Résoudre'");
 
   const handleAnimationStep = () => {
-    if (currentStep >= 0) {
-      const firstNumber = values.firstNumber.replace(/\s+/g, '').padStart(8, ' ');
-      const secondNumber = values.secondNumber.replace(/\s+/g, '').padStart(8, ' ');
-      const firstDigit = firstNumber[currentStep] === ' ' ? null : parseInt(firstNumber[currentStep], 10);
-      const secondDigit = secondNumber[currentStep] === ' ' ? null : parseInt(secondNumber[currentStep], 10);
-      
-      if (firstDigit === null && secondDigit === null) {
-        setResult(prevResult => prevResult.substr(0, currentStep) + ' ' + prevResult.substr(currentStep + 1));
-        setExplanation("");
-        setCurrentStep(currentStep - 1);
-        return;
-      }
-  
-      let sum = (firstDigit || 0) + (secondDigit || 0) + carry;
-      let carryMessage = "";
-  
-      // Vérifier s'il y a seulement des zéros dans les étapes restantes
-      const remainingFirst = firstNumber.slice(0, currentStep).replace(/\s/g, '');
-      const remainingSecond = secondNumber.slice(0, currentStep).replace(/\s/g, '');
-      const onlyZerosLeft = /^[0]*$/.test(remainingFirst + remainingSecond);
-  
-      if (sum > 9 && !onlyZerosLeft) {
-        setCarry(1);
-        sum = sum % 10;
-        carryMessage = `, je retiens 1`;
-      } else {
-        setCarry(0);
-      }
-  
-      // Ajuster le résultat pour tenir compte des chiffres à deux chiffres
-      let newResult = result.split('');
-      newResult[currentStep] = sum.toString();
-      setResult(newResult.join(''));
-  
-      setExplanation(`${firstDigit || 0} + ${secondDigit || 0}${carry > 0 ? " + 1" : ""} = ${(firstDigit || 0) + (secondDigit || 0) + carry}${carryMessage}, j'écris ${sum} en bas.`);
-    
-      setCurrentStep(currentStep - 1);
-    } else {
-      setExplanation("");
-    }
+    // Extraire les chiffres des unités de chaque entier
+    const firstUnit = parseInt(values.firstNumber.charAt(values.firstNumber.length - 1), 10);
+    const secondUnit = parseInt(values.secondNumber.charAt(values.secondNumber.length - 1), 10);
+
+    // Afficher les chiffres des unités dans des "carreaux"
+    setResult(
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <div style={{ border: '1px solid black', borderRadius: '5px', textAlign: 'center', width: '60px', height: '60px', fontSize: '30px', margin: '0 5px' }}>
+          {firstUnit}
+        </div>
+        <div style={{ border: '1px solid black', borderRadius: '5px', textAlign: 'center', width: '60px', height: '60px', fontSize: '30px', margin: '0 5px' }}>
+          {secondUnit}
+        </div>
+      </div>
+    );
+
+    // Réinitialiser les chiffres d'unités
+    setValues(prevValues => ({
+      ...prevValues,
+      firstNumber: "",
+      secondNumber: ""
+    }));
+
+    // Réinitialiser l'explication
+    setExplanation("");
   };
 
   const handleChange = (event, field) => {
@@ -145,14 +122,16 @@ function EditableDiv() {
     if (secondNumberRef.current) secondNumberRef.current.innerText = "";
   };
 
+
+
   return (
     <Card>
-      <br></br>
+      <br />
       <div style={{ fontSize: '20px', color: 'green' }}>
         {explanation}
       </div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <div style={{ textAlign: 'center' }}>
         <div style={editableContainerStyle}>
           <div
@@ -160,39 +139,33 @@ function EditableDiv() {
             contentEditable
             onInput={e => handleChange(e, "firstNumber")}
             style={editableStyle}
-          > 
-            {values.firstNumber}
-          </div>
+          ></div>
           {values.firstNumber === "" && (
             <div style={placeholderStyle}>Saisir ici</div>
           )}
         </div>
-       
         <div style={{ fontSize: '30px', color: 'blue', marginBottom: '4px', textAlign: 'left', paddingLeft: '90px' }}>+</div>
         <div style={editableContainerStyle}>
-          {x &&<div
+          <div
             ref={secondNumberRef}
             contentEditable
             onInput={e => handleChange(e, "secondNumber")}
             style={editableStyle}
           ></div>
-          }
-          {y && <div>-----</div>}
           {values.secondNumber === "" && (
             <div style={placeholderStyle}>Saisir ici</div>
           )}
         </div>
         <div style={{ ...editableStyle, marginBottom: '4px' }}>--------------------</div>
+        
         <div style={{ ...editableStyle }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            {result}
-          </div>
+          {result}
         </div>
 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
+        <br />
+        <br />
         
         <Button variant='contained' color='primary' style={{ marginLeft: 0 }} onClick={handleAnimationStep}>
           Résoudre
@@ -200,10 +173,9 @@ function EditableDiv() {
         <Button variant='contained' color='primary' style={{ marginLeft: 10 }} onClick={handleReset}>
           Réinitialiser
         </Button>
-        <br></br>
-        <br></br>
-        <br></br>
-     
+        <br />
+        <br />
+        <br />
       </div>
     </Card>
   );

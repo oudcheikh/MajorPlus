@@ -129,6 +129,49 @@ import Acceuilfrançais from './composents/Acceuilfrançais'
 import ConcoursArabe from './composents/Concours/arabe/Arabe'
 
 import Test from './composents/C11/DivisionEuclid'
+
+import AcceiulArabic from'./composents/Arabe/AccArabic'
+
+import Annahw from'./composents/Arabe/Annahw/Annahw'
+import C1_Almoaarab from'./composents/Arabe/Annahw/al moaarab/Almoaareb'
+import Chapitre2 from './composents/Arabe/Annahw/Chapitre2'
+import Chapitre3 from './composents/Arabe/Annahw/Chapitre3'
+import Chapitre4 from './composents/Arabe/Annahw/Chapitre4'
+import Chapitre5 from './composents/Arabe/Annahw/Chapitre5'
+import Chapitre6 from './composents/Arabe/Annahw/Chapitre6'
+import Chapitre7 from './composents/Arabe/Annahw/Chapitre7'
+import Chapitre8 from './composents/Arabe/Annahw/Chapitre8'
+import Chapitre9 from './composents/Arabe/Annahw/Chapitre9'
+import Chapitre10 from './composents/Arabe/Annahw/Chapitre10'
+import Chapitre11 from './composents/Arabe/Annahw/Chapitre11'
+import Chapitre12 from './composents/Arabe/Annahw/Chapitre12'
+import Chapitre13 from './composents/Arabe/Annahw/Chapitre13'
+import Chapitre14 from './composents/Arabe/Annahw/Chapitre14'
+import Chapitre15 from './composents/Arabe/Annahw/Chapitre15'
+import Chapitre16 from './composents/Arabe/Annahw/Chapitre16'
+import Chapitre17 from './composents/Arabe/Annahw/Chapitre17'
+import Chapitre18 from './composents/Arabe/Annahw/Chapitre18'
+import Chapitre19 from './composents/Arabe/Annahw/Chapitre19'
+import Chapitre20 from './composents/Arabe/Annahw/Chapitre20'
+import Chapitre21 from './composents/Arabe/Annahw/Chapitre21'
+import Chapitre22 from './composents/Arabe/Annahw/Chapitre22'
+import Chapitre23 from './composents/Arabe/Annahw/Chapitre23'
+import Chapitre24 from './composents/Arabe/Annahw/Chapitre24'
+import Chapitre25 from './composents/Arabe/Annahw/Chapitre25'
+import Chapitre26 from './composents/Arabe/Annahw/Chapitre26'
+import Chapitre27 from './composents/Arabe/Annahw/Chapitre27'
+import Chapitre28 from './composents/Arabe/Annahw/Chapitre28'
+import Chapitre29 from './composents/Arabe/Annahw/Chapitre29'
+
+import Chapitre30 from './composents/Arabe/Annahw/Chapitre30'
+import Chapitre31 from './composents/Arabe/Annahw/Chapitre31'
+import Chapitre32 from './composents/Arabe/Annahw/Chapitre32'
+import Chapitre33 from './composents/Arabe/Annahw/Chapitre33'
+
+import Tadriib from './composents/Arabe//Annahw/Tadriib/TadriibBase'
+
+
+
 function App() {
   return (
     <Router>
@@ -265,6 +308,48 @@ function App() {
           <Route path= "/Orth2005" element={<Orth2005/>} />
           <Route path= "/ConcoursFrançais2005" element={<ConcoursFrançais2005/>} />
           <Route path= "/ConcoursArabe" element={<ConcoursArabe/>} />
+
+          {/*-------------------------*/}
+
+          <Route path= "/acceiulArabic" element={<AcceiulArabic/>} />
+          
+          <Route path= "/Annahw" element={<Annahw/>} />
+          <Route path= "/C1_Almoaarab" element={<C1_Almoaarab/>} />
+          <Route path= "/Chapitre2" element={<Chapitre2/>} />
+          <Route path= "/Chapitre3" element={<Chapitre3/>} />
+          <Route path= "/Chapitre4" element={<Chapitre4/>} />
+
+
+          <Route path= "/Chapitre5" element={<Chapitre5/>} />
+          <Route path= "/Chapitre6" element={<Chapitre6/>} />
+          <Route path= "/Chapitre7" element={<Chapitre7/>} />
+          <Route path= "/Chapitre8" element={<Chapitre8/>} />
+          <Route path= "/Chapitre9" element={<Chapitre9/>} />
+          <Route path= "/Chapitre10" element={<Chapitre10/>} />
+          <Route path= "/Chapitre11" element={<Chapitre11/>} />
+          <Route path= "/Chapitre12" element={<Chapitre12/>} />
+          <Route path= "/Chapitre13" element={<Chapitre13/>} />
+          <Route path= "/Chapitre14" element={<Chapitre14/>} />
+          <Route path= "/Chapitre15" element={<Chapitre15/>} />
+          <Route path= "/Chapitre16" element={<Chapitre16/>} />
+          <Route path= "/Chapitre17" element={<Chapitre17/>} />
+          <Route path= "/Chapitre18" element={<Chapitre18/>} />
+          <Route path= "/Chapitre19" element={<Chapitre19/>} />
+          <Route path= "/Chapitre20" element={<Chapitre20/>} />
+          <Route path= "/Chapitre21" element={<Chapitre21/>} />
+          <Route path= "/Chapitre22" element={<Chapitre22/>} />
+          <Route path= "/Chapitre23" element={<Chapitre23/>} />
+          <Route path= "/Chapitre24" element={<Chapitre24/>} />
+          <Route path= "/Chapitre25" element={<Chapitre25/>} />
+          <Route path= "/Chapitre26" element={<Chapitre26/>} />
+          <Route path= "/Chapitre27" element={<Chapitre27/>} />
+          <Route path= "/Chapitre28" element={<Chapitre28/>} />
+          <Route path= "/Chapitre29" element={<Chapitre29/>} />
+          <Route path= "/Chapitre30" element={<Chapitre30/>} />
+          <Route path= "/Chapitre31" element={<Chapitre31/>} />
+          <Route path= "/Chapitre32" element={<Chapitre32/>} />
+          <Route path= "/Chapitre33" element={<Chapitre33/>} />
+          <Route path= "/Tadriib" element={<Tadriib/>} />
           <Route path= "/Test" element={<Test/>} />
         </Routes>
       
