@@ -1,61 +1,45 @@
 import React, { useState } from 'react';
-
 import {
-  Container, SectionContainer, ImageContainer, Card, BodyText,
-  Title, Subtitle, FormulaBox, FormulaText, ContinueButton
-} from '../../../../Styles/MajorStyles';
+  Container,
+  SectionContainer,
+  BodyText,
+  FormulaTextF,
+  Card,
+  PositionedButton,
+  Button,
+  SmallCard
+} from './Orthographe2005Styles';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
+import { IconButton } from '@mui/material';
 
-import { Button } from '@mui/material';
-import { ProgressBarContainer, FormulaTextF, ProgressBarFiller } from '../../../../Styles/MajorStyles'
 
 const Orthographe2005 = ({ quizzes }) => {
-
   const [showSections, setShowSections] = useState([true]);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState(Array(quizzes.length).fill(null));
-  const [userSelection, setUserSelection] = useState(null); // Ajout de l'état de la sélection
+  const [userSelection, setUserSelection] = useState(null);
   const [showReport, setShowReport] = useState(false);
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(false);
-  
-  const [repCorrecte, setRepCorrecte] = useState(0)
+  const [repCorrecte, setRepCorrecte] = useState(0);
   const [donnees, setDonnees] = useState([]);
-const [showDiv, setShowDiv]=useState(false)
+  const navigate = useNavigate();
 
-  //Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
   const RemplirtableauFinale = (x) => {
-
-
-
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
+    const currQ = quizzes[currentQuizIndex].questions[currentQuestionIndex];
+    const currQPhrase = currQ.question;
+    const correcte = currQ.correctAnswer;
+    const mot = currQ.options[correcte];
+    const userRepindex = currQ.options[x];
 
-    
-    const currQ = quizzes[currentQuizIndex].questions[currentQuestionIndex]
-
-    const currQPhrase = currQ.question
-    console.log("the phrase oh the question is  ", currQPhrase)
-
-
-    const correcte = quizzes[currentQuizIndex].questions[currentQuestionIndex].correctAnswer
-    const mot = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[correcte]
-   
-
-    const userRepindex = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[x]
-    const userRep = quizzes[currentQuizIndex].questions[currentQuestionIndex].options[userRepindex]
-    
-
-
-    if (userRepindex == mot) {
-     
-      setRepCorrecte(repCorrecte + 1)
+    if (x === correcte) {
+      setRepCorrecte(repCorrecte + 1);
+    } else {
+      console.log("incorrecte");
     }
-    else {
-      console.log("incorrecte")
-    }
-
-    
-
-
 
     const nouvelElement = {
       id: donnees.length + 1,
@@ -66,235 +50,145 @@ const [showDiv, setShowDiv]=useState(false)
       userRep: userRepindex
     };
 
-  
     setDonnees([...donnees, nouvelElement]);
-   
   };
+
   const handleAnswerSelect = (selectedOptionIndex) => {
-    
-
     if (userSelection === null) {
-      console.log("cliquer sur une bouton")
-    }
-
-    else {
-     
+      console.log("cliquer sur une bouton");
+    } else {
       setUserAnswers((prevAnswers) => {
         const newAnswers = [...prevAnswers];
         newAnswers[currentQuizIndex * quizzes[currentQuizIndex].questions.length + currentQuestionIndex] = selectedOptionIndex;
         return newAnswers;
       });
-
     }
 
     if (currentQuestionIndex < quizzes[currentQuizIndex].questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-
     } else {
       setCurrentQuestionIndex(0);
-
       if (currentQuizIndex < quizzes.length - 1) {
         setCurrentQuizIndex(currentQuizIndex + 1);
       } else {
         setShowReport(true);
       }
     }
-
-    
-    RemplirtableauFinale(selectedOptionIndex)
+    RemplirtableauFinale(selectedOptionIndex);
   };
 
-
-  //s'il clique sur un choix il peut passer si non il reste bloqué
   const BoutonNext = () => {
-
     if (userSelection !== null) {
       handleAnswerSelect(userSelection);
-      setUserSelection(null)
+      setUserSelection(null);
     }
   };
 
+  
 
   const renderProgressBar = () => {
-    const progressPercentage = ((currentQuizIndex + 0) / quizzes.length) * 100;
-
+    // Calculer le nombre total de questions dans tous les quiz
+    const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
+    
+    // Calculer le nombre de questions répondues jusqu'à présent
+    // Cela inclut toutes les questions des quiz précédents plus les questions actuelles du quiz actuel
+    const questionsAnswered = quizzes.slice(0, currentQuizIndex).reduce((total, quiz) => total + quiz.questions.length, 0) + currentQuestionIndex + 1;
+    
+    // Calculer le pourcentage de progression
+    const progressPercentage = ((questionsAnswered-1) / totalQuestions) * 100;
+  
     return (
       <div className="progress-bar-container">
-        <div
-          className="progress-bar"
-          style={{ width: `${progressPercentage}%` }}
-        ></div>
+        <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
       </div>
     );
   };
 
+  const handleClick = () => {
+    navigate("/Concours");
+  };
+  
 
-  const Modal = () => {
-    const [modal, setModal] = useState(false);
-    const currentQuiz = quizzes[currentQuizIndex];
-
-    const toggleModal = () => {
-      setModal(!modal);
-    };
-
-    if (modal) {
-      document.body.classList.add('active-modal')
-    } else {
-      document.body.classList.remove('active-modal')
-    }
-
-    return (
-      <>
-        <button color="primary" onClick={toggleModal} className="btn-modal">
-          Lire le texte
-        </button>
-
-        {modal && (
-          <div className="modal">
-            <div onClick={toggleModal} className="overlay"></div>
-            <div className="modal-content">
-
-              <p>
-                <span ><FormulaTextF>{currentQuiz.text}</FormulaTextF>  </span>
-              </p>
-
-            </div>
-          </div>
-        )}
-
-      </>
-    );
-  }
-
-//fonction de base 
   const renderQuiz = () => {
     const currentQuiz = quizzes[currentQuizIndex];
     const currentQuestion = currentQuiz.questions[currentQuestionIndex];
 
     return (
-      <div>
-
-
+      <div style={{ padding: '2px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', width: "100%" }}>
+        <IconButton variant="outlined" color="primary" onClick={handleClick} style={{top:'-10px',marginRight:'8px'}}>
+          <CloseIcon />
+        </IconButton>
+        
         {renderProgressBar()}
-        <span ><FormulaTextF>concour{currentQuiz.concours}</FormulaTextF></span>
+      </div>
+<br></br>
+        <Card>
+        
+        
+        {/* Affichage direct du texte du quiz actuel */}
+        <p><FormulaTextF>{currentQuiz.text}</FormulaTextF></p>
+        </Card>
       
-      <Modal />
+        <br/>
+        
+        
+        <span><SmallCard><FormulaTextF>{currentQuestion.question}</FormulaTextF></SmallCard></span>
 
-        <div>
-          <div>
-            <br></br>
-            <h3>Exercices</h3></div>
-
-          <span ><FormulaTextF> {currentQuestion.question}</FormulaTextF></span>
-
-          <div className="choices">
-            {currentQuestion.options.map((option, optionIndex) => (
-              <div key={optionIndex}>
-                <button
-
-                  onClick={() => setUserSelection(optionIndex)}
-                  className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`} >
-
-
-                  <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
-
-                </button>
-              </div>
-            ))}
-          </div >
+        <div className="choices">
+          {currentQuestion.options.map((option, optionIndex) => (
+            <button
+              key={optionIndex}
+              onClick={() => setUserSelection(optionIndex)}
+              className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`}
+            >
+              <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
+            </button>
+          ))}
         </div>
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
 
-            <Button className='option-button-suivant' disabled={isNextButtonDisabled} onClick={BoutonNext} variant="contained" style={{ marginTop: '10px', display: 'block' }}>
-              <span ><FormulaTextF>  Suivant  </FormulaTextF></span>
-            </Button>
-
-
-
-
-          </div>
-        </div>
+        <div style={{ position: 'fixed', right: 20, bottom: 20, zIndex: 1000 }}>
+  <ArrowForward 
+    disabled={isNextButtonDisabled}
+    onClick={BoutonNext}
+    // Vous pouvez supprimer cette ligne si le style est déjà défini dans CSS
+  >
+    {/* Assurez-vous d'avoir importé ArrowForward correctement */}
+  </ArrowForward>
+</div>
 
 
       </div>
-
-
     );
   };
 
-
-
   const renderReport2 = () => {
-
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
-    const score = (repCorrecte / totalQuestions) * 100
-   
+    const score = (repCorrecte / totalQuestions) * 100;
+
     return (
       <div>
-
-        <div>
-          <h2> votre score est :{score}% </h2>
-          <div>
-            {donnees.map((item, index) => (
-              <div key={index}>
-                {/* Afficher les informations de l'item */}
-                N°C:{item.concours}
-                <p>Q°{item.QQI}:{item.question}--Reponse:{item.userRep}-<strong>RéponseCorrecte:</strong>{item.RepCorrecte}</p>
-                <p></p>
-
-
-
-
-              </div>
-            ))}
-
+        <h2>Votre score est :{score}%</h2>
+        {donnees.map((item, index) => (
+          <div key={index}>
+            <p>N°C:{item.concours} Q°{item.QQI}: {item.question} -- Réponse: {item.userRep} - <strong>Réponse Correcte:</strong>{item.RepCorrecte}</p>
           </div>
-        </div>
-
-
-
-
+        ))}
       </div>
     );
   };
 
   return (
-
-
-    <div >
-      <Container>
-        <div>
-
-
-
-        </div>
-
-        {showSections[0] && (
-          <><SectionContainer>
-
-            <BodyText>
-              {showReport ? renderReport2() : renderQuiz()}
-
-
-            </BodyText>
-            <BodyText>
-
-            </BodyText>
-
-          </SectionContainer>
-          </>
-        )}
-      </Container>
-
-
-
-    </div>
-
+    <Container>
+      {showSections[0] && (
+       
+          <BodyText>
+            {showReport ? renderReport2() : renderQuiz()}
+          </BodyText>
+        
+      )}
+    </Container>
   );
 };
+
 export default Orthographe2005;
-
-
-
-

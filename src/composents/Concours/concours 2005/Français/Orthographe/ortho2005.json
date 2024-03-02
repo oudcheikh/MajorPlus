@@ -1,22 +1,44 @@
 [
-    {"concours":2005,
-      "text": "Cher ami Amadou Il y a quelques mois que je ne t'ai pas écrit de lettre. C'est parce que j'étais très pris par les études et surtout, je n'avais pas de nouvelles à te donner.Maintenant que les vacances commencent et que nous avons fini notre fête de fin d'années, je peux t'écrire.Je suis en bonne santé ainsi que tous les amis ici. Cette année notre école a organisé une fête de fin d'année. Le directeur a invité les autorités locales et les parents d'élèves. Les élèves ont chanté de belles chansons et ont présenté des jeux très amusants.A la fin de la cérémonie, les meilleurs élèves ont reçu des prix. Tout le monde était content. Ecris - moi une lettre pour me dire comment la fin d'année s'est passée dans votre école. Ton Ami Sidi. ",
-      "questions": [
-    {
-       "question": "1 – Où habite Sidi?  ",
-       "options": ["mauritanie", "La réponse n'est pas donnée dans le texte.", "Paris", "Tunis"],
-       "correctAnswer": 0
+  {
+    "concours": 2024,
+    "text": "Bonjour, Je t'écris pour partager une petite nouveauté chez moi. Récemment, j'ai commencé à apprendre la guitare. C'est un défi, mais je m'amuse beaucoup. J'espère pouvoir te jouer un morceau lors de notre prochaine rencontre. A bientôt, Alex.",
+    "questions": [
+      {
+        "question": "1 – Qui apprend à jouer d'un instrument?",
+        "options": ["Alex", "L'ami d'Alex", "Le professeur d'Alex"],
+        "correctAnswer": 0
       },
-        {
-       "question": "2 – A qui est envoyée la lettre ?  ",
-       "options": [" La lettre est envoyée à Amadou ", " La lettre est envoyée à Nour", " La lettre est envoyée à Ali", " La lettre est envoyée à Sidi "],
-       "correctAnswer": 0
-        }
-      ]
-    }
-    
-   
+      {
+        "question": "2 – Quel instrument Alex apprend-il à jouer?",
+        "options": ["Piano", "Violon", "Guitare"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "3 – Pourquoi Alex a-t-il décidé d'apprendre la guitare ?",
+        "options": ["Pour devenir célèbre", "Parce qu'il s'ennuyait", "C'est un défi et il s'amuse"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "4 – Qu'espère faire Alex lors de la prochaine rencontre ?",
+        "options": ["Offrir une guitare", "Jouer un morceau de guitare", "Apprendre à l'ami comment jouer de la guitare"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "5 – Comment Alex se sent-il à propos d'apprendre la guitare ?",
+        "options": ["Il trouve ça ennuyeux", "Il est confus", "Il est excité et s'amuse"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "6 – À qui Alex écrit-il le message ?",
+        "options": ["À son professeur", "À son ami", "À ses parents"],
+        "correctAnswer": 3
+      },
+      {
+        "question": "7 – Quelle est la nouveauté chez Alex ?",
+        "options": ["Il a déménagé", "Il a un nouvel ami", "Il apprend la guitare"],
+        "correctAnswer": 2
+      }
+    ]
+  }
+]
 
-
-    
-  ]

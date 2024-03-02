@@ -191,21 +191,27 @@ font-family: 'Comic Sans MS', sans-serif;
 `;
 
 export const ContinueButton = styled.button`
-display: block;
-margin: 15px 0;
-padding: 10px 20px;
-border: none;
-border-radius: 5px;
-background-color: #007BFF;
-color: white;
-cursor: pointer;
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+  background-color: #0056b3; /* Green background */
+  border: 1px solid #ddd;
+  margin : 10px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 10px); /* Adjusts the width to account for the margins */
+  margin-bottom: 20px; /* This adds a margin below each full-width card */
+  color: white;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 
-&:hover {
-    background-color: #0056b3;
-}
+  &:hover {
+    background-color: #0056b3; /* Darker green shade for hover effect */
+  }
 `;
+
 
 export const Separator = styled.div`  
     height: 1px;

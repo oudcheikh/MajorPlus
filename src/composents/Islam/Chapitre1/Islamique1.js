@@ -405,7 +405,7 @@ const C1 = () => {
             )}
 
             {section < 10 && (
-                <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
+                <ContinueButton onClick={() => setSection(section + 1)}>تابع</ContinueButton>
             )}
         </Container>
     );

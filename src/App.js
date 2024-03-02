@@ -4,6 +4,10 @@ import Accueil from './composents/Accueil';
 import Math from './composents/Math';
 import Français from './composents/Français';
 import QuizTest from './composents/home/QuizTest';
+import QuizTestarab from './composents/home/QuizTestarab';
+import PrepaArabe from './composents/PrepaArabe';
+import PrepaFrançais from './composents/PrepaFrançais';
+
 import Vocabulaire from './composents/Français/Vocabulaire/Vocabulaire';
 import Acueilvocabulaire from './composents/Français/Vocabulaire/Acueilvocabulaire';
 import Vocabulaireecoleville from'./composents/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
@@ -26,6 +30,7 @@ import M2 from './composents/M2/M2';
 import G3 from './composents/G3/G3';
 import G1A2 from './composents/G1/G1A2';
 import G1 from './composents/G1/G1';
+import SousEtAddFraction from './composents/C17/SousEtAddFraction';
 import P2A1A from './composents/C09/P2A1A';
 import P2A1C from './composents/C10/P2A1C';
 import P2A1B from './composents/C12/P2A1B';
@@ -40,6 +45,7 @@ import Chap13 from'./composents/C16/Chap13';
 import Fraction2 from './composents/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
+import Period3 from  './composents/period3';
 import Islamique from './composents/Islamique';
 import Science from './composents/Science';
 import Histoire from './composents/Histoire';
@@ -182,8 +188,13 @@ function App() {
           <Route path= "/" element={<Accueil/>} />
           <Route path= "/Accueilarab" element={<Accueilarab/>} />
           <Route path= "/Acceuilfrançais" element={<Acceuilfrançais/>} />
+          <Route path= "/PrepaArabe" element={<PrepaArabe/>} />
+          <Route path= "/PrepaFrançais" element={<PrepaFrançais/>} />
+
           <Route path= "/QuizTest" element={<QuizTest/>} />
+          <Route path= "/QuizTestarab" element={<QuizTestarab/>} />
           <Route path="/C1" element ={<C1/>}/>
+          <Route path="/SousEtAddFraction" element ={<SousEtAddFraction/>}/>
           <Route path="/C2" element ={<C2/>}/>
           <Route path="/C3" element ={<C3/>}/>
           <Route path="/C4" element ={<C4/>}/>
@@ -206,6 +217,7 @@ function App() {
           <Route path="/G1" element ={<G1/>}/>
           <Route path="/Periode1" element ={<Periode1/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
+          <Route path="/Period3" element ={<Period3/>}/>
           <Route path="/Islamique" element ={<Islamique/>}/>
           <Route path="/Science" element ={<Science/>}/>
           <Route path="/Histoire" element ={<Histoire/>}/>
