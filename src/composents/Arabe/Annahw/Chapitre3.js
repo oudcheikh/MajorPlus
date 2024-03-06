@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Audio from "./Audio1";
+import Audio from "../../Audio1";
 import {
     Container, FormulaText, Card, ContinueButton, SmallCard, FormulaTextF, SmallCard2, SmallCard3
 } from '../../Styles/MajorStyles';
@@ -125,7 +125,7 @@ const C3 = () => {
 
 
             {section < 2 && (
-                <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
+                <ContinueButton onClick={() => setSection(section + 1)}>التالي</ContinueButton>
             )}
         </Container>
     );

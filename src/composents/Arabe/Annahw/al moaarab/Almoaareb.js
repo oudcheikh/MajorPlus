@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import table from '../../imges/table.PNG';
 
 
-import Audio from "../Audio1";
+import Audio from "../../../Audio1";
 import {
-    Container, FormulaText, Card, ContinueButton, SmallCard,FormulaTextF
+    Container, FormulaText, Card, ContinueButton, SmallCard,FormulaTextF,SmallCard2
 } from '../../../Styles/MajorStyles';
 
 
@@ -97,12 +97,12 @@ const C1 = () => {
                             </Card>
                             <br></br>
                             <span style={{ color: 'red' }}>ألاحظ وأستنتج:</span><br></br>
-                            <SmallCard>
+                            <SmallCard2>
 
                                 عندما أتأمل الكلمات التي خط تحتها في الأمثلة ( أ) أجد أن حركة آخرها تتغير من جملة إلى
                                 أخرى أي أن إعرابها يتغير حسب وظيفتها في الجملة؛ بم نسمي هذا النوع من الكلمات؟
 
-                            </SmallCard>
+                            </SmallCard2>
                             <h4 style={{ color: 'green' }}>- نسمي هذا النوع من الكلمات بالمعرب</h4><br></br>
 
 

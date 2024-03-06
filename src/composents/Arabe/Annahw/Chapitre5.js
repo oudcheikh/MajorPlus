@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Audio from "./Audio1";
+import Audio from "../../Audio1";
 import {
     Container, FormulaText, Card, ContinueButton, SmallCard, FormulaTextF, SmallCard3
 } from '../../Styles/MajorStyles';

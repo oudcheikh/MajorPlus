@@ -35,7 +35,7 @@ function AcceuilArabic() {
        
         <Card title="النحو" content="" icon={historyIcon} full navigateTo="/Annahw" />
 
-        <Card title="الصرف" content="" icon={historyIcon} full navigateTo="/Histoire2" />
+        <Card title="الاملاء" content="" icon={historyIcon} full navigateTo="/Alimlaa" />
 
       </div>
     </div>

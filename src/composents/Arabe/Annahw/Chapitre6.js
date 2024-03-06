@@ -5,7 +5,7 @@ import pic1 from '../../Images/pic1.png';
 import pic2 from '../../Images/pic2.png';
 
 
-import Audio from "./Audio1";
+import Audio from "../../Audio1";
 import {
     Container, FormulaText, Card, ContinueButton, SmallCard, FormulaTextF, SmallCard3
 } from '../../Styles/MajorStyles';

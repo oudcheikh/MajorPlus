@@ -1,8 +1,8 @@
 import React from 'react';
-import  AudioPlayer  from '../../Audio/AudioPlayer';
+import  AudioPlayer  from './Audio/AudioPlayer';
 import {
   Container,
-} from '../../Styles/MajorStyles';
+} from './Styles/MajorStyles';
 
 const audio = {
   url: 'https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3',

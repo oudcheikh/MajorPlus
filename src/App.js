@@ -173,10 +173,15 @@ import Chapitre30 from './composents/Arabe/Annahw/Chapitre30'
 import Chapitre31 from './composents/Arabe/Annahw/Chapitre31'
 import Chapitre32 from './composents/Arabe/Annahw/Chapitre32'
 import Chapitre33 from './composents/Arabe/Annahw/Chapitre33'
-
 import Tadriib from './composents/Arabe//Annahw/Tadriib/TadriibBase'
 
-
+import Alimlaa from './composents/Arabe/Alimlaa/Alimlaa'
+import IM_Chapitre1 from './composents/Arabe/Alimlaa/IM_Chapitre1'
+import IM_Chapitre2 from './composents/Arabe/Alimlaa/IM_Chapitre2'
+import IM_Chapitre3 from './composents/Arabe/Alimlaa/IM_Chapitre3'
+import IM_Chapitre4 from './composents/Arabe/Alimlaa/IM_Chapitre4'
+import IM_Chapitre5 from './composents/Arabe/Alimlaa/IM_Chapitre5'
+import Tadriib_imlaa from './composents/Arabe/Alimlaa/Tadriib/TadriibImlaa'
 
 function App() {
   return (
@@ -362,6 +367,13 @@ function App() {
           <Route path= "/Chapitre32" element={<Chapitre32/>} />
           <Route path= "/Chapitre33" element={<Chapitre33/>} />
           <Route path= "/Tadriib" element={<Tadriib/>} />
+          <Route path= "/Alimlaa" element={<Alimlaa/>} />
+          <Route path= "/IM_Chapitre1" element={<IM_Chapitre1/>} />
+          <Route path= "/IM_Chapitre2" element={<IM_Chapitre2/>} />
+          <Route path= "/IM_Chapitre3" element={<IM_Chapitre3/>} />
+          <Route path= "/IM_Chapitre4" element={<IM_Chapitre4/>} />
+          <Route path= "/IM_Chapitre5" element={<IM_Chapitre5/>} /> 
+          <Route path= "/Tadriib_imlaa" element={<Tadriib_imlaa/>} />  
           <Route path= "/Test" element={<Test/>} />
         </Routes>
       
