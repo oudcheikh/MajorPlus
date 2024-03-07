@@ -38,17 +38,19 @@ function Acceuil() {
       <div className="card-grid">
       <Card title="الوقت المستغرق" content="معرفة الوقت المستغرق في كل مادة" icon={timeIcon} />
 <Card title="النتائج" content="نتائج الاختبارات حسب المادة" icon={statsIcon} />
-<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTest" />
+<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTestarab" />
 
 
-<Card title="تدرب" content="تدرب على نقاط ضعفك" icon={rocketIcon} />
+<Card title="تدرب" content="تدرب على نقاط ضعفك" icon={rocketIcon} navigateTo="/PrepaArabe" />
       </div>
       <div className="full-width-container">
        
+        <Card title="العربية" content="" icon={historyIcon} full navigateTo="/AcceiulArabic" />
+
         <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/Histoire" />
         <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/Islamique" />
         
-        <Card title="مواضيع كونكور" content="" icon={Fraçais} full navigateTo="/Concours " />
+        <Card title="مواضيع كونكور" content="" icon={Fraçais} full navigateTo="/ConcoursArabe " />
       </div>
     </div>
   );

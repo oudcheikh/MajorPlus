@@ -37,7 +37,7 @@ function Acceuil() {
         <Card title="Temps passé" content="Savoir le temps passé sur chaque matière" icon={timeIcon} />
         <Card title="Résultats" content="Résultats des quiz par matière" icon={statsIcon} />
         <Card title="Quiz du jour" content="Test aléatoire sur tes matières!" icon={quiz} navigateTo="/QuizTest" />
-        <Card title="S'entraîner" content="S'entraîner sur tes points faibles!" icon={rocketIcon} />
+        <Card title="S'entraîner" content="S'entraîner sur tes points faibles!" icon={rocketIcon} navigateTo="/PrepaFrançais" />
       </div>
       <div className="full-width-container">
         <Card title="Science" content="" icon={flask} full navigateTo="/Science" />

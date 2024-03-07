@@ -1,91 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import anime from 'animejs/lib/anime.es.js'; // Importation de la bibliothèque Anime.js
+import DivisionComponent from './DivisionEuclid';
 
-const Container = styled.div`
-  width: 300px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const AnimatedCard = styled.div`
+  opacity: 0; // Commencez avec une opacité de 0 pour l'effet d'entrée
 `;
 
-const TopRow = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
+function AcceuilDiv() {
+  const [isCardVisible, setIsCardVisible] = useState(false);
 
-const Input = styled.input`
-  border: none;
-  border-bottom: 2px solid red;
-  font-size: 24px;
-  color: red;
-  width: 45%;
-  text-align: center;
-  outline: none;
-  margin-right: 10px;
-`;
-
-const VerticalDivider = styled.div`
-  width: 2px;
-  height: 300px;
-  background-color: black;
-  margin-right: 10px;
-  align-self: center;
-`;
-
-const QuotientContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Quotient = styled.div`
-  font-size: 24px;
-  margin-bottom: 10px;
-`;
-
-const Remainder = styled.div`
-  font-size: 24px;
-  color: red;
-`;
-
-function DivisionComponent() {
-  const [dividend, setDividend] = useState("");
-  const [divisor, setDivisor] = useState("");
-  const [quotient, setQuotient] = useState("");
-  const [remainder, setRemainder] = useState("");
-
-  const handleSolve = () => {
-    const div = parseInt(dividend, 10) / parseInt(divisor, 10);
-    setQuotient(Math.floor(div).toString());
-    setRemainder((parseInt(dividend, 10) % parseInt(divisor, 10)).toString());
-  };
+  useEffect(() => {
+    // Anime l'entrée de la carte avec un effet de fondu lors du chargement de la page
+    anime({
+      targets: '.animated-card',
+      opacity: 1,
+      duration: 5000, // Durée de l'animation en millisecondes
+      easing: 'easeInOutSine', // Courbe d'interpolation de l'animation
+      delay: 500 // Délai avant le début de l'animation en millisecondes
+    });
+  }, []);
 
   return (
-    <Container>
-      <TopRow>
-        <Input 
-          value={dividend}
-          onChange={e => setDividend(e.target.value)}
-          placeholder="Dividende"
-        />
-        <Input 
-          value={divisor}
-          onChange={e => setDivisor(e.target.value)}
-          placeholder="Diviseur"
-        />
-      </TopRow>
-      <VerticalDivider />
-      <QuotientContainer>
-        <Quotient>{quotient}</Quotient>
-        <Remainder>{remainder}</Remainder>
-      </QuotientContainer>
-    </Container>
+    <AnimatedCard className="animated-card">
+  
+  <DivisionComponent />
+    </AnimatedCard>
   );
 }
 
-export default DivisionComponent;
+export default AcceuilDiv;

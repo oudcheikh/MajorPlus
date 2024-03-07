@@ -63,6 +63,71 @@ export const SmallCard = styled.div`
   }
   `;
 
+  export const SmallCard2 = styled.div`
+  all: unset;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  height: 100px;
+    width: 98%;
+  margin: 0 8px 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+  &:hover {
+     box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.15), 0px 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  `;
+
+
+  export const SmallCard3 = styled.div`
+  all: unset;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  height: 170px;
+    width: 98%;
+  margin: 0 8px 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+  &:hover {
+     box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.15), 0px 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  `;
+
+  export const SmallCard4 = styled.div`
+  all: unset;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  height: 190px;
+  width: 98%;
+  margin: 0 8px 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+  &:hover {
+     box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.15), 0px 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  `;
+
+
 export const BodyText = styled.p`
 padding: 10px 20px;
 align-items: center;
@@ -126,21 +191,27 @@ font-family: 'Comic Sans MS', sans-serif;
 `;
 
 export const ContinueButton = styled.button`
-display: block;
-margin: 15px 0;
-padding: 10px 20px;
-border: none;
-border-radius: 5px;
-background-color: #007BFF;
-color: white;
-cursor: pointer;
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+  background-color: #0056b3; /* Green background */
+  border: 1px solid #ddd;
+  margin : 10px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 10px); /* Adjusts the width to account for the margins */
+  margin-bottom: 20px; /* This adds a margin below each full-width card */
+  color: white;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 
-&:hover {
-    background-color: #0056b3;
-}
+  &:hover {
+    background-color: #0056b3; /* Darker green shade for hover effect */
+  }
 `;
+
 
 export const Separator = styled.div`  
     height: 1px;
@@ -272,3 +343,4 @@ border-radius: 8px; /* Bord arrondi pour le remplissage */
 width: ${props => props.width}%; /* Largeur du remplissage basée sur la progression */
 transition: width 0.5s ease-in-out; /* Transition douce pour l'animation de la barre */
 `;
+

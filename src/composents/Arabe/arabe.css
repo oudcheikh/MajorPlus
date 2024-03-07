@@ -1,0 +1,5 @@
+.arabic-text {
+    font-family: 'Amiri', serif; /* Choisir une police arabe */
+    direction: rtl; /* Direction de lecture de droite à gauche */
+    text-align: right; /* Alignement du texte à droite */
+}

@@ -1,0 +1,475 @@
+[
+    {"concours":2008,
+    "text": "Le soir sur la place du village, les jeunes gens et les garçons de l’école font la lutte. Ils se prennent deux à deux. Les spectateurs crient pour les encourager. Les corps roulent dans la poussière. Quand le dos d’un lutteur touche le sol, les villageois applaudissent le vainqueur.",
+    "questions": [
+      {
+        "question": "1 – Donne un titre au texte ",
+        "options": [" La vie a l'ecole ", " la lutte", " Les traditions", " Le courage "],
+        "correctAnswer": 1
+      },
+      {
+        "question": "Explique le mot : spectateurs  ",
+        "options": ["celui qui est dangereux ", "celui qu 'est serviable ", "celui qui a remporté la victoire ", " personnes qui assistent à un spectacle "],
+        "correctAnswer": 1
+      },
+      {
+          "question": "Explique le mot : vainqueur. ",
+          "options": ["celui qui est dangereux ", "celui qu 'est serviable ", "celui qui a remporté la victoire ", " personnes qui assistent à un spectacle "],
+          "correctAnswer": 1
+        },
+      {
+          "question": "Donne la nature et la fonction des mots : le sol ",
+          "options": ["Le sol : Le : article défini , masculin singulier définit le mot sol ,Sol : nom commun masculin singulier complément d’objet direct du verbe « touche ».", "Le sol : Le : article indéfini , masculin singulier définit le mot sol ,Sol : nom commun masculin singulier complément d’objet direct du verbe « touche»", "Le sol : Le : article défini , masculin singulier définit le mot sol ,Sol : nom commun masculin singulier complément d’objet indirect du verbe« touche »", "Le sol : Le : article défini , masculin singulier définit le mot sol ,Sol : nom commun féminin singulier complément d’objet direct du verbe «touche »"],
+          "correctAnswer": 0
+        },
+        {
+          "question": "Donne la nature et la fonction des mots : les villageois. ",
+          "options": ["Les villageois : Les : article défini ,masculin singulier définit « villageois ». Villageois : nom commun masculin pluriel sujet du verbe « applaudissent","Les villageois : Les : article défini ,masculin pluriel définit « villageois ». Villageois : nom commun masculin pluriel sujet du verbe « applaudissent","Les villageois : Les : article indéfini ,masculin pluriel définit « villageois ». Villageois : nom commun masculin pluriel sujet du verbe « applaudissent","Les villageois : Les : article défini ,masculin pluriel définit « villageois ». Villageois : nom commun féminin pluriel sujet du verbe « applaudissent"],
+          "correctAnswer": 1
+        },
+        {
+        "question": "Mets la phrase : les jeunes gens font la lutte.à  l’imparfait ",
+        "options": ["les jeunes gens faisaient la lutte ", "les jeunes gens ont fait la lutte ", " les jeunes gens feront la lutte ", " les jeunes gens firent la lutte "],
+        "correctAnswer": 0
+      },
+      {
+          "question": "Mets la phrase : les jeunes gens font la lutte.au passé composé  ",
+          "options": ["les jeunes gens faisaient la lutte ", "les jeunes gens ont fait la lutte ", " les jeunes gens feront la lutte ", " les jeunes gens firent la lutte "],
+          "correctAnswer": 1
+        }, 
+        {
+          "question": "Mets la phrase : les jeunes gens font la lutte.au futur simple   ",
+          "options": ["les jeunes gens faisaient la lutte ", "les jeunes gens ont fait la lutte ", " les jeunes gens feront la lutte ", " les jeunes gens firent la lutte "],
+          "correctAnswer": 2
+        },
+        {
+          "question": "Mets la phrase : les jeunes gens font la lutte. au passé simple de l’indicatif   ",
+          "options": ["les jeunes gens faisaient la lutte ", "les jeunes gens ont fait la lutte ", " les jeunes gens feront la lutte ", " les jeunes gens firent la lutte "],
+          "correctAnswer": 3
+        }
+
+      
+    ]
+  },
+  {"concours":2009,
+    "text": "Le père de Mokhtar est un berger reconnu dans le village. Là-haut sur la montagne, il reste seul avec son chien et ses moutons. Tous les oiseaux sont ses amis. Dans la journée, il mène ses bêtes aux pâturages. Le soir, il regarde le ciel et ses étoiles.  ",
+    "questions": [
+      {
+        "question": "1– Donne un titre au texte    ",
+        "options": [" le berger ", "La réponse n'est pas donnée dans le texte.", "la tolérance", "l'amitié"],
+        "correctAnswer": 0
+      },
+      {
+       "question": "2– Explique : un berger reconnu    ",
+        "options": [" un berger conduit  ", "un berger dangereux", " un berger calme", "  un berger apprécié "],
+        "correctAnswer": 3
+      },
+      {
+          "question": "2– Explique :  il mène.   ",
+           "options": [" il assume ", " il conduit", " il aime", " il lutte"],
+           "correctAnswer": 1
+       },
+       {
+          "question": "3 – Donne la nature et la fonction de : ses bêtes   ",
+           "options": [" Ses bêtes : Ses : adjectif possessif détermine le mot « bêtes ».bêtes : nom commun féminin pluriel complément d’objet direct du verbe  « mèe » "," Ses bêtes : Ses : adjectif possessif détermine le mot « bêtes ».bêtes : nom commun masculin pluriel complément d’objet direct du verbe  « mèe » "],
+           "correctAnswer": 0
+         },
+         {
+          "question": "3 – Donne la nature et la fonction de : le soir.  ",
+           "options": ["  Le : article indéfini ,masculin singulier définit « soir » ; soir : nom commun masculin singulier complément circonstanciel de temps. ", " La lettre est envoyée à Nour", " Le : article défini ,masculin singulier définit « soir » ; soir : nom commun masculin singulier complément circonstanciel de temps."],
+           "correctAnswer": 0
+         },
+         {
+          "question": "4 – Donner les temps de l'indicatif  ",
+           "options": ["uniquement le présent","l'imparfait ,le passé simple et le future","le plus que parfait"],
+           "correctAnswer": 1
+         },
+         {
+          "question": "4 – Mets la phrase : « le soir, il regarde le ciel et ses étoiles. » aux autres temps  simples de l’indicatif.-a- l’imparfait",
+           "options": [" Le soir , il regardait le ciel et les étoiles ", "Le soir , il regarda le ciel et les étoiles ", " Le soir , il regardera le ciel et les étoiles "],
+           "correctAnswer": 0
+         },
+         {
+          "question": "4 – Mets la phrase : « le soir, il regarde le ciel et ses étoiles. » aux autres temps  simples de l’indicatif.-b- au passé simple",
+           "options": [" Le soir , il regardait le ciel et les étoiles ", "Le soir , il regarda le ciel et les étoiles ", " Le soir , il regardera le ciel et les étoiles "],
+           "correctAnswer": 1
+         },
+         {
+          "question": "4 – Mets la phrase : « le soir, il regarde le ciel et ses étoiles. » aux autres temps  simples de l’indicatif.-c-au futur simple",
+           "options": [" Le soir , il regardait le ciel et les étoiles ", "Le soir , il regarda le ciel et les étoiles ", " Le soir , il regardera le ciel et les étoiles "],
+           "correctAnswer": 2
+         }
+    ]
+  },
+  {"concours":2010,
+    "text": "Il y a longtemps le lièvre et l’hyène étaient amis. Ils habitaient ensemble dans une grande savane. Ils se partageaient le travail.Pendant que le lièvre s’occupait du ménage, l’hyène chassait pour trouver de la nourriture.Un jour, le lièvre est resté couché à la maison et n’a pas voulu faire le ménage ; quand il a entendu l’hyène rentrer, il a commencé à crier de toutes ses forces. L’hyène a vite compris que le lièvre voulait la tromper.",
+     "questions": [
+      {
+        "question": "1 – Donne un titre au texte  ",
+        "options": ["le berger ", "La réponse n'est pas donnée dans le texte.", "la ville ", "le lièvre et l’hyène "],
+        "correctAnswer": 3
+      },
+      {
+       "question": " Explique : Ils se partageaient le travail.  ",
+        "options": [" Ils détestent  le travail .  ", " Ils se divisaient le travail . "],
+        "correctAnswer": 1
+      },
+      {
+          "question": " Explique :  Le lièvre s’occupait du ménage.  ",
+           "options": ["Le lièvre traite le ménage", " Le lièvre se chargeait du ménage"],
+           "correctAnswer": 1
+         },
+         {
+          "question": "3 – Analyse les mots soulignés:grande",
+           "options": [" grande : adjectif qualificatif , féminin singulier épithète du mot « savane ». ", "grande : adverbe  , féminin singulier épithète du mot « savane »"],
+           "correctAnswer": 0
+         }, 
+         {
+          "question": "3 – Analyse les mots soulignés.le travail",
+           "options": ["grande : adverbe  , féminin singulier épithète du mot « savane »"," grande : adjectif qualificatif , féminin singulier épithète du mot « savane ». "],
+           "correctAnswer": 1
+         },
+
+         {
+          "question": "4 – Mets la phrase : « Le lièvre et l'hyène étaient amis. »   Au présent de l'indicatif",
+           "options": ["Le lièvre et l’hyène ont été des amis."," Le lièvre et l’hyène sont des amis ."],
+           "correctAnswer": 1
+         },
+         {
+          "question": "4 – Mets la phrase : « Le lièvre et l'hyène étaient amis. »   Au passé composé",
+           "options":[" Le lièvre et l’hyène sont des amis .","Le lièvre et l’hyène ont été des amis."],
+           "correctAnswer": 1
+         }
+    ]
+  },
+  {"concours":2011,
+    "text": "Samedi dernier, j’ai invité mes amis, Sidi, Ali, et Amadou. Ils sont tous venus à la maison pour fêter mon anniversaire.  Ma mère nous a préparé des gâteaux délicieux. Elle a aussi acheté des biscuits, des boissons et des cadeaux. A midi, nous avons mangé les gâteaux, et les biscuits et chacun de nous a pris une boisson fraîche.  L’après-midi, nous avons joué au ballon et nous nous sommes  promenés non loin de notre maison. A la fin de cette journée, ma mère a donné à chacun de nous un joli cadeau. ",
+    "questions": [
+      {
+        "question": "1 – Donne un titre au texte   ",
+        "options": ["Le chemage", "La réponse n'est pas donnée dans le texte.", "Mon anniversaire "],
+        "correctAnswer": 1
+      },
+      {
+       "question": "2– Explique le mot : anniversaire ",
+        "options": [" Anniversaire : jour qui ramène un souvenir à la même date , notamment la naissance d’un individu.  ", " Le jour nationale de la lutte contre la violance"],
+        "correctAnswer": 0
+      },
+      {
+          "question": "2– Explique le mot : joli",
+           "options": [ " laid"," beau"],
+           "correctAnswer": 1
+         },
+      {
+          "question": "3.a – Donne la nature et la fonction de : mes amis",
+           "options": [" Mes : adjectif possessif masculin pluriel , détermine « amis » ; amis : nom commun masculin pluriel complément d'objet direct du verbe « ai invité » ", " Mes : adjectif possessif masculin pluriel , détermine « amis » ; amis : nom commun féminin pluriel complément d'objet direct du verbe « ai invité » "],
+           "correctAnswer": 0
+         }, 
+         {
+          "question": " 3.b – Donne la nature et la fonction de :  délicieux",
+           "options": ["délicieux : adverbe, masculin pluriel épithète du mot « gâteaux »", "délicieux : adjectif qualificatif , masculin pluriel épithète du mot « gâteaux »"],
+           "correctAnswer": 1
+         },
+         {
+          "question": " 4– Mets la phrase suivante :   « Ma mère nous a préparé des gâteaux. »  - au présent de l’indicatif ",
+           "options": ["  Ma mère nous prépare des gâteaux  ", " Ma mère nous préparera des gâteaux "],
+           "correctAnswer": 0
+         },
+         {
+          "question": " 4– Mets la phrase suivante :   « Ma mère nous a préparé des gâteaux. »  -  futur simple de l’indicatif.   ",
+           "options": ["  Ma mère nous prépare des gâteaux  ", " Ma mère nous préparera des gâteaux "],
+           "correctAnswer": 1
+         }
+    
+    ]
+  },
+  {"concours":2012,
+  "text": "Travaillez bien. Soyez polis, dociles et attentifs. Ne vous faites pas renvoyer pour des bêtises. Nous comptons sur vous. Travaillez donc… Pour le moment, il s’agit de travailler. Vous récolterez ce que vous aurez semé. Et n’oubliez jamais « qu’une jambe cassée donne une autre démarche », « qu’un lion mort effraie encore plus qu’une brebis. » Pensez à ces proverbes lorsque nous ne serons plus près de vous pour vous conseiller. Sachez donc vous conduire …Instruisez – vous,sans cependant abandonner vos coutumes.  ",
+  "questions": [
+    {
+      "question": "1 – Donne un titre au texte ",
+      "options": ["Des conseils", "La nature"],
+      "correctAnswer": 0
+    },
+    {
+     "question": "2.a– Explique les mots : polis   ",
+      "options": [" ambitieux", " Courtois et Corrects"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "2.b– Explique les mots : abandonner  ",
+       "options": ["attendre", "  laisser , négliger"],
+       "correctAnswer": 1
+     },
+     {
+      "question": "3.a – Relève dans le texte :  – deux adjectifs qualificatifs ",
+       "options": [" polis , cassés ", " abandonner"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "3.b – Relève dans le texte :  - un pronom personnel ",
+       "options": [" il", " polis"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "3.c – Relève dans le texte :  - un adverbe.  ",
+       "options": [" abandonner", "  jamais"],
+       "correctAnswer": 1
+     },
+     
+   
+     {
+      "question": "5.a– Ecris la phrase « Nous comptons sur vous » : à l’imparfait",
+       "options": ["Nous avons compté sur", "Nous comptions sur vous", " Nous compterons sur vous "],
+       "correctAnswer": 1
+     },
+     {
+      "question": "5.b– Ecris la phrase « Nous comptons sur vous » : au passé composé  ",
+       "options": ["Nous avons compté sur", "Nous comptions sur vous", " Nous compterons sur vous "],
+       "correctAnswer": 0
+     },
+     {
+      "question": "5.c– Ecris la phrase « Nous comptons sur vous » :au futur simple de l’indicatif.",
+       "options": ["Nous avons compté sur", "Nous comptions sur vous", " Nous compterons sur vous "],
+       "correctAnswer": 2
+     }
+  ]
+},
+{"concours":2013,
+"text": "A l’heure de la récréation, tous les bras se croisent puis garçons et filles sortaient en silence. Arrivés dans la cour, les garçons se dispersaient à grands cris, tandis que les fillettes, moins turbulentes,sautillaient un instant devant la classe.Nous jouions au ballon. Le maître, assis sur la chaise, surveillait attentivement, prêt à intervenir si le jeu devient trop violent. ",
+"questions": [
+  {
+    "question": "1 – Donne un titre au texte  ",
+    "options": ["l'administration", " La récréation"],
+    "correctAnswer": 1
+  },
+  {
+   "question": "2– Explique le mot : sautillaient    ",
+    "options": ["  font de petits sauts ", " faire une salut"],
+    "correctAnswer": 0
+  },
+  {
+      "question": "2– Explique le mot :  violent.    ",
+       "options": [" brutal ","  laisser , négliger"],
+       "correctAnswer": 0
+   },
+     {
+      "question": "3.a – Donne la nature et la fonction de : grands ",
+       "options": ["  adjectif qualificatif masculin singulier épithète du mot « cris ».  ", "  adjectif qualificatif masculin pluriel épithète du mot « cris »"],
+       "correctAnswer": 1
+     },
+     {
+      "question": "3.b – Donne la nature et la fonction de : nous  ",
+       "options": ["article du verbe « jouions » ", "  pronom personnel sujet du verbe « jouions »"],
+       "correctAnswer": 1
+     },
+     {
+      "question": "3.c – Donne la nature et la fonction de :  maître.  ",
+       "options": [" nom commun masculin singulier , sujet du verbe « surveillait ». ", "nom commun féminin singulier , sujet du verbe « surveillait ». "],
+       "correctAnswer": 0
+     },
+     {
+      "question": "4– Ecris la phrase « Nous jouions toujours au ballon » : au présent de l’indicatif.",
+       "options": [" Nous jouerons toujours au ballon" , "  Nous jouâmes toujours au ballon ", " Nous jouons toujours au ballon"],
+       "correctAnswer": 2
+     }, 
+     {
+      "question": "4– Ecris la phrase « Nous jouions toujours au ballon » : au passé simple de l’indicatif",
+       "options": ["Nous jouerons toujours au ballon" , "  Nous jouâmes toujours au ballon ", " Nous jouons toujours au ballon"],
+       "correctAnswer": 1
+     }, 
+     {
+      "question": "4– Ecris la phrase « Nous jouions toujours au ballon » :  au futur de l’indicatif.",
+       "options": [" Nous jouerons toujours au ballon" , "  Nous jouâmes toujours au ballon ", " Nous jouons toujours au ballon"],
+       "correctAnswer": 0
+     }
+
+]
+},
+{"concours":2015,
+    "text": "Mohamed est un très bon élève. Il est toujours le premier de sa  classe. Chaque matin, il se réveille très tôt. Il prépare bien sa prière à la mosquée. En revenant à la maison, il prend son petit déjeuner. Puis, il s'habille correctement, range ses outils et cahiers dans son cartable et va à l'école. Il rentre calmement dans sa classe et s'assoit poliment dans sa place. Il ne bavarde jamais et quand Lemaître commence la leçon, il l'écoute attentivement. ",
+    "questions": [
+      {
+        "question": "1 – Donne un titre au texte ",
+        "options": ["  La journée de Mohamed ", "Le méchant éléve"],
+        "correctAnswer": 0
+      },
+     
+       {
+      "question": "3– Explique le mot : petit déjeuner  ? ",
+       "options": [" Le premier repas de la journée ","Le dernier  repas de la journée"],
+       "correctAnswer": 0
+       },
+      {
+      "question": "3– Explique le mot : calmement  ? ",
+      "options": ["avec violance","doucement"],
+      "correctAnswer": 1
+      },
+      {
+          "question": "4   – Relève dans le texte : a) – un complément d’objet direct ",
+          "options": ["son  petit déjeuner", "un très bon élève"],
+          "correctAnswer": 0
+       },
+       {
+              "question": "4   – Relève dans le texte :  b) - un adjectif qualificatif épithète  ",
+              "options": ["élève","bon"],
+              "correctAnswer": 1
+       },
+      
+       {
+          "question": "4   – Relève dans le texte : c)  un nom sujet  ",
+          "options": ["élève", "Mohamed "],
+          "correctAnswer": 1
+      },
+      
+      {
+          "question": "4   – Relève dans le texte :– d)  un adverbe.    ",
+          "options": [" calmement ","bon"],
+          "correctAnswer": 0
+       },
+
+       
+{
+  "question": "4) Je donne l’infinitif de : prend  ",
+  "options":[" prendre ","aller"],
+  "correctAnswer": 0
+},
+{
+  "question": "4) Je donne l’infinitif de : va",
+  "options": [" prendre ","aller"],
+  "correctAnswer": 1
+},
+
+{
+  "question": " 5) Je conjugue le verbe commencer à l'imparfait de l'indicatif ",
+  "options": [" Je commençe -- Nous commençons --Tu commençe --vous commençez -- Il/Elle commençe --lls/ Elles commençent "," Je commençais -- Nous commencions --Tu commençais --vous commenciez -- Il/Elle commençait --lls/ Elles commençaient "],
+  "correctAnswer": 1
+}
+
+
+]
+  },
+
+  {"concours":2016,
+  "text": "Depuis que le pays est devenu libre, une journée de fête a lieu chaque année. C’est la fête de l'indépendance ! Des drapeaux aux couleurs de la nation flottent sur toutes les cases, au sommet desmâts plantés autour de la ^lace ; au-dessus de la tribune !.. Et tout le village aenvie de danser. La fête commence par un défilé. Les élèves, les jeunes gens et les jeunes filles, tous vêtus de blanc, défilent au pas cadencé devant la tribune où sont assis le chef et lesnotables. Les écoliers chantent I ‘hymne national. Après les discours, c'est le défilé des chars fleuris. ",
+  "questions": [
+    {
+      "question": "1- a) Je donne un titre au texte :   ",
+      "options": [" La fête d'indépendance ", "Paris"],
+      "correctAnswer": 0
+    },
+    {
+     "question": " b) dans ce texte, par quoi commence la fête ?  ",
+      "options": [" La fête commence par une chanson.", " La fête commence par un défilé."],
+      "correctAnswer": 1
+    },
+    {
+      "question": "2- J'explique les mots :libre ",
+       "options": ["  indépendant", " dépendant"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "2- J'explique les mots :vêtus ",
+       "options": ["Tradition","porter des habits"],
+       "correctAnswer": 1
+     },
+     {
+      "question": "3- Je relève dans le texte :   a) un groupe nominal ",
+       "options": [" le pays ","libre "],
+       "correctAnswer": 0
+     },
+     {
+      "question": "3- Je relève dans le texte :   un adjectif qualificatif  ",
+       "options": [" le pays ","libre "],
+       "correctAnswer": 1
+     },
+     {
+      "question": "4- Je donne le féminin de : écoliers ;blanc = blanche",
+       "options": [" écoles","écolières"],
+       "correctAnswer": 1
+     },
+     {
+      "question": "4- Je donne le féminin de : blanc ",
+       "options": ["blanche","blanch"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "5- Mets la phrase :« Les écoliers chantent I'hymne national. » au futur simple de l’indicatif,",
+       "options": ["Les écoliers chanteront l'hymne nationalb","Les écoliers ont chanté l'hymne national ","Les écoliers chantaient I'hymne national."],
+       "correctAnswer": 0
+     } ,
+     {
+      "question": "5- Mets la phrase :« Les écoliers chantent I'hymne national. »  -au passé composé ",
+       "options": ["Les écoliers chanteront l'hymne nationalb","Les écoliers ont chanté l'hymne national "],
+       "correctAnswer": 1
+     },
+     {
+      "question": "5- Mets la phrase :« Les écoliers chantent I'hymne national. » -à l'imparfait de l'indicatif",
+       "options": ["Les écoliers chanteront l'hymne nationalb","Les écoliers ont chanté l'hymne national ","Les écoliers chantaient I'hymne national."],
+       "correctAnswer": 2
+     }
+  ]
+},
+{"concours":2017,
+"text": "En ce temps là, le phacochère avait prêté de I'argent à la famille tortue. Un jour, il alla réclamer son du. Les parents qui l'avaient vu arriver allèrent se cacher dans la brousse ; de ce fait, il ne trouve que les enfants à la maison. « Où sont vos parents ? demanda-t-il ? Nous ne le savons pas.» Le phacochère rentra chez lui. Le lendemain, il revint chez les  tortues. Monsieur tortue eut le temps de se cacher si bien que le phacochère ne trouva que madame tortue à la maison. ",
+"questions": [
+  {
+    "question": ": -a)-donne un titre au texte  ",
+    "options": ["le phacochère", " le phacochère et la famille tortue. "],
+    "correctAnswer": 1
+  },
+  {
+   "question": "b)- pourquoi le phacochère va t-il chez la famille tortue ?  ",
+    "options": [" Pour réclamer son dû. ", " pour voir la famille"],
+    "correctAnswer": 0
+  },
+  {
+      "question": "c)- A-t-il trouvé les parents Tortue chez eux le premier jour ? Pourquoi ?  ",
+       "options": [" oui, trouvé les parents Tortue chez eux le premier jour ", " Non, car ils se sont cachés dans la brousse."],
+       "correctAnswer": 1
+     }, 
+     {
+      "question": "2°)- Explique les mot suivant: son dû ",
+       "options": [" ce qui lui appartient, son argent.  ", "demander"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "2°)- Explique le mot suivant: réclamer ",
+       "options": [" ce qui lui appartient, son argent.  ", "demander"],
+       "correctAnswer": 1
+     },
+     {
+      "question": ",3°)-Relève dans le texte : un pronom personnel sujet  ",
+       "options": [" réclamer ", "il"],
+       "correctAnswer": 1
+     },
+     {
+      "question": ",3°)-Relève dans le texte:un verbe à l'infinitif   ",
+       "options": [" réclamer ", "il"],
+       "correctAnswer": 0
+     },
+     {
+      "question": "4°)-Donne la nature et la fonction des mots soulignés (phacochère ) ",
+       "options": [" ce qui lui appartient, son argent.  ", " un nom commun d'animal, sujet du verbe rentra."],
+       "correctAnswer": 1
+     },
+     {
+      "question": "4°)-Donne la nature et la fonction des mots soulignés ( tortues) ",
+       "options": ["nom commun d'animal, complément du nom ", "un nom commun d'animal, sujet du verbe rentra."],
+       "correctAnswer": 0
+     },
+     {
+      "question": "5°)-Mets la phrase « Il alla réclamer son dû » au présent de l'indicatif ",
+       "options": ["  Il va réclamer son dû.   ", ": Il est allé réclamer de rentra."],
+       "correctAnswer": 0
+     },
+
+     {
+      "question": "5°)-Mets la phrase « Il alla réclamer son dû »au passé composé ",
+       "options":["  Il va réclamer son dû.   ", ": Il est allé réclamer de rentra."],
+       "correctAnswer": 1
+     }
+
+]
+}
+]

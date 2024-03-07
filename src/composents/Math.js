@@ -20,6 +20,7 @@ function Accueil() {
       <div className="card-grid">
         <CardButton title="Periode1" navigateTo="/Periode1" />
         <CardButton title="Periode2" navigateTo="/Periode2" />
+        <CardButton title="Periode3" navigateTo="/Period3" />
       </div>
     </div>
   );
