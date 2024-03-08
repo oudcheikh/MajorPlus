@@ -182,6 +182,11 @@ import IM_Chapitre3 from './composents/Arabe/Alimlaa/IM_Chapitre3'
 import IM_Chapitre4 from './composents/Arabe/Alimlaa/IM_Chapitre4'
 import IM_Chapitre5 from './composents/Arabe/Alimlaa/IM_Chapitre5'
 import Tadriib_imlaa from './composents/Arabe/Alimlaa/Tadriib/TadriibImlaa'
+import Assarf from './composents/Arabe/Assarf/Assarf'
+import Almadhi from './composents/Arabe/Assarf/Almadhi/Almadhi'
+import Almodharaa from './composents/Arabe/Assarf/Almodharaa/Almodharaaa'
+
+import Alamar from './composents/Arabe/Assarf/Alamr/Alamar'
 
 function App() {
   return (
@@ -374,6 +379,10 @@ function App() {
           <Route path= "/IM_Chapitre4" element={<IM_Chapitre4/>} />
           <Route path= "/IM_Chapitre5" element={<IM_Chapitre5/>} /> 
           <Route path= "/Tadriib_imlaa" element={<Tadriib_imlaa/>} />  
+          <Route path= "/Assarf" element={<Assarf/>} />
+          <Route path= "/Almadhi" element={<Almadhi/>} /> 
+          <Route path= "/Alamar" element={<Alamar/>} /> 
+          <Route path= "/Almodharaa" element={<Almodharaa/>} />
           <Route path= "/Test" element={<Test/>} />
         </Routes>
       
