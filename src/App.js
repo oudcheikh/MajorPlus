@@ -185,6 +185,7 @@ import Tadriib_imlaa from './composents/Arabe/Alimlaa/Tadriib/TadriibImlaa'
 import Assarf from './composents/Arabe/Assarf/Assarf'
 import Almadhi from './composents/Arabe/Assarf/Almadhi/Almadhi'
 import Almodharaa from './composents/Arabe/Assarf/Almodharaa/Almodharaaa'
+import TadriibSarf from './composents/Arabe/Assarf/Tadriib/TadriibBase'
 
 import Alamar from './composents/Arabe/Assarf/Alamr/Alamar'
 
@@ -383,6 +384,8 @@ function App() {
           <Route path= "/Almadhi" element={<Almadhi/>} /> 
           <Route path= "/Alamar" element={<Alamar/>} /> 
           <Route path= "/Almodharaa" element={<Almodharaa/>} />
+          <Route path= "/TadriibSarf" element={<TadriibSarf/>} />
+          
           <Route path= "/Test" element={<Test/>} />
         </Routes>
       

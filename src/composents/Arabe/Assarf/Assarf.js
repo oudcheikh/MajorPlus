@@ -15,7 +15,7 @@ function Accueil() {
   const navigate = useNavigate();
 
   const passerTeste = () => {
-    navigate('/Tadriib')
+    navigate('/TadriibSarf')
   }
   const CardButton = ({ title, navigateTo }) => (
     <div className="card full-card" onClick={() => navigate(navigateTo)}>
