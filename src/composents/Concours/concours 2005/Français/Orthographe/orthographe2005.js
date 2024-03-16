@@ -142,7 +142,7 @@ const Orthographe2005 = ({ quizzes }) => {
               onClick={() => setUserSelection(optionIndex)}
               className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`}
             >
-              <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
+              <span ><FormulaTextF>{option}</FormulaTextF></span>
             </button>
           ))}
         </div>
