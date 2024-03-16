@@ -71,7 +71,7 @@ const VibrantFab = styled(Fab)({
 });
 
 const C1A1 = ({ verbData }) => {
-    console.log(verbData)
+    
 
     const singularTerm = verbData.terms.find(term => term.tense === "المفرد");
     const mathnaTerm = verbData.terms.find(term => term.tense === "المثنى");

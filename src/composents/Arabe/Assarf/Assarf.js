@@ -30,12 +30,12 @@ function Accueil() {
     <div className="app-container">
 
       <div className="card-grid">
-
         <CardButton title="  الماضي" navigateTo="/Almadhi" />
         <CardButton title=" المضارع" navigateTo="/Almodharaa" />
         <CardButton title="  الامر" navigateTo="/Alamar" />
+        <CardButton title="المضارع المجزوم" navigateTo="/Majzoum" />
+        <CardButton title="المضارع  المنصوب" navigateTo="/Mansoub" />
       </div>
-
 
 
       <button className="continue-button" onClick={passerTeste}>

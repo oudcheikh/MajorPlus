@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import C1A1 from './C1A1';
+import { styled } from '@mui/system';
 
-import Present from '../../imges/now.PNG';
+
+
+import pray from '../../imges/daaa.jpg';
+import mansoub from '../../imges/nine.PNG'
+import comprendre from '../../imges/comprendre.PNG'
+
+
+import Present from '../images/present.PNG';
 import dire from '../../imges/dire.PNG';
 import marche from '../../imges/marche.png';
 import fidele from '../../imges/fidele.PNG';
@@ -23,15 +31,18 @@ import rent from '../../imges/rentre.PNG';
 import maladeimg from '../../imges/malade.PNG';
 import compte from '../../imges/compte.PNG';
 import aime from '../../imges/aime.PNG';
-import daaa from '../../imges/daaa.jpg'
+
 
 import '../../../Styles/MajorStyles.css'
 // Import des styles
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
+    FormulaTextF, Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, SmallCard2, BodyText, Subtitle, ContinueButton, SmallCard
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
-
 import verbsData from './data.json'
+import './style.css'
+import C1A2 from './C1A2';
+
+
 
 const C1 = () => {
     const malade = verbsData.find(item => item.verb === "مَرِضَ");
@@ -60,36 +71,59 @@ const C1 = () => {
 
     return (
         <Container>
-             <div className='LL'>
-                </div>
+
+
+            <div className='Mansoub'>
+            </div>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={Present} alt="Teacher" />
+                    <img src={mansoub} alt="majzoum" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                      
-                          <strong style={{ color: 'blue' }}> الفعل المضارع  :</strong>هو الفعل الذي يدل على حدث يقع في الزمن الحاضر. ولا بد لكل فعل من فاعل سواء أكان ظاهرًا أو مستترًا.
 
-<br></br>يبدأ الفعل المضارع بالأحرف الأربعة التالية: ن أ ت ي، والمجموعة في كلمة (نأتي)
-                      
+
+                        <p className='arabic-text'> ينصب الفعل المضارع فقط إذا سبق بناصب، ويكون بالفتحة الظاهرة إذا كان صحيح الآخر أو معتل الآخر بالواو أو الياء، وينصب بالفتحة المقدرة إذا كان معتل الآخر بالألف. ويحذف النون إذا كان من الأفعال الخمسة. أدوات النصب هي: أن ولن وكي وحتى ولام التعليل ولام الجحود وفاء السببية وواو المعية
+                        </p>
+
                     </BodyText>
                 </Card>
             </SectionContainer>
 
-
-
-
             {section >= 1 && (
-                  <div>
+                <div>
                     <br></br>
                     <SectionContainer>
+
+                        <BodyText>
+                            <br></br>
+                            <C1A2 />
+
+                        </BodyText>
+
                         <ImageContainer>
+                            <img src={comprendre} alt="Enseignant" />
+                        </ImageContainer>
+                    </SectionContainer>
+                    <br></br>
+                    <br></br>
+
+                </div>
+            )}
+
+
+            {section >= 2 && (
+                <div>
+                    <br></br>
+                    <SectionContainer>
+                        <ImageContainer style={{ width: '100px' }}>
                             <img src={compte} alt="Enseignant" />
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل عدَّ في المضارع
+                                اتعلم كيف اصرف فعل عدَّ في المضارع  المنصوب
+
+
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -104,8 +138,8 @@ const C1 = () => {
                     </div>
                 </div>
             )}
-{section >= 2 && (
-                  <div>
+            {section >= 3 && (
+                <div>
                     <br></br>
                     <SectionContainer>
                         <ImageContainer>
@@ -113,7 +147,7 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل مال في المضارع
+                                اتعلم كيف اصرف فعل مال في  المضارع المنصوب
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -130,7 +164,7 @@ const C1 = () => {
             )}
 
 
- {section >= 3 && (
+            {section >= 4 && (
 
                 <div>
                     <br></br>
@@ -140,7 +174,7 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل قال في المضارع
+                                اتعلم كيف اصرف فعل قال في  المضارع المنصوب
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -149,7 +183,7 @@ const C1 = () => {
 
                     <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                             <C1A1 verbData={kaala} /> 
+                            <C1A1 verbData={kaala} />
                         </div>
                         <div className="separator"></div> {/* Ceci peut aussi être remplacé par un composant stylisé si nécessaire */}
                     </div>
@@ -157,8 +191,8 @@ const C1 = () => {
             )}
 
 
-{section >= 4 && (
-                  <div>
+            {section >= 5 && (
+                <div>
                     <br></br>
                     <SectionContainer>
                         <ImageContainer>
@@ -166,7 +200,8 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل مشى في المضارع
+                                اتعلم كيف اصرف فعل مشى في  المضارع المنصوب
+
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -182,8 +217,8 @@ const C1 = () => {
                 </div>
             )}
 
-{section >= 5 && (
-                  <div>
+            {section >= 6 && (
+                <div>
                     <br></br>
                     <SectionContainer>
                         <ImageContainer>
@@ -191,7 +226,7 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل وفى في المضارع
+                                اتعلم كيف اصرف فعل وفّى في  المضارع المنصوب
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -207,16 +242,16 @@ const C1 = () => {
                 </div>
             )}
 
-{section >= 6 && (
-                  <div>
+            {section >= 7 && (
+                <div>
                     <br></br>
                     <SectionContainer>
                         <ImageContainer>
-                            <img src={daaa} alt="Enseignant" />
+                            <img src={pray} alt="pray" />
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل دعا في المضارع
+                                اتعلم كيف اصرف فعل دعا في  المضارع المنصوب
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -230,9 +265,9 @@ const C1 = () => {
                         <div className="separator"></div> {/* Ceci peut aussi être remplacé par un composant stylisé si nécessaire */}
                     </div>
                 </div>
- )}
+            )}
 
-     {section >= 7 && (
+{section >= 8 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -241,7 +276,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل قاوم في المضارع
+                        اتعلم كيف اصرف فعل قاوم في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -257,7 +293,7 @@ const C1 = () => {
         </div>
     )}
 
-    {section >= 8 && (
+    {section >= 9 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -266,7 +302,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل لعِبَ في المضارع
+                        اتعلم كيف اصرف فعل لعِبَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -282,7 +319,7 @@ const C1 = () => {
         </div>
     )}
 
-    {section >= 9 && (
+    {section >= 10 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -291,7 +328,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل كَتَبَ في المضارع
+                        اتعلم كيف اصرف فعل كَتَبَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -307,7 +345,7 @@ const C1 = () => {
         </div>
     )}
 
-{section >= 10 && (
+{section >= 11 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -316,7 +354,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل سَلّمَ في المضارع
+                        اتعلم كيف اصرف فعل سَلّمَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -332,7 +371,7 @@ const C1 = () => {
         </div>
     )}
 
-    {section >= 11 && (
+    {section >= 12 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -341,7 +380,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل دخل في المضارع
+                        اتعلم كيف اصرف فعل دخل في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -357,7 +397,7 @@ const C1 = () => {
         </div>
     )}
 
-    {section >= 12 && (
+    {section >= 13 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -366,7 +406,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل لَبِسَ في المضارع
+                        اتعلم كيف اصرف فعل لَبِسَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -383,7 +424,7 @@ const C1 = () => {
     )}
 
 
-    {section >= 13 && (
+    {section >= 14 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -392,7 +433,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل نَجَحَ في المضارع
+                        اتعلم كيف اصرف فعل نَجَحَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -409,7 +451,7 @@ const C1 = () => {
     )}
 
 
-    {section >= 14 && (
+    {section >= 15 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -418,7 +460,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل رَمَى في المضارع
+                        اتعلم كيف اصرف فعل رَمَى في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -433,7 +476,7 @@ const C1 = () => {
             </div>
         </div>
     )}
-    {section >= 15 && (
+    {section >= 16 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -442,7 +485,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل قرأَ في المضارع
+                        اتعلم كيف اصرف فعل قرأَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -458,7 +502,7 @@ const C1 = () => {
         </div>
     )}
 
-{section >= 16 && (
+{section >= 17 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -467,7 +511,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل سَكَبَ في المضارع
+                        اتعلم كيف اصرف فعل سَكَبَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -484,7 +529,7 @@ const C1 = () => {
     )}
 
 
-    {section >= 17 && (
+    {section >= 18 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -493,7 +538,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل فَتَحَ في المضارع
+                        اتعلم كيف اصرف فعل فَتَحَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -510,7 +556,7 @@ const C1 = () => {
     )}
 
 
-    {section >= 18 && (
+    {section >= 19 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -519,7 +565,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل بَكَى في المضارع
+                        اتعلم كيف اصرف فعل بَكَى في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -536,7 +583,7 @@ const C1 = () => {
     )}
 
 
-    {section >= 19 && (
+    {section >= 20 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -545,7 +592,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل عَادَ في المضارع
+                        اتعلم كيف اصرف فعل عَادَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -563,7 +611,7 @@ const C1 = () => {
 
 
 
-    {section >= 20 && (
+    {section >= 21 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -572,7 +620,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل مَرِضَ في المضارع
+                        اتعلم كيف اصرف فعل مَرِضَ في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -588,7 +637,7 @@ const C1 = () => {
         </div>
     )}
 
-{section >= 21 && (
+{section >= 22 && (
         <div>
             <br></br>
             <SectionContainer>
@@ -597,7 +646,8 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل دَنَا في المضارع
+                        اتعلم كيف اصرف فعل دَنَا في المضارع المنصوب
+
                     </BodyText>
                 </Card>
             </SectionContainer>
@@ -614,11 +664,12 @@ const C1 = () => {
     )}
 
 
-    {section < 21 && (
+    {section < 22 && (
         <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
     )}
 </Container>
 );
+
 }
 
 export default C1;
