@@ -7,11 +7,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import fractions1 from "../Images/farctions1.png";
+import fractions1 from "./imagesC13/farctions1.png";
 import useSound from "use-sound";
 import correctSound from "../sounds/correct.mp3";
 import incorrectSound from "../sounds/incorrect.mp3";
-import esprit from "../Images/esprit.png";
+
+import esprit from "./imagesC13/esprit.png";
 
 function P3A4_1() {
   const [questions, setQuestions] = useState([]);

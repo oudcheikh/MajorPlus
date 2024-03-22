@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import { Button, Card, CardContent, Box, TextField, Typography } from '@mui/material';
-import kangarooImg from '../Images/kangaro.png';
+import kangarooImg from './imagesC6/kangaro.png';
 import useSound from 'use-sound';
 import correctSound from '../sounds//correct.mp3'
 import incorrectSound from '../sounds//incorrect.mp3'

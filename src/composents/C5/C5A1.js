@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Typography, Card, CardContent } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Branche from "../Images/branches.png";
-import Fteacher from "../Images/teacher.png";
-import Eggs from "../Images/Eggs.png";
+// import Branche from "./imagesC5/branches.png";
+// import Fteacher from "../Images/teacher.png";
+// import Eggs from "./imagesC5/Eggs.png";
 import styled from "styled-components";
 const useStyles = makeStyles({
   card: {
@@ -80,7 +80,7 @@ function C5A1() {
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={Branche}
+              src={"/images/Math/C/imagesC5/branches.png"}
               
               style={{
                 width: '100px',
@@ -141,7 +141,7 @@ function C5A1() {
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={Eggs}
+              src={"/images/Math/C/imagesC5/Eggs.png"}
               
               style={{
                 width: '100px',
@@ -202,7 +202,7 @@ function C5A1() {
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={Fteacher}
+              src={"images/Images/teacher.png"}
               
               style={{
                 width: '100px',

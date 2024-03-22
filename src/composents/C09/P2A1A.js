@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import owl2 from '../Images/owl2.png';
-import owl4 from '../Images/owl4.png';
-import pizza from '../Images/pizza.png'; 
-import pizza1 from '../Images/pizza1.png';
-import pizza3 from '../Images/pizza3.png';
-import candy from '../Images/candy.png';
-import exemple from '../Images/exemple.png';
-import exemple1 from '../Images/exemple1.png';
-import exemple2 from '../Images/exemple2.png';
+
+// import owl2 from './imagesC09/owl2.png';
+
+// import owl4 from './imagesC09/owl4.png';
+// import pizza from './imagesC09/pizza.png'; 
+// import pizza1 from './imagesC09/pizza1.png';
+// import pizza3 from './imagesC09/pizza3.png';
+// import candy from './imagesC09/candy.png';
+// import exemple from './imagesC09/exemple.png';
+// import exemple1 from './imagesC09/exemple1.png';
+// import exemple2 from './imagesC09/exemple2.png';
 import Test3 from './QCMC9';
 import P2A1A_1 from './P2A1A-1';
 import Audio from "./Audio09" ;
@@ -43,7 +45,7 @@ const P2A1A = () => {
             {showSections[0] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={owl2} alt="Teacher" />
+                        <img src={"/images/Math/C/imagesC09/owl2.png"} alt="Teacher" />
                     </ImageContainer>
                     <Card>
                     
@@ -65,7 +67,7 @@ const P2A1A = () => {
                     
                          <br></br>           
                     <ImageContainer>
-                        <img src={owl4} alt="Teacher"  />
+                        <img src={"/images/Math/C/imagesC09/owl4.png"} alt="owl4" />
                </ImageContainer>
                     <div>
                         <Card>
@@ -87,11 +89,11 @@ const P2A1A = () => {
             {section >= 2 && showSections[2] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={pizza} alt="Teacher"  />
+                        <img src={"/images/Math/C/imagesC09/pizza.png"} alt="Teacher"  />
                         <br></br>
                     <h3>Avant la division</h3><br></br>
                     <ImageContainer>
-                        <img src={pizza3} alt="Teacher" />
+                        <img src={"/images/Math/C/imagesC09/pizza3.png"} alt="Teacher" />
                     </ImageContainer>
                     </ImageContainer>
                     
@@ -99,7 +101,7 @@ const P2A1A = () => {
 
                    
                     <ImageContainer>
-                        <img src={pizza1} alt="Teacher" style={{marginLeft:"10px"}}/>
+                        <img src={"/images/Math/C/imagesC09/pizza1.png"} alt="Teacher" style={{marginLeft:"10px"}}/>
                         <h3 style={{marginTop:"26px"}}>Aprés la division</h3><br></br>
                         <div>
                         <Card>
@@ -124,21 +126,21 @@ const P2A1A = () => {
             {section >= 3 && showSections[3] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={candy} alt="Teacher" />
+                        <img src={"/images/Math/C/imagesC09/candy.png"} alt="Teacher" />
                         <br></br>
                         <br></br>
                         <h3>Solution</h3>
                         <br></br>
                         <ImageContainer>
-                        <img src={exemple1} alt="Teacher" style ={{width:"170px",marginTop:"20px"}}/>
+                        <img src={"/images/Math/C/imagesC09/exemple1.png"} alt="Teacher" style ={{width:"170px",marginTop:"20px"}}/>
                     </ImageContainer>
                     <br></br>
                     <ImageContainer>
-                        <img src={exemple2} alt="Teacher" style ={{width:"170px",marginTop:"40px"}}/>
+                        <img src={"/images/Math/C/imagesC09/exemple2.png"} alt="Teacher" style ={{width:"170px",marginTop:"40px"}}/>
                     </ImageContainer>
                     <br></br>
                     <ImageContainer>
-                        <img src={exemple} alt="Teacher" style ={{width:"170px",marginTop:"40px"}}/>
+                        <img src={"/images/Math/C/imagesC09/exemple.png"} alt="Teacher" style ={{width:"170px",marginTop:"40px"}}/>
                     </ImageContainer>
 
                     </ImageContainer>
@@ -218,7 +220,5 @@ const P2A1A = () => {
     </Container>
   );
 }
-
-
 
 export default P2A1A;

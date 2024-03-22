@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; 
 import M2A2 from './M2A2'
 import QCMC6 from './QCMM2';
-import teacher from '../Images/teacher.png'
+//import teacher from '../Images/teacher.png'
 import M2A1 from './M2A1';
 import M2A3 from './M2A3';
 import Audio from "./AudioM2";
@@ -28,7 +28,7 @@ const C1 = () => {
            
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacher} alt="Teacher" />
+                        <img src={"/images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <Card>
                         <BodyText>

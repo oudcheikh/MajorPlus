@@ -4,8 +4,8 @@ import G1A1 from './G1A1';
 import G1A3 from './G1A3';
 import G1A4 from './G1A4';
 import QCMG1 from './QCMG1';
-import teacherImage from '../Images/Prof1.png';
-import teacher from '../Images/teacher.png'
+// import teacherImage from '../Images/Prof1.png';
+// import teacher from '../Images/teacher.png'
 import Audio from "./AudioG1";
 
 // Import styles from MajorStyles.js
@@ -30,7 +30,7 @@ const C1 = () => {
            
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacher} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <Card>
                         <BodyText>
@@ -63,7 +63,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%', height:'100%' }}>
                   
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+                    <img src={"images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
                         <G1A2 />
                     </div>
                     <Separator />
@@ -73,7 +73,7 @@ const C1 = () => {
             {section >= 3 && (
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+                        <img src={"images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
                         <G1A1 />
                     </div>
                     <Separator />
@@ -83,7 +83,7 @@ const C1 = () => {
             {section >= 4 && (
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                   <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+                   <img src={"images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
                     <G1A3 />
                     </div>
                       <Separator />

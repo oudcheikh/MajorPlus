@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Box, Grid } from '@mui/material';
 import { Howl } from 'howler';
-import Leau from '../Images/Leau.png'; // Remplacez par le chemin correct
-import Milk from '../Images/Milk.png'; // Remplacez par le chemin correct
-import gasoil from '../Images/gasoil.png'; // Remplacez par le chemin correct
-import Oil from '../Images/Oil.png'; // Remplacez par le chemin correct
+
+
+import Leau from './imagesM2/Leau.png'; // Remplacez par le chemin correct
+import Milk from './imagesM2/Milk.png'; // Remplacez par le chemin correct
+import gasoil from './imagesM2/gasoil.png'; // Remplacez par le chemin correct
+import Oil from './imagesM2/Oil.png'; // Remplacez par le chemin correct
+
+
+
 import correctSoundFile from '../sounds/correct.mp3'; // Remplacez par le chemin correct
 import incorrectSoundFile from '../sounds/incorrect.mp3'; // Remplacez par le chemin correct
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

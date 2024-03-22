@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import fteacher from "../Images/fteacherr.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/fteacherr.png";
+// import inestine from "../Images/inestine.png";
 import Geo from "./Geo";
 import QCMG2 from './QCMG2';
 import Audio from "./AudioG2";
@@ -43,7 +43,7 @@ const G1 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -128,9 +128,9 @@ const G1 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
-          
+
             </div>
             {!showP2A21 && (
         <div style={{ display: "flex", alignItems: "center" }}>

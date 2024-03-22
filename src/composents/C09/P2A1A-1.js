@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import fteacherr1 from "../Images/fteacherr1.png";
+//import fteacherr1 from "../Images/fteacherr1.png";
 import useSound from "use-sound";
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';
@@ -79,7 +79,7 @@ function P3A4_1() {
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={fteacherr1}
+              src={"images/Images/fteacherr1.png"}
               
               style={{
                 width: '100px',

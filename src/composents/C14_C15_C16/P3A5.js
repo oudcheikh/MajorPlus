@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import fteacher from "../Images/fteacherr.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/fteacherr.png";
+// import inestine from "../Images/inestine.png";
 import  Audio from "./Audio14";
 
 import P3A5_2 from "./P3A5-2";
@@ -192,7 +192,7 @@ const P3A5 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -238,7 +238,7 @@ const P3A5 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
             </div>
             {!showP2A21 && (

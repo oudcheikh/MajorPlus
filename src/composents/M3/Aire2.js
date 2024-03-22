@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Aire1 from './Aire1'; 
 import M3 from './M3'; 
 import QCMM3 from './QCMM3';
-import teacherImage from '../Images/Prof1.png';
-import teacher from '../Images/teacher.png';
+// import teacherImage from '../Images/Prof1.png';
+// import teacher from '../Images/teacher.png';
 import styled from 'styled-components';
 
 // Import des styles
@@ -20,7 +20,7 @@ const C1 = () => {
         <Container>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={teacher} alt="Teacher" />
+                    <img src={"/images/Images/teacher.png"} alt="Teacher" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
@@ -60,7 +60,7 @@ const C1 = () => {
                 <div>
                     <SectionContainer>
                         <ImageContainer>
-                            <img src={teacherImage} alt="Enseignant" />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" />
                         </ImageContainer>
                         <Card>
                             <BodyText>
@@ -94,7 +94,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <ImageContainer>
-                            <img src={teacherImage} alt="Enseignant" />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" />
                         </ImageContainer>
                         <QCMM3 />
                     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Select, MenuItem, Typography, Box, ImageList, ImageListItem } from '@mui/material';
-import prof1 from '../Images/Prof1.png';
+// import prof1 from '../Images/Prof1.png';
 
 function App() {
     const [shape, setShape] = useState('carre');

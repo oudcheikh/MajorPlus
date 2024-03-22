@@ -12,8 +12,8 @@ import {
   ContinueButton
 } from "../Styles/MajorStyles"; // Assurez-vous que le chemin est correct
 
-import fteacher from "../Images/fteacherr.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/fteacherr.png";
+// import inestine from "../Images/inestine.png";
 import QCMG4 from "./QCMG4";
 import Triangle from "./triangle";
 import Triangle1 from "./triangle1";
@@ -44,12 +44,13 @@ const P3A6 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
               Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
               passionnant : la construction des triangles.
+
             </BodyText>
           </Card>
         </SectionContainer>
@@ -100,7 +101,7 @@ const P3A6 = () => {
             alignItems: "center",
           }}>
             <ImageContainer>
-              <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+              <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
             </ImageContainer>
             {!showP2A21 && (
               <div style={{ display: "flex", alignItems: "center" }}>

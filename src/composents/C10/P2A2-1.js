@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import carImg from "../Images/car.png";
+import carImg from "./imagesC10/car.png";
 import useSound from "use-sound";
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';

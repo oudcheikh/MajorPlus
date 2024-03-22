@@ -7,7 +7,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import coins from "../Images/coins.png";
+
+import coins from "./imagesC12/coins.png";
 import useSound from "use-sound";
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';

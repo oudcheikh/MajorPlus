@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import fteacher from "../Images/teacher.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/teacher.png";
+// import inestine from "../Images/inestine.png";
 import C3A1 from "./C3A1";
 import C3A2 from "./C3A2";
 import C3A3 from "./C3A3";
@@ -51,7 +51,7 @@ const C3 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/teacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -124,7 +124,7 @@ const C3 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           
             </div>

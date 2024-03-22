@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Plus from './Plus';
 import QCMC7 from './QCMC7';
-import teacher from '../Images/teacher.png';
-import prof from '../Images/Prof1.png';
+// import teacher from '../Images/teacher.png';
+// import prof from '../Images/Prof1.png';
 import Audio from "./Audio7" ;
 
 
@@ -26,7 +26,7 @@ const C2 = () => {
         <Container>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={teacher} alt="Teacher" />
+                    <img src={"images/Images/teacher.png"} alt="Teacher" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
@@ -65,7 +65,7 @@ const C2 = () => {
             {section >= 2 && (
                 <div>
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
-    <img src={prof} alt="Teacher" style={{ width: '50%', maxWidth: '300px' }} />
+    <img src={"images/Images/Prof1.png"}  alt="Teacher" style={{ width: '50%', maxWidth: '300px' }} />
 </div>
 
 <br></br>

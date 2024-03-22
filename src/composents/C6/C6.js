@@ -5,7 +5,7 @@ import C5A4 from './C5A4';
 import C5A5 from './C5A5';
 import QCMC6 from './QCMC6';
 import Container from '@mui/material/Container';
-import teacher from '../Images/teacher.png';
+// import teacher from '../Images/teacher.png';
 import { SectionContainer, ImageContainer, Card, BodyText, Separator, ContinueButton,FormulaText,FormulaBox,Subtitle } from '../Styles/MajorStyles';
 import Audio from "./Audio6" ;
 
@@ -16,7 +16,7 @@ const C1 = () => {
         <Container>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={teacher} alt="Teacher" />
+                    <img src={"images/Images/teacher.png"} alt="Teacher" />
                 </ImageContainer>
                 <Card>
                     <BodyText>

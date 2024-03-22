@@ -1,8 +1,7 @@
 // Kangaroo.js
 import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
-import kangarooImg from '../Images/kangaro.png';
-
+import kangarooImg from './imagesC6/kangaro.png';
 
 function Kangaroo({ position, numJumps, jumpDistance, showMessage }) {
   

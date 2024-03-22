@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import fteacher from "../Images/teacher.png";
-import inestine from "../Images/inestine.png";
+
+// import fteacher from "../Images/teacher.png";
+// import inestine from "../Images/inestine.png";
+
 import C2A1 from "./C2A1";
 import C2E1 from "./C2E1";
 import C2E2 from "./C2E2";
@@ -63,7 +65,7 @@ const C2 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/teacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -136,7 +138,7 @@ const C2 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           
             </div>

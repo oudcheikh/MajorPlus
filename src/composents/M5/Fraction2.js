@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import { Button, Container, Box, Card, CardContent, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import teacherImage from '../Images/Prof1.png';
+
 import Chap10 from './Chap10';
 import P2A4 from './P2A4';
 import QCMM5 from './QCMM5';
@@ -87,7 +87,7 @@ const MesurAire = () => {
      <div>  {showSections[0] && (
       <Container maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%', justifyContent: 'center' }}>
-          <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+          <img src={"/images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
 
           <Card sx={{
             borderRadius: 15,

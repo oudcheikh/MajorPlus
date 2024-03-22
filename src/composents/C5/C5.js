@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import fteacher from "../Images/teacher.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/teacher.png";
+// import inestine from "../Images/inestine.png";
 import Audio from "./Audio5" ;
 import C5A1 from "./C5A1";
 import C5A2 from "./C5A2";
@@ -48,7 +48,7 @@ const C5 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/teacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -127,7 +127,7 @@ const C5 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           
             </div>

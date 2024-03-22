@@ -1,0 +1,46 @@
+
+.DEFINITION{
+  
+  
+    width: 70%;
+    margin-left: auto;
+    margin-right: 8%;
+    padding: 0 0 0 40; 
+}
+
+
+/* ImageText.css */
+.Mansoub {
+    /*background-image: './الامر.PNG';*/
+
+    background-image: url("/public/images/arabe/assarfImages/mansoub1.png");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: top center;
+    background-size: 300px 100px;
+    padding-top: 200px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.container {
+    padding: 0%;
+    display: flex;
+    align-items: center; /* Aligner les éléments verticalement */
+    margin-right: 5%;
+    margin-top: -300px;
+  }
+  
+  .image-container {
+    flex: 1; /* Faire en sorte que l'image prenne la moitié de l'espace disponible */
+  }
+  
+  .text-container {
+    flex: 2; /* Faire en sorte que le texte prenne le double de l'espace de l'image */
+
+  }
+  
+  img {
+    max-width: 100%; /* Assurer que l'image ne dépasse pas la largeur du conteneur */
+  }
+  

@@ -1,0 +1,22 @@
+.SS {
+    background-image: url("/public/images/arabe/assarfImages/madhi.png");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: top center;
+    background-size: 100px 100px;
+    padding-top: 200px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.LL {
+    background-image: url("/public/images/arabe/assarfImages/modharaa.png");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: top center;
+    background-size: 200px 100px;
+    padding-top: 200px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}

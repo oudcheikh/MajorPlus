@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import teacherImage from '../Images/teacher.png';
+//import teacherImage from '../Images/teacher.png';
 import Test1 from './QCMC10';
 import P2A2_1 from './P2A2-1';
 import P2A2_2 from './P2A2-2';
@@ -50,7 +50,7 @@ const App = () => {
             {showSections[0] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacherImage} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <Card>
                         <BodyText>
@@ -64,7 +64,7 @@ const App = () => {
             {section >= 1 && showSections[1] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacherImage} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <div>
                         <Subtitle>🤓 Les Bases 🤓</Subtitle>
@@ -81,7 +81,7 @@ const App = () => {
             {section >= 2 && showSections[2] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacherImage} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <div>
                         <Subtitle>💰 Bénéfice 💰</Subtitle>
@@ -98,7 +98,7 @@ const App = () => {
             {section >= 3 && showSections[3] && (
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacherImage} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <div>
                         <Subtitle>😞 Perte 😞</Subtitle>

@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckIcon from '@material-ui/icons/Check';
 import ReplayIcon from '@material-ui/icons/Replay';
 import TextField from '@material-ui/core/TextField';  // Ajout de TextField
-import teacherImage from '../Images/Prof1.png';
+//import teacherImage from '../Images/Prof1.png';
 import { Card } from '@mui/material';
 
 

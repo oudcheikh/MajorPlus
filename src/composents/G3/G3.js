@@ -4,7 +4,7 @@ import G3A2 from './G3A2';
 import QCMG3 from './QCMG3';
 import Audio from "./AudioG3";
 
-import teacher from '../Images/teacher.png';
+// import teacher from '../Images/teacher.png';
 
 // Importing styled components from MajorStyles.js
 import {
@@ -29,7 +29,7 @@ const C1 = () => {
            
                 <SectionContainer>
                     <ImageContainer>
-                        <img src={teacher} alt="Teacher" />
+                        <img src={"images/Images/teacher.png"} alt="Teacher" />
                     </ImageContainer>
                     <Card>
                         <BodyText>

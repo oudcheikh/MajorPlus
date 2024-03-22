@@ -3,10 +3,12 @@ import { Button, TextField, Typography, Box, Grid } from '@mui/material';
 import useSound from 'use-sound';
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';
-import Banane from '../Images/Banan.png';
-import Pomme from '../Images/Pomme.png';
-import Orange from '../Images/Orange.png';
-import Pasteque from '../Images/Pasteque.png';
+
+import Banane from './imagesM2/Banan.png'
+import Pomme from './imagesM2/Pomme.png';
+import Orange from './imagesM2/Orange.png';
+import Pasteque from './imagesM2/Pasteque.png';
+
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReplyIcon from '@mui/icons-material/Reply';
 import styled from 'styled-components';

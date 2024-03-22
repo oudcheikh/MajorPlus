@@ -4,8 +4,8 @@ import C4A2 from './C4A2';
 import C4A3 from './C4A3';
 import C4A4 from './C4A4';
 import QCMC4 from './QCMC4';
-import teacher from '../Images/teacher.png';
-import prof from '../Images/Prof1.png';
+// import teacher from '../Images/teacher.png';
+// import prof from '../Images/Prof1.png';
 import Audio from "./Audio4" ;
 
 // Importation des styles depuis MajorStyles
@@ -28,7 +28,7 @@ const C2 = () => {
         <Container>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={teacher} alt="Teacher" />
+                    <img src={"images/Images/teacher.png"} alt="Teacher" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
@@ -82,7 +82,7 @@ const C2 = () => {
             {section >= 4 && (
                 <div>
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
-    <img src={prof} alt="Teacher" style={{ width: '50%', maxWidth: '300px' }} />
+    <img src={"images/Images/prof1.png"} alt="Teacher" style={{ width: '50%', maxWidth: '300px' }} />
 </div>
 
 <br></br>

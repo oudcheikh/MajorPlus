@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import teacherImage from '../Images/teacher.png';
-import owl1 from '../Images/owl1.png';
-import owl2 from '../Images/owl2.png';
-import owl3 from '../Images/owl3.png';
-import owl4 from '../Images/owl4.png';
-import tree from '../Images/tree.png';
+//import teacherImage from '../Images/teacher.png';
+
+import owl1 from './imagesC12/owl1.png';
+import owl2 from './imagesC12/owl2.png';
+import owl3 from './imagesC12/owl3.png';
+import owl4 from './imagesC12/owl4.png';
+import tree from './imagesC12/tree.png';
+
 import Test2 from './QCMC12';
 import P2A3_1 from './P2A3-1';
 import P2A3_2 from './P2A3-2';

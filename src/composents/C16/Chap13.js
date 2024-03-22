@@ -5,7 +5,7 @@ import Fraction3 from './Fraction3';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import teacherImage from '../Images/Prof1.png';
+//import teacherImage from '../Images/Prof1.png';
 import QCMC16 from './QCMC16';
 import Bande from './Bande';
 import styled from 'styled-components';
@@ -27,7 +27,7 @@ const Chap13 = () => {
                 <Card style={{ marginBottom: '20px', width: '100%' }}>
                     <CardContent>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
                             <Fraction />
                         </div>
                     </CardContent>
@@ -37,7 +37,7 @@ const Chap13 = () => {
             {section >= 2 && (
                 <Card style={{ marginBottom: '20px', width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <img src={teacherImage} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
+                        <img src={"images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
                         <Fraction1 />
                     </div>
                 </Card>

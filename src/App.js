@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Accueil from './composents/Accueil';
 import Math from './composents/Math';
-import Français from './composents/Français';
+import Français from './composents/_FRANCAIS/Français';
 import QuizTest from './composents/home/QuizTest';
 import QuizTestarab from './composents/home/QuizTestarab';
 import PrepaArabe from './composents/PrepaArabe';
 import PrepaFrançais from './composents/PrepaFrançais';
 
-import Vocabulaire from './composents/Français/Vocabulaire/Vocabulaire';
-import Acueilvocabulaire from './composents/Français/Vocabulaire/Acueilvocabulaire';
-import Vocabulaireecoleville from'./composents/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
+import Vocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire';
+import Acueilvocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Acueilvocabulaire';
+import Vocabulaireecoleville from'./composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
 import C1 from './composents/C1/C1';
 import C2 from './composents/C2/C2';
 import C3 from './composents/C3/C3';
@@ -46,151 +46,155 @@ import Fraction2 from './composents/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
 import Period3 from  './composents/period3';
-import Islamique from './composents/Islamique';
-import Science from './composents/Science';
-import Histoire from './composents/Histoire';
-import Hist1 from './composents/Histoire/Chapitre1/hist1';
-import Islamique1 from './composents/Islam/Chapitre1/Islamique1';
-import Islamique2 from './composents/Islam/Chapitre2/Islamique2';
-import Islamique3 from './composents/Islam/Chapitre3/Islamique3';
-import Islamique4 from './composents/Islam/Chapitre4/Islamique4';
-import Hist2 from './composents/Histoire/Chapitre2/hist2';
-import Hist3 from './composents/Histoire/Chapitre3/hist3';
-import Hist4 from './composents/Histoire/Chapitre4/hist4';
-import Hist5 from './composents/Histoire/Chapitre5/hist5';
-import Hist6 from './composents/Histoire/Chapitre6/hist6';
-import Hist7 from './composents/Histoire/Chapitre7/hist7';
-import Hist8 from './composents/Histoire/Chapitre8/hist8';
-import Hist9 from './composents/Histoire/Chapitre9/hist9';
-import Hist10 from './composents/Histoire/Chapitre10/hist10';
-import Hist11 from './composents/Histoire/Chapitre11/hist11';
-import Hist12 from './composents/Histoire/Chapitre12/hist12';
-import Hist13 from './composents/Histoire/Chapitre13/hist13';
-import Hist14 from './composents/Histoire/Chapitre14/hist14';
-import Hist15 from './composents/Histoire/Chapitre15/hist15';
-import Hist16 from './composents/Histoire/Chapitre16/hist16';
-import Hist17 from './composents/Histoire/Chapitre17/hist17';
-import Hist18 from './composents/Histoire/Chapitre18/hist18';
-import EquilibrAlimantaire from './composents/Science/Chapitre1/EquilibreAlimantaire';
-import EquilibrEnergitique from './composents/Science/Chapitre2/EquilibreEnergitique';
-import Desertification from './composents/Science/Chapitre3/Desertification';
-import Pollution from './composents/Science/Chapitre4/Pollution';  
-import EauEtSante from './composents/Science/Chapitre5/EauEtSante';
-import Vaccination from './composents/Science/Chapitre6/Vaccination';
-import Sida from './composents/Science/Chapitre7/Sida';
+import Islamique from './composents/_ARABE_Folder/Islamique';
+import Science from './composents/_FRANCAIS/Science';
+import Histoire from './composents/_ARABE_Folder/Histoire';
+
+
+import Hist1 from './composents/_ARABE_Folder/Histoire/Chapitre1/hist1';
+import Islamique1 from './composents/_ARABE_Folder/Islam/Chapitre1/Islamique1';
+import Islamique2 from './composents/_ARABE_Folder/Islam/Chapitre2/Islamique2';
+import Islamique3 from './composents/_ARABE_Folder/Islam/Chapitre3/Islamique3';
+import Islamique4 from './composents/_ARABE_Folder/Islam/Chapitre4/Islamique4';
+
+import Hist2 from './composents/_ARABE_Folder/Histoire/Chapitre2/hist2';
+import Hist3 from './composents/_ARABE_Folder/Histoire/Chapitre3/hist3';
+import Hist4 from './composents/_ARABE_Folder/Histoire/Chapitre4/hist4';
+import Hist5 from './composents/_ARABE_Folder/Histoire/Chapitre5/hist5';
+import Hist6 from './composents/_ARABE_Folder/Histoire/Chapitre6/hist6';
+import Hist7 from './composents/_ARABE_Folder/Histoire/Chapitre7/hist7';
+import Hist8 from './composents/_ARABE_Folder/Histoire/Chapitre8/hist8';
+import Hist9 from './composents/_ARABE_Folder/Histoire/Chapitre9/hist9';
+import Hist10 from './composents/_ARABE_Folder/Histoire/Chapitre10/hist10';
+import Hist11 from './composents/_ARABE_Folder/Histoire/Chapitre11/hist11';
+import Hist12 from './composents/_ARABE_Folder/Histoire/Chapitre12/hist12';
+import Hist13 from './composents/_ARABE_Folder/Histoire/Chapitre13/hist13';
+import Hist14 from './composents/_ARABE_Folder/Histoire/Chapitre14/hist14';
+import Hist15 from './composents/_ARABE_Folder/Histoire/Chapitre15/hist15';
+import Hist16 from './composents/_ARABE_Folder/Histoire/Chapitre16/hist16';
+import Hist17 from './composents/_ARABE_Folder/Histoire/Chapitre17/hist17';
+import Hist18 from './composents/_ARABE_Folder/Histoire/Chapitre18/hist18';
+import EquilibrAlimantaire from './composents/_FRANCAIS/Science/Chapitre1/EquilibreAlimantaire';
+import EquilibrEnergitique from './composents/_FRANCAIS/Science/Chapitre2/EquilibreEnergitique';
+import Desertification from './composents/_FRANCAIS/Science/Chapitre3/Desertification';
+import Pollution from './composents/_FRANCAIS/Science/Chapitre4/Pollution';  
+import EauEtSante from './composents/_FRANCAIS/Science/Chapitre5/EauEtSante';
+import Vaccination from './composents/_FRANCAIS/Science/Chapitre6/Vaccination';
+import Sida from './composents/_FRANCAIS/Science/Chapitre7/Sida';
 import Periode3 from './composents/periode3';
-import Etre from './composents/Conjugaison/etre/etre';
-import Grammaire from './composents/Grammaire/grammaire';
-import Sujet from './composents/Grammaire/Sujet/Sujet';
-import TypesDesPhrases from './composents/Grammaire/Types des phrases/lesphrases'
-import PhraseDeclarative from './composents/Grammaire/Types des phrases/Prase Declarative/PhraseDeclarative'
-import PhraseImperative from './composents/Grammaire/Types des phrases/phrase impérative/phraseImperative'
-import Exclamative from './composents/Grammaire/Types des phrases/phrase exclamative/exclamative'
-import Interrogative from './composents/Grammaire/Types des phrases/La phrase interrogative/interrogative'
-import Verbe from './composents/Grammaire/le verbe/verbe'
-import Complement from './composents/Grammaire/Complement/Complement'
-import COD from './composents/Grammaire/Complement/COD'
-import COI from './composents/Grammaire/Complement/COI/COID'
-import CC from './composents/Grammaire/Complement/Circonstanciel/CC'
-import Adjectif from './composents/Grammaire/adjectif/adjectif'
-import Adverbe from './composents/Grammaire/Adverbe/Adverbe'
-import Conjonction from './composents/Grammaire/Conjonction/Conjonction'
-import Subordination from './composents/Grammaire/Conjonction/Conj Subordination/Subordination'
-
-import Coordination from './composents/Grammaire/Conjonction/Coordination/Coordination'
-import Préposition from './composents/Grammaire/la Préposition/Préposition'
-import Article from './composents/Grammaire/Article/Article'
-import Article1 from './composents/Grammaire/Article/Article1'
-import Définis from './composents/Grammaire/Article/Définis'
-import Indéfinis from './composents/Grammaire/Article/Indéfinis'
-import Partitif from './composents/Grammaire/Article/partitif'
 
 
-import VocabularyTrainerBah from './composents/Grammaire/Sujet/Exercices'
-import ExSuj from './composents/Grammaire/Sujet/ExerciceSujet'
-import PrepEx from './composents/Grammaire/la Préposition/quiz/PreposionExercices'
+import Etre from './composents/_FRANCAIS/Conjugaison/etre/etre';
+import Grammaire from './composents/_FRANCAIS/Grammaire/grammaire';
+import Sujet from './composents/_FRANCAIS/Grammaire/Sujet/Sujet';
+import TypesDesPhrases from './composents/_FRANCAIS/Grammaire/Types des phrases/lesphrases'
+import PhraseDeclarative from './composents/_FRANCAIS/Grammaire/Types des phrases/Prase Declarative/PhraseDeclarative'
+import PhraseImperative from './composents/_FRANCAIS/Grammaire/Types des phrases/phrase impérative/phraseImperative'
+import Exclamative from './composents/_FRANCAIS/Grammaire/Types des phrases/phrase exclamative/exclamative'
+import Interrogative from './composents/_FRANCAIS/Grammaire/Types des phrases/La phrase interrogative/interrogative'
+import Complement from './composents/_FRANCAIS/Grammaire/Complement/Complement'
+import COD from './composents/_FRANCAIS/Grammaire/Complement/COD'
+import COI from './composents/_FRANCAIS/Grammaire/Complement/COI/COID'
+import CC from './composents/_FRANCAIS/Grammaire/Complement/Circonstanciel/CC'
+import Adjectif from './composents/_FRANCAIS/Grammaire/adjectif/adjectif'
+import Adverbe from './composents/_FRANCAIS/Grammaire/Adverbe/Adverbe'
+import Conjonction from './composents/_FRANCAIS/Grammaire/Conjonction/Conjonction'
+import Subordination from './composents/_FRANCAIS/Grammaire/Conjonction/Conj Subordination/Subordination'
 
-import ExercicePréposition from './composents/Grammaire/la Préposition/quiz/Exercices'
-import ConjonctionEx from './composents/Grammaire/Conjonction/quiz/ConjonctionExercices'
+import Coordination from './composents/_FRANCAIS/Grammaire/Conjonction/Coordination/Coordination'
+import Préposition from './composents/_FRANCAIS/Grammaire/la Préposition/Préposition'
+import Article from './composents/_FRANCAIS/Grammaire/Article/Article'
+import Article1 from './composents/_FRANCAIS/Grammaire/Article/Article1'
+import Définis from './composents/_FRANCAIS/Grammaire/Article/Définis'
+import Indéfinis from './composents/_FRANCAIS/Grammaire/Article/Indéfinis'
+import Partitif from './composents/_FRANCAIS/Grammaire/Article/partitif'
 
-import ComplementEx from './composents/Grammaire/Complement/quiz/ComplementExercices'
-import ArticleEx from './composents/Grammaire/Article/quiz/ArticleExercices'
-import AdverbeExercice from './composents/Grammaire/Adverbe/quiz/AdverbeExercices'
-import AdjectiveExercice from './composents/Grammaire/adjectif/quiz/AdjectiveExercices'
-import TypePhExercices from './composents/Grammaire/Types des phrases/quiz/TypePhExercices'
+
+import VocabularyTrainerBah from './composents/_FRANCAIS/Grammaire/Sujet/Exercices'
+import ExSuj from './composents/_FRANCAIS/Grammaire/Sujet/ExerciceSujet'
+import PrepEx from './composents/_FRANCAIS/Grammaire/la Préposition/quiz/PreposionExercices'
+
+import ExercicePréposition from './composents/_FRANCAIS/Grammaire/la Préposition/quiz/Exercices'
+import ConjonctionEx from './composents/_FRANCAIS/Grammaire/Conjonction/quiz/ConjonctionExercices'
+
+import ComplementEx from './composents/_FRANCAIS/Grammaire/Complement/quiz/ComplementExercices'
+import ArticleEx from './composents/_FRANCAIS/Grammaire/Article/quiz/ArticleExercices'
+import AdverbeExercice from './composents/_FRANCAIS/Grammaire/Adverbe/quiz/AdverbeExercices'
+import AdjectiveExercice from './composents/_FRANCAIS/Grammaire/adjectif/quiz/AdjectiveExercices'
+import TypePhExercices from './composents/_FRANCAIS/Grammaire/Types des phrases/quiz/TypePhExercices'
 //Orthographe  
-import Orthographe from './composents/Français/Orthographe/Orthographe'
+import Orthographe from './composents/_FRANCAIS/Français/Orthographe/Orthographe'
 import ExamenQCM from './composents/home/QuizTest'
 
-import ExamenOrthographe from './composents/Français/Orthographe/ExamenOrthographe'
-import Quiz from './composents/Français/Orthographe/ExercicesOrth'
-import RangeExample from './composents/Français/Orthographe/boot'
+import ExamenOrthographe from './composents/_FRANCAIS/Français/Orthographe/ExamenOrthographe'
+import Quiz from './composents/_FRANCAIS/Français/Orthographe/ExercicesOrth'
 
-import Concours from './composents/Concours/Concours'
-import ConcoursFrançais from './composents/Concours/concours 2005/Français/ConcFrançais'
-import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/Orth2005'
-import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
-import Accueilarab from './composents/Accueilarab' 
+
+import Concours from './composents/_ARABE_Folder/Concours/Concours'
+import ConcoursFrançais from './composents/_FRANCAIS/Concours/concours 2005/Français/ConcFrançais'
+import Orth2005 from './composents/_FRANCAIS/Concours/concours 2005/Français/Orthographe/Orth2005'
+import ConcoursFrançais2005 from './composents/_FRANCAIS/Concours/concours 2005/Français/ConcFrançais'
+import Accueilarab from './composents/_ARABE_Folder/Accueilarab' 
 import Acceuilfrançais from './composents/Acceuilfrançais' 
-import ConcoursArabe from './composents/Concours/arabe/Arabe'
+import ConcoursArabe from './composents/_ARABE_Folder/Concours/arabe/Arabe'
 
 import Test from './composents/C11/DivisionEuclid'
 
-import AcceiulArabic from'./composents/Arabe/AccArabic'
+import AcceiulArabic from'./composents/_ARABE_Folder/Arabe/AccArabic'
 
-import Annahw from'./composents/Arabe/Annahw/Annahw'
-import C1_Almoaarab from'./composents/Arabe/Annahw/al moaarab/Almoaareb'
-import Chapitre2 from './composents/Arabe/Annahw/Chapitre2'
-import Chapitre3 from './composents/Arabe/Annahw/Chapitre3'
-import Chapitre4 from './composents/Arabe/Annahw/Chapitre4'
-import Chapitre5 from './composents/Arabe/Annahw/Chapitre5'
-import Chapitre6 from './composents/Arabe/Annahw/Chapitre6'
-import Chapitre7 from './composents/Arabe/Annahw/Chapitre7'
-import Chapitre8 from './composents/Arabe/Annahw/Chapitre8'
-import Chapitre9 from './composents/Arabe/Annahw/Chapitre9'
-import Chapitre10 from './composents/Arabe/Annahw/Chapitre10'
-import Chapitre11 from './composents/Arabe/Annahw/Chapitre11'
-import Chapitre12 from './composents/Arabe/Annahw/Chapitre12'
-import Chapitre13 from './composents/Arabe/Annahw/Chapitre13'
-import Chapitre14 from './composents/Arabe/Annahw/Chapitre14'
-import Chapitre15 from './composents/Arabe/Annahw/Chapitre15'
-import Chapitre16 from './composents/Arabe/Annahw/Chapitre16'
-import Chapitre17 from './composents/Arabe/Annahw/Chapitre17'
-import Chapitre18 from './composents/Arabe/Annahw/Chapitre18'
-import Chapitre19 from './composents/Arabe/Annahw/Chapitre19'
-import Chapitre20 from './composents/Arabe/Annahw/Chapitre20'
-import Chapitre21 from './composents/Arabe/Annahw/Chapitre21'
-import Chapitre22 from './composents/Arabe/Annahw/Chapitre22'
-import Chapitre23 from './composents/Arabe/Annahw/Chapitre23'
-import Chapitre24 from './composents/Arabe/Annahw/Chapitre24'
-import Chapitre25 from './composents/Arabe/Annahw/Chapitre25'
-import Chapitre26 from './composents/Arabe/Annahw/Chapitre26'
-import Chapitre27 from './composents/Arabe/Annahw/Chapitre27'
-import Chapitre28 from './composents/Arabe/Annahw/Chapitre28'
-import Chapitre29 from './composents/Arabe/Annahw/Chapitre29'
+import Annahw from'./composents/_ARABE_Folder/Arabe/Annahw/Annahw'
+import C1_Almoaarab from'./composents/_ARABE_Folder/Arabe/Annahw/al moaarab/Almoaareb'
+import Chapitre2 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre2'
+import Chapitre3 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre3'
+import Chapitre4 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre4'
+import Chapitre5 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre5'
+import Chapitre6 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre6'
+import Chapitre7 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre7'
+import Chapitre8 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre8'
+import Chapitre9 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre9'
+import Chapitre10 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre10'
+import Chapitre11 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre11'
+import Chapitre12 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre12'
+import Chapitre13 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre13'
+import Chapitre14 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre14'
+import Chapitre15 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre15'
+import Chapitre16 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre16'
+import Chapitre17 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre17'
+import Chapitre18 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre18'
+import Chapitre19 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre19'
+import Chapitre20 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre20'
+import Chapitre21 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre21'
+import Chapitre22 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre22'
+import Chapitre23 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre23'
+import Chapitre24 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre24'
+import Chapitre25 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre25'
+import Chapitre26 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre26'
+import Chapitre27 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre27'
+import Chapitre28 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre28'
+import Chapitre29 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre29'
 
-import Chapitre30 from './composents/Arabe/Annahw/Chapitre30'
-import Chapitre31 from './composents/Arabe/Annahw/Chapitre31'
-import Chapitre32 from './composents/Arabe/Annahw/Chapitre32'
-import Chapitre33 from './composents/Arabe/Annahw/Chapitre33'
-import Tadriib from './composents/Arabe//Annahw/Tadriib/TadriibBase'
+import Chapitre30 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre30'
+import Chapitre31 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre31'
+import Chapitre32 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre32'
+import Chapitre33 from './composents/_ARABE_Folder/Arabe/Annahw/Chapitre33'
+import Tadriib from './composents/_ARABE_Folder/Arabe//Annahw/Tadriib/TadriibBase'
 
-import Alimlaa from './composents/Arabe/Alimlaa/Alimlaa'
-import IM_Chapitre1 from './composents/Arabe/Alimlaa/IM_Chapitre1'
-import IM_Chapitre2 from './composents/Arabe/Alimlaa/IM_Chapitre2'
-import IM_Chapitre3 from './composents/Arabe/Alimlaa/IM_Chapitre3'
-import IM_Chapitre4 from './composents/Arabe/Alimlaa/IM_Chapitre4'
-import IM_Chapitre5 from './composents/Arabe/Alimlaa/IM_Chapitre5'
-import Tadriib_imlaa from './composents/Arabe/Alimlaa/Tadriib/TadriibImlaa'
-import Assarf from './composents/Arabe/Assarf/Assarf'
-import Almadhi from './composents/Arabe/Assarf/Almadhi/Almadhi'
-import Almodharaa from './composents/Arabe/Assarf/Almodharaa/Almodharaaa'
-import TadriibSarf from './composents/Arabe/Assarf/Tadriib/TadriibBase'
-import Majzoum from './composents/Arabe/Assarf/Al modhara3ALmajzoum/Majzoum'
+import Alimlaa from './composents/_ARABE_Folder/Arabe/Alimlaa/Alimlaa'
+import IM_Chapitre1 from './composents/_ARABE_Folder/Arabe/Alimlaa/IM_Chapitre1'
+import IM_Chapitre2 from './composents/_ARABE_Folder/Arabe/Alimlaa/IM_Chapitre2'
+import IM_Chapitre3 from './composents/_ARABE_Folder/Arabe/Alimlaa/IM_Chapitre3'
+import IM_Chapitre4 from './composents/_ARABE_Folder/Arabe/Alimlaa/IM_Chapitre4'
+import IM_Chapitre5 from './composents/_ARABE_Folder/Arabe/Alimlaa/IM_Chapitre5'
+import Tadriib_imlaa from './composents/_ARABE_Folder/Arabe/Alimlaa/Tadriib/TadriibImlaa'
+import Assarf from './composents/_ARABE_Folder/Arabe/Assarf/Assarf'
+import Almadhi from './composents/_ARABE_Folder/Arabe/Assarf/Almadhi/Almadhi'
+import Almodharaa from './composents/_ARABE_Folder/Arabe/Assarf/Almodharaa/Almodharaaa'
+import TadriibSarf from './composents/_ARABE_Folder/Arabe/Assarf/Tadriib/TadriibBase'
+import Majzoum from './composents/_ARABE_Folder/Arabe/Assarf/Al modhara3ALmajzoum/Majzoum'
 
-import Mansoub from './composents/Arabe/Assarf/Mansoub/Mansoub'
-import Alamar from './composents/Arabe/Assarf/Alamr/Alamar'
+import Mansoub from './composents/_ARABE_Folder/Arabe/Assarf/Mansoub/Mansoub'
 
+import Alamar from './composents/_ARABE_Folder/Arabe/Assarf/Alamr/Alamar'
 function App() {
   return (
     <Router>
@@ -287,7 +291,6 @@ function App() {
         <Route path="/PhraseImperative" element ={<PhraseImperative />}/>
         <Route path="/Exclamative" element ={<Exclamative />}/>
         <Route path="/Interrogative" element ={<Interrogative />}/>
-        <Route path="/Verbe" element ={<Verbe />}/>
         <Route path="/Complement" element ={<Complement />}/>
         <Route path="/COD" element ={<COD />}/>
         <Route path="/COI" element ={<COI />}/>
@@ -324,7 +327,7 @@ function App() {
           <Route path= "/Vocabulaire" element={<Vocabulaire/>} />
           <Route path= "/Acueilvocabulaire" element={<Acueilvocabulaire/>} />
           <Route path= "/Vocabulaireecoleville" element={<Vocabulaireecoleville/>} />
-          <Route path= "/RangeExample" element={<RangeExample/>} />
+         
 
           {/*----------------------------Concours ------------------------*/}
           <Route path= "/Concours" element={<Concours/>} />
@@ -391,6 +394,13 @@ function App() {
           
           <Route path= "/Mansoub" element={<Mansoub/>} />
           <Route path= "/Test" element={<Test/>} />
+
+
+
+
+
+
+       
         </Routes>
       
       </div>

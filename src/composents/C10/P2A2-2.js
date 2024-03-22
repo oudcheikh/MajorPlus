@@ -7,7 +7,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import kid from "../Images/kid.png";
+
+
+import kid from "./imagesC10/kid.png";
+
+
 import useSound from "use-sound";
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';

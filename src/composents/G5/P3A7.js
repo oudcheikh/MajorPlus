@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // Assurez-vous que ce chemin d'accès est correct.
-import fteacher from "../Images/fteacherr.png";
-import inestine from "../Images/inestine.png";
+// import fteacher from "../Images/fteacherr.png";
+// import inestine from "../Images/inestine.png";
 import QCMG5 from "./QCMG5";
 import Droit from "./Droit";
 import Audio from "./AudioG5";
@@ -52,7 +52,7 @@ const P3A7 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -115,7 +115,7 @@ const P3A7 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           
             </div>

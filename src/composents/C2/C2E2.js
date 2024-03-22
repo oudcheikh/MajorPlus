@@ -5,12 +5,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { isMobile } from 'react-device-detect';
 import styled from "styled-components";
-import { Card as Card1} from '../Styles/MajorStyles';
+import { Card as Card1 } from '../Styles/MajorStyles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReplyIcon from '@mui/icons-material/Reply';
-import inestine from "../Images/inestine.png";
+// import inestine from "../Images/inestine.png";
 
-const ItemType = 'card';  
+const ItemType = 'card';
 
 const StyledText = styled.p`
   padding: 0px 20px;
@@ -41,7 +41,7 @@ function getItemStyles(currentOffset) {
       display: 'none',
     };
   }
-  
+
   const { x, y } = currentOffset;
   const transform = `translate(${x}px, ${y}px)`;
   return {
@@ -72,7 +72,7 @@ const CustomDragLayer = () => {
       <div style={getItemStyles(currentOffset)}>
         <Button
           variant="contained"
-          style={{ backgroundColor: '#0000FF', color: 'white' }} 
+          style={{ backgroundColor: '#0000FF', color: 'white' }}
         >
           {item.text}
         </Button>
@@ -100,7 +100,7 @@ const Card = ({ id, text, moveCard }) => {
     <Button
       ref={drag}
       variant="contained"
-      style={{ opacity: isDragging ? 0 : 1, backgroundColor: '#0000FF', color: 'white' }} 
+      style={{ opacity: isDragging ? 0 : 1, backgroundColor: '#0000FF', color: 'white' }}
     >
       {text}
     </Button>
@@ -126,14 +126,14 @@ const Slot = ({ id, accept, lastDroppedId, moveCard }) => {
 
 const C2A1 = () => {
   const [cards, setCards] = useState([]);
-  const [table, setTable] = useState(Array(4).fill(null)); 
+  const [table, setTable] = useState(Array(4).fill(null));
   const [finished, setFinished] = useState(false);
   const [success, setSuccess] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
     const newCards = [];
-    while(newCards.length < 4) {
+    while (newCards.length < 4) {
       const randomNumber = Math.floor(Math.random() * 10000);
       if (!newCards.includes(randomNumber)) {
         newCards.push(randomNumber);
@@ -156,7 +156,7 @@ const C2A1 = () => {
   const checkResult = () => {
     const sortedTable = [...table].sort((a, b) => b - a);
     const isOrderedDescending = table.every((num, idx) => num === sortedTable[idx]);
-  
+
     if (isOrderedDescending) {
       setSuccess(true);
     } else {
@@ -164,11 +164,11 @@ const C2A1 = () => {
     }
     setShowResult(true);
   };
-  
+
 
   const resetGame = () => {
     const newCards = [];
-    while(newCards.length < 4) {
+    while (newCards.length < 4) {
       const randomNumber = Math.floor(Math.random() * 10000);
       if (!newCards.includes(randomNumber)) {
         newCards.push(randomNumber);
@@ -184,25 +184,25 @@ const C2A1 = () => {
   return (
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <Box>
-      <img
-  src={inestine}
-  alt="Teacher"
-  style={{
-    marginTop: "25px",
-    width: "50%", // ou une valeur spécifique comme "100px"
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto"
-  }}
-/>
+        <img
+          src={"images/Images/inestine.png"}
+          alt="Teacher"
+          style={{
+            marginTop: "25px",
+            width: "50%", // ou une valeur spécifique comme "100px"
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        />
 
         <CustomDragLayer />
-       <Card1><StyledText>
-          Ordonnez ces nomber de plus haut vers le plus petis 
-        </StyledText></Card1> 
+        <Card1><StyledText>
+          Ordonnez ces nomber de plus haut vers le plus petis
+        </StyledText></Card1>
         <br></br>
         <br></br>
-        
+
         <Grid container spacing={2} justifyContent="center">
           {cards.map((card, index) => (
             <Grid item key={index}>
@@ -218,7 +218,7 @@ const C2A1 = () => {
             </Grid>
           ))}
         </Grid>
-        <Grid container spacing={2} justifyContent="center" style={{marginTop: '2em'}}>
+        <Grid container spacing={2} justifyContent="center" style={{ marginTop: '2em' }}>
           <Grid item>
             <Button onClick={checkResult} variant='contained' color='primary' disabled={!finished}>
               <CheckCircleIcon></CheckCircleIcon>
@@ -229,16 +229,16 @@ const C2A1 = () => {
               <ReplyIcon></ReplyIcon>
             </Button>
             <br></br>
-          
+
           </Grid>
           <br></br>
           {showResult && (
-          <Alert severity={success ? "success" : "error"}>
-            {success
-              ? "Félicitations, ces nomber sont bien Ordonner de l'ordere decroissant  !"
-              : `Désolé, ces nomber ne sont pas  Ordonner de l'ordere decroissant.`}
-          </Alert>
-        )}
+            <Alert severity={success ? "success" : "error"}>
+              {success
+                ? "Félicitations, ces nomber sont bien Ordonner de l'ordere decroissant  !"
+                : `Désolé, ces nomber ne sont pas  Ordonner de l'ordere decroissant.`}
+            </Alert>
+          )}
         </Grid>
       </Box>
     </DndProvider>

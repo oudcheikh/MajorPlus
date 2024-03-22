@@ -3,8 +3,8 @@ import C1A1 from './C1A1';
 import C1A2 from './C1A2'; 
 import C1A3 from './C1A3';
 import QCMC1 from './QCMC1';
-import teacherImage from '../Images/Prof1.png';
-import teacher from '../Images/teacher.png';
+// import teacherImage from '../Images/Prof1.png';
+// import teacher from '../Images/teacher.png';
 import Audio from "./Audio1" ;
 
 // Import des styles
@@ -19,7 +19,7 @@ const C1 = () => {
         <Container>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={teacher} alt="Teacher" />
+                    <img src={"images/Images/teacher.png"} alt="Teacher" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
@@ -62,7 +62,7 @@ const C1 = () => {
                 <div>
                     <SectionContainer>
                         <ImageContainer>
-                            <img src={teacherImage} alt="Enseignant" />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" />
                         </ImageContainer>
                         <Card>
                             <BodyText>
@@ -86,7 +86,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <ImageContainer>
-                            <img src={teacherImage} alt="Enseignant" />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" />
                         </ImageContainer>
                         <C1A2 />
                     </div>
@@ -98,7 +98,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <ImageContainer>
-                            <img src={teacherImage} alt="Enseignant" />
+                            <img src={"images/Images/Prof1.png"} alt="Enseignant" />
                         </ImageContainer>
                         <C1A3 />
                     </div>

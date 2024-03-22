@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import teacher from "../Images/fteacher.png";
+// import teacher from "../Images/fteacher.png";
 import useSound from "use-sound";
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';
@@ -68,18 +68,6 @@ for (const innerArray of x) {
   
 
 }
-console.log(lastInnerArray)
-
-
-
-
-
-  
-  
-  
-
-  
-
 
   const calculateTotalDistance = () => {
     setShowMessage(true);
@@ -121,7 +109,7 @@ console.log(lastInnerArray)
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={teacher}
+              src={"images/Images/teacher.png"}
               alt="kangaroo"
               style={{
                 width: '100px',

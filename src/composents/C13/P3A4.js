@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import cake from "../Images/cake.png";
-import cake1 from "../Images/cake1.png";
+
+ import cake from "./imagesC13/cake.png";
+ import cake1 from "./imagesC13/cake1.png";
+import fractionss from "./imagesC13/Fractions.png";
+// import fteacher from "../Images/fteacherr.png";
+ import fraction from "./imagesC13/fraction.png";
 import Test4 from "./QCMC13";
-import fractionss from "../Images/Fractions.png";
-import fteacher from "../Images/fteacherr.png";
-import fraction from "../Images/fraction.png";
+
 import P3A4_1 from "./P3A4-1";
 import Audio from "./Audio13";
 
@@ -52,7 +54,7 @@ const P2A1A = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>

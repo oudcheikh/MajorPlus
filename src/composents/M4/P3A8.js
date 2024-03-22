@@ -12,8 +12,9 @@ import {
   FormulaText, 
   ContinueButton
 } from '../Styles/MajorStyles'; // Importer les styles du fichier MajorStyles.js
-import fteacher from "../Images/fteacherr.png";
-import inestine from "../Images/inestine.png";
+
+// import fteacher from "../Images/fteacherr.png";
+// import inestine from "../Images/inestine.png";
 import Perim from "./Perimetre";
 import QCMM4 from "./QCMM4";
 import Audio from "./AudioM4";
@@ -45,7 +46,7 @@ const P3A8 = () => {
       {showSections[0] && (
         <SectionContainer>
           <ImageContainer>
-            <img src={fteacher} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"/images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           <Card>
             <BodyText>
@@ -112,7 +113,7 @@ const P3A8 = () => {
           >
             <div>
             <ImageContainer>
-            <img src={inestine} alt="Teacher" style={{ marginTop: "25px" }} />
+            <img src={"images/Images/Prof1.png"} alt="Teacher" style={{ marginTop: "25px" }} />
           </ImageContainer>
           
             </div>
