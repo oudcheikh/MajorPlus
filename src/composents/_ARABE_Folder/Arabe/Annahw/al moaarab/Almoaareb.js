@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import table from '../imagesAnnahw/table.PNG';
+// import table from '../imagesAnnahw/table.PNG';
 
 
 import Audio from "../../../../Audio1";
@@ -111,7 +111,7 @@ const C1 = () => {
                                 التالية:
 
                             </SmallCard>
-                            <img src={table} alt="Teacher" style={imageStyle} />
+                            <img src={"/images/arabe/imagesAnnahw/table.PNG"} alt="table" style={imageStyle} />
 
                             <h4 style={{ color: 'green' }}> نطلق على هذا النوع من الكلمات: المبني.   </h4><br></br>
 

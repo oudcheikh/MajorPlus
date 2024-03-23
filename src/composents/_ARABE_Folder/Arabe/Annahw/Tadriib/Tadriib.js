@@ -90,13 +90,13 @@ console.log(vocabularyData)
           onClick={checkAnswer}
           disabled={selectedChoice === null}
         >
-          <FormulaTextF>Valider</FormulaTextF>
+          <FormulaTextF>اتاكد</FormulaTextF>
         </button>
       ) : (
         <div className="feedback">
-          <FormulaTextF>{isCorrect ? 'Super!' : 'Essaie encore!'}</FormulaTextF>
+          <FormulaTextF>{isCorrect ? 'ممتاز!' :  'حاول مرة اخرى!'}</FormulaTextF>
           <button className="continue-button" onClick={handleContinue}>
-            <FormulaTextF>{isCorrect ? 'Continuer' : 'Réessayer'}</FormulaTextF>
+            <FormulaTextF>{isCorrect ? 'تابع' : 'حاول مرة اخرى'}</FormulaTextF>
           </button>
         </div>
       )}

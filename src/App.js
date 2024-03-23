@@ -11,38 +11,41 @@ import PrepaFrançais from './composents/PrepaFrançais';
 import Vocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire';
 import Acueilvocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Acueilvocabulaire';
 import Vocabulaireecoleville from'./composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
-import C1 from './composents/C1/C1';
-import C2 from './composents/C2/C2';
-import C3 from './composents/C3/C3';
-import C4 from './composents/C4/C4';
-import C5 from './composents/C5/C5';
-import G2 from './composents/G2/G2';
-import C5A3 from './composents/C6/C5A3';
-import C5A4 from './composents/C6/C5A4';
-import Kangaroo from './composents/C6/Kangaroo';
-import C5A5 from './composents/C6/C5A5';
-import C6 from './composents/C6/C6';
-import C7 from './composents/C7/C7';
-import M2A1 from './composents/M2/M2A1';
-import M2A2 from './composents/M2/M2A2';
-import M2A3 from './composents/M2/M2A3';
-import M2 from './composents/M2/M2';
-import G3 from './composents/G3/G3';
-import G1A2 from './composents/G1/G1A2';
-import G1 from './composents/G1/G1';
-import SousEtAddFraction from './composents/C17/SousEtAddFraction';
-import P2A1A from './composents/C09/P2A1A';
-import P2A1C from './composents/C10/P2A1C';
-import P2A1B from './composents/C12/P2A1B';
-import P3A3 from './composents/C11/P3A3';
-import P3A4 from './composents/C13/P3A4';
-import P3A6 from './composents/G4/P3A6';
-import P3A7 from './composents/G5/P3A7';
-import P3A8 from './composents/M4/P3A8';
-import Aire2 from './composents/M3/Aire2';
-import P3A5 from'./composents/C14_C15_C16/P3A5';
-import Chap13 from'./composents/C16/Chap13';
-import Fraction2 from './composents/M5/Fraction2';
+import C1 from './composents/Math/Periode1/C1/C1';
+import C2 from './composents/Math/Periode1/C2/C2';
+import C3 from './composents/Math/Periode1/C3/C3';
+import C4 from './composents/Math/Periode1/C4/C4';
+import C5 from './composents/Math/Periode1/C5/C5';
+import G2 from './composents/Math/Periode1/G2/G2';
+import C5A3 from './composents/Math/Periode1/C6/C5A3';
+import C5A4 from './composents/Math/Periode1/C6/C5A4';
+import Kangaroo from './composents/Math/Periode1/C6/Kangaroo';
+import C5A5 from './composents/Math/Periode1/C6/C5A5';
+import C6 from './composents/Math/Periode1/C6/C6';
+import C7 from './composents/Math/Periode1/C7/C7';
+import M2A1 from './composents/Math/Periode1/M2/M2A1';
+import M2A2 from './composents/Math/Periode1/M2/M2A2';
+import M2A3 from './composents/Math/Periode1/M2/M2A3';
+import M2 from './composents/Math/Periode1/M2/M2';
+import G3 from './composents/Math/Periode1/G3/G3';
+import G1A2 from './composents/Math/Periode1/G1/G1A2';
+import G1 from './composents/Math/Periode1/G1/G1';
+import SousEtAddFraction from './composents/Math/Periode3/C17/SousEtAddFraction';
+import P2A1A from './composents/Math/Periode2/C09/P2A1A';
+import P2A1C from './composents/Math/Periode2/C10/P2A1C';
+import P2A1B from './composents/Math/Periode2/C12/P2A1B';
+import P3A3 from './composents/Math/Periode2/C11/P3A3';
+import P3A4 from './composents/Math/Periode2/C13/P3A4';
+import P3A6 from './composents/Math/Periode2/G4/P3A6';
+import P3A7 from './composents/Math/Periode2/G5/P3A7';
+import P3A8 from './composents/Math/Periode2/M4/P3A8';
+import Aire2 from './composents/Math/Periode2/M3/Aire2';
+import P3A5 from'./composents/Math/Periode2/C14_C15_C16/P3A5';
+import Chap13 from'./composents/Math/Periode2/C16/Chap13';
+import Test from './composents/Math/Periode2/C11/DivisionEuclid'
+
+
+import Fraction2 from './composents/Math/Periode2/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
 import Period3 from  './composents/period3';
@@ -84,44 +87,44 @@ import Sida from './composents/_FRANCAIS/Science/Chapitre7/Sida';
 import Periode3 from './composents/periode3';
 
 
-import Etre from './composents/_FRANCAIS/Conjugaison/etre/etre';
-import Grammaire from './composents/_FRANCAIS/Grammaire/grammaire';
-import Sujet from './composents/_FRANCAIS/Grammaire/Sujet/Sujet';
-import TypesDesPhrases from './composents/_FRANCAIS/Grammaire/Types des phrases/lesphrases'
-import PhraseDeclarative from './composents/_FRANCAIS/Grammaire/Types des phrases/Prase Declarative/PhraseDeclarative'
-import PhraseImperative from './composents/_FRANCAIS/Grammaire/Types des phrases/phrase impérative/phraseImperative'
-import Exclamative from './composents/_FRANCAIS/Grammaire/Types des phrases/phrase exclamative/exclamative'
-import Interrogative from './composents/_FRANCAIS/Grammaire/Types des phrases/La phrase interrogative/interrogative'
-import Complement from './composents/_FRANCAIS/Grammaire/Complement/Complement'
-import COD from './composents/_FRANCAIS/Grammaire/Complement/COD'
-import COI from './composents/_FRANCAIS/Grammaire/Complement/COI/COID'
-import CC from './composents/_FRANCAIS/Grammaire/Complement/Circonstanciel/CC'
-import Adjectif from './composents/_FRANCAIS/Grammaire/adjectif/adjectif'
-import Adverbe from './composents/_FRANCAIS/Grammaire/Adverbe/Adverbe'
-import Conjonction from './composents/_FRANCAIS/Grammaire/Conjonction/Conjonction'
-import Subordination from './composents/_FRANCAIS/Grammaire/Conjonction/Conj Subordination/Subordination'
+import Etre from './composents/_FRANCAIS/Français/Conjugaison/etre/etre';
+import Grammaire from './composents/_FRANCAIS/Français/Grammaire/grammaire';
+import Sujet from './composents/_FRANCAIS/Français/Grammaire/Sujet/Sujet';
+import TypesDesPhrases from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/lesphrases'
+import PhraseDeclarative from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/Prase Declarative/PhraseDeclarative'
+import PhraseImperative from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/phrase impérative/phraseImperative'
+import Exclamative from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/phrase exclamative/exclamative'
+import Interrogative from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/La phrase interrogative/interrogative'
+import Complement from './composents/_FRANCAIS/Français/Grammaire/Complement/Complement'
+import COD from './composents/_FRANCAIS/Français/Grammaire/Complement/COD'
+import COI from './composents/_FRANCAIS/Français/Grammaire/Complement/COI/COID'
+import CC from './composents/_FRANCAIS/Français/Grammaire/Complement/Circonstanciel/CC'
+import Adjectif from './composents/_FRANCAIS/Français/Grammaire/adjectif/adjectif'
+import Adverbe from './composents/_FRANCAIS/Français/Grammaire/Adverbe/Adverbe'
+import Conjonction from './composents/_FRANCAIS/Français/Grammaire/Conjonction/Conjonction'
+import Subordination from './composents/_FRANCAIS/Français/Grammaire/Conjonction/Conj Subordination/Subordination'
 
-import Coordination from './composents/_FRANCAIS/Grammaire/Conjonction/Coordination/Coordination'
-import Préposition from './composents/_FRANCAIS/Grammaire/la Préposition/Préposition'
-import Article from './composents/_FRANCAIS/Grammaire/Article/Article'
-import Article1 from './composents/_FRANCAIS/Grammaire/Article/Article1'
-import Définis from './composents/_FRANCAIS/Grammaire/Article/Définis'
-import Indéfinis from './composents/_FRANCAIS/Grammaire/Article/Indéfinis'
-import Partitif from './composents/_FRANCAIS/Grammaire/Article/partitif'
+import Coordination from './composents/_FRANCAIS/Français/Grammaire/Conjonction/Coordination/Coordination'
+import Préposition from './composents/_FRANCAIS/Français/Grammaire/la Préposition/Préposition'
+import Article from './composents/_FRANCAIS/Français/Grammaire/Article/Article'
+import Article1 from './composents/_FRANCAIS/Français/Grammaire/Article/Article1'
+import Définis from './composents/_FRANCAIS/Français/Grammaire/Article/Définis'
+import Indéfinis from './composents/_FRANCAIS/Français/Grammaire/Article/Indéfinis'
+import Partitif from './composents/_FRANCAIS/Français/Grammaire/Article/partitif'
 
 
-import VocabularyTrainerBah from './composents/_FRANCAIS/Grammaire/Sujet/Exercices'
-import ExSuj from './composents/_FRANCAIS/Grammaire/Sujet/ExerciceSujet'
-import PrepEx from './composents/_FRANCAIS/Grammaire/la Préposition/quiz/PreposionExercices'
+import VocabularyTrainerBah from './composents/_FRANCAIS/Français/Grammaire/Sujet/Exercices'
+import ExSuj from './composents/_FRANCAIS/Français/Grammaire/Sujet/ExerciceSujet'
+import PrepEx from './composents/_FRANCAIS/Français/Grammaire/la Préposition/quiz/PreposionExercices'
 
-import ExercicePréposition from './composents/_FRANCAIS/Grammaire/la Préposition/quiz/Exercices'
-import ConjonctionEx from './composents/_FRANCAIS/Grammaire/Conjonction/quiz/ConjonctionExercices'
+import ExercicePréposition from './composents/_FRANCAIS/Français/Grammaire/la Préposition/quiz/Exercices'
+import ConjonctionEx from './composents/_FRANCAIS/Français/Grammaire/Conjonction/quiz/ConjonctionExercices'
 
-import ComplementEx from './composents/_FRANCAIS/Grammaire/Complement/quiz/ComplementExercices'
-import ArticleEx from './composents/_FRANCAIS/Grammaire/Article/quiz/ArticleExercices'
-import AdverbeExercice from './composents/_FRANCAIS/Grammaire/Adverbe/quiz/AdverbeExercices'
-import AdjectiveExercice from './composents/_FRANCAIS/Grammaire/adjectif/quiz/AdjectiveExercices'
-import TypePhExercices from './composents/_FRANCAIS/Grammaire/Types des phrases/quiz/TypePhExercices'
+import ComplementEx from './composents/_FRANCAIS/Français/Grammaire/Complement/quiz/ComplementExercices'
+import ArticleEx from './composents/_FRANCAIS/Français/Grammaire/Article/quiz/ArticleExercices'
+import AdverbeExercice from './composents/_FRANCAIS/Français/Grammaire/Adverbe/quiz/AdverbeExercices'
+import AdjectiveExercice from './composents/_FRANCAIS/Français/Grammaire/adjectif/quiz/AdjectiveExercices'
+import TypePhExercices from './composents/_FRANCAIS/Français/Grammaire/Types des phrases/quiz/TypePhExercices'
 //Orthographe  
 import Orthographe from './composents/_FRANCAIS/Français/Orthographe/Orthographe'
 import ExamenQCM from './composents/home/QuizTest'
@@ -138,7 +141,7 @@ import Accueilarab from './composents/_ARABE_Folder/Accueilarab'
 import Acceuilfrançais from './composents/Acceuilfrançais' 
 import ConcoursArabe from './composents/_ARABE_Folder/Concours/arabe/Arabe'
 
-import Test from './composents/C11/DivisionEuclid'
+
 
 import AcceiulArabic from'./composents/_ARABE_Folder/Arabe/AccArabic'
 

@@ -194,7 +194,7 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل وفّى في  المضارع 
+                                اتعلم كيف اصرف فعل وفّى في  الماضي 
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -219,7 +219,7 @@ const C1 = () => {
                         </ImageContainer>
                         <Card>
                             <BodyText>
-                                اتعلم كيف اصرف فعل دعا في  المضارع 
+                                اتعلم كيف اصرف فعل دعا في  الماضي 
                             </BodyText>
                         </Card>
                     </SectionContainer>
@@ -244,7 +244,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل قاوم في المضارع 
+                        اتعلم كيف اصرف فعل قاوم في الماضي 
 
                     </BodyText>
                 </Card>
@@ -270,7 +270,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل لعِبَ في المضارع 
+                        اتعلم كيف اصرف فعل لعِبَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -296,7 +296,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل كَتَبَ في المضارع 
+                        اتعلم كيف اصرف فعل كَتَبَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -322,7 +322,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل سَلّمَ في المضارع 
+                        اتعلم كيف اصرف فعل سَلّمَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -348,7 +348,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل دخل في المضارع 
+                        اتعلم كيف اصرف فعل دخل في الماضي 
 
                     </BodyText>
                 </Card>
@@ -374,7 +374,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل لَبِسَ في المضارع 
+                        اتعلم كيف اصرف فعل لَبِسَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -397,11 +397,11 @@ const C1 = () => {
             <br></br>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={"images/arabe/assarfImages/admiise.PNG"} alt="admise" />
+                    <img src={"images/arabe/assarfImages/admiseee.PNG"} alt="admise" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل نَجَحَ في المضارع 
+                        اتعلم كيف اصرف فعل نَجَحَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -428,7 +428,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل رَمَى في المضارع 
+                        اتعلم كيف اصرف فعل رَمَى في الماضي 
 
                     </BodyText>
                 </Card>
@@ -453,7 +453,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل قرأَ في المضارع 
+                        اتعلم كيف اصرف فعل قرأَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -479,7 +479,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل سَكَبَ في المضارع 
+                        اتعلم كيف اصرف فعل سَكَبَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -506,7 +506,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل فَتَحَ في المضارع 
+                        اتعلم كيف اصرف فعل فَتَحَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -533,7 +533,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل بَكَى في المضارع 
+                        اتعلم كيف اصرف فعل بَكَى في الماضي 
 
                     </BodyText>
                 </Card>
@@ -560,7 +560,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل عَادَ في المضارع 
+                        اتعلم كيف اصرف فعل عَادَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -588,7 +588,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل مَرِضَ في المضارع 
+                        اتعلم كيف اصرف فعل مَرِضَ في الماضي 
 
                     </BodyText>
                 </Card>
@@ -614,7 +614,7 @@ const C1 = () => {
                 </ImageContainer>
                 <Card>
                     <BodyText>
-                        اتعلم كيف اصرف فعل دَنَا في المضارع 
+                        اتعلم كيف اصرف فعل دَنَا في الماضي 
 
                     </BodyText>
                 </Card>

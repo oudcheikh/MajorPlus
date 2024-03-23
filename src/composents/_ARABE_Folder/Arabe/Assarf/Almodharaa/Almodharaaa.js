@@ -400,7 +400,7 @@ const C1 = () => {
             <br></br>
             <SectionContainer>
                 <ImageContainer>
-                    <img src={"images/arabe/assarfImages/admiise.PNG"} alt="admise" />
+                    <img src={"images/arabe/assarfImages/admiseee.PNG"} alt="admise" />
                 </ImageContainer>
                 <Card>
                     <BodyText>
