@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-import statsIcon from '../../../../home/Icones/stats.png'
+//import statsIcon from '../../../../home/Icones/stats.png'
 import '../../../../../composents/home/Major.css';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
@@ -30,7 +30,7 @@ function ConcoursFrançais2005() {
     <div className="app-container">
       <div className="card-grid">
         
-        <Card title="Compréhension"  icon={statsIcon} navigateTo="/Orth2005" />
+        <Card title="Compréhension"  icon={"images/Icones/stats.png"} navigateTo="/Orth2005" />
         
       </div>
     

@@ -25,25 +25,13 @@ const ConcoursArabe = ({ quizzes }) => {
   const [repCorrecte, setRepCorrecte] = useState(0)
   const [donnees, setDonnees] = useState([]);
   const [showDiv, setShowDiv]=useState(false)
-  
-
-  const navigate = useNavigate();
-
-  const jouerAutreFoix = () => {
-    
-    navigate('/ConcoursArabe/');
-  };
+ 
   const handleRefresh = () => {
     window.location.reload();
   };
   //Dans ce tableau je veus stoker le question la bonne réponce et le réponse de l'utilisateur et montionner si vrai ou faux  
   const RemplirtableauFinale = (x) => {
 
-
-
-    const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
-
-    
     const currQ = quizzes[currentQuizIndex].questions[currentQuestionIndex]
 
     const currQPhrase = currQ.question
@@ -88,6 +76,7 @@ const ConcoursArabe = ({ quizzes }) => {
   const toggleDiv = () => {
     setShowDiv(!showDiv);
   };
+  
   const handleAnswerSelect = (selectedOptionIndex) => {
     
 
@@ -215,7 +204,6 @@ const ConcoursArabe = ({ quizzes }) => {
                   onClick={() => setUserSelection(optionIndex)}
                   className={`choice-button ${userSelection === optionIndex ? 'selected' : ''}`} >
 
-
                   <span className="choice-text"><FormulaTextF>{option}</FormulaTextF></span>
 
                 </button>
@@ -281,7 +269,7 @@ const ConcoursArabe = ({ quizzes }) => {
 
 
 
-   {showDiv && (
+    {showDiv && (
    
           <div >
             {donnees.map((item, index) => (
@@ -308,8 +296,6 @@ const ConcoursArabe = ({ quizzes }) => {
   };
 
   return (
-
-
     <div className="container">
      
         

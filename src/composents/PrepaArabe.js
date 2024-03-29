@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import historyIcon from '../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
-import praying from '../composents/home/Icones/praying.png';
+// import historyIcon from '../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
+// import praying from '../composents/home/Icones/praying.png';
 
 import '../composents/home/Major.css';
 
@@ -32,8 +32,8 @@ function Acceuil() {
       
       <div className="full-width-container">
        
-        <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/QuizTestarab" />
-        <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/QuizTestarab" />
+        <Card title="التاريخ" content="" icon={"images/Icones/history-book.png"} full navigateTo="/QuizTestarab" />
+        <Card title="التربية الاسلامية" content="" icon={"images/Icones/praying.png"} full navigateTo="/QuizTestarab" />
         
        
       </div>

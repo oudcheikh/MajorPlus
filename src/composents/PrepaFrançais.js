@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import rocketIcon from '../composents/home/Icones/rocket-lunch.png';
-import statsIcon from '../composents/home/Icones/stats.png';
-import timeIcon from '../composents/home/Icones/time-twenty-four.png';
-import quiz from '../composents/home/Icones/quiz.png';
-import flask from '../composents/home/Icones/flask-potion.png';
-import Fraçais from '../composents/home/Icones/language-learning.png';
-import calculator from '../composents/home/Icones/calculator-simple.png';
+// import rocketIcon from '../composents/home/Icones/rocket-lunch.png';
+// import statsIcon from '../composents/home/Icones/stats.png';
+// import timeIcon from '../composents/home/Icones/time-twenty-four.png';
+// import quiz from '../composents/home/Icones/quiz.png';
+// import flask from '../composents/home/Icones/flask-potion.png';
+// import Fraçais from '../composents/home/Icones/language-learning.png';
+// import calculator from '../composents/home/Icones/calculator-simple.png';
 import '../composents/home/Major.css';
 
 
@@ -35,9 +35,9 @@ function Acceuil() {
     <div className="app-container">
       
       <div className="full-width-container">
-        <Card title="Science" content="" icon={flask} full navigateTo="/QuizTest" />
-        <Card title="Math" content="" icon={calculator} full navigateTo="/QuizTest" />
-        <Card title="Français" content="" icon={Fraçais} full navigateTo="/QuizTest" />
+        <Card title="Science" content="" icon={"images/Icones/flask-potion.png"} full navigateTo="/QuizTest" />
+        <Card title="Math" content="" icon={"images/Icones/calculator-simple.png"} full navigateTo="/QuizTest" />
+        <Card title="Français" content="" icon={"images/Icones/language-learning.png"} full navigateTo="/QuizTest" />
       </div>
     </div>
   );

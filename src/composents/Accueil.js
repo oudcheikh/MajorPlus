@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import flask from '../composents/home/Icones/arabic-language.png';
-import calculator from '../composents/home/Icones/eiffel-tower.png';
+// import flask from '../composents/home/Icones/arabic-language.png';
+// import calculator from '../composents/home/Icones/eiffel-tower.png';
 import '../composents/home/Major.css';
 import Accueilarab from '../composents/_ARABE_Folder/Accueilarab';
 import Acceuilfrançais from './Acceuilfrançais';
@@ -31,8 +31,9 @@ function Acceuil() {
     <div className="app-container">
     
       <div className="full-width-container">
-        <Card title="اللغة العربية " content="" icon={flask} full navigateTo="/Accueilarab" />
-        <Card title="Français" content="" icon={calculator} full navigateTo="/Acceuilfrançais" />
+        <Card title="اللغة العربية " content="" icon={"images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
+        <Card title="Français" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
+ <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in"/>
       </div>
     </div>
   );

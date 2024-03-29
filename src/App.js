@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Accueil from './composents/Accueil';
-import Math from './composents/Math';
+import Math from './composents/Math/Math';
 import Français from './composents/_FRANCAIS/Français';
 import QuizTest from './composents/home/QuizTest';
 import QuizTestarab from './composents/home/QuizTestarab';
@@ -46,9 +46,9 @@ import Test from './composents/Math/Periode2/C11/DivisionEuclid'
 
 
 import Fraction2 from './composents/Math/Periode2/M5/Fraction2';
-import Periode1 from './composents/Periode1';
-import Periode2 from './composents/Periode2';
-import Period3 from  './composents/period3';
+import Periode1 from './composents/Math/Periode1';
+import Periode2 from './composents//Math/Periode2';
+import Period3 from  './composents//Math/period3';
 import Islamique from './composents/_ARABE_Folder/Islamique';
 import Science from './composents/_FRANCAIS/Science';
 import Histoire from './composents/_ARABE_Folder/Histoire';
@@ -84,7 +84,7 @@ import Pollution from './composents/_FRANCAIS/Science/Chapitre4/Pollution';
 import EauEtSante from './composents/_FRANCAIS/Science/Chapitre5/EauEtSante';
 import Vaccination from './composents/_FRANCAIS/Science/Chapitre6/Vaccination';
 import Sida from './composents/_FRANCAIS/Science/Chapitre7/Sida';
-import Periode3 from './composents/periode3';
+import AccConjugaison from './composents/_FRANCAIS/Français/ConjugaisonAcc.js';
 
 
 import Etre from './composents/_FRANCAIS/Français/Conjugaison/etre/etre';
@@ -140,7 +140,7 @@ import ConcoursFrançais2005 from './composents/_FRANCAIS/Concours/concours 2005
 import Accueilarab from './composents/_ARABE_Folder/Accueilarab' 
 import Acceuilfrançais from './composents/Acceuilfrançais' 
 import ConcoursArabe from './composents/_ARABE_Folder/Concours/arabe/Arabe'
-
+import Conjugaison from './composents/_FRANCAIS/Français/ConjugaisonAcc.js'
 
 
 import AcceiulArabic from'./composents/_ARABE_Folder/Arabe/AccArabic'
@@ -198,6 +198,11 @@ import Majzoum from './composents/_ARABE_Folder/Arabe/Assarf/Al modhara3ALmajzou
 import Mansoub from './composents/_ARABE_Folder/Arabe/Assarf/Mansoub/Mansoub'
 
 import Alamar from './composents/_ARABE_Folder/Arabe/Assarf/Alamr/Alamar'
+
+import NewConcArabe from'./composents/_ARABE_Folder/Concours/arabe/Tadriib/TadriibImlaa'
+
+import Sign_in from'./composents/Sign_in/Sign_in'
+
 function App() {
   return (
     <Router>
@@ -284,7 +289,7 @@ function App() {
           <Route path="/Islamique4" element ={<Islamique4/>}/>  
          {/*________________________Conjugaison____________________*/}
           <Route path="/Français" element ={<Français/>}/>   
-          <Route path="/periode3" element ={<Periode3 />}/>
+          <Route path="/AccConjugaison" element ={<AccConjugaison />}/>
           <Route path="/Etre" element ={<Etre />}/>
         {/*________________________Grammaire____________________*/}
         <Route path="/Grammaire" element ={<Grammaire />}/>
@@ -397,12 +402,12 @@ function App() {
           
           <Route path= "/Mansoub" element={<Mansoub/>} />
           <Route path= "/Test" element={<Test/>} />
+          <Route path= "/NewConcArabe" element={<NewConcArabe/>} />
+          
 
-
-
-
-
-
+          <Route path= "/Conjugaison" element={<Conjugaison/>} />
+        
+          {/* <Route path= "/Sign_in" element={<Sign_in/>} /> */}
        
         </Routes>
       

@@ -73,7 +73,7 @@ function C4A3() {
       {questions.map((question, index) => (
         <Card className={classes.card} key={index}>
           <CardContent>
-          <img src={"/images/Images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
+          <img src={"/images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
             <Typography variant="h6">
               Je pense à un nombre. Je lui {question.operation === 'subtract' ? 'retranche' : 'ajoute'} {question.value2}, je trouve {question.value1}. Quel est ce nombre ?
             </Typography>

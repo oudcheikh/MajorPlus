@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import languagelearning from '../../../../home/Icones/language-learning.png' ; // Assurez-vous d'avoir le bon chemin
+//import languagelearning from '../../../../home/Icones/language-learning.png' ; // Assurez-vous d'avoir le bon chemin
 import '../../../../home/Major.css'; // Importer les styles
 
 function Complement() {
@@ -8,7 +8,7 @@ function Complement() {
 
   const CardButton = ({ title, navigateTo }) => (
     <div className="card full-card" onClick={() => navigate(navigateTo)}>
-      <img src={languagelearning} alt={title} className="card-icon" />
+      <img src={"images/Icones/language-learning.png"} alt={title} className="card-icon" />
       <div className="card-content">
         <h2>{title}</h2>
       </div>

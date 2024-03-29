@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import flaskIcon from '../../composents/home/Icones/flask-potion.png'; // Utiliser l'icône flask
+// import flaskIcon from '../../composents/home/Icones/flask-potion.png'; // Utiliser l'icône flask
 import '../../composents/home/Major.css'; // Importer les styles
 
 function Accueil() {
@@ -8,7 +8,7 @@ function Accueil() {
 
   const CardButton = ({ title, navigateTo }) => (
     <div className="card full-card" onClick={() => navigate(navigateTo)}>
-      <img src={flaskIcon} alt={title} className="card-icon" />
+      <img src={"images/Icones/flask-potion.png"} alt={title} className="card-icon" />
       <div className="card-content">
         <h2>{title}</h2>
       </div>

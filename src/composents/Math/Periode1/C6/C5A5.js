@@ -57,7 +57,7 @@ function C5A5() {
         <Box my={2}>
           <div style={{ position: 'relative' }}>
             <img
-              src={"/images/Math/C/imagesC6:enfant.png"}
+              src={"/images/Math/C/imagesC6/enfant.png"}
               alt="enfant"
               style={{
                 width: '60%',

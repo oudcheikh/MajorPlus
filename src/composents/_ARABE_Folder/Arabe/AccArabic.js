@@ -1,10 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import historyIcon from '../../../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
-
-
-
 import '../../../composents/home/Major.css';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
@@ -33,10 +29,10 @@ function AcceuilArabic() {
     
       <div className="full-width-container">
        
-        <Card title="النحو" content="" icon={historyIcon} full navigateTo="/Annahw" />
+        <Card title="النحو" content="" icon={"images/Icones/history-book.png"} full navigateTo="/Annahw" />
 
-        <Card title="الاملاء" content="" icon={historyIcon} full navigateTo="/Alimlaa" />
-        <Card title="الصرف" content="" icon={historyIcon} full navigateTo="/Assarf" />
+        <Card title="الاملاء" content="" icon={"images/Icones/history-book.png"} full navigateTo="/Alimlaa" />
+        <Card title="الصرف" content="" icon={"images/Icones/history-book.png"} full navigateTo="/Assarf" />
 
       </div>
     </div>

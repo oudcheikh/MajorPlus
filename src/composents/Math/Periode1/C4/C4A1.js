@@ -51,7 +51,7 @@ function C4A1() {
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Card className={classes.card}>
         <CardContent>
-        <img src={"public\images\Math\C\imagesC4\enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
+        <img src={"/images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
 
           <Typography variant="h6">
             Je pense à un nombre. Je lui ajoute {addValue}, je trouve {addResult}. Quel est ce nombre ?
@@ -83,7 +83,7 @@ function C4A1() {
       </Card>
       <Card className={classes.card}>
         <CardContent>
-        <img src={"public\images\Math\C\imagesC4\enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
+        <img src={"/images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} />
           <Typography variant="h6">
             Je pense à un nombre. Je lui retranche {subValue}, je trouve {subResult}. Quel est ce nombre ?
           </Typography>
