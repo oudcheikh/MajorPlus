@@ -407,7 +407,7 @@ function App() {
 
           <Route path= "/Conjugaison" element={<Conjugaison/>} />
         
-          {/* <Route path= "/Sign_in" element={<Sign_in/>} /> */}
+          <Route path= "/Sign_in" element={<Sign_in/>} />
        
         </Routes>
       

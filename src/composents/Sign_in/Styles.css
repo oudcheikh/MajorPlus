@@ -1,74 +1,109 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
-
-.container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-photo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.upload-btn {
-    display: inline-block;
+.add-photo button {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
-.upload-btn img {
-    width: 100px;
-    height: 100px;
+.add-photo button:hover {
+    background-color: #3700b3;
+}
+
+/* .profile-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.profile {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc; /* Couleur de fond temporaire */
     border-radius: 50%;
-    object-fit: cover;
 }
 
-.info-section {
-    margin-bottom: 15px;
+
+
+.profile {
+    /* max-width: 400px; */
+    width: 100%;
+    /* padding: 20px; */
+}
+.profile-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
 }
 
-.info-section label {
-    display: block;
+
+
+.profile-info {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+.label {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-.info-section input {
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.error-msg {
+.error {
     color: red;
-    margin-top: 5px;
+    font-size: 12px;
 }
 
-.save-btn {
+.save-button {
+    display: block;
     width: 100%;
     padding: 10px;
-    background-color: #6c63ff;
-    color: #ffffff;
+    background-color: #6200ee;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.save-btn:hover {
-    background-color: #5349d0;
+.save-button:hover {
+    background-color: #3700b3;
+}
+
+.add-photo button:hover,
+.save-button:hover {
+    background-color: #3700b3;
 }
