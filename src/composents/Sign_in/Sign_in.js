@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
 
+
+import HomeIcon from '@mui/icons-material/Home';
+import AppsIcon from '@mui/icons-material/Apps';
+
 import './Styles.css'; // Assurez-vous d'avoir un fichier CSS nommé Profile.css avec les styles fournis précédemment
 
 function Profile() {
@@ -26,6 +30,8 @@ function Profile() {
         setIsFormValide(Emailvalide && firstvalide && Lastnamevalide && phonevalide);
     };
 
+
+    
     const validateEmail = () => {
         if (!/^\S+@\S+\.\S+$/.test(email)) {
             setErrors((prevErrors) => ({ ...prevErrors, email: 'Adresse email invalide' }));
@@ -85,6 +91,7 @@ function Profile() {
             console.log("Le formulaire n'est pas valide. Veuillez remplir correctement tous les champs.");
         }
     };
+    
     return (
         <div className="profile-container">
             <div className="profile">
@@ -101,7 +108,7 @@ function Profile() {
                         </div>
                         <div className="add-photo">
 
-                            <button >Ajouter</button>
+                            <button >+Ajouter</button>
                             &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp;&ensp;&ensp; &ensp;&ensp; &ensp;&ensp;
                         </div>
 
@@ -147,13 +154,28 @@ function Profile() {
                         <br></br>
                     </div>
                    
-                    {/* <FontAwesomeIcon icon={faHome} /> */}
+                    <footer>
+            
+            <div>
+            <HomeIcon style={{ marginRight: '50px' }} />
+               
+                <AppsIcon style={{ marginRight: '50px' }}/>
+                <HomeIcon style={{ marginRight: '50px' }} />
+               
+               <AppsIcon style={{ marginRight: '50px' }}/>
+             
+               
+               <AppsIcon style={{ marginRight: '20px' }}/>
+            </div>
+            
+        </footer>
                 </div>
+              
 
             </div>
 
 
-
+          
 
         </div>
 

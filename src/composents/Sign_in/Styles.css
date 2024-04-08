@@ -1,10 +1,11 @@
 .add-photo button {
     background-color: #ccc;
-    color: #fff;
+    color: black;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
+    width: 100%;
 }
 
 .add-photo button:hover {
@@ -38,7 +39,7 @@
     width: 80px;
     height: 80px;
     background-color: #ccc; /* Couleur de fond temporaire */
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 
@@ -56,13 +57,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: white;
 }
 
 
 
 .profile-info {
-    background-color: #f5f5f5;
+    background-color:white;
     border-radius: 10px;
 }
 
@@ -95,7 +96,7 @@ input[type="tel"] {
     background-color: #6200ee;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -106,4 +107,25 @@ input[type="tel"] {
 .add-photo button:hover,
 .save-button:hover {
     background-color: #3700b3;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1); /* Ombre sous le pied de page */
+}
+
+footer div {
+    display: flex;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
 }
