@@ -1,0 +1,29 @@
+.decimal-number-activity {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .ruler {
+    position: relative;
+    height: 50px;
+    border-top: 2px solid black;
+    margin: 20px 0;
+  }
+  
+  .graduation {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 10px;
+    background: black;
+    cursor: pointer;
+  }
+  
+  .graduation:hover {
+    background: red; /* Pour montrer la sélection */
+  }
+  
+  .whole-number {
+    height: 20px; /* Plus longue graduation pour les nombres entiers */
+  }
+  

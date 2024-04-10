@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+.fractions-calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 10vh;
+}
+
+.fraction-display {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  font-size: 25px;
+}
+
+/* Ajoutez cette nouvelle règle à la fin de votre fichier CSS existant */
+.fraction-part-container {
+  display: flex;
+  flex-direction: row; /* Organise les éléments horizontalement */
+  align-items: center; /* Centre les éléments verticalement */
+  justify-content: space-around; /* Distribue un espace uniforme autour des éléments */
+}
+
+.fraction, .operator, .equals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.fraction-part {
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 30px; /* Taille de la flèche */
+  margin-right: 10px;
+  margin-left: 10px; /* Espacement après la flèche */
+}
+
+.label {
+  margin-left: 5px; /* Espacement avant la légende */
+  font-style: italic;
+}
+
+.numerator {
+  color: #4CAF50;
+  font-weight: 700;
+}
+
+.denominator {
+  color: #FF9800;
+  font-weight: 700;
+}
+
+.fraction-line {
+  width: 100%;
+  border: none;
+  border-top: 3px solid #2196F3;
+  margin: 4px 0;
+}
+
+.operator, .equals {
+  font-size: 20px;
+  color: #2196F3;
+  font-weight: 700;
+}
+
+.calculate-button {
+  padding: 10px 20px;
+  margin-top: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+@keyframes moveAndCombine {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(-50%));
+    opacity: 0;
+  }
+}
+
+.animate {
+  animation: moveAndCombine 2s forwards;
+}
+
+.result {
+  visibility: hidden;
+}
+
+.fractions-calculator:not(.animate) .result {
+  visibility: visible;
+  animation: fadeIn 0.5s forwards;
+}
+
+/* Ajoutez l'animation pour déplacer les numérateurs */
+@keyframes slideToCenter {
+  to { transform: translateX(-50%); opacity: 0; }
+}
+
+.animate .numerator {
+  animation: slideToCenter 2s forwards;
+}
+
+.result-display .result-numerator {
+  visibility: hidden;
+}
+
+.animate .result-display .result-numerator {
+  visibility: visible;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  0% { visibility: hidden; opacity: 0; }
+  100% { visibility: visible; opacity: 1; }
+}
+
+
+.results-container {
+  display: flex;
+  align-items: center; /* Cela alignera verticalement les éléments du conteneur */
+}
+
+.unsimplified-result, .simplified-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px; /* Ajustez en fonction de votre design */
+}
+
+.horizontal-equals {
+  margin: 0 5px; /* Ajustez en fonction de votre design */
+  /* Aucune autre modification n'est nécessaire si vous avez déjà stylisé '.equals' */
+}

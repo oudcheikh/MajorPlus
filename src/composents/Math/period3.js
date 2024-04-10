@@ -19,7 +19,9 @@ function Acceuil() {
     <div className="app-container">
       <div className="card-grid">
         <CardButton title="Soustraction et Adition des fractions" navigateTo="/SousEtAddFraction" />
-    
+        <CardButton title="Les nombers Decimaux" navigateTo="/NomberDecimaux" />
+        <CardButton title="PartageInegaux" navigateTo="/PatageInegaux" />
+        <CardButton title="CalculeAire" navigateTo="/CalculeAire" />
       </div>
     </div>
   );

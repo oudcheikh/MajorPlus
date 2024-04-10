@@ -1,5 +1,5 @@
 import React from 'react';
-import  AudioPlayer  from '../../../Audio/AudioPlayer';
+// import  AudioPlayer  from '../../../Audio/AudioPlayer';
 import {Container,
 } from '../../../Styles/MajorStyles';
 
@@ -10,12 +10,12 @@ const audio = {
 const App = () => {
   return (
     <Container>
-      <div
+      {/* <div
       >
         <AudioPlayer 
           url={audio.url}
         />
-      </div>
+      </div> */}
     </Container>
   );
 };

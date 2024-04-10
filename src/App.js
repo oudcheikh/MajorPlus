@@ -203,6 +203,11 @@ import NewConcArabe from'./composents/_ARABE_Folder/Concours/arabe/Tadriib/Tadri
 
 import Sign_in from'./composents/Sign_in/Sign_in'
 
+
+import CalculeAire from './composents/C20/CalculeAire';
+// import SousEtAddFraction from './composents/C17/SousEtAddFraction';
+import PatageInegaux from './composents/C19/PatageInegaux';
+import NomberDecimaux from './composents/C18/NomberDecimaux';
 function App() {
   return (
     <Router>
@@ -409,6 +414,10 @@ function App() {
         
           <Route path= "/Sign_in" element={<Sign_in/>} />
        
+          <Route path= "/PatageInegaux" element={<PatageInegaux/>} />
+          <Route path= "/NomberDecimaux" element={<NomberDecimaux/>} />
+          <Route path= "/CalculeAire" element={<CalculeAire/>} />
+          
         </Routes>
       
       </div>
