@@ -1,0 +1,721 @@
+[
+    {
+        "id": 1,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le singulier de : jeux",
+        "answers":
+        [
+       "jeux",
+       "jeu"
+        ],
+        "correctResponse": "jeu",
+        "explication":"Le singulier de 'jeux' est 'jeu'. Par exemple,'Ce jeu est intéressant' plutôt que 'Ces jeux sont intéressants'"
+  },
+  {
+  
+    
+        "id": 1,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : long",
+        "answers": ["long", "longue", "longs", "longues"],
+        "correctResponse": "longue",
+        "explication": "Le féminin de 'long' est 'longue'. Par exemple, 'une longue route'."
+      },
+      {
+        "id": 2,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le singulier de : jeux",
+        "answers": ["jeux", "jeu", "jeues", "jeuxes"],
+        "correctResponse": "jeu",
+        "explication": "Le singulier de 'jeux' est 'jeu'. Par exemple, 'Ce jeu est amusant.'"
+      },
+      {
+        "id": 3,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif des verbes suivants : a)- ira  b)- prennent",
+        "answers": ["aller", "prendre", "ira", "prennent"],
+        "correctResponse": ["aller", "prendre"],
+        "explication": "L'infinitif du verbe 'ira' est 'aller' et du verbe 'prennent' est 'prendre'."
+      },
+      {
+        "id": 4,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Les vacances s'annoncent bien' à l'imparfait de l'indicatif",
+        "answers": ["Les vacances s'annonçaient bien", "Les vacances s'annoncait bien", "Les vacances s'annoncaient bien", "Les vacances s'annonce bien"],
+        "correctResponse": "Les vacances s'annonçaient bien",
+        "explication": "À l'imparfait de l'indicatif, la phrase 'Les vacances s'annoncent bien' devient 'Les vacances s'annonçaient bien'."
+      }
+    
+  ,
+ 
+      {
+        "id": 5,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Ils font des projets en commun.' à l'imparfait et au passé composé de l'indicatif",
+        "answers": ["Ils faisaient des projets en commun.", "Ils ont fait des projets en commun."],
+        "correctResponse": "Ils faisaient des projets en commun.",
+        "explication": "À l'imparfait de l'indicatif, la phrase devient 'Ils faisaient des projets en commun.' Au passé composé de l'indicatif, elle devient 'Ils ont fait des projets en commun.'"
+      },
+      {
+        "id": 6,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : a)- bons",
+        "answers": ["bons", "bonne", "bon", "bonnes"],
+        "correctResponse": "bonnes",
+        "explication": "Le féminin de 'bons' est 'bonnes'. Par exemple, 'de bonnes idées'."
+      },
+      {
+        "id": 7,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)- vivent",
+        "answers": ["vivre", "vivent", "vivants", "vives"],
+        "correctResponse": "vivre",
+        "explication": "L'infinitif du verbe 'vivent' est 'vivre'."
+      },
+      {
+        "id": 8,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : faut",
+        "answers": ["faut", "faire", "faits", "faite"],
+        "correctResponse": "faire",
+        "explication": "L'infinitif du verbe 'faut' est 'faire'."
+      },
+      {
+        "id": 9,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne la nature et la fonction des mots 'les hommes' et 'des objets'",
+        "answers": ["'les hommes' : nom commun, sujet", "'des objets' : groupe nominal, complément d'objet indirect"],
+        "correctResponse": ["'les hommes' : nom commun, sujet", "'des objets' : groupe nominal, complément d'objet indirect"],
+        "explication": "Dans la phrase, 'les hommes' est un nom commun et il fonctionne comme sujet. 'Des objets' forme un groupe nominal et fonctionne comme complément d'objet indirect."
+      }
+   
+  ,
+ 
+      {
+        "id": 5,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Notre pays a obtenu son indépendance.' au futur de l'indicatif",
+        "answers": ["Notre pays obtiendra son indépendance."],
+        "correctResponse": "Notre pays obtiendra son indépendance.",
+        "explication": "Au futur de l'indicatif, la phrase 'Notre pays a obtenu son indépendance.' devient 'Notre pays obtiendra son indépendance.'"
+      },
+    
+          {
+            "id": 6,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif du verbe suivant : a)-veut",
+            "answers": ["veut", "vouloir", "veulent", "voulons"],
+            "correctResponse": "vouloir",
+            "explication": "L'infinitif du verbe 'veut' est 'vouloir'."
+          },
+          {
+            "id": 7,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif du verbe suivant : b)-se sauve",
+            "answers": ["se sauve", "sauver", "sauvons", "sauvegarder"],
+            "correctResponse": "se sauver",
+            "explication": "L'infinitif du verbe 'se sauve' est 'se sauver'."
+          },
+          {
+            "id": 8,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif des verbes suivants : c)-attend",
+            "answers": ["attend", "attendre", "attends", "attendons"],
+            "correctResponse": "attendre",
+            "explication": "L'infinitif du verbe 'attend' est 'attendre'."
+          },
+          {
+            "id": 9,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif du verbe suivant : d)-revient",
+            "answers": ["revient", "revenir", "reviennent", "reviens"],
+            "correctResponse": "revenir",
+            "explication": "L'infinitif du verbe 'revient' est 'revenir'."
+          }
+    ,
+    {
+        "id": 10,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Tout le monde attend l'heure du sacrifice.' au futur simple de l'indicatif",
+        "answers": ["Tout le monde attendra l'heure du sacrifice."],
+        "correctResponse": "Tout le monde attendra l'heure du sacrifice.",
+        "explication": "Au futur simple de l'indicatif, la phrase 'Tout le monde attend l'heure du sacrifice.' devient 'Tout le monde attendra l'heure du sacrifice.'"
+      }
+,      
+      {
+        "id": 11,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : fêtons",
+        "answers": ["fêter", "fêtons", "fêtent", "fête"],
+        "correctResponse": "fêter",
+        "explication": "L'infinitif du verbe 'fêtons' est 'fêter'."
+      },
+      {
+        "id": 12,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : sont assis",
+        "answers": ["sont assis", "s'asseoir", "assis", "asseoir"],
+        "correctResponse": "s'asseoir",
+        "explication": "L'infinitif du verbe 'sont assis' est 's'asseoir'."
+      },
+      {
+        "id": 13,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne la nature et la fonction du mot suivant : a)- libre",
+        "answers": ["'libre' : adjectif qualificatif, attribut du sujet"],
+        "correctResponse": "'libre' : adjectif qualificatif, attribut du sujet",
+        "explication": "Dans la phrase, 'libre' est un adjectif qualificatif qui fonctionne comme attribut du sujet."
+      },
+      {
+        "id": 14,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne la nature et la fonction du mot suivant : b)-nous.",
+        "answers": ["'nous' : pronom personnel, sujet"],
+        "correctResponse": "'nous' : pronom personnel, sujet",
+        "explication": "'Nous' est un pronom personnel qui fonctionne comme sujet."
+      }
+  
+  ,
+
+      {
+        "id": 15,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : camarades",
+        "answers": ["compagnons", "amis", "collègues", "copains"],
+        "correctResponse": "compagnons",
+        "explication": "Un synonyme de 'camarades' est 'compagnons'."
+      },
+      {
+        "id": 16,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : quittent",
+        "answers": ["partent", "départent", "s'en vont", "évacuent"],
+        "correctResponse": "partent",
+        "explication": "Un synonyme de 'quittent' est 'partent'."
+      },
+      {
+        "id": 17,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : a) studieux",
+        "answers": ["studieuse", "studieux", "studieuses", "studieuse"],
+        "correctResponse": "studieuse",
+        "explication": "Le féminin de 'studieux' est 'studieuse'."
+      },
+      {
+        "id": 18,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le masculin de : b) belles",
+        "answers": ["beau", "beaux", "belle", "beaux"],
+        "correctResponse": "beau",
+        "explication": "Le masculin de 'belles' est 'beau'."
+      },
+      {
+        "id": 19,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)- est",
+        "answers": ["être", "est", "es", "était"],
+        "correctResponse": "être",
+        "explication": "L'infinitif du verbe 'est' est 'être'."
+      },
+      {
+        "id": 20,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : b)- se rendront",
+        "answers": ["se rendre", "rendre", "se rend", "rendre"],
+        "correctResponse": "se rendre",
+        "explication": "L'infinitif du verbe 'se rendront' est 'se rendre'."
+      },
+      {
+        "id": 21,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Les plus studieux liront des livres.' au présent de l'indicatif",
+        "answers": ["Les plus studieux lisent des livres.", "Les plus studieux liront des livres."],
+        "correctResponse": "Les plus studieux lisent des livres.",
+        "explication": "Au présent de l'indicatif, la phrase 'Les plus studieux liront des livres.' devient 'Les plus studieux lisent des livres.'"
+    
+  },
+ 
+      {
+        "id": 22,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : a) vieux",
+        "answers": ["vieille", "vieux", "vieilles", "vieuxs"],
+        "correctResponse": "vieille",
+        "explication": "Le féminin de 'vieux' est 'vieille'."
+      },
+      {
+        "id": 23,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le masculin de : b) fille",
+        "answers": ["fils", "fille", "fil", "fils"],
+        "correctResponse": "fils",
+        "explication": "Le masculin de 'fille' est 'fils'."
+      },
+      {
+        "id": 24,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)-conduisit",
+        "answers": ["conduisir", "conduisirent", "conduisit", "conduire"],
+        "correctResponse": "conduire",
+        "explication": "L'infinitif du verbe 'conduisit' est 'conduire'."
+      },
+      {
+        "id": 25,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif des verbes suivants : b)-vais",
+        "answers": ["aller", "va", "vais", "allons"],
+        "correctResponse": "aller",
+        "explication": "L'infinitif du verbe 'vais' est 'aller'."
+      },
+      {
+        "id": 26,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Marième quitta la maison à l'aube.' au passé composé de l'indicatif",
+        "answers": ["Marième a quitté la maison à l'aube.", "Marième quitta la maison à l'aube."],
+        "correctResponse": "Marième a quitté la maison à l'aube.",
+        "explication": "Au passé composé de l'indicatif, la phrase 'Marième quitta la maison à l'aube.' devient 'Marième a quitté la maison à l'aube.'"
+    
+  }
+  ,
+
+      {
+        "id": 27,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Expliquer le mot : importants",
+        "answers": ["qui a de l'importance", "qui est significatif", "qui est considérable"],
+        "correctResponse": "qui a de l'importance",
+        "explication": "Le mot 'importants' signifie quelque chose qui a de l'importance, qui est significatif ou qui est considérable."
+      },
+      {
+        "id": 28,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Expliquer le mot : participons",
+        "answers": ["nous prenons part à", "nous sommes impliqués dans", "nous contribuons à"],
+        "correctResponse": "nous prenons part à",
+        "explication": "Le mot 'participons' signifie que nous prenons part à quelque chose, que nous sommes impliqués dans une action ou que nous contribuons à une activité."
+      },
+     
+      {
+        "id": 29,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Expliquer le mot : modèle",
+        "answers": ["un exemple à suivre", "une représentation idéale", "un patron"],
+        "correctResponse": "un exemple à suivre",
+        "explication": "Le mot 'modèle' peut signifier un exemple à suivre, une représentation idéale ou un patron."
+      },
+      {
+        "id": 30,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Expliquer le mot : accourait",
+        "answers": ["courait rapidement vers", "venait rapidement", "se dirigeait rapidement vers"],
+        "correctResponse": "courait rapidement vers",
+        "explication": "Le mot 'accourait' signifie qu'il courait rapidement vers quelque chose ou quelqu'un."
+      },
+      {
+        "id": 31,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne la nature et la fonction du mot : natal",
+        "answers": ["nature : adjectif qualificatif, fonction : attribut du sujet"],
+        "correctResponse": "nature : adjectif qualificatif, fonction : attribut du sujet",
+        "explication": "Le mot 'natal' est un adjectif qualificatif qui fonctionne comme attribut du sujet."
+      },
+      {
+        "id": 32,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne la nature et la fonction du mot : boutique",
+        "answers": ["nature : nom commun, fonction : sujet"],
+        "correctResponse": "nature : nom commun, fonction : sujet",
+        "explication": "Le mot 'boutique' est un nom commun qui fonctionne comme sujet."
+      }
+  
+  ,
+ 
+      {
+        "id": 33,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Ecris la phrase 'Il avait toujours le sourire' au présent",
+        "answers": ["Il a toujours le sourire.", "Il avait toujours le sourire."],
+        "correctResponse": "Il a toujours le sourire.",
+        "explication": "Au présent de l'indicatif, la phrase 'Il avait toujours le sourire' devient 'Il a toujours le sourire.'"
+      },
+      {
+        "id": 34,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Ecris la phrase 'Il avait toujours le sourire' au passé composé",
+        "answers": ["Il a toujours eu le sourire.", "Il avait toujours le sourire."],
+        "correctResponse": "Il a toujours eu le sourire.",
+        "explication": "Au passé composé, la phrase 'Il avait toujours le sourire' devient 'Il a toujours eu le sourire.'"
+      },
+      {
+        "id": 35,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Ecris la phrase 'Il avait toujours le sourire' au futur de l'indicatif",
+        "answers": ["Il aura toujours le sourire.", "Il avait toujours le sourire."],
+        "correctResponse": "Il aura toujours le sourire.",
+        "explication": "Au futur de l'indicatif, la phrase 'Il avait toujours le sourire' devient 'Il aura toujours le sourire.'"
+      }
+  ,
+
+      {
+        "id": 36,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : courageux",
+        "answers": ["intrépide", "brave", "audacieux", "téméraire"],
+        "correctResponse": "intrépide",
+        "explication": "Un synonyme de 'courageux' est 'intrépide'."
+      },
+      {
+        "id": 37,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : départ",
+        "answers": ["départ", "départure", "partir", "quitter"],
+        "correctResponse": "départure",
+        "explication": "Un synonyme de 'départ' est 'départure'."
+      },
+      {
+        "id": 38,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : médecin",
+        "answers": ["médecin", "médecine", "médecineuse", "médecins"],
+        "correctResponse": "médecineuse",
+        "explication": "Le féminin de 'médecin' est 'médecineuse'."
+      },
+      {
+        "id": 39,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le masculin de : actrice",
+        "answers": ["acteur", "actrice", "actif", "action"],
+        "correctResponse": "acteur",
+        "explication": "Le masculin de 'actrice' est 'acteur'."
+      },
+      {
+        "id": 40,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)- écrivit",
+        "answers": ["écrire", "écrivirent", "écrivent", "écrit"],
+        "correctResponse": "écrire",
+        "explication": "L'infinitif du verbe 'écrivit' est 'écrire'."
+      },
+      {
+        "id": 41,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : b)- s'envolent",
+        "answers": ["envoler", "s'envoler", "envole", "envolent"],
+        "correctResponse": "s'envoler",
+        "explication": "L'infinitif du verbe 's'envolent' est 's'envoler'."
+      },
+      {
+        "id": 42,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Elle avait un chaton' à la troisième personne du masculin pluriel",
+        "answers": ["Ils avaient un chaton.", "Elle avait un chaton."],
+        "correctResponse": "Ils avaient un chaton.",
+        "explication": "À la troisième personne du masculin pluriel, la phrase 'Elle avait un chaton' devient 'Ils avaient un chaton.'"
+      }
+
+,
+
+      {
+        "id": 43,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : joyeux",
+        "answers": ["heureux", "gai", "enjoué", "rayonnant"],
+        "correctResponse": "heureux",
+        "explication": "Un synonyme de 'joyeux' est 'heureux'."
+      },
+      {
+        "id": 44,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : connaissance",
+        "answers": ["savoir", "information", "science", "culture"],
+        "correctResponse": "savoir",
+        "explication": "Un synonyme de 'connaissance' est 'savoir'."
+      },
+      {
+        "id": 45,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : avocat",
+        "answers": ["avocat", "avocate", "avocats", "avocates"],
+        "correctResponse": "avocate",
+        "explication": "Le féminin de 'avocat' est 'avocate'."
+      },
+      {
+        "id": 46,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le masculin de : hôtesse",
+        "answers": ["hôte", "hôtesse", "hôtel", "hôtesses"],
+        "correctResponse": "hôte",
+        "explication": "Le masculin de 'hôtesse' est 'hôte'."
+      },
+      {
+        "id": 47,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)- dansa",
+        "answers": ["danser", "dansèrent", "danse", "dansait"],
+        "correctResponse": "danser",
+        "explication": "L'infinitif du verbe 'dansa' est 'danser'."
+      },
+      {
+        "id": 48,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : b)- se réveilleront",
+        "answers": ["se réveiller", "réveiller", "se réveille", "réveilleront"],
+        "correctResponse": "se réveiller",
+        "explication": "L'infinitif du verbe 'se réveilleront' est 'se réveiller'."
+      },
+      {
+        "id": 49,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Elle a perdu ses clés' à la deuxième personne du pluriel",
+        "answers": ["Vous avez perdu vos clés.", "Elle a perdu ses clés."],
+        "correctResponse": "Vous avez perdu vos clés.",
+        "explication": "À la deuxième personne du pluriel, la phrase 'Elle a perdu ses clés' devient 'Vous avez perdu vos clés.'"
+      }
+ 
+
+,
+     
+          {
+            "id": 50,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne le synonyme de : rapide",
+            "answers": ["vif", "prompt", "rapide", "prompt"],
+            "correctResponse": "vif",
+            "explication": "Un synonyme de 'rapide' est 'vif'."
+          },
+          {
+            "id": 51,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne le synonyme de : discuter",
+            "answers": ["débattre", "parler", "échanger", "discuter"],
+            "correctResponse": "débattre",
+            "explication": "Un synonyme de 'discuter' est 'débattre'."
+          },
+          {
+            "id": 52,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne le féminin de : docteur",
+            "answers": ["docteur", "doctoresse", "docteurs", "doctoresses"],
+            "correctResponse": "doctoresse",
+            "explication": "Le féminin de 'docteur' est 'doctoresse'."
+          },
+          {
+            "id": 53,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne le masculin de : enseignante",
+            "answers": ["enseignant", "enseignante", "enseigne", "enseigner"],
+            "correctResponse": "enseignant",
+            "explication": "Le masculin de 'enseignante' est 'enseignant'."
+          },
+          {
+            "id": 54,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif du verbe suivant : a)- courut",
+            "answers": ["courir", "coururent", "cours", "courait"],
+            "correctResponse": "courir",
+            "explication": "L'infinitif du verbe 'courut' est 'courir'."
+          },
+          {
+            "id": 55,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Donne l'infinitif du verbe suivant : b)- se détendront",
+            "answers": ["se détendre", "détendre", "se détend", "détendront"],
+            "correctResponse": "se détendre",
+            "explication": "L'infinitif du verbe 'se détendront' est 'se détendre'."
+          },
+          {
+            "id": 56,
+            "division": "français",
+            "matiere": "f123",
+            "question": "Mets la phrase 'Elle a fini son travail' à la première personne du pluriel",
+            "answers": ["Nous avons fini notre travail.", "Elle a fini son travail."],
+            "correctResponse": "Nous avons fini notre travail.",
+            "explication": "À la première personne du pluriel, la phrase 'Elle a fini son travail' devient 'Nous avons fini notre travail.'"
+          }
+ ,
+
+      {
+        "id": 57,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : intelligent",
+        "answers": ["astucieux", "brillant", "sagace", "intelligent"],
+        "correctResponse": "astucieux",
+        "explication": "Un synonyme de 'intelligent' est 'astucieux'."
+      },
+      {
+        "id": 58,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le synonyme de : commencer",
+        "answers": ["démarrer", "initier", "entamer", "commencer"],
+        "correctResponse": "démarrer",
+        "explication": "Un synonyme de 'commencer' est 'démarrer'."
+      },
+      {
+        "id": 59,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le féminin de : garçon",
+        "answers": ["garçon", "fille", "garçonne", "fillette"],
+        "correctResponse": "fille",
+        "explication": "Le féminin de 'garçon' est 'fille'."
+      },
+      {
+        "id": 60,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne le masculin de : actrice",
+        "answers": ["acteur", "actrice", "action", "actif"],
+        "correctResponse": "acteur",
+        "explication": "Le masculin de 'actrice' est 'acteur'."
+      },
+      {
+        "id": 61,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : a)- partit",
+        "answers": ["partir", "partirent", "part", "partait"],
+        "correctResponse": "partir",
+        "explication": "L'infinitif du verbe 'partit' est 'partir'."
+      },
+      {
+        "id": 62,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Donne l'infinitif du verbe suivant : b)- se lèveront",
+        "answers": ["se lever", "lever", "se lève", "lèveront"],
+        "correctResponse": "se lever",
+        "explication": "L'infinitif du verbe 'se lèveront' est 'se lever'."
+      },
+      {
+        "id": 63,
+        "division": "français",
+        "matiere": "f123",
+        "question": "Mets la phrase 'Il a préparé son déjeuner' à la troisième personne du féminin pluriel",
+        "answers": ["Elles ont préparé leur déjeuner.", "Il a préparé son déjeuner."],
+        "correctResponse": "Elles ont préparé leur déjeuner.",
+        "explication": "À la troisième personne du féminin pluriel, la phrase 'Il a préparé son déjeuner' devient 'Elles ont préparé leur déjeuner.'"
+      }
+  
+
+
+      
+  ,
+  {
+    "id": 36,
+    "division": "français",
+    "matiere": "f123",
+    "question": "Mets la phrase 'Nous devenons importants et respectés par tout le monde' à la troisième personne du féminin pluriel",
+    "answers": ["Elles deviennent importantes et respectées par tout le monde.", "Elles deviennent importantes et respectés par tout le monde."],
+    "correctResponse": "Elles deviennent importantes et respectées par tout le monde.",
+    "explication": "À la troisième personne du féminin pluriel, la phrase 'Nous devenons importants et respectés par tout le monde' devient 'Elles deviennent importantes et respectées par tout le monde.'"
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+,
+
+  {
+    "id": 37,
+    "division": "français",
+    "matiere": "f123",
+    "question": "Ecris la phrase 'Je vais pêcher dans une mare' à l'imparfait",
+    "answers": ["Je pêchais dans une mare.", "Je vais pêcher dans une mare."],
+    "correctResponse": "Je pêchais dans une mare.",
+    "explication": "À l'imparfait, la phrase 'Je vais pêcher dans une mare' devient 'Je pêchais dans une mare.'"
+  },
+  {
+    "id": 38,
+    "division": "français",
+    "matiere": "f123",
+    "question": "Ecris la phrase 'Je vais pêcher dans une mare' au passé composé",
+    "answers": ["J'ai pêché dans une mare.", "Je vais pêcher dans une mare."],
+    "correctResponse": "J'ai pêché dans une mare.",
+    "explication": "Au passé composé, la phrase 'Je vais pêcher dans une mare' devient 'J'ai pêché dans une mare.'"
+  },
+  {
+    "id": 39,
+    "division": "français",
+    "matiere": "f123",
+    "question": "Ecris la phrase 'Je vais pêcher dans une mare' au futur simple de l'indicatif",
+    "answers": ["Je pêcherai dans une mare.", "Je vais pêcher dans une mare."],
+    "correctResponse": "Je pêcherai dans une mare.",
+    "explication": "Au futur simple de l'indicatif, la phrase 'Je vais pêcher dans une mare' devient 'Je pêcherai dans une mare.'"
+  }
+
+  
+  
+  
+]
