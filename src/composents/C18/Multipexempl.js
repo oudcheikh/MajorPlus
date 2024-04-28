@@ -8,7 +8,8 @@ import 'katex/dist/katex.min.css';
 import { FormulaText,FormulaText1 } from '../Styles/MajorStyles';
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';
-import prof1 from './PetiTeacher.png' 
+
+
 // Définissez ici le style de l'image, si nécessaire
 const imageStyle = {
   width: '60%',
@@ -63,7 +64,7 @@ const FractionToDecimal = () => {
   const fractionString = `\\frac{${fraction.numerator}}{${fraction.denominator}}`;
 
   return (<div>
-    <img src={prof1} alt="Enseignant" style={imageStyle} />
+    <img src={'/images/Math/C/images C18/PetiTeacher.png'} alt="Enseignant" style={imageStyle} />
     <Box sx={{ my: 4, mx: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 <FormulaText> <strong>
         Écris les nombres suivants sous la forme de nombres à virgule. </strong>

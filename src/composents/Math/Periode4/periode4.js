@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 //import calculatorIcon from '../../composents/home/Icones/calculator-simple.png'; // Assurez-vous d'avoir le bon chemin
-import '../../composents/home/Major.css'; // Importer les styles
+import '../../../composents/home/Major.css'; // Importer les styles
 
-function Accueil() {
+function Acceuil() {
   const navigate = useNavigate();
 
   const CardButton = ({ title, navigateTo }) => (
@@ -18,13 +18,15 @@ function Accueil() {
   return (
     <div className="app-container">
       <div className="card-grid">
-        <CardButton title="Periode1" navigateTo="/Periode1" />
-        <CardButton title="Periode2" navigateTo="/Periode2" />
-        <CardButton title="Periode3" navigateTo="/Period3" />
-        <CardButton title="Periode4" navigateTo="/Periode4" />
+        <CardButton title="La proportionnalité" navigateTo="/La_proportionnalité" />
+        <CardButton title="Les solides" navigateTo="/Les_solides" />
+        <CardButton title="Les mesures agraires " navigateTo="/Les_mesures_Agrairs" />
+
+ 
       </div>
     </div>
   );
 }
 
-export default Accueil;
+export default Acceuil;
+ 

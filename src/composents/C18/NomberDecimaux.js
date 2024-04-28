@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import QCMC1 from './QCMC1';
-import teacher from './PetiTeacher.png' 
+
 
 // import Audio from "./Audio1" ;
 import {
@@ -12,7 +12,7 @@ import Multipexempl from './Multipexempl';
 import Multipexampl2 from './Multipexampl2';
 import Divisionexampl1 from './Divisionexampl1';
 import Fractiondetail from './Fractiondetail';
-import Cho from './CHoo.png'
+
 
 
 const imageStyle = {
@@ -35,7 +35,9 @@ const C1 = () => {
                   <FormulaText><strong> Les Nombere Decimaux </strong></FormulaText>
 
             </button>
-                  <img src={teacher} alt="Teacher" style={imageStyle} /> 
+            
+                  <img src={'/images/Math/C/images C18/PetiTeacher.png'} alt="Teacher" style={imageStyle} /> 
+
                   <Card>
                        
                   <FormulaText>
@@ -45,7 +47,7 @@ const C1 = () => {
   </strong>
 </FormulaText>
 
-<img src={Cho} alt="Teacher" style={imageStyle} /> 
+<img src={'/images/Math/C/images C18/CHoo.png'} alt="Teacher" style={imageStyle} /> 
 <FormulaText>
   <strong>
    

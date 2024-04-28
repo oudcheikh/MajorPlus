@@ -1,0 +1,513 @@
+[
+    {
+        "id": 1,
+        "word": "expédient",
+        "choices": [
+            "وسيلة",
+            "ممتازة",
+            "طريقة"
+        ],
+        "correctAnswer": "وسيلة"
+    },
+    {
+        "id": 2,
+        "word": "assuré",
+        "choices": [
+            "مضمون",
+            "مطلوب",
+            "محبوب"
+        ],
+        "correctAnswer": "مضمون"
+    },
+    {
+        "id": 3,
+        "word": "rivaliser",
+        "choices": [
+            "تنافس",
+            "شجب",
+            "قيد"
+        ],
+        "correctAnswer": "تنافس"
+    },
+    {
+        "id": 4,
+        "word": "choses",
+        "choices": [
+            "أشياء",
+            "فوائد",
+            "خصائص"
+        ],
+        "correctAnswer": "أشياء"
+    },
+    {
+        "id": 5,
+        "word": "extraordinaire",
+        "choices": [
+            "رائع",
+            "ممتاز",
+            "عادي"
+        ],
+        "correctAnswer": "رائع"
+    },
+    {
+        "id": 6,
+        "word": "image",
+        "choices": [
+            "صورة",
+            "فن",
+            "خيال"
+        ],
+        "correctAnswer": "صورة"
+    },
+    {
+        "id": 7,
+        "word": "peinture",
+        "choices": [
+            "رسم",
+            "كتابة",
+            "لوحة"
+        ],
+        "correctAnswer": "رسم"
+    },
+    {
+        "id": 8,
+        "word": "habileté",
+        "choices": [
+            "مهارة",
+            "جمال",
+            "قوة"
+        ],
+        "correctAnswer": "مهارة"
+    },
+    {
+        "id": 9,
+        "word": "papiers",
+        "choices": [
+            "أوراق",
+            "مجلات",
+            "رسائل"
+        ],
+        "correctAnswer": "أوراق"
+    },
+    {
+        "id": 10,
+        "word": "sujet",
+        "choices": [
+            "موضوع",
+            "حقيقة",
+            "شكل"
+        ],
+        "correctAnswer": "موضوع"
+    },
+    {
+        "id": 11,
+        "word": "toutes",
+        "choices": [
+            "جميع",
+            "قليل",
+            "معظم"
+        ],
+        "correctAnswer": "جميع"
+    },
+    {
+        "id": 12,
+        "word": "aucune",
+        "choices": [
+            "لا أحد",
+            "بعض",
+            "الكل"
+        ],
+        "correctAnswer": "لا أحد"
+    },
+    {
+        "id": 13,
+        "word": "établie",
+        "choices": [
+            "مثبتة",
+            "مكتملة",
+            "جاهزة"
+        ],
+        "correctAnswer": "مثبتة"
+    },
+    {
+        "id": 14,
+        "word": "provinces",
+        "choices": [
+            "مقاطعات",
+            "مدن",
+            "ولايات"
+        ],
+        "correctAnswer": "مقاطعات"
+    },
+    {
+        "id": 15,
+        "word": "chinois",
+        "choices": [
+            "صيني",
+            "فرنسي",
+            "أمريكي"
+        ],
+        "correctAnswer": "صيني"
+    },
+    {
+        "id": 16,
+        "word": "regarde",
+        "choices": [
+            "يراقب",
+            "يفهم",
+            "يسأل"
+        ],
+        "correctAnswer": "يراقب"
+    },
+    {
+        "id": 17,
+        "word": "peuple",
+        "choices": [
+            "شعب",
+            "حكومة",
+            "عائلة"
+        ],
+        "correctAnswer": "شعب"
+    },
+    {
+        "id": 18,
+        "word": "entré",
+        "choices": [
+            "دخل",
+            "غادر",
+            "خرج"
+        ],
+        "correctAnswer": "دخل"
+    },
+    {
+        "id": 19,
+        "word": "insister",
+        "choices": [
+            "يصر",
+            "رفض",
+            "سمح"
+        ],
+        "correctAnswer": "يصر"
+    },
+    {
+        "id": 20,
+        "word": "étonnantes",
+        "choices": [
+            "مدهشة",
+            "عادية",
+            "غريبة"
+        ],
+        "correctAnswer": "مدهشة"
+    },
+    {
+        "id": 21,
+        "word": "nation",
+        "choices": [
+            "أمة",
+            "مدينة",
+            "جيش"
+        ],
+        "correctAnswer": "أمة"
+    },
+    {
+        "id": 22,
+        "word": "dire",
+        "choices": [
+            "يقول",
+            "أفعل",
+            "أفهم"
+        ],
+        "correctAnswer": "يقول"
+    },
+    {
+        "id": 23,
+        "word": "ressemble",
+        "choices": [
+            "يشبه",
+            "يفهم",
+            "يسأل"
+        ],
+        "correctAnswer": "يشبه"
+    },
+    {
+        "id": 24,
+        "word": "goût",
+        "choices": [
+            "طعم",
+            "شكل",
+            "رائحة"
+        ],
+        "correctAnswer": "طعم"
+    },
+    {
+        "id": 25,
+        "word": "talent",
+        "choices": [
+            "موهبة",
+            "جمال",
+            "ذكاء"
+        ],
+        "correctAnswer": "موهبة"
+    },
+    {
+        "id": 26,
+        "word": "art",
+        "choices": [
+            "فن",
+            "رياضة",
+            "علم"
+        ],
+        "correctAnswer": "فن"
+    },
+    {
+        "id": 27,
+        "word": "auteurs",
+        "choices": [
+            "مؤلفون",
+            "رسامون",
+            "ممثلون"
+        ],
+        "correctAnswer": "مؤلفون"
+    },
+    {
+        "id": 28,
+        "word": "chine",
+        "choices": [
+            "الصين",
+            "فرنسا",
+            "الولايات المتحدة"
+        ],
+        "correctAnswer": "الصين"
+    },
+    {
+        "id": 29,
+        "word": "parmi",
+        "choices": [
+            "بين",
+            "خلف",
+            "أمام"
+        ],
+        "correctAnswer": "بين"
+    },
+    {
+        "id": 30,
+        "word": "murs",
+        "choices": [
+            "جدران",
+            "أسقف",
+            "أرضيات"
+        ],
+        "correctAnswer": "جدران"
+    },
+    {
+        "id": 31,
+        "word": "quiconque",
+        "choices": [
+            "أي شخص",
+            "بعض",
+            "الجميع"
+        ],
+        "correctAnswer": "أي شخص"
+    },
+    {
+        "id": 32,
+        "word": "fait",
+        "choices": [
+            "فعل",
+            "كلمة",
+            "جملة"
+        ],
+        "correctAnswer": "فعل"
+    },
+    {
+        "id": 33,
+        "word": "lieu",
+        "choices": [
+            "مكان",
+            "زمان",
+            "شخص"
+        ],
+        "correctAnswer": "مكان"
+    },
+    {
+        "id": 34,
+        "word": "arrive",
+        "choices": [
+            "يحدث",
+            "يصل",
+            "يغادر"
+        ],
+        "correctAnswer": "يحدث"
+    },
+    {
+        "id": 35,
+        "word": "ordre",
+        "choices": [
+            "ترتيب",
+            "أمر",
+            "رغبة"
+        ],
+        "correctAnswer": "ترتيب"
+    },
+    {
+        "id": 36,
+        "word": "cet",
+        "choices": [
+            "هذا",
+            "ذلك",
+            "هؤلاء"
+        ],
+        "correctAnswer": "هذا"
+    },
+    {
+        "id": 37,
+        "word": "peut",
+        "choices": [
+            "يمكن",
+            "لا يمكن",
+            "قد"
+        ],
+        "correctAnswer": "يمكن"
+    },
+    {
+        "id": 38,
+        "word": "étranger",
+        "choices": [
+            "غريب",
+            "عادي",
+            "صديق"
+        ],
+        "correctAnswer": "غريب"
+    },
+    {
+        "id": 39,
+        "word": "trouvé",
+        "choices": [
+            "وجد",
+            "فقد",
+            "أخفى"
+        ],
+        "correctAnswer": "وجد"
+    },
+    {
+        "id": 40,
+        "word": "compagnons",
+        "choices": [
+            "رفاق",
+            "أعداء",
+            "أصدقاء"
+        ],
+        "correctAnswer": "رفاق"
+    },
+    {
+        "id": 41,
+        "word": "marchés",
+        "choices": [
+            "أسواق",
+            "حدائق",
+            "محلات"
+        ],
+        "correctAnswer": "أسواق"
+    },
+    {
+        "id": 42,
+        "word": "peintres",
+        "choices": [
+            "رسامون",
+            "كتّاب",
+            "فنانون"
+        ],
+        "correctAnswer": "رسامون"
+    },
+    {
+        "id": 43,
+        "word": "habitude",
+        "choices": [
+            "عادة",
+            "استثناء",
+            "قاعدة"
+        ],
+        "correctAnswer": "عادة"
+    },
+    {
+        "id": 44,
+        "word": "chose",
+        "choices": [
+            "شيء",
+            "أمر",
+            "حقيقة"
+        ],
+        "correctAnswer": "شيء"
+    },
+    {
+        "id": 45,
+        "word": "généralement",
+        "choices": [
+            "عمومًا",
+            "خاصةً",
+            "منذ الآن"
+        ],
+        "correctAnswer": "عمومًا"
+    },
+    {
+        "id": 46,
+        "word": "portait",
+        "choices": [
+            "كان يحمل",
+            "كان يرتدي",
+            "كان يتكلم"
+        ],
+        "correctAnswer": "كان يحمل"
+    },
+    {
+        "id": 47,
+        "word": "saisit",
+        "choices": [
+            "أمسك",
+            "رمى",
+            "تجاهل"
+        ],
+        "correctAnswer": "أمسك"
+    },
+    {
+        "id": 48,
+        "word": "ouvrages",
+        "choices": [
+            "أعمال",
+            "كتب",
+            "مشاريع"
+        ],
+        "correctAnswer": "أعمال"
+    },
+    {
+        "id": 49,
+        "word": "chez",
+        "choices": [
+            "في",
+            "خارج",
+            "بين"
+        ],
+        "correctAnswer": "في"
+    },
+    {
+        "id": 50,
+        "word": "différentes",
+        "choices": [
+            "مختلفة",
+            "متشابهة",
+            "مجانية"
+        ],
+        "correctAnswer": "مختلفة"
+    },
+    {
+        "id": 51,
+        "word": "fuir",
+        "choices": [
+            "يهرب",
+            "يبقى",
+            "يتكلم"
+        ],
+        "correctAnswer": "يهرب"
+    }
+    
+]

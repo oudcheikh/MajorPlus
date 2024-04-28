@@ -10,7 +10,7 @@ import PrepaFrançais from './composents/PrepaFrançais';
 
 import Vocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire';
 import Acueilvocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Acueilvocabulaire';
-import Vocabulaireecoleville from'./composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
+
 import C1 from './composents/Math/Periode1/C1/C1';
 import C2 from './composents/Math/Periode1/C2/C2';
 import C3 from './composents/Math/Periode1/C3/C3';
@@ -204,10 +204,20 @@ import NewConcArabe from'./composents/_ARABE_Folder/Concours/arabe/Tadriib/Tadri
 import Sign_in from'./composents/Sign_in/Sign_in'
 
 
+
 import CalculeAire from './composents/C20/CalculeAire';
 // import SousEtAddFraction from './composents/C17/SousEtAddFraction';
 import PatageInegaux from './composents/C19/PatageInegaux';
 import NomberDecimaux from './composents/C18/NomberDecimaux';
+
+import Periode4 from './composents/Math/Periode4/periode4.js';
+import La_proportionnalité from'./composents/Math/Periode4/La_proportionnalité.js'
+
+import Les_solides from'./composents/Math/Periode4/les solides/les_solides.js'
+
+import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/MesureAgraire.js'
+
+
 function App() {
   return (
     <Router>
@@ -339,7 +349,6 @@ function App() {
         <Route path="/Adverbe" element ={<Adverbe />}/>
           <Route path= "/Vocabulaire" element={<Vocabulaire/>} />
           <Route path= "/Acueilvocabulaire" element={<Acueilvocabulaire/>} />
-          <Route path= "/Vocabulaireecoleville" element={<Vocabulaireecoleville/>} />
          
 
           {/*----------------------------Concours ------------------------*/}
@@ -417,7 +426,13 @@ function App() {
           <Route path= "/PatageInegaux" element={<PatageInegaux/>} />
           <Route path= "/NomberDecimaux" element={<NomberDecimaux/>} />
           <Route path= "/CalculeAire" element={<CalculeAire/>} />
-          
+    
+          <Route path= "/Periode4" element={<Periode4/>} />
+          <Route path= "/La_proportionnalité" element={<La_proportionnalité/>} />
+          <Route path= "/Les_solides" element={<Les_solides/>} />
+
+          <Route path= "/Les_mesures_Agrairs" element={<Les_mesures_Agrairs/>} />
+     
         </Routes>
       
       </div>

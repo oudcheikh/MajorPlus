@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "word": "suivre",
+        "choices": [
+            "يتبع",
+            "تابع",
+            "يتابع"
+        ],
+        "correctAnswer": "يتبع"
+    },
+    {
+        "id": 2,
+        "word": "inscrire",
+        "choices": [
+            "سجّل",
+            "سجل",
+            "يسجل"
+        ],
+        "correctAnswer": "سجّل"
+    },
+    {
+        "id": 3,
+        "word": "épanouir",
+        "choices": [
+            "يتفتح",
+            "ازدهر",
+            "يزدهر"
+        ],
+        "correctAnswer": "يتفتح"
+    },
+    {
+        "id": 4,
+        "word": "découvrir",
+        "choices": [
+            "اكتشف",
+            "اكتشاف",
+            "يكتشف"
+        ],
+        "correctAnswer": "اكتشف"
+    },
+    {
+        "id": 5,
+        "word": "humain",
+        "choices": [
+            "إنسان",
+            "بشري",
+            "بشر"
+        ],
+        "correctAnswer": "إنسان"
+    },
+    {
+        "id": 6,
+        "word": "convaincre",
+        "choices": [
+            "يقنع",
+            "إقناع",
+            "أقنع"
+        ],
+        "correctAnswer": "يقنع"
+    },
+    {
+        "id": 7,
+        "word": "confirmer",
+        "choices": [
+            "يؤكد",
+            "تأكيد",
+            "أكد"
+        ],
+        "correctAnswer": "يؤكد"
+    },
+    {
+        "id": 8,
+        "word": "prétexter",
+        "choices": [
+            "يبرر",
+            "تبرير",
+            "أحتجاج"
+        ],
+        "correctAnswer": "يبرر"
+    },
+    {
+        "id": 9,
+        "word": "affronter",
+        "choices": [
+            "يواجه",
+            "مواجهة",
+            "واجه"
+        ],
+        "correctAnswer": "مواجهة"
+    },
+    {
+        "id": 10,
+        "word": "cinq",
+        "choices": [
+            "خمسة",
+            "خمس",
+            "الخامسة"
+        ],
+        "correctAnswer": "خمسة"
+    },
+    {
+        "id": 11,
+        "word": "grâce",
+        "choices": [
+            "بفضل",
+            "كذلك",
+            "فضل"
+        ],
+        "correctAnswer": "بفضل"
+    },
+    {
+        "id": 12,
+        "word": "directrice",
+        "choices": [
+            "رئيسة",
+            "المديرة",
+            "مديرة"
+        ],
+        "correctAnswer": "المديرة"
+    },
+    {
+        "id": 13,
+        "word": "aussi",
+        "choices": [
+            "أيضاً",
+            "كذلك",
+            "أيضًا"
+        ],
+        "correctAnswer": "أيضًا"
+    },
+    {
+        "id": 14,
+        "word": "génie",
+        "choices": [
+            "عبقري",
+            "عبقرية",
+            "العبقرية"
+        ],
+        "correctAnswer": "عبقري"
+    },
+    {
+        "id": 15,
+        "word": "enfant",
+        "choices": [
+            "أطفال",
+            "الطفل",
+            "طفل"
+        ],
+        "correctAnswer": "طفل"
+    },
+    {
+        "id": 16,
+        "word": "enseigner",
+        "choices": [
+            "يعلم",
+            "تعليم",
+            "علم"
+        ],
+        "correctAnswer": "يعلم"
+    },
+    {
+        "id": 17,
+        "word": "parler",
+        "choices": [
+            "تحدث",
+            "التحدث",
+            "يتحدث"
+        ],
+        "correctAnswer": "تحدث"
+    },
+    {
+        "id": 18,
+        "word": "orphelin",
+        "choices": [
+            "يتيمة",
+            "اليتيم",
+            "يتيم"
+        ],
+        "correctAnswer": "اليتيم"
+    },
+    {
+        "id": 19,
+        "word": "personne",
+        "choices": [
+            "أشخاص",
+            "الشخص",
+            "شخص"
+        ],
+        "correctAnswer": "شخص"
+    },
+    {
+        "id": 20,
+        "word": "presse",
+        "choices": [
+            "صحافة",
+            "صحفيين",
+            "الصحافة"
+        ],
+        "correctAnswer": "صحافة"
+    },
+    {
+        "id": 21,
+        "word": "après",
+        "choices": [
+            "بعد",
+            "بعدما",
+            "بعد ذلك"
+        ],
+        "correctAnswer": "بعد"
+    },
+    {
+        "id": 22,
+        "word": "âge",
+        "choices": [
+            "أعمار",
+            "العمر",
+            "عمر"
+        ],
+        "correctAnswer": "عمر"
+    },
+    {
+        "id": 23,
+        "word": "rejoindre",
+        "choices": [
+            "ينضم",
+            "الانضمام",
+            "انضم"
+        ],
+        "correctAnswer": "انضم"
+    },
+    {
+        "id": 24,
+        "word": "enfant",
+        "choices": [
+            "أطفال",
+            "الطفل",
+            "طفل"
+        ],
+        "correctAnswer": "طفل"
+    },
+    {
+        "id": 25,
+        "word": "droit",
+        "choices": [
+            "حقوق",
+            "الحق",
+            "حق"
+        ],
+        "correctAnswer": "حق"
+    },
+    {
+        "id": 26,
+        "word": "parent",
+        "choices": [
+            "والدين",
+            "الوالدين",
+            "والد"
+        ],
+        "correctAnswer": "والد"
+    }
+]

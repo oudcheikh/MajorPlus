@@ -49,7 +49,7 @@ function QCM({ questionsArray }) {
                 <Card className={isFlipped === index ? "flipped" : "not-flipped"}>
                     {isFlipped !== index ? (
                         <CardContent>
-                            <Typography variant="h6"><StyledText>{question.question}</StyledText></Typography>
+                            <Typography variant="h6"><StyledText ><strong style={{ color: 'blue' }}>{question.question}</strong></StyledText></Typography>
                             
                             <RadioGroup
                                 value={selectedAnswers[index] || ''}

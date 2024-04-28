@@ -8,19 +8,21 @@ import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
 
 // Importer les données du quiz
-import vocabularyList from './Vocabulaire.png/Famille.png/Famillz.json';
+import vocabularyList from './Famille.json';
 
 // Importer les images
-import chambreImg from '../Vocabulaire/Vocabulaire.png/Famille.png/chambre.jpg';
-import cousinImg from '../Vocabulaire/Vocabulaire.png/Famille.png/cousin.jpg';
-import familleImg from '../Vocabulaire/Vocabulaire.png/Famille.png/famille.jpg';
-import grandMereImg from '../Vocabulaire/Vocabulaire.png/Famille.png/grand-mère.jpg';
-import grandPereImg from '../Vocabulaire/Vocabulaire.png/Famille.png/grand-père.jpg';
-import nappeImg from '../Vocabulaire/Vocabulaire.png/Famille.png/nappe.jpg';
-import parentsImg from '../Vocabulaire/Vocabulaire.png/Famille.png/parents.jpg';
-import reunionFamilialeImg from '../Vocabulaire/Vocabulaire.png/Famille.png/Réunionfamiliale.jpg';
-import soeursImg from '../Vocabulaire/Vocabulaire.png/Famille.png/soeurs.jpg';
-import theImg from '../Vocabulaire/Vocabulaire.png/Famille.png/thé.jpg';
+// import chambreImg from '../Vocabulaire/Vocabulaire.png/Famille.png/chambre.jpg';
+
+import chambreImg from'../Vocabulaire/famille/Images/chambre.jpg'
+import cousinImg from '../Vocabulaire/famille/Images/cousin.jpg';
+import familleImg from '../Vocabulaire/famille/Images/famille.jpg';
+import grandMereImg from '../Vocabulaire/famille/Images/grand-mère.jpg';
+import grandPereImg from '../Vocabulaire/famille/Images/grand-père.jpg';
+import nappeImg from '../Vocabulaire/famille/Images/nappe.jpg';
+import parentsImg from '../Vocabulaire/famille/Images/parents.jpg';
+import reunionFamilialeImg from '../Vocabulaire/famille/Images/Réunionfamiliale.jpg';
+import soeursImg from '../Vocabulaire/famille/Images/soeurs.jpg';
+import theImg from '../Vocabulaire/famille/Images/thé.jpg';
 
 // Créez un objet pour passer toutes les images
 const images = {

@@ -1,0 +1,422 @@
+[
+    {
+        "id": 1,
+        "word": "fier",
+        "choices": [
+            "فخور",
+            "حزين",
+            "سعيد"
+        ],
+        "correctAnswer": "فخور"
+    },
+    {
+        "id": 2,
+        "word": "toujours",
+        "choices": [
+            "دائماً",
+            "أبداً",
+            "أحياناً"
+        ],
+        "correctAnswer": "دائماً"
+    },
+    {
+        "id": 3,
+        "word": "criminels",
+        "choices": [
+            "مجرمون",
+            "أطباء",
+            "محامون"
+        ],
+        "correctAnswer": "مجرمون"
+    },
+    {
+        "id": 4,
+        "word": "poursuivre",
+        "choices": [
+            "متابعة",
+            "تجنيد",
+            "تجاهل"
+        ],
+        "correctAnswer": "متابعة"
+    },
+    {
+        "id": 5,
+        "word": "studio",
+        "choices": [
+            "استوديو",
+            "مدرسة",
+            "مطبخ"
+        ],
+        "correctAnswer": "استوديو"
+    },
+    {
+        "id": 6,
+        "word": "dentiste",
+        "choices": [
+            "طبيب أسنان",
+            "مدرس",
+            "سائق"
+        ],
+        "correctAnswer": "طبيب أسنان"
+    },
+    {
+        "id": 7,
+        "word": "grand",
+        "choices": [
+            "كبير",
+            "صغير",
+            "ضخم"
+        ],
+        "correctAnswer": "كبير"
+    },
+    {
+        "id": 8,
+        "word": "encourageaient",
+        "choices": [
+            "شجعوا",
+            "همسوا",
+            "تجاهلوا"
+        ],
+        "correctAnswer": "شجعوا"
+    },
+    {
+        "id": 9,
+        "word": "enfant",
+        "choices": [
+            "طفل",
+            "كبير",
+            "شخص"
+        ],
+        "correctAnswer": "طفل"
+    },
+    {
+        "id": 10,
+        "word": "avocat",
+        "choices": [
+            "محام",
+            "طبيب",
+            "مهندس"
+        ],
+        "correctAnswer": "محام"
+    },
+    {
+        "id": 11,
+        "word": "donc",
+        "choices": [
+            "لذلك",
+            "هكذا",
+            "ثم"
+        ],
+        "correctAnswer": "لذلك"
+    },
+    {
+        "id": 12,
+        "word": "lycéen",
+        "choices": [
+            "طالب ثانوي",
+            "طالب جامعي",
+            "مدرس"
+        ],
+        "correctAnswer": "طالب ثانوي"
+    },
+    {
+        "id": 13,
+        "word": "cuisinier",
+        "choices": [
+            "طاه",
+            "رسام",
+            "سائق"
+        ],
+        "correctAnswer": "طاه"
+    },
+    {
+        "id": 14,
+        "word": "métiers",
+        "choices": [
+            "مهن",
+            "ألعاب",
+            "دراسات"
+        ],
+        "correctAnswer": "مهن"
+    },
+    {
+        "id": 15,
+        "word": "monde",
+        "choices": [
+            "عالم",
+            "دولة",
+            "قرية"
+        ],
+        "correctAnswer": "عالم"
+    },
+    {
+        "id": 16,
+        "word": "manger",
+        "choices": [
+            "يأكل",
+            "يشرب",
+            "ينام"
+        ],
+        "correctAnswer": "يأكل"
+    },
+    {
+        "id": 17,
+        "word": "sapeur",
+        "choices": [
+            "سابور",
+            "فلاح",
+            "جندي"
+        ],
+        "correctAnswer": "سابور"
+    },
+    {
+        "id": 18,
+        "word": "chef",
+        "choices": [
+            "شيف",
+            "رئيس",
+            "عامل"
+        ],
+        "correctAnswer": "رئيس"
+    },
+    {
+        "id": 19,
+        "word": "quand",
+        "choices": [
+            "متى",
+            "كيف",
+            "أين"
+        ],
+        "correctAnswer": "متى"
+    },
+    {
+        "id": 20,
+        "word": "si",
+        "choices": [
+            "إذا",
+            "عندما",
+            "أثناء"
+        ],
+        "correctAnswer": "إذا"
+    },
+    {
+        "id": 21,
+        "word": "rêves",
+        "choices": [
+            "أحلام",
+            "كوابيس",
+            "أفكار"
+        ],
+        "correctAnswer": "أحلام"
+    },
+    {
+        "id": 22,
+        "word": "tête",
+        "choices": [
+            "رأس",
+            "يد",
+            "قدم"
+        ],
+        "correctAnswer": "رأس"
+    },
+    {
+        "id": 23,
+        "word": "fois",
+        "choices": [
+            "مرة",
+            "اثنتين",
+            "عدة مرات"
+        ],
+        "correctAnswer": "مرة"
+    },
+    {
+        "id": 24,
+        "word": "artiste",
+        "choices": [
+            "فنان",
+            "عالم",
+            "معلم"
+        ],
+        "correctAnswer": "فنان"
+    },
+    {
+        "id": 25,
+        "word": "jours",
+        "choices": [
+            "أيام",
+            "شهور",
+            "أسابيع"
+        ],
+        "correctAnswer": "أيام"
+    },
+    {
+        "id": 26,
+        "word": "costume",
+        "choices": [
+            "زي",
+            "سيارة",
+            "منزل"
+        ],
+        "correctAnswer": "زي"
+    },
+    {
+        "id": 27,
+        "word": "frites",
+        "choices": [
+            "بطاطس مقلية",
+            "سلطة",
+            "شوربة"
+        ],
+        "correctAnswer": "بطاطس مقلية"
+    },
+    {
+        "id": 28,
+        "word": "carrière",
+        "choices": [
+            "مهنة",
+            "سيارة",
+            "منزل"
+        ],
+        "correctAnswer": "مهنة"
+    },
+    {
+        "id": 29,
+        "word": "art",
+        "choices": [
+            "فن",
+            "علم",
+            "رياضة"
+        ],
+        "correctAnswer": "فن"
+    },
+    {
+        "id": 30,
+        "word": "peins",
+        "choices": [
+            "يرسم",
+            "يكتب",
+            "يغني"
+        ],
+        "correctAnswer": "يرسم"
+    },
+    {
+        "id": 32,
+        "word": "docteur",
+        "choices": [
+            "طبيب",
+            "مدرس",
+            "فلاح"
+        ],
+        "correctAnswer": "طبيب"
+    },
+    {
+        "id": 34,
+        "word": "soigner",
+        "choices": [
+            "يعالج",
+            "يقود",
+            "يسافر"
+        ],
+        "correctAnswer": "يعالج"
+    },
+    {
+        "id": 35,
+        "word": "fonctionne",
+        "choices": [
+            "يعمل",
+            "ينام",
+            "يتحدث"
+        ],
+        "correctAnswer": "يعمل"
+    },
+    {
+        "id": 36,
+        "word": "médecins",
+        "choices": [
+            "أطباء",
+            "معلمون",
+            "فنانون"
+        ],
+        "correctAnswer": "أطباء"
+    },
+    {
+        "id": 37,
+        "word": "mathématiques",
+        "choices": [
+            "رياضيات",
+            "تاريخ",
+            "علوم"
+        ],
+        "correctAnswer": "رياضيات"
+    },
+    {
+        "id": 38,
+        "word": "appelle",
+        "choices": [
+            "يدعو",
+            "يلعب",
+            "يأكل"
+        ],
+        "correctAnswer": "يدعو"
+    },
+    {
+        "id": 39,
+        "word": "adolescent",
+        "choices": [
+            "مراهق",
+            "شيخ",
+            "طفل"
+        ],
+        "correctAnswer": "مراهق"
+    },
+    {
+        "id": 40,
+        "word": "déteste",
+        "choices": [
+            "كره",
+            "أحب",
+            "تجاهل"
+        ],
+        "correctAnswer": "يكره"
+    },
+    {
+        "id": 41,
+        "word": "justice",
+        "choices": [
+            "عدالة",
+            "ظلم",
+            "سلام"
+        ],
+        "correctAnswer": "عدالة"
+    },
+    {
+        "id": 42,
+        "word": "volontaire",
+        "choices": [
+            "متطوع",
+            "موظف",
+            "غني"
+        ],
+        "correctAnswer": "متطوع"
+    },
+    {
+        "id": 43,
+        "word": "cantine",
+        "choices": [
+            "المقصف",
+            "الحديقة",
+            "المطبخ"
+        ],
+        "correctAnswer": "المقصف"
+    },
+    {
+        "id": 44,
+        "word": "professeur",
+        "choices": [
+            "أستاذ",
+            "طبيب",
+            "مهندس"
+        ],
+        "correctAnswer": "أستاذ"
+    }
+]

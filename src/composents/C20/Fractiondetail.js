@@ -1,6 +1,6 @@
 import React from 'react';
 import './DecimalRuler.css'; // Utilisez votre fichier CSS existant.
-import PetiTeacher from './ines2.png';
+
 
 const Square = () => {
   // Style pour le carré
@@ -26,7 +26,7 @@ const Square = () => {
    
     <div className="ruler-container" style={squareStyle}>
     </div>
-    <img src={PetiTeacher} alt="Teacher" style={{ maxWidth: '50%', maxHeight: '50%' }} />
+    <img src={'/images/ines2.png'} alt="Teacher" style={{ maxWidth: '50%', maxHeight: '50%' }} />
     </div>
   );
 };

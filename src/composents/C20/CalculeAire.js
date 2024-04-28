@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QCMC1 from './QCMC1';
 
-import teacher from './petitInestine.png';
+
 
 import Audio from "./Audio1" ;
 import {
@@ -103,7 +103,7 @@ Le calcul des aires, c'est comme mesurer l'espace à l'intérieur de différente
                             <br></br>
                     <br></br>           
                     <Card>
-  <img src={teacher} alt="Teacher" style={imageStyle} />
+  <img src={'/images/petitInestine.png'} alt="Teacher" style={imageStyle} />
   <FormulaText><strong>
     Sidi et Moussa possèdent ensemble <span style={{color: '#FF0000'}}>600 Um</span>.
     La part de Sidi est le triple de celle de Moussa.

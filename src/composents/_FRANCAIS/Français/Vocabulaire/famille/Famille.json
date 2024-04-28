@@ -1,0 +1,471 @@
+[
+    {
+      "id": 1,
+      "word": "chambre",
+      "choices": ["غرفة", "مطبخ", "حمام"],
+      "correctAnswer": "غرفة",
+      "imagePath": "./chambre.jpg"
+    },
+    {
+      "id": 2,
+      "word": "cousin",
+      "choices": ["ابن العم", "ابن الأخ", "ابن الخال"],
+      "correctAnswer": "ابن العم",
+      "imagePath": "./cousin.jpg"
+    },
+    {
+      "id": 3,
+      "word": "famille",
+      "choices": ["عائلة", "أصدقاء", "جيران"],
+      "correctAnswer": "عائلة",
+      "imagePath": "./famille.jpg"
+    },
+    {
+      "id": 4,
+      "word": "grand-mère",
+      "choices": ["الجدة", "الخالة", "العمة"],
+      "correctAnswer": "الجدة",
+      "imagePath": "./grand-mère.jpg"
+    },
+    {
+      "id": 5,
+      "word": "grand-père",
+      "choices": ["الجد", "الخال", "العم"],
+      "correctAnswer": "الجد",
+      "imagePath": "./grand-père.jpg"
+    },
+    {
+      "id": 6,
+      "word": "nappe",
+      "choices": ["مفرش المائدة", "ستارة", "منشفة"],
+      "correctAnswer": "مفرش المائدة",
+      "imagePath": "./nappe.jpg"
+    },
+    {
+      "id": 7,
+      "word": "parents",
+      "choices": ["الوالدين", "الأعمام", "الأخوال"],
+      "correctAnswer": "الوالدين",
+      "imagePath": "./parents.jpg"
+    },
+    {
+      "id": 8,
+      "word": "Réunion familiale",
+      "choices": ["اجتماع عائلي", "حفلة", "مؤتمر"],
+      "correctAnswer": "اجتماع عائلي",
+      "imagePath": "./Réunionfamiliale.jpg"
+    },
+    {
+      "id": 9,
+      "word": "soeurs",
+      "choices": ["الأخوات", "الأخوال", "الصديقات"],
+      "correctAnswer": "الأخوات",
+      "imagePath": "./soeurs.jpg"
+    },
+    {
+      "id": 10,
+      "word": "thé",
+      "choices": ["شاي", "قهوة", "عصير"],
+      "correctAnswer": "شاي",
+      "imagePath": "./thé.jpg"
+    }
+,
+
+  {
+    "id": 11,
+    "word": "mère",
+    "choices": ["أم", "أب", "جدة"],
+    "correctAnswer": "أم",
+    "imagePath": "./mere.jpg"
+  },
+  {
+    "id": 12,
+    "word": "père",
+    "choices": ["أب", "أخ", "عم"],
+    "correctAnswer": "أب",
+    "imagePath": "./pere.jpg"
+  },
+  {
+    "id": 13,
+    "word": "frère",
+    "choices": ["أخ", "زوج", "ولد"],
+    "correctAnswer": "أخ",
+    "imagePath": "./frere.jpg"
+  },
+  {
+    "id": 14,
+    "word": "soeur",
+    "choices": ["أخت", "أخت الزوج", "ابنة"],
+    "correctAnswer": "أخت",
+    "imagePath": "./soeur.jpg"
+  },
+  {
+    "id": 15,
+    "word": "grand-père",
+    "choices": ["جد", "خال", "حفيد"],
+    "correctAnswer": "جد",
+    "imagePath": "./grandpere.jpg"
+  }
+,
+
+  {
+    "id": 16,
+    "word": "grand-mère",
+    "choices": ["جدة", "عمة", "خالة"],
+    "correctAnswer": "جدة",
+    "imagePath": "./grandmere.jpg"
+  },
+  {
+    "id": 17,
+    "word": "oncle",
+    "choices": ["عم", "خال", "زوج"],
+    "correctAnswer": "عم",
+    "imagePath": "./oncle.jpg"
+  },
+  {
+    "id": 18,
+    "word": "tante",
+    "choices": ["عمة", "خالة", "زوجة"],
+    "correctAnswer": "عمة",
+    "imagePath": "./tante.jpg"
+  },
+  {
+    "id": 19,
+    "word": "cousin",
+    "choices": ["ابن الأخ", "ابن الأخت", "ابن العم"],
+    "correctAnswer": "ابن الأخ",
+    "imagePath": "./cousin.jpg"
+  },
+  {
+    "id": 20,
+    "word": "cousine",
+    "choices": ["ابنة الأخ", "ابنة الأخت", "ابنة العم"],
+    "correctAnswer": "ابنة الأخ",
+    "imagePath": "./cousine.jpg"
+  }
+,
+
+  {
+    "id": 21,
+    "word": "neveu",
+    "choices": ["ابن الأخ", "ابن الأخت", "ابن العم"],
+    "correctAnswer": "ابن الأخ",
+    "imagePath": "./neveu.jpg"
+  },
+  {
+    "id": 22,
+    "word": "nièce",
+    "choices": ["ابنة الأخ", "ابنة الأخت", "ابنة العم"],
+    "correctAnswer": "ابنة الأخ",
+    "imagePath": "./niece.jpg"
+  },
+  {
+    "id": 23,
+    "word": "belle-mère",
+    "choices": ["زوجة الأب", "أم الزوج", "أم الزوجة"],
+    "correctAnswer": "أم الزوج",
+    "imagePath": "./bellemere.jpg"
+  },
+  {
+    "id": 24,
+    "word": "beau-père",
+    "choices": ["زوج الأم", "أب الزوج", "أب الزوجة"],
+    "correctAnswer": "أب الزوج",
+    "imagePath": "./beaupere.jpg"
+  },
+  {
+    "id": 25,
+    "word": "belle-soeur",
+    "choices": ["أخت الزوج", "أخت الزوجة", "زوجة الأخ"],
+    "correctAnswer": "أخت الزوج",
+    "imagePath": "./bellesoeur.jpg"
+  }
+,
+
+  {
+    "id": 26,
+    "word": "gendre",
+    "choices": ["ابن الزوج", "ابن الزوجة", "زوج الابنة"],
+    "correctAnswer": "زوج الابنة",
+    "imagePath": "./gendre.jpg"
+  },
+  {
+    "id": 27,
+    "word": "belle-fille",
+    "choices": ["زوجة الابن", "زوجة الابنة", "أخت الزوجة"],
+    "correctAnswer": "زوجة الابنة",
+    "imagePath": "./bellefille.jpg"
+  },
+  {
+    "id": 28,
+    "word": "belle-soeur",
+    "choices": ["أخت الزوج", "أخت الزوجة", "زوجة الأخ"],
+    "correctAnswer": "أخت الزوج",
+    "imagePath": "./bellesoeur2.jpg"
+  },
+  {
+    "id": 29,
+    "word": "belle-mère",
+    "choices": ["أم الزوج", "أم الزوجة", "زوجة الأب"],
+    "correctAnswer": "أم الزوج",
+    "imagePath": "./bellemere2.jpg"
+  },
+  {
+    "id": 30,
+    "word": "beau-père",
+    "choices": ["أب الزوج", "أب الزوجة", "زوج الأم"],
+    "correctAnswer": "أب الزوج",
+    "imagePath": "./beaupere2.jpg"
+  }
+,
+    {
+      "id": 31,
+      "word": "Grand-parents",
+      "choices": ["الأجداد", "الجدة", "الجد"],
+      "correctAnswer": "الأجداد"
+    },
+    {
+      "id": 32,
+      "word": "grand-mère",
+      "choices": ["الجدة", "الجد", "الأجداد"],
+      "correctAnswer": "الجدة"
+    },
+    {
+      "id": 33,
+      "word": "grand-père",
+      "choices": ["الجد", "الجدة", "الأجداد"],
+      "correctAnswer": "الجد"
+    },
+    {
+      "id": 34,
+      "word": "Neveu",
+      "choices": ["ابن الأخ", "العم", "الحفيد"],
+      "correctAnswer": "ابن الأخ"
+    },
+    {
+      "id": 35,
+      "word": "Nièce",
+      "choices": ["ابنة الأخت", "العمة", "الحفيدة"],
+      "correctAnswer": "ابنة الأخت"
+    },
+    {
+      "id": 36,
+      "word": "Oncle",
+      "choices": ["العم", "ابن الأخ", "الحفيد"],
+      "correctAnswer": "العم"
+    },
+    {
+      "id": 37,
+      "word": "Tante",
+      "choices": ["العمة", "ابنة الأخت", "الحفيدة"],
+      "correctAnswer": "العمة"
+    },
+    {
+      "id": 38,
+      "word": "Cousin",
+      "choices": ["ابن العم", "العم", "الابن الأخت"],
+      "correctAnswer": "ابن العم"
+    },
+    {
+      "id": 39,
+      "word": "Cousine",
+      "choices": ["ابنة العم", "العمة", "الابنة الأخت"],
+      "correctAnswer": "ابنة العم"
+    },
+    {
+      "id": 40,
+      "word": "Réunion familiale",
+      "choices": ["تقاليد", "اجتماع عائلي", "التضامن"],
+      "correctAnswer": "اجتماع عائلي"
+    },
+      
+    {
+      "id": 41,
+      "word": "café",
+      "choices": ["شاي", "قهوة", "ماء"],
+      "correctAnswer": "قهوة"
+    },
+    {
+      "id": 42,
+      "word": "linge",
+      "choices": ["ملابس", "طعام", "أثاث"],
+      "correctAnswer": "ملابس"
+    },
+    {
+      "id": 43,
+      "word": "hâte",
+      "choices": ["سرعة", "صبر", "خوف"],
+      "correctAnswer": "سرعة"
+    },
+    {
+      "id": 44,
+      "word": "toilette",
+      "choices": ["حمام", "مطبخ", "غرفة نوم"],
+      "correctAnswer": "حمام"
+    },
+    {
+      "id": 45,
+      "word": "peine",
+      "choices": ["سعادة", "حزن", "فرح"],
+      "correctAnswer": "حزن"
+    },
+    {
+      "id": 46,
+      "word": "toute",
+      "choices": ["كل", "قليل", "بعض"],
+      "correctAnswer": "كل"
+    },
+    {
+      "id": 47,
+      "word": "rue",
+      "choices": ["شارع", "حديقة", "ساحة"],
+      "correctAnswer": "شارع"
+    },
+    {
+      "id": 48,
+      "word": "toujours",
+      "choices": ["أحياناً", "دائماً", "نادراً"],
+      "correctAnswer": "دائماً"
+    },
+    {
+      "id": 49,
+      "word": "petit",
+      "choices": ["كبير", "صغير", "ضخم"],
+      "correctAnswer": "صغير"
+    },
+    {
+      "id": 50,
+      "word": "bien",
+      "choices": ["سيئة", "جيدة", "متوسطة"],
+      "correctAnswer": "جيدة"
+    },
+    {
+      "id": 51,
+      "word": "linge",
+      "choices": ["ملابس", "طعام", "أثاث"],
+      "correctAnswer": "ملابس"
+    },
+      
+    {
+      "id": 52,
+      "word": "toilette",
+      "choices": ["حمام", "مطبخ", "غرفة نوم"],
+      "correctAnswer": "حمام"
+    },
+    {
+      "id": 53,
+      "word": "sœurs",
+      "choices": ["سعادة", "أخوات", "فرح"],
+      "correctAnswer": "أخوات"
+    },
+    {
+      "id": 54,
+      "word": "toute",
+      "choices": ["كل", "قليل", "بعض"],
+      "correctAnswer": "كل"
+    },
+    {
+      "id": 55,
+      "word": "rue",
+      "choices": ["شارع", "حديقة", "ساحة"],
+      "correctAnswer": "شارع"
+    },
+    {
+      "id": 56,
+      "word": "toujours",
+      "choices": ["أحياناً", "دائماً", "نادراً"],
+      "correctAnswer": "دائماً"
+    },
+    {
+      "id": 57,
+      "word": "petit",
+      "choices": ["كبير", "صغير", "ضخم"],
+      "correctAnswer": "صغير"
+    },
+    {
+      "id": 58,
+      "word": "Parents",
+      "choices": ["سيئة", "آباء", "متوسطة"],
+      "correctAnswer": "آباء"
+    },
+    {
+      "id": 59,
+      "word": "vêtements",
+      "choices": ["أحذية", "ملابس", "مجوهرات"],
+      "correctAnswer": "ملابس"
+    },
+    {
+      "id": 60,
+      "word": "nuages",
+      "choices": ["شمس", "غيوم", "رياح"],
+      "correctAnswer": "غيوم"
+    },
+    {
+      "id": 61,
+      "word": "retours",
+      "choices": ["رحيل", "عودة", "رحيل"],
+      "correctAnswer": "عودة"
+    },
+    {
+      "id": 62,
+      "word": "maison",
+      "choices": ["منزل", "شجرة", "جبل"],
+      "correctAnswer": "منزل"
+    },
+    {
+      "id": 63,
+      "word": "errer",
+      "choices": ["تجول", "نوم", "طيران"],
+      "correctAnswer": "تجول"
+    },
+    {
+      "id": 64,
+      "word": "famille",
+      "choices": ["تقاليد", "العائلة", "التضامن"],
+      "correctAnswer": "العائلة"
+    },
+    {
+      "id": 65,
+      "word": "réunit",
+      "choices": ["يفرق", "يجتمع", "ينام"],
+      "correctAnswer": "يجتمع"
+    },
+    {
+      "id": 66,
+      "word": "chambre",
+      "choices": ["صالة", "حمام", "غرفة"],
+      "correctAnswer": "غرفة"
+    },
+    {
+      "id": 67,
+      "word": "nappe",
+      "choices": ["سجادة", "طاولة", "ستارة"],
+      "correctAnswer": "طاولة"
+    },
+    {
+      "id": 68,
+      "word": "thé",
+      "choices": ["قهوة", "شاي", "عصير"],
+      "correctAnswer": "شاي"
+    },
+    {
+      "id": 69,
+      "word": "lever",
+      "choices": ["غروب", "شروق", "ظهر"],
+      "correctAnswer": "شروق"
+    }
+    ,
+    {
+      "id": 70,
+      "word": "linge",
+      "choices": [ "طعام","ملابس", "أثاث"],
+      "correctAnswer": "ملابس"
+    }
+      
+
+
+
+
+
+  ]
+  
