@@ -40,6 +40,7 @@ export const Card = styled.div`
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
   }
+  
 `;
 
 export const SmallCard = styled.div`

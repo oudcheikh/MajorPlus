@@ -8,7 +8,7 @@ import {
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant
-import './Style.css'
+import './Style2.css'
 
 // Définir un composant styled-components pour le conteneur
 const NumberDisplay2 = styled(Box)(({ isActive }) => ({
@@ -51,29 +51,28 @@ const NumberDisplay3 = styled(Box)(({ isActive }) => ({
     },
 }));
 
-const StyledInput = styled.input.attrs(props => ({
-    type: 'number',
-    placeholder: '---',
-    id: 'myInputId', // ID de l'input
-  }))`
-    /* Styles spécifiques pour l'input avec l'ID myInputId */
-  `;
-  
 
 function Table_mesure() {
     // Définir un état local pour stocker les données du tableau
     const [réponse, setReponse] = useState("")
     const [tableData, setTableData] = useState([
-        { carreaux: '1 (ha)', longueur: '' },
-        { carreaux: '1(a)', longueur: '' },
-        { carreaux: '1(ca)', longueur: '' },
-        { carreaux: '3(ha)', longueur: '' },
-        { carreaux: '59(ca)', longueur: '' },
-        { carreaux: '100(ca)', longueur: '' },
+        { carreaux: '50', ca: '', ha: '' },
+        { carreaux: '410', ca: '', ha: '' },
+        { carreaux: '30', ca: '', ha: '' },
+        { carreaux: '0.33', ca: '', ha: '' },
+        { carreaux: '5.9', ca: '', ha: '' },
+        { carreaux: '100', ca: '', ha: '' },
 
     ]);
 
-    const bonnesReponses = [10000, 100, 1,30000,59,100];
+    const bonnesReponses = [
+        { ca: 10000, ha: 10 },
+        { ca: 100, ha: 1 },
+        { ca: 1, ha: 30000 },
+        { ca: 30000, ha: 59 },
+        { ca: 59, ha: 100 },
+        { ca: 100, ha: 100 }
+    ];
 
     // Fonction pour mettre à jour les données du tableau lors de la saisie
     const handleInputChange = (index, key, value) => {
@@ -83,55 +82,59 @@ function Table_mesure() {
     };
 
     // Fonction de vérification
-    const handleSubmit = () => {
-        // Vérifier si les données de l'utilisateur correspondent aux bonnes réponses
-        const userResponses = tableData.map(row => parseInt(row.longueur));
-        const isValid = userResponses.every(response => !isNaN(response) && response >= 0);
-
-        if (isValid) {
-            if (JSON.stringify(userResponses) === JSON.stringify(bonnesReponses)) {
-                const h = "Bravo! Les données sont correctes.";
-                setReponse(h);
+        const handleSubmit = () => {
+            // Vérifier si les données de l'utilisateur correspondent aux bonnes réponses
+            const userResponses = tableData.map(row => ({ ca: parseFloat(row.ca), ha: parseFloat(row.ha) }));
+            const isValid = userResponses.every(response => !isNaN(response.ca) && !isNaN(response.ha) && response.ca >= 0 && response.ha >= 0);
+        
+            if (isValid) {
+                const bonnesReponsesCa = bonnesReponses.map(br => br.ca);
+                const bonnesReponsesHa = bonnesReponses.map(br => br.ha);
+                const userResponsesCa = userResponses.map(ur => ur.ca);
+                const userResponsesHa = userResponses.map(ur => ur.ha);
+        
+                if (JSON.stringify(userResponsesCa) === JSON.stringify(bonnesReponsesCa) &&
+                    JSON.stringify(userResponsesHa) === JSON.stringify(bonnesReponsesHa)) {
+                    const h = "Bravo! Les données sont correctes.";
+                    setReponse(h);
+                } else {
+                    const V = "Désolé, les données ne sont pas correctes.";
+                    setReponse(V);
+                }
             } else {
-                const V = "Désolé, les données ne sont pas correctes.";
-                setReponse(V);
+                // Si les réponses de l'utilisateur ne sont pas valides, afficher un message d'erreur
+                setReponse("Veuillez entrer des valeurs numériques valides pour les colonnes ca et ha.");
             }
-        } else {
-            // Si les réponses de l'utilisateur ne sont pas valides, afficher un message d'erreur
-            setReponse("Veuillez entrer des valeurs numériques valides.");
-        }
-    };
+        };
+        
 
 
 
 
-
-    const voir_bonne_reponce = () => {
-        setReponse('')
-        // Afficher les bonnes réponses dans la colonne "Longueur en cm"
-        const updatedData = tableData.map((row, index) => ({
-            ...row,
-            longueur: bonnesReponses[index].toString() // Mettre à jour avec la bonne réponse
-        }));
-
-        setTableData(updatedData);
-        console.log(updatedData)
-
-
-    }
-
+        const voir_bonne_reponce = () => {
+            setReponse('');
+        
+            // Afficher les bonnes réponses dans les colonnes "ca" et "ha"
+            const updatedData = tableData.map((row, index) => ({
+                ...row,
+                ca: bonnesReponses[index].ca.toString(),
+                ha: bonnesReponses[index].ha.toString()
+            }));
+        
+            setTableData(updatedData);
+        };
 
 
     // Fonction pour recommencer
     const handleReset = () => {
         // Réinitialiser les données du tableau
         const initialData = [
-            { carreaux: '1 (ha)', longueur: '' },
-            { carreaux: '1(a)', longueur: '' },
-            { carreaux: '1(ca)', longueur: '' },
-            { carreaux: '3(ha)', longueur: '' },
-            { carreaux: '59(ca)', longueur: '' },
-            { carreaux: '100(ca)', longueur: '' },
+            { carreaux: '50', ca: '', ha: '' },
+            { carreaux: '410', ca: '', ha: '' },
+            { carreaux: '30', ca: '', ha: '' },
+            { carreaux: '0.33', ca: '', ha: '' },
+            { carreaux: '5.9', ca: '', ha: '' },
+            { carreaux: '100', ca: '', ha: '' },
 
         ];
         setTableData(initialData);
@@ -144,15 +147,16 @@ function Table_mesure() {
 
     return (
 
-        <div >
+        <div>
 
 
             <FormulaText>
 
+
                 <NumberDisplay3>
-                    <div style={{ display: 'inline' }}> (a)=are</div>
-                    <div style={{ display: 'inline' }}> (ha)=hectare</div>
-                    <div style={{ display: 'inline' }}> (ca)=  centiare</div>
+
+
+                    Pour aller du métre cube (m²) au hectare(ha)  ou  centiare(ca) on doit diviser
 
                 </NumberDisplay3>
 
@@ -160,26 +164,28 @@ function Table_mesure() {
 
 
                 <NumberDisplay2>
-                    <div style={{ display: 'inline' }}>   1(ha)=1 × 10,000 = 10,000  (m²).</div>
-                    <div style={{ display: 'inline' }}>   1(a)=1 × 100 =100  (m²).</div>
-                    <div style={{ display: 'inline' }}>   1(ca)=1 (m²).</div>
+                    <strong>
+                    <div style={{ display: 'inline' }}>   1(m²)=1/10 000 = 0,0001 (ha).</div><br></br>
+                    <div style={{ display: 'inline' }}>   1(m²)=1 /100 =0,01  (a).</div><br></br>
+                    <div style={{ display: 'inline' }}>   1(m²)=1/1=1 (ca).</div>
+
+                    </strong>
                 </NumberDisplay2>
 
             </FormulaText>
+
 
 
             <FormulaText>
 
                 <strong><span style={{ color: '#FF7F50' }}>Complète le tableau suivant:</span></strong>
                 <br />
-
-
-           <div  style={{ display: 'center' }}> 
-            <table>
+                <table>
                     <thead>
                         <tr>
-                            <th>---</th>
-                            <th>(m²)</th>
+                            <th>m²</th>
+                            <th>(ca)</th>
+                            <th>(ha)</th>
 
                         </tr>
                     </thead>
@@ -189,11 +195,18 @@ function Table_mesure() {
                                 <td>{row.carreaux}</td>
                                 <td>
                                     <input
-                                   
                                         type="number"
-                                        value={row.longueur}
+                                        value={row.ca}
                                         placeholder='---'
-                                        onChange={(e) => handleInputChange(index, 'longueur', e.target.value)}
+                                        onChange={(e) => handleInputChange(index, 'ca', e.target.value)}
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="number"
+                                        value={row.ha}
+                                        placeholder='---'
+                                        onChange={(e) => handleInputChange(index, 'ha', e.target.value)}
                                     />
                                 </td>
 
@@ -201,15 +214,11 @@ function Table_mesure() {
                         ))}
                     </tbody>
                 </table>
-                </div>    
                 <div>
-
                     <strong style={{ color: 'blue' }}>
                         <span>{réponse}</span>
                     </strong>
                 </div>
-
-                
                 <div>
                     <button onClick={handleSubmit}>Vérifier</button>
                     &nbsp;
@@ -220,8 +229,8 @@ function Table_mesure() {
 
                 </div>
 
-                
-               
+
+
 
                 <br></br>
                 <br></br>

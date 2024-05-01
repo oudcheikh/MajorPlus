@@ -111,9 +111,9 @@ function Exmple2() {
 
 <div>
     <NumberDisplay2 >
-    <div style={{ display: 'inline' }}>   Air cercle1= 3.14*1*1= 3.14cm carrés</div>
-    <div style={{ display: 'inline' }}>   Air cercle2=3.14*2*2=12,56 carrés</div>
-    <div style={{ display: 'inline' }}>   Air cercle hachurée=12,56-3.14=9,42 cm </div>
+    <div style={{ display: 'inline' }}>   Air cercle1= 3.14*1*1= 3.14cm²</div>
+    <div style={{ display: 'inline' }}>   Air cercle2=3.14*2*2=12,56 cm²</div>
+    <div style={{ display: 'inline' }}>   Air cercle hachurée=12,56-3.14=9,42cm² </div>
     </NumberDisplay2>
 </div>
 

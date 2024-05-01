@@ -217,6 +217,7 @@ import Les_solides from'./composents/Math/Periode4/les solides/les_solides.js'
 
 import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/MesureAgraire.js'
 
+import Translate from'./composents/Math/Periode4/translate/DragDrob.js'
 
 function App() {
   return (
@@ -432,7 +433,9 @@ function App() {
           <Route path= "/Les_solides" element={<Les_solides/>} />
 
           <Route path= "/Les_mesures_Agrairs" element={<Les_mesures_Agrairs/>} />
-     
+          
+          <Route path= "/Translate" element={<Translate/>} />
+      
         </Routes>
       
       </div>

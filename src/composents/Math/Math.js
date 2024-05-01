@@ -22,6 +22,8 @@ function Accueil() {
         <CardButton title="Periode2" navigateTo="/Periode2" />
         <CardButton title="Periode3" navigateTo="/Period3" />
         <CardButton title="Periode4" navigateTo="/Periode4" />
+
+        <CardButton title="Translate" navigateTo="/Translate" />
       </div>
     </div>
   );

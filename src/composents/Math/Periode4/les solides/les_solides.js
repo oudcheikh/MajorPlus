@@ -116,10 +116,10 @@ const Les_solides = () => {
                       
 
                     <button className="continue-button" >
-                <FormulaText><strong> Les solides </strong></FormulaText>
+                <FormulaText><strong>  Les cube  </strong></FormulaText>
 
             </button>
-                      <strong><span style={{ color: 'orange' }}> Les cube  </span></strong>   
+                    
 
                   <Cardre />          
                   </FormulaBox>  
@@ -137,10 +137,10 @@ const Les_solides = () => {
                        
 
                         <button className="continue-button" >
-                <FormulaText><strong> Les solides </strong></FormulaText>
+                <FormulaText><strong> Les pyramides  </strong></FormulaText>
 
             </button>
-                        <strong><span style={{ color: 'orange' }}> Les pyramides  </span></strong>   
+                        <strong><span style={{ color: 'orange' }}>  </span></strong>   
                     <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Pyramides /> 
@@ -163,11 +163,11 @@ const Les_solides = () => {
                         <FormulaBox>
 
                         <button className="continue-button" >
-                <FormulaText><strong> Les solides </strong></FormulaText>
+                <FormulaText><strong> Les sphéres  </strong></FormulaText>
 
             </button>
                        
-                            <strong><span style={{ color: 'orange' }}>Les sphéres </span></strong>    
+                            <strong><span style={{ color: 'orange' }}></span></strong>    
 
                               
 

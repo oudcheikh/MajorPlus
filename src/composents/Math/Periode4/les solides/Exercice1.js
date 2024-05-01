@@ -175,7 +175,7 @@ const div2ActiveButton =()=>{
           </tbody>
         </table>
         <div>
-          <strong style={{ color: 'blue' }}>
+            <strong style={{ color: 'blue' }}>
             <span>{réponse}</span>
           </strong>
         </div>

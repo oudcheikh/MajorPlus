@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Exercice1 from '../les solides/Exercice1'
+import Exercice from './Exercice'
 import Table_mesures from './Table_mesures'
-import Pyramides from '../les solides/Pyramides'
+import Table_mesures2 from './Table_mesures2'
 
 
 import styled from 'styled-components';
@@ -25,6 +25,15 @@ export const textStyle = styled.h2`
 `;
 
 
+
+const Wrapper = styled.div`
+    display: flex;
+
+    > * {
+        flex: 1;
+        max-width: 100%;
+    }
+`;
 const StyledBox = styled(Box)({
 
 });
@@ -89,7 +98,7 @@ const Les_solides = () => {
 
             </button>
 
-           
+
             <img src={'/images/Math/periode 4/agriculture.png'} alt="univers" />
 
 
@@ -100,10 +109,10 @@ const Les_solides = () => {
                         <BodyText>
 
 
-                        Ibrahim admet un champ et des engins, il voudrait que nous l'aide à des taches de mesures 
-                             <span style={{ color: 'blue' }}> Allons  nous aides Ibrahim !</span>
+                            Ibrahim admet un champ et des engins, il voudrait que nous l'aide à des taches de mesures
+                            <span style={{ color: 'blue' }}> Allons  nous aides Ibrahim !</span>
                             <br></br>
-                           
+
                         </BodyText>
 
                     </Card>
@@ -115,17 +124,24 @@ const Les_solides = () => {
                     <SectionContainer>
 
 
-                        <FormulaBox>
 
+                        <Card>
 
                             <button className="continue-button" >
-                                <FormulaText><strong> exercices de mesures </strong></FormulaText>
+                                <FormulaText><strong> Notions </strong></FormulaText>
 
                             </button>
 
-                            <Table_mesures/>
-                            
-                        </FormulaBox>
+                            <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Table_mesures />
+                                    </div>
+                                    <div className="separator"></div>
+                                </div>
+
+                          
+                        </Card>
+
                     </SectionContainer>
                 </div>
             )}
@@ -138,23 +154,23 @@ const Les_solides = () => {
 
                         <FormulaBox>
 
+                            <Card>
+                                <button className="continue-button" >
+                                    <FormulaText><strong>Allons du m² vers le (ha) ou (ca)  </strong></FormulaText>
 
-                            <button className="continue-button" >
-                                <FormulaText><strong>Les pyramides  </strong></FormulaText>
-
-                            </button>
-                         
-
+                                </button>
 
 
-                            <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <Pyramides />
+
+
+                                <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <Table_mesures2 />
+                                    </div>
+                                    <div className="separator"></div>
                                 </div>
-                                <div className="separator"></div>
-                            </div>
 
-
+                            </Card>
                         </FormulaBox>
                     </SectionContainer>
                 </div>
@@ -167,19 +183,19 @@ const Les_solides = () => {
                     <SectionContainer>
 
                         <FormulaBox>
+                            <Card>
+                                <button className="continue-button" >
+                                    <FormulaText><strong> Exercices  applicatif </strong></FormulaText>
+                                </button>
 
-                            <button className="continue-button" >
-                                <FormulaText><strong> Les sphéres </strong></FormulaText>
-                            </button>
 
-                            
 
-                            <Exercice1 />
+                                <Exercice />
 
-                            <div>
-                                <br></br>
-                            </div>
-
+                                <div>
+                                    <br></br>
+                                </div>
+                            </Card>
 
                         </FormulaBox>
                     </SectionContainer>
@@ -194,6 +210,7 @@ const Les_solides = () => {
             {section < 3 && (
                 <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
             )}
+
         </Container>
     );
 }

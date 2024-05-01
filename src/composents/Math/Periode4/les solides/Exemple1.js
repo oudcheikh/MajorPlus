@@ -15,7 +15,7 @@ const NumberDisplay2 = styled(Box)(({ isActive }) => ({
     width: '100%',
     height: 'auto',
     margin: '20px auto',
-    padding: '20px',
+    padding: '5px',
     backgroundColor: 'rgb(248, 248, 227)',
     border: '3px dashed #B3E5FC',
     transition: 'background-color 0.4s, transform 0.3s',
@@ -43,7 +43,7 @@ function Exmple1() {
         if (inputValue.trim() === '452.16') {
             setRep('réponse correcte')
         } else {
-            setRep('réponse incorrecte car   :   3.14 * 12 * 12 =452.16')
+            setRep('réponse incorrecte car   :   3.14 * 12 * 12 =452.16 dm²')
         }
     };
 
