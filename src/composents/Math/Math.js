@@ -25,7 +25,7 @@ function Accueil() {
 
         {/* <CardButton title="P2" navigateTo="/AccuielMA" /> */}
 
-        
+
       </div>
     </div>
   );
