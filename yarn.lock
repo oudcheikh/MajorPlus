@@ -2553,6 +2553,57 @@
   dependencies:
     tslib "^2.4.0"
 
+"@syncfusion/ej2-base@~25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-25.1.35.tgz#c0323435a77b7d2c1abcd520320dcb87573a269b"
+  integrity sha512-eH/zLft7j5jhbNquVNcKoDmlx+ZU/77mHAJwpG9Ad4+C/+7UcWlIi/RDORJ0QreosZM4gMyCYzxDAZ5QOI3txw==
+  dependencies:
+    "@syncfusion/ej2-icons" "~25.1.35"
+
+"@syncfusion/ej2-data@~25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-data/-/ej2-data-25.1.35.tgz#f71e532b3c8058421d1c0bc692a28bea299ea06b"
+  integrity sha512-eHWkoQcokKFiLUMpcw2IM1ul9v8HeRgIrUzowyWPpamuZASX8luczDy3VLR5AX0YeiE9aNv3QKsr04t4F1GRcQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~25.1.35"
+
+"@syncfusion/ej2-icons@~25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-25.1.35.tgz#e24db28f0f9ca52ec5c8f8572bf6c0c8d20d2000"
+  integrity sha512-E8ypbeB9ISTsaj8Q29w3Ysh6HG35GOdTjfaU6JTCaZ9wP30q04B4WfN9lqcd42Q198qhynFAXd3lJyYev68aGw==
+
+"@syncfusion/ej2-progressbar@25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-progressbar/-/ej2-progressbar-25.1.35.tgz#e158e35de5815f435195575e43890425e3da94a9"
+  integrity sha512-WkgAIAKIem9zxL2fKHaGqpZClxf0qpOOstIO7yrD9+4pCrSXCECAzVFLL/I0ZA3xXvAFZg4Pqncsl6Hlkrn0tg==
+  dependencies:
+    "@syncfusion/ej2-base" "~25.1.35"
+    "@syncfusion/ej2-data" "~25.1.35"
+    "@syncfusion/ej2-svg-base" "~25.1.35"
+
+"@syncfusion/ej2-react-base@~25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-25.1.35.tgz#6b9b5236dc4ce367e3a2e6414927ceaf9c7801cf"
+  integrity sha512-chjK/THRwbRcQTKUL7NyP2VBjtS65uw6e0kieTsQvJ37c3ZZZ3/FpHt9jcqJisStrZ/xp4/y9uSPe6kqBGQBCg==
+  dependencies:
+    "@syncfusion/ej2-base" "~25.1.35"
+
+"@syncfusion/ej2-react-progressbar@^25.1.35":
+  version "25.1.35"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-progressbar/-/ej2-react-progressbar-25.1.35.tgz#63b20fb764cac16c3ee9a00953b9b731bdddf89b"
+  integrity sha512-NDftQ0qBlAiay8Y1cOzWrQLmj8/78iiICfY9jK3zofVUxV2GPTEiwahYfHNLzZTwpPNIriIA/a8YEp6s/B7J6w==
+  dependencies:
+    "@syncfusion/ej2-base" "~25.1.35"
+    "@syncfusion/ej2-progressbar" "25.1.35"
+    "@syncfusion/ej2-react-base" "~25.1.35"
+
+"@syncfusion/ej2-svg-base@~25.1.35":
+  version "25.1.37"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-svg-base/-/ej2-svg-base-25.1.37.tgz#4af5b30d46d00c7e2901077c9f5f30889ce42f11"
+  integrity sha512-TQ2IOLRFKUJ1G+Oh9GIqxD0gI0JyD204kO/HH++eYeLJMcrysVYNOfWHlfGYzdQQ9bniZ67ZJjY5G/YDd7HGrQ==
+  dependencies:
+    "@syncfusion/ej2-base" "~25.1.35"
+
 "@testing-library/dom@^8.5.0":
   version "8.20.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.20.1.tgz#2e52a32e46fc88369eef7eef634ac2a192decd9f"
@@ -10146,6 +10197,11 @@ react-modal@^3.16.1:
     prop-types "^15.7.2"
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
+
+react-native-segmented-progress-bar@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-native-segmented-progress-bar/-/react-native-segmented-progress-bar-1.0.10.tgz#9cd4362575e58e80696f0712af1fb93e90204547"
+  integrity sha512-Qgyr6yw64ak90spOqwfaYFagKWTGqjLT0B1SygtXcjvqxtK7GQ7qQ2N1MKDTZaypa+owpdNKgi3PkTMIkc98pw==
 
 react-player@^2.13.0:
   version "2.13.0"

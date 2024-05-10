@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 
-import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
-} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant
 import '../Ex1.css'

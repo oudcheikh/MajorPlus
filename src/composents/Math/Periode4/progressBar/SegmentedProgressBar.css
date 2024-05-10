@@ -1,0 +1,23 @@
+
+.segmented-progress-bar {
+  margin: 5px;
+  display: flex;
+  flex-direction: row; /* Assure que les segments sont alignés horizontalement */
+  
+
+}
+.segment {
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 25px;
+
+}
+
+.segment.completed {
+  background-color: rgb(9, 145, 88);
+}
+
+.segment.incomplete {
+
+  background-color: gray;
+}

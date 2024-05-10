@@ -5,7 +5,7 @@ import Exemple1 from'../les solides/Exemple1'
 import Exemple2 from'../les solides/Exemple2'
 
 import {
-  Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
+   FormulaText
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant

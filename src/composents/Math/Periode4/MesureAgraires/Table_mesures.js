@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
-import Exemple1 from '../les solides/Exemple1'
+
 
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
+    FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant
-import './Style.css'
+import '../Style.css'
 
 // Définir un composant styled-components pour le conteneur
 const NumberDisplay2 = styled(Box)(({ isActive }) => ({

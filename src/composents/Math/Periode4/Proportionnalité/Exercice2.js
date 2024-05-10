@@ -3,32 +3,12 @@ import styled from 'styled-components';
 import { Box } from '@mui/material';
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant
-import './Ex1.css'
+import '../Ex1.css'
 import {
     Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
-} from '../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 
-// Définir un composant styled-components pour le conteneur
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'white',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 const NumberDisplay3 = styled(Box)(({ isActive }) => ({
     boxSizing: 'border-box',
     width: '100%',

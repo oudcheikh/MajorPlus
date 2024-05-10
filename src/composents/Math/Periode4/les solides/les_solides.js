@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Exercice1 from'../les solides/Exercice1'
+import React, {useRef, useState } from 'react';
+import Exercice1 from '../les solides/Exercice1'
 import Cardre from '../les solides/Cadre'
 import Pyramides from '../les solides/Pyramides'
-
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -25,178 +25,226 @@ export const textStyle = styled.h2`
 `;
 
 
-const StyledBox = styled(Box)({
+;
 
+
+
+const StyledBox = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 'auto', // Réglez la hauteur sur auto ou une valeur appropriée
+    overflow: 'hidden',
 });
 
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'FF7F50',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'rgb(248, 248, 227)',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 
-const imageStyle = {
-    width: '90%', // L'image prendra 80% de la largeur de son parent
-    height: 'auto', // La hauteur change automatiquement pour garder les proportions
-    maxWidth: '90%', // Assure que l'image ne dépasse pas la largeur de la carte
-    display: 'block', // Empêche l'image de prendre plus de place que nécessaire
-    marginLeft: 'auto', // Marges automatiques à gauche pour centrer l'image
-    marginRight: 'auto' // Marges automatiques à droite pour centrer l'image
-};
+const SwipeContainer = styled.div`
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-snap-destination: 100%;
+  width: 100%;
+`;
+
+const Section = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
+  padding: 20px;
+`;
+
+
 
 const Les_solides = () => {
-    const [section, setSection] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const section1Ref = useRef(null);
+    const section2Ref = useRef(null);
+    const section3Ref = useRef(null);
+    const section4Ref = useRef(null);
+    const navigate = useNavigate();
+
+
+    const [lastSectionReached, setLastSectionReached] = useState(false);
+    const [sectionsViewed, setSectionsViewed] = useState(0);
+    const totalSections = 4; // Nombre total de sections
+    const progressWidth = (sectionsViewed / totalSections) * 100 + "%";
+
+
+
+
+
+
+    const handleScroll = (event) => {
+        const { scrollLeft } = event.target;
+        setScrollPosition(scrollLeft);
+
+        // Récupérer les positions de début de chaque section
+        const sectionPositions = [
+            0, // Position de début de la première section
+            section1Ref.current.offsetWidth, // Position de début de la deuxième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
+            // Ajouter d'autres positions pour les sections suivantes
+        ];
+
+        // Trouver la section actuelle en fonction de la position de défilement
+        let currentSection = 0;
+        for (let i = 0; i < sectionPositions.length; i++) {
+            if (scrollLeft >= sectionPositions[i]) {
+                currentSection = i;
+
+
+            }
+        }
+
+    
+        setSectionsViewed(currentSection + 1);
+        if (currentSection + 1 == 4) {
+
+
+            setLastSectionReached(true)
+        }
+
+
+    };
+
+    const fermer = () => {
+        setLastSectionReached(false)
+    }
+
+
+
+    const handleClick = () => {
+        navigate("/Periode4");
+    };
 
     return (
         <Container>
 
 
-            <button className="continue-button" >
-                <FormulaText><strong> Les solides </strong></FormulaText>
-
-            </button>
-
-            <img src={'/images/Math/periode 4/uniivers.png'} alt="univers" />
-
-
-            <SectionContainer>
-                <strong>
-                    <Card>
-
-                        <BodyText>
-
-                            Notre univers est  <span style={{ color: 'blue' }}>un ensemble d'objet</span> chaque objet admet  <span style={{ color: '#ff4500' }}>sa propre forme</span>
-                            <br></br>
-                            <strong style={{ color: 'orange' }}>Allons-nous découvrir les formes des objets?</strong>
-                        </BodyText>
-
-                    </Card>
-                </strong>
-            </SectionContainer>
-
-            {section >= 1 && (
-                <div>
-                    <SectionContainer>
-
-              
-                    <FormulaBox>
-                      
-
-                    <button className="continue-button" >
-                <FormulaText><strong>  Les cube  </strong></FormulaText>
-
-            </button>
-                    
-
-                  <Cardre />          
-                  </FormulaBox>  
-                    </SectionContainer>
+            <div className="progressContainer">
+                <div className="progress-bar">
+                    <div className="progress" style={{ width: progressWidth }}></div>
                 </div>
-            )}
 
-            
-{section >= 2 && (
-                <div>
-                    <SectionContainer>
-                
-                  
-                        <FormulaBox>
-                       
+                <button className="backToHomeButton" onClick={handleClick}>
+                    X  </button>
+            </div>
+
+            <StyledBox>
+
+                <SwipeContainer onScroll={handleScroll}>
+
+
+                    <Section ref={section1Ref}>
+
+
+
+
+
 
                         <button className="continue-button" >
-                <FormulaText><strong> Les pyramides  </strong></FormulaText>
+                            <FormulaText><strong> Les solides </strong></FormulaText>
 
-            </button>
-                        <strong><span style={{ color: 'orange' }}>  </span></strong>   
-                    <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Pyramides /> 
-                        </div>
-                        <div className="separator"></div>
-                    </div>
+                        </button>
 
-                        
-                    </FormulaBox>  
-                    </SectionContainer>
-                </div>
-            )}
+                        <img src={'/images/Math/periode 4/uniivers.png'} alt="univers" />
 
 
+                        <SectionContainer>
+                            <strong>
+                                <Card>
 
-{section >= 3 && (
-                <div>
-                    <SectionContainer>
-                    
-                        <FormulaBox>
+                                    <BodyText>
 
-                        <button className="continue-button" >
-                <FormulaText><strong> Les sphéres  </strong></FormulaText>
+                                        Notre univers est  <span style={{ color: 'blue' }}>un ensemble d'objet</span> chaque objet admet  <span style={{ color: '#ff4500' }}>sa propre forme</span>
+                                        <br></br>
+                                        <strong style={{ color: 'orange' }}>Allons-nous découvrir les formes des objets?</strong>
+                                    </BodyText>
 
-            </button>
-                       
-                            <strong><span style={{ color: 'orange' }}></span></strong>    
+                                </Card>
+                            </strong>
+                        </SectionContainer>
 
-                              
-
-                                    <Exercice1/>
-
-                           
-                         
-
-                            <div>
-                                <br></br>
-                            </div>
+                    </Section>
 
 
-                        </FormulaBox>
-                    </SectionContainer>
+                    <Section ref={section2Ref}>
+                        <SectionContainer>
+
+
+                            <FormulaBox>
+
+
+                                <button className="continue-button" >
+                                    <FormulaText><strong>  Les cube  </strong></FormulaText>
+
+                                </button>
+
+
+                                <Cardre />
+                            </FormulaBox>
+                        </SectionContainer>
+                    </Section>
+
+                    <Section ref={section3Ref}>
+                        <SectionContainer>
+
+
+                            <FormulaBox>
+
+
+                                <button className="continue-button" >
+                                    <FormulaText><strong> Les pyramides  </strong></FormulaText>
+
+                                </button>
+                                <strong><span style={{ color: 'orange' }}>  </span></strong>
+                                <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <Pyramides />
+                                    </div>
+                                    <div className="separator"></div>
+                                </div>
+
+
+                            </FormulaBox>
+                        </SectionContainer>
+                    </Section >
+
+
+                    <Section ref={section4Ref}>
+                        <SectionContainer>
+
+                            <FormulaBox>
+
+                                <button className="continue-button" >
+                                    <FormulaText><strong> Les sphéres  </strong></FormulaText>
+
+                                </button>
+
+                                <strong><span style={{ color: 'orange' }}></span></strong>
 
 
 
-                </div>
-            )}
-
-           
-
-           
+                                <Exercice1 />
 
 
-            {section < 3 && (
-                <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
-            )}
+
+
+                                <div>
+                                    <br></br>
+                                </div>
+
+
+                            </FormulaBox>
+                        </SectionContainer>
+
+                    </Section>
+
+
+                </SwipeContainer>
+            </StyledBox>
         </Container>
     );
 }

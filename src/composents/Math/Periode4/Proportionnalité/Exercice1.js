@@ -5,10 +5,10 @@ import { Box } from '@mui/material';
 
 import {
   Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
-} from '../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
 // Assurez-vous que ce fichier CSS est dans le même dossier que votre composant
-import './Ex1.css'
+import '../Ex1.css'
 
 // Définir un composant styled-components pour le conteneur
 const NumberDisplay2 = styled(Box)(({ isActive }) => ({

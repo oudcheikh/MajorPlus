@@ -23,3 +23,13 @@ th {
 input[type="number"] {
     width: 135px; /* Ajustez cette valeur selon vos besoins */
 }
+
+avv{
+
+
+    padding-left: 5px;
+    padding-right:5px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+
+}

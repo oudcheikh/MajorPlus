@@ -26,7 +26,7 @@ const Orthographe2005 = ({ quizzes }) => {
   const [repCorrecte, setRepCorrecte] = useState(0);
   const [donnees, setDonnees] = useState([]);
   const navigate = useNavigate();
-
+ 
   const RemplirtableauFinale = (x) => {
     const totalQuestions = quizzes.reduce((total, quiz) => total + quiz.questions.length, 0);
     const currQ = quizzes[currentQuizIndex].questions[currentQuestionIndex];

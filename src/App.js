@@ -211,13 +211,14 @@ import PatageInegaux from './composents/C19/PatageInegaux';
 import NomberDecimaux from './composents/C18/NomberDecimaux';
 
 import Periode4 from './composents/Math/Periode4/periode4.js';
-import La_proportionnalité from'./composents/Math/Periode4/La_proportionnalité.js'
+import La_proportionnalité from'./composents/Math/Periode4/Proportionnalité/La_proportionnalité.js'
 
 import Les_solides from'./composents/Math/Periode4/les solides/les_solides.js'
 
 import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/MesureAgraire.js'
+import P2 from'./composents/Math/Periode4/progressBar/P2.js'
+import AccuielMA  from'./composents/Math/Periode4/MesureAgraires/AccuielMA.js'
 
-import Translate from'./composents/Math/Periode4/translate/DragDrob.js'
 
 function App() {
   return (
@@ -433,8 +434,11 @@ function App() {
           <Route path= "/Les_solides" element={<Les_solides/>} />
 
           <Route path= "/Les_mesures_Agrairs" element={<Les_mesures_Agrairs/>} />
+          <Route path= "/P2" element={<P2/>} />
+             
+          <Route path= "/AccuielMA" element={<AccuielMA/>} />
+  
           
-          <Route path= "/Translate" element={<Translate/>} />
       
         </Routes>
       
