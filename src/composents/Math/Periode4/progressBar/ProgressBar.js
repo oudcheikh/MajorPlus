@@ -56,8 +56,8 @@ const SegmentedProgressBar = ({ totalSegments, currentSegment, setCurrentSegment
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div>
         <a href="/Periode4">
-          {/* <img src="/images/Math/periode 4/house.png" alt="Home" style={{ width: '30px', height: '30px' }} /> */}
-          <CiHome />
+          <img src="/images/Math/periode 4/house.png" alt="Home" style={{ width: '30px', height: '30px' }} /> 
+          {/* <CiHome /> */}
           </a>
         </div>
 

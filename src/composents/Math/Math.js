@@ -23,8 +23,7 @@ function Accueil() {
         <CardButton title="Periode3" navigateTo="/Period3" />
         <CardButton title="Periode4" navigateTo="/Periode4" />
 
-        {/* <CardButton title="P2" navigateTo="/AccuielMA" /> */}
-
+      
 
       </div>
     </div>

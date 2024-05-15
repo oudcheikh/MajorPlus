@@ -6,85 +6,16 @@ import Table_mesures2 from './Table_mesures2';
 import { useNavigate } from 'react-router-dom';
 import '../progressBar/SegmentedProgressBar.css'
 
-import styled from 'styled-components';
-import { Box } from '@mui/material';
+
 import {
-    ImageContainer, FormulaText, Card, BodyText, Subtitle, ContinueButton
+    Container_Progress_Bar,StyledBox2,SectionContainer2,FormulaBox2,
+SwipeContainer2,Swipe_Section,
 } from '../../../Styles/MajorStyles';
 import '../Style.css'
 import SegmentedProgressBar from '../progressBar/ProgressBar';
+import AccuielMA from './AccuielMA';
 
 
-
-const Container = styled.div`
-
-margin:5px,
-
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-`;
-
-const StyledBox = styled.div`
-padding-left: 5px;
-padding-right:5px;
-padding-top: 200px;
-padding-bottom: 10px;
-    width: 100%;
-    max-width: 100%;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const SectionContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const FormulaBox = styled.div`
-    width: 80%;
-    max-width: 600px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-`;
-
-
-
-export const textStyle = styled.h2`
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  color: #444;
-
-  @media (max-width: 480px) {
-    font-size: 18px;
-  }
-`;
-
-
-
-
-const SwipeContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-snap-destination: 100%;
-  width: 100%;
-`;
-
-const Section = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-  scroll-snap-align: start;
-  padding: 20px;
-`;
 
 
 const Les_solides = () => {
@@ -99,15 +30,10 @@ const Les_solides = () => {
 
     const [progress, setProgress] = useState(0);
 
-    const [lastSectionReached, setLastSectionReached] = useState(false);
+   
     const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 3; // Nombre total de sections
-    const progressWidth = (sectionsViewed / totalSections) * 100 + "%";
-
-    const [currentSegment, setCurrentSegment] = useState(0); // État pour suivre le segment actuel
-
-    const totalSegments = 4; // Nombre 
-
+    const totalSections = 4; // Nombre total de sections
+  
 
 
 
@@ -138,11 +64,7 @@ const Les_solides = () => {
         console.log("Section actuelle :", currentSection + 1);
         setSectionsViewed(currentSection + 1);
         setProgress(currentSection + 1)
-        // if (currentSection + 1 == 4) {
-
-
-        //     setLastSectionReached(true)
-        // }
+       
 
 
     };
@@ -159,7 +81,7 @@ const nextChap=()=>{
     return (
 
 
-        <Container>
+        <Container_Progress_Bar>
 
 
 
@@ -168,16 +90,37 @@ const nextChap=()=>{
  
 
 
-            <StyledBox>
+            <StyledBox2>
 
-                <SwipeContainer onScroll={handleScroll}>
+                <SwipeContainer2 onScroll={handleScroll}>
 
 
-                    <Section ref={section1Ref}>
+
+                <Swipe_Section ref={section1Ref}>
                       
 
-                        <SectionContainer>
-                            <FormulaBox>
+                      <SectionContainer2>
+                          <FormulaBox2>
+
+                          
+                           
+                              <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
+                                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                      <AccuielMA />
+                                  </div>
+                                  <div className="separator"></div>
+                              </div>
+
+                             
+                          </FormulaBox2>
+                      </SectionContainer2>
+                  </Swipe_Section>
+
+                    <Swipe_Section ref={section2Ref}>
+                      
+
+                        <SectionContainer2>
+                            <FormulaBox2>
 
                             
                                 <h1>Notion : </h1>
@@ -189,17 +132,17 @@ const nextChap=()=>{
                                 </div>
 
                                
-                            </FormulaBox>
-                        </SectionContainer>
-                    </Section>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
 
 
 
                     <div></div>
-                    <Section ref={section2Ref}>
+                    <Swipe_Section ref={section3Ref}>
                         {/* Section 3 content */}
-                        <SectionContainer>
-                            <FormulaBox>
+                        <SectionContainer2>
+                            <FormulaBox2>
                                
                                     <h1>Allons du m² vers le (ha) ou (ca)  :</h1>
                                 
@@ -211,23 +154,23 @@ const nextChap=()=>{
                                 </div>
 
                             
-                            </FormulaBox>
-                        </SectionContainer>
+                            </FormulaBox2>
+                        </SectionContainer2>
                      
-                    </Section>
+                    </Swipe_Section>
 
 
 
-                    <Section ref={section3Ref}>
+                    <Swipe_Section ref={section4Ref}>
 
 
 
 
                         {/* Section 4 content */}
-                        <SectionContainer>
+                        <SectionContainer2>
 
 
-                            <FormulaBox>
+                            <FormulaBox2>
                                 <h1>Exercices  applicatif:</h1>
                                 <Exercice />
                                 <div>
@@ -235,22 +178,25 @@ const nextChap=()=>{
                                 </div>
 
                                 <button className='ButtonSuivant' onClick={nextChap}>j'ai terminé ce chapitre et je passe au suivant</button>
-                            </FormulaBox>
-                        </SectionContainer>
+                            </FormulaBox2>
+                        </SectionContainer2>
 
                         
-                    </Section>
+                    </Swipe_Section>
 
 
 
+                </SwipeContainer2>
 
-
-
-                </SwipeContainer>
-
-            </StyledBox>
-        </Container>
+            </StyledBox2>
+        </Container_Progress_Bar>
     );
 };
+
+
+
+
+
+
 
 export default Les_solides;

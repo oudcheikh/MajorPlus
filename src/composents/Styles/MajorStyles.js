@@ -345,3 +345,80 @@ width: ${props => props.width}%; /* Largeur du remplissage basée sur la progres
 transition: width 0.5s ease-in-out; /* Transition douce pour l'animation de la barre */
 `;
 
+
+
+
+
+
+
+
+export const Container_Progress_Bar = styled.div`
+
+margin:5px,
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`;
+
+export const StyledBox2 = styled.div`
+padding-left: 2px;
+padding-right:2px;
+padding-top: 150px;
+padding-bottom:2px;
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+
+export const SectionContainer2 = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const FormulaBox2 = styled.div`
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+`;
+
+
+
+export const textStyle2 = styled.h2`
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  color: #444;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+`;
+
+
+
+
+export const SwipeContainer2 = styled.div`
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-snap-destination: 100%;
+  width: 100%;
+`;
+
+export const Swipe_Section = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
+  padding: 20px;
+`;

@@ -20,7 +20,7 @@ function Acceuil() {
       <div className="card-grid">
         <CardButton title="La proportionnalité" navigateTo="/La_proportionnalité" />
         <CardButton title="Les solides" navigateTo="/Les_solides" />
-        <CardButton title="Les mesures agraires " navigateTo="/AccuielMA" />
+        <CardButton title="Les mesures agraires " navigateTo="/Les_mesures_Agrairs" />
         
 
  

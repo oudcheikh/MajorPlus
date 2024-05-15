@@ -22,17 +22,13 @@ const AccuielMA = () => {
         <Card>
             <BodyText>
                 <strong> Amina admet un champ et des engins, elle voudrait que nous l'aide à des taches de mesures
-                    <span style={{ color: 'blue' }}> Allons-nous aider Ibrahim !</span></strong>
+                    <span style={{ color: 'blue' }}> Allons-nous aider Amina !</span></strong>
                 <br></br>
             </BodyText>
         </Card>
     </div>
 
-    <div>
-        <a href="/Les_mesures_Agrairs">
-            <img src={'/images/Math/periode 4/prochaine-sortie.png'} alt="univers" />
-        </a>
-    </div>
+ 
 </div>
           
 

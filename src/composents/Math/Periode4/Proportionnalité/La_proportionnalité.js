@@ -9,9 +9,13 @@ import styled from 'styled-components';
 import { Box } from '@mui/material';
 
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
+    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    textStyle2, SwipeContainer2, Swipe_Section
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 import '../Style.css'
+import SegmentedProgressBar from '../progressBar/ProgressBar';
+
+
 
 export const textStyle = styled.h2`
     font-family: "Roboto", sans-serif;
@@ -55,39 +59,27 @@ const StyledBox = styled(Box)({
 });
 
 
-const SwipeContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-snap-destination: 100%;
-  width: 100%;
-`;
-
-const Section = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-  scroll-snap-align: start;
-  padding: 20px;
-`;
 
 
 
 const C1 = () => {
+
+
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
     const section3Ref = useRef(null);
     const section4Ref = useRef(null);
     const section5Ref = useRef(null);
+
     const navigate = useNavigate();
 
 
-    const [lastSectionReached, setLastSectionReached] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+
     const [sectionsViewed, setSectionsViewed] = useState(0);
     const totalSections = 5; // Nombre total de sections
-    const progressWidth = (sectionsViewed / totalSections) * 100 + "%";
-
-
 
 
 
@@ -101,128 +93,119 @@ const C1 = () => {
             0, // Position de début de la première section
             section1Ref.current.offsetWidth, // Position de début de la deuxième section
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la Quatrieme  section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth+ section4Ref.current.offsetWidth
-            // Ajouter d'autres positions pour les sections suivantes
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth+section4Ref.current.offsetWidth
         ];
 
         // Trouver la section actuelle en fonction de la position de défilement
         let currentSection = 0;
-
         for (let i = 0; i < sectionPositions.length; i++) {
             if (scrollLeft >= sectionPositions[i]) {
                 currentSection = i;
 
+
             }
         }
+
+        // Afficher la section actuelle dans la console
         console.log("Section actuelle :", currentSection + 1);
-
         setSectionsViewed(currentSection + 1);
-        if (currentSection + 1 == 5) {
+        setProgress(currentSection + 1)
 
-
-            setLastSectionReached(true)
-        }
 
 
     };
 
-    const fermer = () => {
-        setLastSectionReached(false)
+
+    const nextChap = () => {
+        navigate("");
     }
 
-
-
-    const handleClick = () => {
-        navigate("/Periode4");
-    };
-
     return (
-        <Container>
 
-            <div className="progressContainer">
-                <div className="progress-bar">
-                    <div className="progress" style={{ width: progressWidth }}></div>
-                </div>
 
-                <button className="backToHomeButton" onClick={handleClick}>
-                    X  </button>
-            </div>
+
+
+
+
+
+        <Container_Progress_Bar>
+
+
+
+            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
+
+
+
 
             <StyledBox>
 
-                <SwipeContainer onScroll={handleScroll}>
+                <SwipeContainer2 onScroll={handleScroll}>
+
+                    <Swipe_Section ref={section1Ref}>
+
+                        <SectionContainer2>
+
+                            <FormulaBox2>
+                                <button className="continue-button" >
+                                    <FormulaText><strong>  La proportionnalité </strong></FormulaText>
+
+                                </button>
+
+                                <img src={'/images/ines2.png'} alt="Teacher" />
 
 
-                    <Section ref={section1Ref}>
 
-                        <SectionContainer>
+                                <strong>
+                                    <Card>
 
-                        <FormulaBox>
-                            <button className="continue-button" >
-                                <FormulaText><strong>  La proportionnalité </strong></FormulaText>
+                                        <BodyText>
 
-                            </button>
+                                            La proportionnalité en mathématiques est <span style={{ color: 'blue' }}>une relation entre deux grandeurs</span> qui <span style={{ color: '#ff4500' }}>varient de manière cohérente.</span>
+                                        </BodyText>
 
-                            <img src={'/images/ines2.png'} alt="Teacher" />
-
-
-
-                            <strong>
-                                <Card>
-
-                                    <BodyText>
-
-                                        La proportionnalité en mathématiques est <span style={{ color: 'blue' }}>une relation entre deux grandeurs</span> qui <span style={{ color: '#ff4500' }}>varient de manière cohérente.</span>
-                                    </BodyText>
-
-                                </Card>
-                            </strong>
-                            </FormulaBox>
-                        </SectionContainer>
+                                    </Card>
+                                </strong>
+                            </FormulaBox2>
+                        </SectionContainer2>
 
 
-                    </Section>
+                    </Swipe_Section>
+                    <Swipe_Section ref={section2Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+
+                                <button className="continue-button" >
+                                    <FormulaText><strong>  Notion </strong></FormulaText>
+
+                                </button>
+
+                                <FormulaText>
+
+                                    <img src={'/images/Math/periode 4/proportionnalité.PNG'} alt="Teacher" />
+
+                                    <strong>
+
+                                        <NumberDisplay>
+                                            <div style={{ display: 'inline' }}>
+                                                si deux grandeurs sont <span style={{ color: '#ff4500' }}>proportionnelles</span>,<br />
+                                                cela signifie que <span style={{ color: 'blue' }}>lorsque l'une change,</span> l'autre change<span style={{ color: 'blue' }}> de manière correspondante.</span>
+                                            </div>
+                                        </NumberDisplay>
 
 
-                    <Section ref={section2Ref}>
+                                    </strong>
+                                </FormulaText>
 
-                        <SectionContainer>
-                            <FormulaBox>
-
-                            <button className="continue-button" >
-                                <FormulaText><strong>  Notion </strong></FormulaText>
-
-                            </button>
-                               
-                                    <FormulaText>
-
-                                        <img src={'/images/Math/periode 4/proportionnalité.PNG'} alt="Teacher" />
-
-                                        <strong>
-
-                                            <NumberDisplay>
-                                                <div style={{ display: 'inline' }}>
-                                                    si deux grandeurs sont <span style={{ color: '#ff4500' }}>proportionnelles</span>,<br />
-                                                    cela signifie que <span style={{ color: 'blue' }}>lorsque l'une change,</span> l'autre change<span style={{ color: 'blue' }}> de manière correspondante.</span>
-                                                </div>
-                                            </NumberDisplay>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
 
 
-                                        </strong>
-                                    </FormulaText>
-                            
 
-
-                            </FormulaBox>
-                        </SectionContainer>
-
-
-                    </Section>
-
-                    <Section ref={section3Ref}>
-                        <SectionContainer>
-                        <FormulaBox>
+                    <Swipe_Section ref={section3Ref}>
+                        <SectionContainer2>
+                        <FormulaBox2>
 
                                 <FormulaText>
                                     <strong style={{ color: 'rgb(27, 226, 226)' }}>Pour mieu comprendre :</strong><br></br>
@@ -233,15 +216,15 @@ const C1 = () => {
 
 
                                 </FormulaText>
-                                </FormulaBox>
-                        </SectionContainer>
-                    </Section>
+                                </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
 
 
-                    <Section ref={section4Ref}>
-                        <SectionContainer>
+                    <Swipe_Section ref={section4Ref}>
+                        <SectionContainer2>
 
-                        <FormulaBox>
+                        <FormulaBox2>
 
 
                                 <BodyText>
@@ -259,22 +242,22 @@ const C1 = () => {
                         </div>
 
 
-                                </FormulaBox>
-                        </SectionContainer>
+                                </FormulaBox2>
+                        </SectionContainer2>
                         <br></br>
                         <br></br>
 
                        
-                    </Section>
+                    </Swipe_Section>
 
 
-                    <Section ref={section5Ref}>
+                    <Swipe_Section ref={section5Ref}>
 
-                        <SectionContainer>
+                        <SectionContainer2>
 
 
 
-                        <FormulaBox>
+                        <FormulaBox2>
 
 
 
@@ -289,16 +272,22 @@ const C1 = () => {
                             <br></br>
 
 
-                            </FormulaBox>
+                            </FormulaBox2>
 
-                        </SectionContainer>
+                        </SectionContainer2>
                        
-                    </Section>
+                    </Swipe_Section>
 
 
-                </SwipeContainer>
+
+
+                </SwipeContainer2>
             </StyledBox>
-        </Container>
+        </Container_Progress_Bar>
+
+
+
+
     );
 }
 

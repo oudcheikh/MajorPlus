@@ -1,4 +1,4 @@
-import React, {useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Exercice1 from '../les solides/Exercice1'
 import Cardre from '../les solides/Cadre'
 import Pyramides from '../les solides/Pyramides'
@@ -7,56 +7,32 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Import des styles
-import { Box, Typography, CardContent, Grid, Fab, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton
+    Container, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    textStyle2, SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+import SegmentedProgressBar from '../progressBar/ProgressBar';
 
 
-export const textStyle = styled.h2`
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    color: #444;
-
-    @media (max-width: 480px) {
-        font-size: 18px;
-    }
+export const StyledBox = styled.div`
+padding-left: 2px;
+padding-right:2px;
+padding-top: 300px;
+padding-bottom:2px;
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
-
-
-;
-
-
-
-const StyledBox = styled(Box)({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 'auto', // Réglez la hauteur sur auto ou une valeur appropriée
-    overflow: 'hidden',
-});
-
-
-const SwipeContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-snap-destination: 100%;
-  width: 100%;
-`;
-
-const Section = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-  scroll-snap-align: start;
-  padding: 20px;
-`;
-
-
 
 const Les_solides = () => {
+
+
+
+
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -65,12 +41,11 @@ const Les_solides = () => {
     const navigate = useNavigate();
 
 
-    const [lastSectionReached, setLastSectionReached] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+
     const [sectionsViewed, setSectionsViewed] = useState(0);
     const totalSections = 4; // Nombre total de sections
-    const progressWidth = (sectionsViewed / totalSections) * 100 + "%";
-
-
 
 
 
@@ -98,83 +73,69 @@ const Les_solides = () => {
             }
         }
 
-    
+        // Afficher la section actuelle dans la console
+        console.log("Section actuelle :", currentSection + 1);
         setSectionsViewed(currentSection + 1);
-        if (currentSection + 1 == 4) {
+        setProgress(currentSection + 1)
 
-
-            setLastSectionReached(true)
-        }
 
 
     };
 
-    const fermer = () => {
-        setLastSectionReached(false)
+
+    const nextChap = () => {
+        navigate("");
     }
 
 
 
-    const handleClick = () => {
-        navigate("/Periode4");
-    };
-
     return (
-        <Container>
 
 
-            <div className="progressContainer">
-                <div className="progress-bar">
-                    <div className="progress" style={{ width: progressWidth }}></div>
-                </div>
 
-                <button className="backToHomeButton" onClick={handleClick}>
-                    X  </button>
-            </div>
+        <Container_Progress_Bar>
+
+
+
+            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
+
+
+
 
             <StyledBox>
 
-                <SwipeContainer onScroll={handleScroll}>
+                <SwipeContainer2 onScroll={handleScroll}>
 
-
-                    <Section ref={section1Ref}>
-
-
-
-
-
-
-                        <button className="continue-button" >
-                            <FormulaText><strong> Les solides </strong></FormulaText>
-
-                        </button>
-
-                        <img src={'/images/Math/periode 4/uniivers.png'} alt="univers" />
-
-
-                        <SectionContainer>
-                            <strong>
-                                <Card>
-
+                    <Swipe_Section ref={section1Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <button className="continue-button" >
+                                    <FormulaText><strong> Les solides </strong></FormulaText>
+                                </button>
+                                <img src={'/images/Math/periode 4/uniivers.png'} alt="univers" />
+                                <strong>
+                                    <Card>
                                     <BodyText>
+                                            Notre univers est  <span style={{ color: 'blue' }}>un ensemble d'objet</span> chaque objet admet  <span style={{ color: '#ff4500' }}>sa propre forme</span>
+                                            <br></br>
+                                            <strong style={{ color: 'orange' }}>Allons-nous découvrir les formes des objets?</strong>
+                                        </BodyText>
 
-                                        Notre univers est  <span style={{ color: 'blue' }}>un ensemble d'objet</span> chaque objet admet  <span style={{ color: '#ff4500' }}>sa propre forme</span>
-                                        <br></br>
-                                        <strong style={{ color: 'orange' }}>Allons-nous découvrir les formes des objets?</strong>
-                                    </BodyText>
+                                    </Card>
+                                </strong>
+                            </FormulaBox2>
+                     </SectionContainer2>
 
-                                </Card>
-                            </strong>
-                        </SectionContainer>
-
-                    </Section>
-
-
-                    <Section ref={section2Ref}>
-                        <SectionContainer>
+                    </Swipe_Section>
 
 
-                            <FormulaBox>
+
+
+                    <Swipe_Section  ref={section2Ref}>
+                        <SectionContainer2>
+
+
+                            <FormulaBox2>
 
 
                                 <button className="continue-button" >
@@ -184,15 +145,19 @@ const Les_solides = () => {
 
 
                                 <Cardre />
-                            </FormulaBox>
-                        </SectionContainer>
-                    </Section>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
 
-                    <Section ref={section3Ref}>
-                        <SectionContainer>
+                  
 
 
-                            <FormulaBox>
+
+                    <Swipe_Section ref={section3Ref}>
+                        <SectionContainer2>
+
+
+                            <FormulaBox2>
 
 
                                 <button className="continue-button" >
@@ -208,15 +173,16 @@ const Les_solides = () => {
                                 </div>
 
 
-                            </FormulaBox>
-                        </SectionContainer>
-                    </Section >
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section >
 
 
-                    <Section ref={section4Ref}>
-                        <SectionContainer>
 
-                            <FormulaBox>
+                    <Swipe_Section ref={section4Ref}>
+                        <SectionContainer2>
+
+                            <FormulaBox2>
 
                                 <button className="continue-button" >
                                     <FormulaText><strong> Les sphéres  </strong></FormulaText>
@@ -237,15 +203,20 @@ const Les_solides = () => {
                                 </div>
 
 
-                            </FormulaBox>
-                        </SectionContainer>
+                            </FormulaBox2>
+                        </SectionContainer2>
 
-                    </Section>
+                    </Swipe_Section>
 
 
-                </SwipeContainer>
+                </SwipeContainer2>
             </StyledBox>
-        </Container>
+        </Container_Progress_Bar>
+
+
+
+
+
     );
 }
 
