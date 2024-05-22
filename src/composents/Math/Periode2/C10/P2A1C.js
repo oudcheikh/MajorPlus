@@ -1,157 +1,310 @@
-import React, { useState } from 'react';
-//import teacherImage from '../Images/teacher.png';
+
+
+
+import React, { useRef, useState, useEffect } from "react";
+
+import { useNavigate } from 'react-router-dom';
+
+import '../../Periode4/progressBar/SegmentedProgressBar.css'
+import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
+import styled from 'styled-components';
+import { Box } from '@mui/material';
+
+import {
+    Container, SectionContainer, ImageContainer, Card, BodyText,
+    Title, Subtitle, FormulaBox, FormulaText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    SwipeContainer2, Swipe_Section,
+} from '../../../Styles/MajorStyles';
+
 import Test1 from './QCMC10';
 import P2A2_1 from './P2A2-1';
 import P2A2_2 from './P2A2-2';
 import Audio from "./Audio10";
 
-// Import des styles
-import {
-    Container,
-    SectionContainer,
-    ImageContainer,
-    Card,
-    BodyText,
-    Title,
-    Subtitle,
-    FormulaBox,
-    FormulaText,
-    ContinueButton,
-    SkipIcon,
-    
-} from '../../../Styles/MajorStyles';  // Ajustez le chemin si nécessaire
-
-// ... (le reste de votre code React)
 
 
 
+export const StyledBox = styled.div`
+padding-left: 2px;
+padding-right:2px;
+padding-top: 340%;
+padding-bottom:2px;
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const NumberDisplay3 = styled(Box)(({ isActive }) => ({
+    boxSizing: 'border-box',
+    width: '100%',
+    height: 'auto',
+    // margin: '20px auto',
+    padding: '5px',
+    backgroundColor: ' #d8e8fa;',
+    border: '3px dashed black',
+    transition: 'background-color 0.4s, transform 0.3s',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '1em',
+    fontFamily: "'Comic Sans MS', sans-serif",
+    '&:hover': {
+        transform: 'scale(1.05)',
+    },
+}));
 
 
 // App Component
 const App = () => {
-    const [section, setSection] = useState(0);
-    const [showSections, setShowSections] = useState([true, true, true, true, true, true, true,true]);
 
-    const toggleSection = (index) => {
-        const updatedShowSections = [...showSections];
-        updatedShowSections[index] = !updatedShowSections[index];
-        setShowSections(updatedShowSections);
+
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const section1Ref = useRef(null);
+    const section2Ref = useRef(null);
+    const section3Ref = useRef(null);
+    const section4Ref = useRef(null);
+    const section5Ref = useRef(null);
+    const section6Ref = useRef(null);
+    const section7Ref = useRef(null);
+    const section8Ref = useRef(null);
+    const section9Ref = useRef(null);
+
+    const navigate = useNavigate();
+
+
+    const [progress, setProgress] = useState(0);
+
+
+    const [sectionsViewed, setSectionsViewed] = useState(0);
+    const totalSections = 8; // Nombre total de sections
+
+
+
+
+    const handleScroll = (event) => {
+        const { scrollLeft } = event.target;
+        setScrollPosition(scrollLeft);
+
+        // Récupérer les positions de début de chaque section
+        const sectionPositions = [
+            0, // Position de début de la première section
+            section1Ref.current.offsetWidth, // Position de début de la deuxième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth,
+            
+
+
+        ];
+
+        // Trouver la section actuelle en fonction de la position de défilement
+        let currentSection = 0;
+        for (let i = 0; i < sectionPositions.length; i++) {
+            if (scrollLeft >= sectionPositions[i]) {
+                currentSection = i;
+
+
+            }
+        }
+
+        // Afficher la section actuelle dans la console
+        console.log("Section actuelle :", currentSection + 1);
+        setSectionsViewed(currentSection + 1);
+        setProgress(currentSection + 1)
+
+
+
     };
 
-    const [showP2A21,] = useState(false);
 
-    
-    
+    const nextChap = () => {
+        navigate("/Les_solides");
+    }
+    const [showP2A21, setShowP2A21] = useState(false);
+
 
     return (
-        <Container>
-            <Title>🛍️ Calcul du Prix 🛍️</Title>
+        <Container_Progress_Bar>
 
-            {showSections[0] && (
-                <SectionContainer>
-                    <ImageContainer>
-                        <img src={"images/Images/teacher.png"} alt="Teacher" />
-                    </ImageContainer>
-                    <Card>
-                        <BodyText>
-                            Salut! Aujourd'hui, on va parler d'un sujet intéressant : comment calculer le prix de vente, la perte et le bénéfice.
-                        </BodyText>
-                    </Card>
-                    <SkipIcon onClick={() => toggleSection(0)}> {showSections[0] ? "^" : "v"}</SkipIcon>
-                </SectionContainer>
-            )}
 
-            {section >= 1 && showSections[1] && (
-                <SectionContainer>
-                    <ImageContainer>
-                        <img src={"images/Images/teacher.png"} alt="Teacher" />
-                    </ImageContainer>
-                    <div>
-                        <Subtitle>🤓 Les Bases 🤓</Subtitle>
-                        <Card>
-                            <BodyText>
-                                Le <strong>prix de vente</strong> est le montant pour lequel tu vends quelque chose. Simple, non? 😉
-                            </BodyText>
-                        </Card>
-                    </div>
-                    <SkipIcon onClick={() => toggleSection(1)}> {showSections[1] ? "^" : "v"}</SkipIcon>
-                </SectionContainer>
-            )}
 
-            {section >= 2 && showSections[2] && (
-                <SectionContainer>
-                    <ImageContainer>
-                        <img src={"images/Images/teacher.png"} alt="Teacher" />
-                    </ImageContainer>
-                    <div>
-                        <Subtitle>💰 Bénéfice 💰</Subtitle>
-                        <Card>
-                            <BodyText>
-                                Le bénéfice est la différence entre ce que ça t'a coûté d'avoir ton produit  et ce que tu as reçu en le vendant. 
-                            </BodyText>
-                        </Card>
-                    </div>
-                    <SkipIcon onClick={() => toggleSection(2)}> {showSections[2] ? "^" : "v"}</SkipIcon>
-                </SectionContainer>
-            )}
+            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
 
-            {section >= 3 && showSections[3] && (
-                <SectionContainer>
-                    <ImageContainer>
-                        <img src={"images/Images/teacher.png"} alt="Teacher" />
-                    </ImageContainer>
-                    <div>
-                        <Subtitle>😞 Perte 😞</Subtitle>
-                        <Card>
-                            <BodyText>
-                                Si tu vends ton produit moins cher que ce qu'il t'a coûté, alors tu es en perte. 
-                            </BodyText>
-                        </Card>
-                    </div>
-                    <SkipIcon onClick={() => toggleSection(3)}> {showSections[3] ? "^" : "v"}</SkipIcon>
-                </SectionContainer>
-            )}
+            <StyledBox  >
+                <SwipeContainer2 onScroll={handleScroll}>
 
-            {section >= 4 && showSections[4] &&  (
-                <SectionContainer>
-                   
-                    <FormulaBox>
-                        <Subtitle>🔍 Formules Clés 🔍</Subtitle>
-                        <FormulaText><strong>Bénéfice</strong> = Prix de vente - Prix d'achat</FormulaText>
-                        <FormulaText><strong>Perte</strong> = Prix d'achat - Prix de vente</FormulaText>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-<Audio/>
-</div>
-                    </FormulaBox>
-                    
-                </SectionContainer>
-            )}
+                    <Swipe_Section ref={section1Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2 style={{ backgroundColor: '#d8e8fa ' }}>
+                                <button className="continue-button" >
+                                    <FormulaText><strong>Calcul du Prix </strong></FormulaText>
+                                </button>
 
-          
-            <br></br>
-          <br></br>
-          {section >= 5 && showSections[5]  && (
-                <div>
-                    <Test1 />
-                </div>
-            )}
+                                <img src={"/images/Math/periode2/calcgif.gif"} alt="Teacher" />
 
-            {section >= 6 && showSections[6]  && (
-                <div>
-                    <P2A2_1 />
-                </div>
-            )}
 
-            {section >= 7 && showSections[7]  && (
-                <div>
-                    <P2A2_2 />
-                </div>
-            )}
+                                <Card>
+                                    <strong>
+                                        <BodyText>
+                                            Salut! Aujourd'hui, on va parler d'un sujet intéressant :<span style={{ color: 'orange' }}>comment calculer le prix de vente,</span>
+                                            <span style={{ color: 'blue' }}>la perte </span><span style={{ color: 'green' }}> et le bénéfice.</span>
+                                            <br></br>
 
-            {section < 7 && (
-                <ContinueButton  onClick={() => setSection(section + 1)}>Continuer</ContinueButton>                        )}
-    </Container>
-  );
+                                        </BodyText>
+                                    </strong>
+                                </Card>
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+                    <Swipe_Section ref={section2Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2  >
+                                <button className="continue-button" >
+                                    <FormulaText><strong>Les Bases </strong></FormulaText>
+                                </button>
+
+                                <img src={"/images/Math/periode2/prixVente.png"} alt="Teacher" />
+
+
+                                <Card>
+                                    <strong>
+                                        <BodyText>
+                                            Le <strong>prix de vente</strong> est le montant pour lequel tu vends quelque chose. Simple, non? 😉
+
+                                        </BodyText>
+                                    </strong>
+                                </Card>
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section3Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>💰 Bénéfice 💰 </ContinueButton>
+
+                                <img src={"/images/Math/periode2/benifice.png"} alt="Teacher" />
+
+                                <Card>
+                                    <BodyText>
+                                        <strong>  C'est la différence entre le total des ventes et le total des achats/frais/ charges.On parle de bénéfice lorsque la différence est positive.
+                                        </strong> </BodyText>
+                                </Card>
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section4Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>😞 Perte 😞 </ContinueButton>
+
+                                <img src={"/images/Math/periode2/perte.png"} alt="Teacher" />
+
+
+                                <Card>
+                                    <BodyText>
+                                        Si tu vends ton produit moins cher que ce qu'il t'a coûté, alors tu es en perte.
+                                    </BodyText>
+                                </Card>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+                    <Swipe_Section ref={section5Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Formules </ContinueButton>
+
+                                <img src={"/images/Math/periode2/aaa.png"} alt="Teacher" />
+
+                                <NumberDisplay3>
+                                    <FormulaText><strong>Bénéfice</strong> = Prix de vente - Prix d'achat</FormulaText>
+
+                                </NumberDisplay3>
+                                <br></br>
+
+
+                                <NumberDisplay3>
+
+                                    <FormulaText><strong>Perte</strong> = Prix d'achat - Prix de vente</FormulaText>
+                                </NumberDisplay3>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+
+
+                    <Swipe_Section ref={section6Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Exercice </ContinueButton>
+
+                              
+
+
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                <Test1 />
+                      </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section7Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Exercice </ContinueButton>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                <P2A2_1 />
+                                </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section8Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Exercice </ContinueButton>
+
+
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                <P2A2_2 />
+                                </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                </SwipeContainer2>
+            </StyledBox>
+        </Container_Progress_Bar>
+
+    );
 }
 
 

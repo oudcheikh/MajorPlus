@@ -12,7 +12,7 @@ const BandeContainer = styled.div`
 `;
 
 const BandeBox = styled.div`
-  width: 370px;
+  width: 320px;
   height: 60px;
   border: 4px solid #4caf50;
   display: flex;
@@ -22,7 +22,7 @@ const BandeBox = styled.div`
   background-color: #ffeb3b;
 `;
 const BandeBox1 = styled.div`
-  width: 370px;
+  width: 320px;
   height: 35px;
   display: flex;
   overflow: hidden;
@@ -81,9 +81,14 @@ const Bande = () => {
   return (
     <BandeContainer>
       <div className="bande-box-container">
+
         <BandeBox1>
+       
+
           {[...Array(12)].map((_, index) => (
             <FractionBande1>
+
+
               {index < activeFractionCount && (
                 <div class="frac">
                   <span>{`${index + 1}`}</span>
@@ -94,6 +99,8 @@ const Bande = () => {
             </FractionBande1>
             
           ))}
+
+          
         </BandeBox1>
       </div>
 

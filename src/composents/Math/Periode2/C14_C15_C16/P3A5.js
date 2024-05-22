@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-// import fteacher from "../Images/fteacherr.png";
-// import inestine from "../Images/inestine.png";
-import  Audio from "./Audio14";
+
+import React, { useRef, useState, useEffect } from "react";
+
+import { useNavigate } from 'react-router-dom';
+
+import '../../Periode4/progressBar/SegmentedProgressBar.css'
+import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
+import styled from 'styled-components';
+import { Box } from '@mui/material';
+
 
 import P3A5_2 from "./P3A5-2";
 import Bend from "./Bend";
@@ -10,22 +15,14 @@ import "./bend.css";
 import useSound from "use-sound";
 import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";
-import QCMC14 from'./QCMC14';
-import {ContinueButton} from '../../../Styles/MajorStyles';
+import QCMC14 from './QCMC14';
+import { ContinueButton } from '../../../Styles/MajorStyles';
 
 import {
-  Container,
-  SectionContainer,
-  ImageContainer,
-  Card,
-  BodyText,
-  Title,
-  Subtitle,
-  FormulaBox,
-  FormulaText
+  SectionContainer, ImageContainer, BodyText, Container, Card,
+  Title, Subtitle, FormulaBox, FormulaText, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+  SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
-
-
 const BandeBox = styled.div`
   width: 150px;
   height: 20px;
@@ -102,7 +99,39 @@ const ResetButton = styled.button`
   }
 `;
 
+export const StyledBox = styled.div`
+padding-left: 0px;
+padding-right:0px;
+padding-top: 270%;
+padding-bottom:2px;
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
+
+const NumberDisplay3 = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: ' rgb(202, 166, 100);',
+  border: '3px dashed black',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
 
 // App Component
 const P3A5 = () => {
@@ -121,6 +150,29 @@ const P3A5 = () => {
     true,
     true,
   ]);
+
+
+
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const section1Ref = useRef(null);
+  const section2Ref = useRef(null);
+  const section3Ref = useRef(null);
+  const section4Ref = useRef(null);
+  const section5Ref = useRef(null);
+  const section6Ref = useRef(null);
+
+
+  const navigate = useNavigate();
+
+
+  const [progress, setProgress] = useState(0);
+
+
+  const [sectionsViewed, setSectionsViewed] = useState(0);
+  const totalSections = 5; // Nombre total de sections
+
+
   const toggleSection = (index) => {
     const updatedShowSections = [...showSections];
     updatedShowSections[index] = !updatedShowSections[index];
@@ -131,7 +183,7 @@ const P3A5 = () => {
     const newQuestions = [generatenewComparaison()];
     setQuestions(newQuestions);
     setShowCongratulations(false);
-    
+
   };
   const generatenewComparaison = () => {
     const first = Math.floor(Math.random() * 12) + 1;
@@ -174,209 +226,323 @@ const P3A5 = () => {
 
   const reset = () => {
     if (opverify) {
-        generateQuestion();
-        setShowCongratulations(false);
-        setOpverify(false); // Reset the verification status
-        
-      }
+      generateQuestion();
+      setShowCongratulations(false);
+      setOpverify(false); // Reset the verification status
+
+    }
   };
 
   const verify = () => {
     VerifieSumbol();
   };
 
+
+
+
+
+  const handleScroll = (event) => {
+    const { scrollLeft } = event.target;
+    setScrollPosition(scrollLeft);
+
+    // Récupérer les positions de début de chaque section
+    const sectionPositions = [
+      0, // Position de début de la première section
+      section1Ref.current.offsetWidth, // Position de début de la deuxième section
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
+
+
+    ];
+
+    // Trouver la section actuelle en fonction de la position de défilement
+    let currentSection = 0;
+    for (let i = 0; i < sectionPositions.length; i++) {
+      if (scrollLeft >= sectionPositions[i]) {
+        currentSection = i;
+
+
+      }
+    }
+
+    // Afficher la section actuelle dans la console
+    console.log("Section actuelle :", currentSection + 1);
+    setSectionsViewed(currentSection + 1);
+    setProgress(currentSection + 1)
+
+
+
+  };
+
+
+  const nextChap = () => {
+    navigate("/Les_solides");
+  }
+
+
+
+
+
   return (
+
+
     <Container>
-      <Title>➗Comparaison des fraction➗</Title>
+      <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
 
-      {showSections[0] && (
-        <SectionContainer>
-          <ImageContainer>
-            <img src={"images/Images/fteacher.png"} alt="Teacher" style={{ marginTop: "25px" }} />
-          </ImageContainer>
-          <Card>
-            <BodyText>
-              Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
-              passionnant : la comparaison des fractions.
-            </BodyText>
-          </Card>
-        </SectionContainer>
-      )}
+      <StyledBox>
+        <SwipeContainer2 onScroll={handleScroll}>
 
-      {section >= 1 && showSections[1] && (
-<SectionContainer>
-        <FormulaBox>
-                        <Subtitle>🔍 Concept clés🔍</Subtitle>
-                        <FormulaText>Lors de la comparaison de fractions, se concentrer sur les numérateurs est crucial, car un numérateur plus grand signifie plus de morceaux. Si les dénominateurs sont les mêmes, comparer les numérateurs suffit pour déterminer la fraction la plus grande. Sinon, il faut trouver des fractions équivalentes avec le même dénominateur pour une comparaison précise. Cela permet des comparaisons efficaces pour déterminer la plus grande ou la plus petite fraction.
-</FormulaText>
-<div style={{ display: "flex", alignItems: "center" }}>
-  <Audio/>
-</div>
+
+
+          <Swipe_Section ref={section1Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <button className="continue-button" >
+                  <FormulaText><strong> Comparaison des fractions </strong></FormulaText>
+                </button>
+
+                <img src={"/images/Math/periode2/comparaison.png"} alt="Teacher" />
+
+
+                <Card>
+                  <strong>
+                    <BodyText>
+                      Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
+                      passionnant :
+                      <br></br>
+                      <span style={{ color: 'blue' }}> la comparaison des fractions.    </span>
+
+                    </BodyText>
+                  </strong>
+                </Card>
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+
+          <Swipe_Section ref={section2Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton> Concept clés </ContinueButton>
+
+                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+
+
+
+
+
+                <FormulaText>Pour une comparaison équitable on doit faire attention a ces points:</FormulaText>
+
+                < NumberDisplay3>
+                  <li>Si les dénominateurs sont égeaux , il suffit de comparer les numérateurs</li>
+                </NumberDisplay3>
+                
+                <br></br>
+                < NumberDisplay3>
+                  <li>Si les dénominateurs ne sont pas égeaux , il faut trouver des fractions équivalentes avec le même dénominateur pour une comparaison précise.</li>
+                </NumberDisplay3>
+
+
+
+
+
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+          <Swipe_Section ref={section3Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>Exemple </ContinueButton>
+                <FormulaText><strong>Pour bien comprendre on vous propose cette structure </strong></FormulaText>
+                <div>
+                  <Bend />
+                </div>
+
+
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+          <Swipe_Section ref={section4Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton> Exercice </ContinueButton>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>
+                    <ImageContainer>
+                      <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
+                    </ImageContainer>
+                  </div>
+                  {!showP2A21 && (
+                    <div>
+                      <P3A5_2 />
+                    </div>
+                  )}
+
+                </div>
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+
+
+
+          <Swipe_Section ref={section5Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton> Exercice </ContinueButton>
+                <SectionContainer>
+                  <SymbContainers>
+                    <FormulaBox
+                      className="symbols"
+                      onClick={() => handleSymbolClick(">")}
+                    >
+                      &#62;
                     </FormulaBox>
-        </SectionContainer>)}
-        {section >= 2 && showSections[2] && (
-      <Subtitle> Activites</Subtitle>)}
-      {section >= 2 && showSections[2] && (
-        <SectionContainer>
-          {!showP2A21 && (
-            <div>
-              <Bend />
-            </div>
-          )}
-        </SectionContainer>
-      )}
+
+                    <FormulaBox
+                      className="symbols"
+                      onClick={() => handleSymbolClick("<")}
+                    >
+                      &#60;
+                    </FormulaBox>
+
+                    <FormulaBox
+                      className="symbols"
+                      onClick={() => handleSymbolClick("=")}
+                    >
+                      &#61;
+                    </FormulaBox>
+                  </SymbContainers>
+
+                  <DescContainers>
+                    <h3>sup</h3>
+                    <h3 style={{ marginTop: "50px" }}>Inf</h3>
+                    <h3 style={{ marginTop: "45px" }}>Egale</h3>
+                  </DescContainers>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <FormulaBox className="fractions">
+                        <div class="frac">
+                          {questions.map((q, index) => (
+                            <span>{q.first}</span>
+                          ))}
+                          <span class="symbol">/</span>
+                          <span class="bottom">12</span>
+                        </div>
+                      </FormulaBox>
+
+                      <FormulaBox className="mainSymb">{selectedSymbol}</FormulaBox>
+
+                      <FormulaBox className="fractions">
+                        <div class="frac1">
+                          {questions.map((q, index) => (
+                            <span>{q.last}</span>
+                          ))}
+                          <span class="symbol">/</span>
+                          <span class="bottom">12</span>
+                        </div>
+                      </FormulaBox>
+                    </div>
+                    <div>
+                      <ResetButton variant="contained" type="submit" onClick={verify} style={{ marginRight: "25px" }} >
+                        Verifier
+                      </ResetButton>
+                      {showX && <span>✖️</span>}
+                      {showCongratulations && <span>✅</span>}
+                      <VerifieButton style={{ marginLeft: "25px" }} onClick={reset}>
+                        Reset
+                      </VerifieButton>
+                    </div>
+                    {showCongratulations && (
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <div class="frac1">
+                          {questions.map((q, index) => (
+                            <span>{q.first}</span>
+                          ))}
+                          <span class="symbol">/</span>
+                          <span class="bottom">12</span>
+
+                          {questions.map((q, index) => (
+                            <span>{q.last}</span>
+                          ))}
+                          <span class="symbol">/</span>
+                          <span class="bottom">12</span>
+                        </div>
+                        {questions.map((q, index) => (
+                          <div style={{ marginLeft: "2px" }}>
+                            <BandeBox style={{ marginBottom: "2px" }}>
+
+                              {[...Array(12)].map((_, index) => (
+                                <FractionBande
+                                  key={index}
+                                  isActive={index < q.first}
+                                  onClick={() => { }}>
+
+                                </FractionBande>
+                              ))}
+                            </BandeBox>
+                            <BandeBox>
+                              {[...Array(12)].map((_, index) => (
+                                <FractionBande
+                                  key={index}
+                                  isActive={index < q.last}
+                                  onClick={() => { }}>
+
+                                </FractionBande>
+                              ))}
+                            </BandeBox>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </SectionContainer>
 
 
-      {section >= 2 && showSections[2] && (
-        <SectionContainer>
-             <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div>
-            <ImageContainer>
-            <img src={"images/Images/inestine.png"} alt="Teacher" style={{ marginTop: "25px" }} />
-          </ImageContainer>
-            </div>
-            {!showP2A21 && (
-        <div>
-          <P3A5_2 />
-        </div>
-      )}
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
 
-      </div>
+          <Swipe_Section ref={section6Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton> QCM </ContinueButton>
 
-        </SectionContainer>
-      )}
-      
-      
+                <QCMC14 />
 
-      {section >= 2 && showSections[2] && (<SectionContainer>
-        <SymbContainers>
-            <FormulaBox
-              className="symbols"
-              onClick={() => handleSymbolClick(">")}
-            >
-              &#62;
-            </FormulaBox>
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+        </SwipeContainer2>
+      </StyledBox>
 
-            <FormulaBox
-              className="symbols"
-              onClick={() => handleSymbolClick("<")}
-            >
-              &#60;
-            </FormulaBox>
-
-            <FormulaBox
-              className="symbols"
-              onClick={() => handleSymbolClick("=")}
-            >
-              &#61;
-            </FormulaBox>
-          </SymbContainers>
-
-          <DescContainers>
-            <h3>superieur</h3>
-            <h3 style={{ marginTop: "50px" }}>Inferieur</h3>
-            <h3 style={{ marginTop: "45px" }}>Egale</h3>
-          </DescContainers>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <FormulaBox className="fractions">
-                <div class="frac">
-                  {questions.map((q, index) => (
-                    <span>{q.first}</span>
-                  ))}
-                  <span class="symbol">/</span>
-                  <span class="bottom">12</span>
-                </div>
-              </FormulaBox>
-
-              <FormulaBox className="mainSymb">{selectedSymbol}</FormulaBox>
-
-              <FormulaBox className="fractions">
-                <div class="frac1">
-                  {questions.map((q, index) => (
-                    <span>{q.last}</span>
-                  ))}
-                  <span class="symbol">/</span>
-                  <span class="bottom">12</span>
-                </div>
-              </FormulaBox>
-            </div>
-            <div>
-              <ResetButton variant="contained" type="submit" onClick={verify}  style={{ marginRight: "25px" }} >
-                Verifier
-              </ResetButton>
-              {showX && <span>✖️</span>}
-              {showCongratulations && <span>✅</span>}
-              <VerifieButton style={{ marginLeft: "25px" }} onClick={reset}>
-                Reset
-              </VerifieButton>
-            </div>
-            {showCongratulations && (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <div class="frac1">
-                  {questions.map((q, index) => (
-                    <span>{q.first}</span>
-                  ))}
-                  <span class="symbol">/</span>
-                  <span class="bottom">12</span>
-
-                  {questions.map((q, index) => (
-                    <span>{q.last}</span>
-                  ))}
-                  <span class="symbol">/</span>
-                  <span class="bottom">12</span>
-                </div>
-                {questions.map((q, index) => (
-                <div style={{ marginLeft: "20px" }}>
-                  <BandeBox style={{ marginBottom: "20px" }}>
-                    
-                    {[...Array(12)].map((_, index) => (
-                      <FractionBande
-                      key={index}
-                      isActive={index < q.first}
-                      onClick={() => {}}>
-                       
-                      </FractionBande>
-                    ))}
-                  </BandeBox>
-                  <BandeBox>
-                  {[...Array(12)].map((_, index) => (
-                      <FractionBande
-                      key={index}
-                      isActive={index < q.last}
-                      onClick={() => {}}>
-
-                      </FractionBande>
-                    ))}
-                  </BandeBox>
-                </div>
-                ))}
-              </div>
-            )}
-          </div>
-        
-        </SectionContainer>)}
-        {section >= 3 && showSections[1] && (
-<SectionContainer>
-       <QCMC14/>
-        </SectionContainer>)}
-
-      {section < 3 && (
-                       <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>            
-
-      )}
     </Container>
   );
 };

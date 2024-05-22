@@ -111,6 +111,9 @@ function P2A2_2() {
     <Card style={{ minHeight: "400px" }}>
       <CardContent>
         <Box my={2}>
+
+        <br></br><br></br>
+        <br></br><br></br>
           <div style={{ position: "relative" }}>
             <img
               src={"/images/Math/C/imagesC10/kid.png"}

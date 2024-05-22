@@ -218,6 +218,8 @@ import Les_solides from'./composents/Math/Periode4/les solides/les_solides.js'
 import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/MesureAgraire.js'
 
 import Division  from'./composents/Math/Periode2/C09/P2A1A.js'
+import M3  from'./composents/Math/Periode2/M3/M3.js'
+
 
 
 function App() {
@@ -435,8 +437,10 @@ function App() {
 
           <Route path= "/Les_mesures_Agrairs" element={<Les_mesures_Agrairs/>} />
           <Route path= "/Division" element={<Division/>} />
+          <Route path= "/M3" element={<M3/>} />
+         
   
-          
+        
       
         </Routes>
       

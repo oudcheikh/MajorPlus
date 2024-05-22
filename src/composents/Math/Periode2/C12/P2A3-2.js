@@ -107,16 +107,18 @@ for (const innerArray of x) {
     <Card style={{ minHeight: '400px' }}>
       <CardContent>
         <Box my={2}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"images/Images/teacher.png"}
+
+        <img
+              src={"/images/Math/C/imagesC12/owl2.png"}
               alt="kangaroo"
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
+              // style={{
+              //   width: '100px',
+              //   marginBottom: '10px',
+              //   marginRight: '10px',
+              //}}
             />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+           
             <Card
               style={{
                 borderRadius: '20px',

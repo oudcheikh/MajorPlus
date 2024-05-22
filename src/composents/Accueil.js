@@ -29,11 +29,11 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
 function Acceuil() {
   return (
     <div className="app-container">
-    
+
       <div className="full-width-container">
         <Card title="اللغة العربية " content="" icon={"images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
         <Card title="Français" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
- <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in"/>
+        <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in" />
       </div>
     </div>
   );

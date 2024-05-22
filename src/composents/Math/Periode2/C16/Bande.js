@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { ContinueButton } from '../../../Styles/MajorStyles';
 
 const Container = styled.div`
     display: flex;
@@ -122,7 +123,10 @@ function FractionalFigure() {
   return (
     <Card style={{ width: '90%', margin: '2rem auto', padding: '1rem' }}>
         <CardContent>
+
+        <ContinueButton>   Exercice </ContinueButton>
             <Container>
+          
                 <Instruction>Cocher {selectedFractionCount}/{numFractions} fractions </Instruction>
                 <FractionContainer>
                     {Array.from({ length: numFractions }).map((_, index) => (

@@ -10,7 +10,6 @@ import P2A3_2 from './P2A3-2';
 import Audio from "./Audio12";
 
 
-
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 
@@ -26,7 +25,7 @@ import {
 export const StyledBox = styled.div`
 padding-left: 2px;
 padding-right:2px;
-padding-top: 30px;
+padding-top: 240%;
 padding-bottom:2px;
     width: 100%;
     max-width: 100%;
@@ -42,7 +41,7 @@ const NumberDisplay3 = styled(Box)(({ isActive }) => ({
     height: 'auto',
     // margin: '20px auto',
     padding: '5px',
-    backgroundColor: ' orange',
+    backgroundColor: ' rgb(202, 166, 100);',
     border: '3px dashed #B3E5FC',
     transition: 'background-color 0.4s, transform 0.3s',
     cursor: 'pointer',
@@ -78,17 +77,8 @@ const NumberDisplay = styled(Box)(({ isActive }) => ({
 
 // App Component
 const P2A1B = () => {
-    const [section, setSection] = useState(0);
-    const [showSections, setShowSections] = useState([true, true, true, true, true, true, true, true]);
-
-    const toggleSection = (index) => {
-        const updatedShowSections = [...showSections];
-        updatedShowSections[index] = !updatedShowSections[index];
-        setShowSections(updatedShowSections);
-    };
-
-
-
+    
+   
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -98,7 +88,7 @@ const P2A1B = () => {
     const section6Ref = useRef(null);
     const section7Ref = useRef(null);
     const section8Ref = useRef(null);
-
+    const section9Ref = useRef(null);
 
     const navigate = useNavigate();
 
@@ -107,7 +97,7 @@ const P2A1B = () => {
 
 
     const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 7; // Nombre total de sections
+    const totalSections = 9; // Nombre total de sections
 
 
 
@@ -126,6 +116,10 @@ const P2A1B = () => {
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth,
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth  +section9Ref.current.offsetWidth,
+
+
         ];
 
         // Trouver la section actuelle en fonction de la position de défilement
@@ -155,6 +149,8 @@ const P2A1B = () => {
 
 
     return (
+
+       
         <Container_Progress_Bar>
 
 
@@ -210,9 +206,6 @@ const P2A1B = () => {
 
                                     </Card>
                                 </div>
-
-
-
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
@@ -247,7 +240,7 @@ const P2A1B = () => {
 
 
 
-                                <strong> <span style={{ color: 'blue' }}>    les multiples de 3 :</span></strong>
+                             <FormulaText>   <strong> <span style={{ color: 'blue' }}>    les multiples de 3 :</span></strong></FormulaText>
 
 
                                 <img src={"/images/Math/C/imagesC12/trois.png"} alt="Teacher" />
@@ -263,6 +256,9 @@ const P2A1B = () => {
                                         7*3=21 <br></br>
                                         9*3=27 <br></br>
                                         10*3=30 <br></br>
+                                        .<br></br>
+                                        .<br></br>
+                                        .<br></br>
                                     </strong>
                                 </NumberDisplay>
 
@@ -278,8 +274,7 @@ const P2A1B = () => {
                             <FormulaBox2>
                                 <ContinueButton>Exemple 2</ContinueButton>
 
-                                <strong> <span style={{ color: 'blue' }}> les diviseurs du nombre 12 : </span></strong>
-
+                                <FormulaText>    <strong> <span style={{ color: 'blue' }}> les diviseurs du nombre 12 : </span></strong></FormulaText>
 
                                 <img src={"/images/Math/C/imagesC12/douze.png"} alt="douze" />
 
@@ -296,9 +291,10 @@ const P2A1B = () => {
                                         .<br></br>
                                     </strong>
                                 </NumberDisplay>
-                           </FormulaBox2>
+                            </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
+
 
 
 
@@ -307,30 +303,86 @@ const P2A1B = () => {
                             <FormulaBox2>
                                 <ContinueButton> Formules Clés</ContinueButton>
 
-                                <strong> <span style={{ color: 'blue' }}> les diviseurs du nombre 12 : </span></strong>
+                              
 
 
-                                <img src={"/images/Math/C/imagesC12/douze.png"} alt="douze" />
+                             
 
                                 <NumberDisplay3>
-                                <FormulaText><strong>Multiple</strong> =Un nombre obtenu en multipliant un nombre donné par un autre nombre entier.</FormulaText>
+                                    <FormulaText><strong>Multiple</strong> =Un nombre obtenu en multipliant un nombre donné par un autre nombre entier.</FormulaText>
                                 </NumberDisplay3>
 
                                 <br>
                                 </br>
                                 <NumberDisplay3>
-                        <FormulaText><strong>Diviseur</strong> = Un nombre par lequel un autre nombre peut être divisé de manière exacte, sans reste.</FormulaText>
+                                    <FormulaText><strong>Diviseur</strong> = Un nombre par lequel un autre nombre peut être divisé de manière exacte, sans reste.</FormulaText>
                                 </NumberDisplay3>
-                           </FormulaBox2>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+                    <Swipe_Section ref={section7Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton> QCM</ContinueButton>
+
+
+                                <div>
+                                    <Test2 />
+                                </div>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+
+
+
+
+                    <Swipe_Section ref={section8Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton> Activites</ContinueButton>
+                                <div>
+                                    <P2A3_1 />
+                                </div>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+
+
+
+                    <Swipe_Section ref={section9Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton> Activites</ContinueButton>
+                                <div>
+            <P2A3_2 />
+            </div>
+
+
+                            </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
 
 
                 </SwipeContainer2>
+
+
             </StyledBox>
         </Container_Progress_Bar>
 
-
+      
     );
 }
 
