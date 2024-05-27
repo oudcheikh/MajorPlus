@@ -219,6 +219,7 @@ import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/Mesure
 
 import Division  from'./composents/Math/Periode2/C09/P2A1A.js'
 import M3  from'./composents/Math/Periode2/M3/M3.js'
+import Book  from'./composents/tourner page/Book.js'
 
 
 
@@ -438,6 +439,7 @@ function App() {
           <Route path= "/Les_mesures_Agrairs" element={<Les_mesures_Agrairs/>} />
           <Route path= "/Division" element={<Division/>} />
           <Route path= "/M3" element={<M3/>} />
+          <Route path= "/Book" element={<Book/>} />
          
   
         

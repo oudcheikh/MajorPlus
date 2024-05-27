@@ -49,14 +49,7 @@ function C3A3() {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="70vh"
-      bgcolor="background.default"
-      padding={2}
-    >
+    
       <Card>
         <CardContent>
           <Typography variant="h5" gutterBottom>
@@ -99,7 +92,7 @@ function C3A3() {
           )}
         </CardContent>
       </Card>
-    </Box>
+    
   );
 }
 

@@ -1,115 +1,263 @@
-import React, { useState } from 'react';
-import C4A1 from './C4A1'; 
-import C4A2 from './C4A2'; 
+import React, { useRef, useState } from "react";
+
+import { useNavigate } from 'react-router-dom';
+
+import '../../Periode4/progressBar/SegmentedProgressBar.css'
+import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
+
+
+import C4A1 from './C4A1';
+import C4A2 from './C4A2';
 import C4A3 from './C4A3';
 import C4A4 from './C4A4';
 import QCMC4 from './QCMC4';
-// import teacher from '../Images/teacher.png';
-// import prof from '../Images/Prof1.png';
-import Audio from "./Audio4" ;
 
-// Importation des styles depuis MajorStyles
 import {
-  Container,
-  SectionContainer,
-  ImageContainer,
-  Card,
-  BodyText,
-  ContinueButton,
-  FormulaText,
-  FormulaBox,
-  Subtitle
-} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+    Container,
+    SectionContainer,
+    ImageContainer,
+    Card,
+    BodyText,
+    Title,
+    Subtitle,
+    FormulaBox,
+    FormulaText,
+    ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    SwipeContainer2, Swipe_Section,
+} from '../../../Styles/MajorStyles';
+
+import styled from "styled-components";
+import { Box } from '@mui/material';
+const StyledBox = styled(Box)({
+
+});
+
+const NumberDisplay = styled(Box)(({ isActive }) => ({
+    boxSizing: 'border-box',
+    width: '100%',
+    height: 'auto',
+    margin: '20px auto',
+    padding: '20px',
+    backgroundColor: 'FF7F50',
+    border: '3px dashed #B3E5FC',
+    transition: 'background-color 0.4s, transform 0.3s',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '1em',
+    fontFamily: "'Comic Sans MS', sans-serif",
+    '&:hover': {
+        transform: 'scale(1.05)',
+    },
+}));
 
 const C2 = () => {
-    const [section, setSection] = useState(0);
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const section1Ref = useRef(null);
+    const section2Ref = useRef(null);
+    const section3Ref = useRef(null);
+    const section4Ref = useRef(null);
+    const section5Ref = useRef(null);
+    const section6Ref = useRef(null);
+    const section7Ref = useRef(null);
+    const section8Ref = useRef(null);
+    const section9Ref = useRef(null);
+
+    const navigate = useNavigate();
+
+
+    const [progress, setProgress] = useState(0);
+
+
+    const [sectionsViewed, setSectionsViewed] = useState(0);
+    const totalSections = 7; // Nombre total de sections
+
+
+
+
+    const handleScroll = (event) => {
+        const { scrollLeft } = event.target;
+        setScrollPosition(scrollLeft);
+
+        // Récupérer les positions de début de chaque section
+        const sectionPositions = [
+            0, // Position de début de la première section
+            section1Ref.current.offsetWidth, // Position de début de la deuxième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
+
+        ];
+
+        // Trouver la section actuelle en fonction de la position de défilement
+        let currentSection = 0;
+        for (let i = 0; i < sectionPositions.length; i++) {
+            if (scrollLeft >= sectionPositions[i]) {
+                currentSection = i;
+
+
+            }
+        }
+
+        // Afficher la section actuelle dans la console
+        console.log("Section actuelle :", currentSection + 1);
+        setSectionsViewed(currentSection + 1);
+        setProgress(currentSection + 1)
+
+
+
+    };
+
+
+    const move = () => {
+        navigate("/M3 ");
+    }
+
+
 
     return (
-        <Container>
-            <SectionContainer>
-                <ImageContainer>
-                    <img src={"images/Images/teacher.png"} alt="Teacher" />
-                </ImageContainer>
-                <Card>
-                    <BodyText>
-                        Salut! Aujourd'hui, on va parler d'un sujet intéressant : Ajouter et retrancher.
-                    </BodyText>
-                </Card>
-            </SectionContainer>
 
-            {section >= 1 && (
-                <div>
-                    <SectionContainer>
-                    <FormulaBox>
-                        <Subtitle>🔍 Concept clés🔍</Subtitle>
-                        <FormulaText>
-    <strong>Ajouter :</strong> C'est combiner des nombres. Si tu as 3 pommes et que tu en prends 2 de plus, tu as alors 3 + 2 = 5 pommes.
-</FormulaText>
 
-<FormulaText>
-    <strong>Retrancher :</strong> C'est enlever une quantité d'un nombre. Si tu as 5 pommes et que tu en manges 2, il te reste 5 - 2 = 3 pommes.
-</FormulaText>
-
-<FormulaText>
-    <strong>Astuce :</strong> Pour t'aider, imagine une pile de blocs. Ajouter, c'est mettre plus de blocs sur la pile. Retrancher, c'est en enlever.
-</FormulaText>
-<div style={{ display: "flex", alignItems: "center" }}>
-  <Audio/>
-</div>
+        <Container_Progress_Bar>
 
 
 
-                    </FormulaBox>
-                    </SectionContainer>
-                    
+            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
 
-                   
-                </div>
-            )}
+            <StyledBox>
+                <SwipeContainer2 onScroll={handleScroll}>
 
-            {section >= 2 && (
-                <SectionContainer>
-                    <C4A4/>
-                </SectionContainer>
-            )}
+                    <Swipe_Section ref={section1Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <button className="continue-button" >
+                                    <FormulaText><strong>Convertiseur d'unités de longueur</strong></FormulaText>
+                                </button>
+                                <br>
+                                </br>
+                                <br>
+                                </br>
+                                <br>
+                                </br>
 
-            {section >= 2 && (
-                <SectionContainer>
-                    <C4A1/>
-                </SectionContainer>
-            )}
+                                <img    src={"/images/Math/C/C4/addition.png"} alt="addition" />
 
-            {section >= 4 && (
-                <div>
-             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
-    <img src={"images/Images/prof1.png"} alt="Teacher" style={{ width: '50%', maxWidth: '300px' }} />
-</div>
 
-<br></br>
-            
-                <SectionContainer>
-                    <C4A2 />
-                </SectionContainer>
-                </div>
-            )}
+                                <Card>
 
-            {section >= 5 && (
-                
+                                    <BodyText>
+                                        <strong>
 
-                <SectionContainer>
-                    <C4A3 />
-                </SectionContainer>
-              
-            )}
 
-            {section >= 6 && (
-                <QCMC4 />
-            )}
+                                            Salut! Aujourd'hui, on va parler d'un sujet intéressant : Ajouter et retrancher.
+                                        </strong>
+                                    </BodyText>
 
-            {section < 6 && (
-                <ContinueButton onClick={() => setSection(section + 1)}>Continuer</ContinueButton>
-            )}
-        </Container>
+                                </Card>
+                                <br></br> <br></br> <br></br> <br></br>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section2Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+
+                                <ContinueButton>Concept clés</ContinueButton>
+                                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+
+
+
+                                <strong>Ajouter :</strong>
+                                <NumberDisplay>
+                                    <strong>
+                                        C'est combiner des nombres. Si tu as 3 pommes et que tu en prends 2 de plus, tu as alors 3 + 2 = 5 pommes. </strong>
+                                </NumberDisplay>
+
+
+                                <strong>Retrancher :</strong>
+                                <NumberDisplay>
+                                    <strong>
+                                        C'est enlever une quantité d'un nombre. Si tu as 5 pommes et que tu en manges 2, il te reste 5 - 2 = 3 pommes.
+                                    </strong>
+                                </NumberDisplay>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+                    <Swipe_Section ref={section3Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                            <ContinueButton>🍕Activité</ContinueButton>
+                            <img  style ={{ width:'70%'  ,height: '10%',marginLeft:'40px' }}  src={"/images/Math/C/C4/SS.png"} alt="addition" />
+                                <C4A4 />
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section4Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                            <ContinueButton>🍕Activité</ContinueButton>
+                            <img  style ={{ width:'70%'  ,height: '10%',marginLeft:'40px' }}  src={"/images/Math/C/C4/zero.png"} alt="addition" />
+
+                                <C4A1 />
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section5Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                            <ContinueButton>🍕Activité</ContinueButton>
+                            <img  style ={{ width:'70%'  ,height: '10%',marginLeft:'40px' }}  src={"/images/Math/C/C4/un.png"} alt="addition" />
+                                <C4A2 />
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+
+                    <Swipe_Section ref={section6Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                            <ContinueButton>🍕Activité</ContinueButton>
+                            <img  style ={{ width:'70%'  ,height: '10%',marginLeft:'40px' }}  src={"/images/Math/C/C4/neuf.png"} alt="addition" />
+
+                                <C4A3 />
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+
+
+                    <Swipe_Section ref={section7Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                            <ContinueButton>QCM</ContinueButton>
+                                <QCMC4 />
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                </SwipeContainer2>
+            </StyledBox>
+        </Container_Progress_Bar>
     );
 }
 

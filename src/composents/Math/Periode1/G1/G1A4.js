@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
-import { Container, Card, StyledText } from '../../../Styles/MajorStyles';
+import { Container, Card, StyledText, ContinueButton } from '../../../Styles/MajorStyles';
 import Grid from './Gride';
 import { Button } from '@mui/material';
 
@@ -175,6 +175,8 @@ const calculateDistance = (x1, y1, x2, y2) => {
 
   return (
     <Container>
+
+<ContinueButton>🍕Activitè</ContinueButton>
       <div className="messageContainer" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
 
         <Card>

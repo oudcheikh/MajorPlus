@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../../Periode4/progressBar/SegmentedProgressBar.css'
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
+
+
 import C1A1 from './C1A1';
 import C1A2 from './C1A2';
 import C1A3 from './C1A3';
@@ -11,10 +13,10 @@ import QCMC1 from './QCMC1';
 
 
 import styled from 'styled-components';
-import Audio from "./Audio1";
+
 import './C1.css';
 // Import des styles
-import { Box, Typography, CardContent, Grid, Fab, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Box } from '@mui/material';
 
 import {
     Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
@@ -173,30 +175,12 @@ const C1 = () => {
                                 <button className="continue-button" >
                                     <FormulaText><strong>  Les grands nombres </strong></FormulaText>
                                 </button>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
+                                <div style={{marginTop:'200px'}}></div>
+                              
                                 <imageStyle> <img src={"/images/Math/periode2/grand nombre.png"} alt="angle" /></imageStyle>
 
 
-                                <br>
-                                </br><br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
+                              
                                 <Card>
 
                                     <BodyText>
@@ -205,8 +189,8 @@ const C1 = () => {
                                     </BodyText>
 
                                 </Card>
-                                <br></br> <br></br> <br></br> <br></br>
-                               
+                                
+                                <div style={{marginTop:'100px'}}></div>
 
                             </FormulaBox2>
                         </SectionContainer2>

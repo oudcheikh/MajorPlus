@@ -1,6 +1,6 @@
 import React from 'react';
 import './DecimalRuler.css';
-import PetiTeacher from './PetiTeacher.png'
+
 const DecimalRuler = () => {
  // Création d'un tableau pour les marques de 1 à 2 avec des incréments de 0.1
 const marks = Array.from({ length: 11 }, (_, i) => (1 + i * 0.1).toFixed(1));
@@ -19,7 +19,7 @@ const marks = Array.from({ length: 11 }, (_, i) => (1 + i * 0.1).toFixed(1));
 
   return (<div>
 
-    <img src={PetiTeacher} alt="Teacher" style={imageStyle} /> 
+    <img  src='/images/Math/C/imgC19/PetiTeacher.png'  alt="Teacher" style={imageStyle} /> 
     <div className="ruler-container">
     
       {marks.map((mark, index) => (

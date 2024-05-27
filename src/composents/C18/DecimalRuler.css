@@ -1,5 +1,6 @@
 .ruler-container {
     width: 60px; /* Modifiez la largeur si nécessaire */
+    height: 600px;
     background-color: #D0F0C0; /* Couleur de fond verte claire */
     border: 2px solid #58C870; /* Bordure verte */
     border-radius: 5px; /* Coins arrondis */
@@ -14,7 +15,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 5px; /* Ajustez cette valeur pour augmenter l'espace entre les nombres */
+    margin-top: 10px;
   }
   
   .number {

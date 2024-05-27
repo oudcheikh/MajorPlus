@@ -1,5 +1,8 @@
 // MajorStyles.js
 import styled from 'styled-components';
+import { Box } from '@mui/material';
+
+
 
 export const Container = styled.div`
     padding: 5px;
@@ -422,3 +425,59 @@ export const Swipe_Section = styled.div`
   scroll-snap-align: start;
   padding: 20px;
 `;
+
+export const imageStyle = {
+  width: '90%', // L'image prendra 80% de la largeur de son parent
+  height: 'auto', // La hauteur change automatiquement pour garder les proportions
+  maxWidth: '90%', // Assure que l'image ne dépasse pas la largeur de la carte
+  display: 'block', // Empêche l'image de prendre plus de place que nécessaire
+  marginLeft: 'auto', // Marges automatiques à gauche pour centrer l'image
+  marginRight: 'auto' // Marges automatiques à droite pour centrer l'image
+};
+
+
+export const StyledBox = styled(Box)({
+
+});
+
+export const NumberDisplay = styled(Box)(({ isActive }) => ({
+    boxSizing: 'border-box',
+    width: '100%',
+    height: 'auto',
+    margin: '20px auto',
+    padding: '20px',
+    backgroundColor: 'FF7F50',
+    border: '3px dashed #B3E5FC',
+    transition: 'background-color 0.4s, transform 0.3s',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '1em',
+    fontFamily: "'Comic Sans MS', sans-serif",
+    '&:hover': {
+        transform: 'scale(1.05)',
+    },
+}));
+export const NumberDisplay2 = styled(Box)(({ isActive }) => ({
+    boxSizing: 'border-box',
+    width: '100%',
+    height: 'auto',
+    margin: '20px auto',
+    padding: '20px',
+    backgroundColor: 'rgb(248, 248, 227)',
+    border: '3px dashed #B3E5FC',
+    transition: 'background-color 0.4s, transform 0.3s',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '1em',
+    fontFamily: "'Comic Sans MS', sans-serif",
+    '&:hover': {
+        transform: 'scale(1.05)',
+    },
+}));
+
+
+

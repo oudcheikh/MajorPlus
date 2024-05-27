@@ -7,14 +7,14 @@ import { styled } from '@mui/system';
 
 
 const StyledTableContainer = styled(TableContainer)({
-  marginTop: '20px',
-  boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.1)',
+  marginTop: '10px',
+  boxShadow: '0px 0px 3px rgba(0, 0, 0, 0.1)',
 });
 
 const StyledTable = styled(Table)({
   '& th, & td': {
       border: '1px solid #B3E5FC',
-      padding: '10px 15px',
+      padding: '5px 3px',
   },
 });
 
@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)({
 });
 
 const StyledTableCell = styled(TableCell)({
-  fontSize: '1.1em',
+  fontSize: '0.9em',
   fontFamily: "'Comic Sans MS', sans-serif",
 });
 
@@ -68,10 +68,10 @@ const Converter = () => {
 
   return (
     
-    <Card style={{marginTop: '20px', width: '95vw', margin: '0 auto'}}>
+    <Card sx={{ marginTop: '10px', width: '90vw', margin: '0 auto', maxWidth: '320px' }}>
 
         <CardContent>
-          <Box my={2}>
+          <Box my={1}>
             <TextField
               type="number"
               value={value}
@@ -79,14 +79,16 @@ const Converter = () => {
               label="Valeur"
               variant="outlined"
               fullWidth
+              size="small"
             />
           </Box>
-          <Box my={2}>
+          <Box my={1}>
             <Select
               value={unit}
               onChange={handleUnitChange}
               variant="outlined"
               fullWidth
+              size="small"
             >
               <MenuItem value="millimeters">Millimètres</MenuItem>
               <MenuItem value="centimeters">Centimètres</MenuItem>

@@ -17,7 +17,8 @@ const FractionAdditionDisplay = () => {
   // Puisque les dénominateurs sont les mêmes, on peut simplement les additionner
   const resultNumerator = fraction1.numerator + fraction2.numerator;
 
-  return (<div>
+  return (
+  <div>
     <div className="fractions-calculator">
       <div className="fraction-display">
         {/* Affichage de la première fraction */}

@@ -6,11 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import 'katex/dist/katex.min.css';
 import { FormulaText } from '../Styles/MajorStyles';
-import prof1 from './Activity.png';
+
 import correctSound from '../sounds/correct.mp3';
 import incorrectSound from '../sounds/incorrect.mp3';
 
-// Définissez ici le style de l'image, si nécessaire
+
 const imageStyle = {
   width: '70%',
   height: 'auto',
@@ -72,7 +72,7 @@ const FractionToDecimal = () => {
   
   return (
     <div>
-      <img src={prof1} alt="Enseignant" style={imageStyle} />
+      <img src='/images/Math/C/C20/Activity.png' alt="Enseignant" style={imageStyle} />
       <Box sx={{ my: 4, mx: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <FormulaText><strong>{question.description}</strong></FormulaText>
 

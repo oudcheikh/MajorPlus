@@ -1,5 +1,5 @@
 import { useState, React, useEffect } from 'react';
-import { Container, Card, StyledText, Canvas } from '../../../Styles/MajorStyles';
+import { Container, Card, StyledText, Canvas,ContinueButton } from '../../../Styles/MajorStyles';
 import Grid from './Gride';
 import { Button } from '@mui/material';
 
@@ -171,6 +171,9 @@ useEffect(() => {
 
 return (
   <Container>
+     <ContinueButton>🍕Activitè  🍕</ContinueButton>
+
+     <br></br>
     <div className="messageContainer" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
       <Card>
         <StyledText>{message}</StyledText>

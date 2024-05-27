@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, StyledText, Card, Canvas } from '../../../Styles/MajorStyles';
+import { Container, StyledText, Card, ContinueButton,Canvas } from '../../../Styles/MajorStyles';
 import Grid from './Gride';
 import Controls from './Controle';
 import UserLines from './UserLines';
@@ -189,6 +189,8 @@ const handleCheck = () => {
 
   return (
     <Container>
+
+<ContinueButton>🍕Activitè 1 🍕</ContinueButton>
       <div className="messageContainer" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         <Card>
           <StyledText>{message}</StyledText>
@@ -227,7 +229,7 @@ const handleCheck = () => {
 </div>
 
     </Container>
-  );
+  )
 }
 
 export default App;

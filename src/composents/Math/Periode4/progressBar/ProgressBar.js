@@ -2,21 +2,13 @@ import React from 'react';
 import './SegmentedProgressBar.css';
 import { CiHome } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineCheckCircle } from "react-icons/ai";
 
 
 
 
 const SegmentedProgressBar = ({ totalSegments, currentSegment, setCurrentSegment, progress, setProgress }) => {
   const segments = [];
-  const navigate = useNavigate();
-
-
-  const handleSegmentClick = (index) => {
-    // Mettre à jour l'état de la progression lorsqu'un segment est cliqué
-    setCurrentSegment(index);
-  };
-
+ 
   for (let i = 0; i < totalSegments; i++) {
 
 
@@ -33,24 +25,10 @@ const SegmentedProgressBar = ({ totalSegments, currentSegment, setCurrentSegment
 
     );
   }
-  const handleClick = () => {
-    navigate("/Periode4");
-  };
+ 
   return (
     <div>
-      {/* <div className="segmented-progress-bar" style={{ flexDirection: 'row' }}>
-   
-
-    <div style={{ width: '100px', height: '30px'}}>
-    <img src="/images/Math/periode 4/house.png" alt="house" style={{ width: '50%', height: '50%', objectFit: 'cover' }} />
-</div>
-  
-      {segments}
-
-      <button onClick={handleClick}>X</button>
-    </div>
-     */}
-
+     
 
 
       <div style={{ display: 'flex', alignItems: 'center' }}>

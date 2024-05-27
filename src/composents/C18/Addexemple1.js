@@ -1,5 +1,6 @@
 import React from 'react';
 import './DecimalRuler.css';
+import { Card } from '@mui/material';
 
 
 const DecimalRuler = () => {
@@ -15,22 +16,29 @@ const marks = Array.from({ length: 11 }, (_, i) => (1 + i * 0.01).toFixed(2));
     display: 'block', // L'image est affichée en tant que block pour permettre les marges
     marginLeft: '90px', // La marge à gauche de 5px décale l'image vers la droite
     marginRight: 'auto', // Marge automatique à droite pour aligner l'image si nécessaire
-    marginBottom: '-300px', // La marge en bas de 30px décale l'image vers le bas
   };
   
 
   return (<div>
 
-    <img src={'/images/Math/C/images C18/PetiTeacher.png'} alt="Teacher" style={imageStyle} /> 
-    <div className="ruler-container">
+   
+ <img src={'/images/Math/C/images C18/PetiTeacher.png'} alt="Teacher" style={imageStyle} /> 
+
+    
+
+    <div className="ruler-container" >
     
       {marks.map((mark, index) => (
         <div key={index} className={`mark-container ${index % 10 === 0 ? 'whole-mark' : 'decimal-mark'}`}>
           <div className="number">{mark}</div>
           <div className={`line ${index % 10 === 0 ? 'long-line' : ''}`}></div>
+         
         </div>
+        
       ))}
+    
     </div>
+   
     </div>
   );
 };
