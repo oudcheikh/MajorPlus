@@ -19,9 +19,10 @@ import './C1.css';
 import { Box } from '@mui/material';
 
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    StyledBox2, Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+import Démonstration from "./Démonstration";
 
 
 export const textStyle = styled.h2`
@@ -38,6 +39,8 @@ export const textStyle = styled.h2`
 const StyledBox = styled(Box)({
 
 });
+
+
 
 const NumberDisplay = styled(Box)(({ isActive }) => ({
     boxSizing: 'border-box',
@@ -346,6 +349,7 @@ const C1 = () => {
                                 <div style={{ marginBottom: '50px', width: '100%' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                         <ImageContainer>
+                                     
                                             <img src={"images/Math/C/C1/exercice.png"} alt="Enseignant" />
                                         </ImageContainer>
                                         <C1A3 />
@@ -355,6 +359,26 @@ const C1 = () => {
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
+
+
+
+                    <Swipe_Section ref={section7Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Démonstration</ContinueButton>
+
+                                <div style={{ marginBottom: '50px', width: '100%' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+<br></br>
+
+                                        <Démonstration />
+                                    </div>
+
+                                </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
 
                     <Swipe_Section ref={section8Ref}>
                         <SectionContainer2>
