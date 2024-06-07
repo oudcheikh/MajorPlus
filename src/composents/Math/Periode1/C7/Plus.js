@@ -146,8 +146,13 @@ function EditableDiv() {
   };
 
   return (
+
+    <div>
+                            <img  style ={{ width:'70%'  ,height: '10%',marginLeft:'40px' }}  src={"/images/Math/C/C4/neuf.png"} alt="addition" />
+   
     <Card>
       <br></br>
+      <br></br> <br></br>
       <div style={{ fontSize: '20px', color: 'green' }}>
         {explanation}
       </div>
@@ -206,6 +211,8 @@ function EditableDiv() {
      
       </div>
     </Card>
+
+    </div>
   );
 }
 

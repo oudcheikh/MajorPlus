@@ -305,7 +305,7 @@ const C5 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>🍕Activites🍕</ContinueButton>
-
+                <img src={'/images/Math/C/C11/deux.png'} alt="Exercice" />
                 <C5A2/>
 
           </FormulaBox2>

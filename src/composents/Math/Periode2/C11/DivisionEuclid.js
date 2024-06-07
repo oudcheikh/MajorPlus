@@ -155,14 +155,14 @@ function DivisionComponent() {
   const [suiteY1, setSuiteY1] = useState(false)
   const [suiteY2, setSuiteY2] = useState(false)
 
-  // animation 
-  const AnimatedCard = animated(Card);
+ 
 
 
   const [quotientColor, setQuotientColor] = useState("blue");
   const [resteColor, setResteColor] = useState("red");
 
-
+ // animation 
+ const AnimatedCard = animated(Card);
 
   // animation du result
   const cardAnimation = useSpring({
@@ -1521,7 +1521,8 @@ function DivisionComponent() {
 
 
                 <TransitionComponent item={remainder} delay={500}>
-                  {item => (
+                  {
+                  item => (
 
                     <Input2 value={item} readOnly color={resteColor} />
                   )}
@@ -1530,7 +1531,8 @@ function DivisionComponent() {
 
               </div>
 
-              {suiteX && <div>
+              {
+              suiteX && <div>
 
                 <h1>-</h1>
 

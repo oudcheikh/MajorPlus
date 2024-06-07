@@ -11,14 +11,15 @@ import C3A2 from "./C3A2";
 import C3A3 from "./C3A3";
 import QCMC3 from "./QCMC3";
 import styled from "styled-components";
-import Audio from "./Audio3";
+import Exercice1 from './Exercice1'
+import Exercice2 from './Exercice2'
+
+import Exercice from './Exercice'
 
 
 
 import {
-  Container,
-  SectionContainer,
-  ImageContainer,
+  imageStyle_Mot_Clé,
   Card,
   BodyText,
   Title,
@@ -27,41 +28,21 @@ import {
   FormulaText,
   ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section,
+  Beige_NumberDisplay, NumberDisplay, imageStyle_grand,
+  Orange_NumberDisplay,
+  Violet_NumberDisplay
 } from '../../../Styles/MajorStyles';
 
 
 import { Box } from '@mui/material';
+import Table_mesure from "./Table_mesure";
 const StyledBox = styled(Box)({
 
 });
 
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  margin: '20px auto',
-  padding: '20px',
-  backgroundColor: 'FF7F50',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
-
 
 
 const C3 = () => {
-
-
-
-
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const section1Ref = useRef(null);
@@ -154,16 +135,16 @@ const C3 = () => {
                 <br>
                 </br>
 
-              <img src={"/images/Math/C/C3/regleetmatre.PNG"} alt="comparaison" />
+                <img src={"/images/Math/C/C3/regleetmatre.png"} alt="comparaison" />
 
 
                 <Card>
 
                   <BodyText>
-<strong>
-                    <span>
-                      Les unités de longueur </span> sont des mesures qui nous permettent d'estimer
-                    la distance entre deux points ainsi que la taille de quelque chose ou de quelqu'un.
+                    <strong>
+                      <span>
+                        Les unités de longueur </span> sont des mesures qui nous permettent d'estimer
+                      la distance entre deux points ainsi que la taille de quelque chose ou de quelqu'un.
                     </strong>
                   </BodyText>
 
@@ -181,7 +162,7 @@ const C3 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>Concept clés</ContinueButton>
-                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" style={imageStyle_Mot_Clé} />
 
                 <NumberDisplay>
                   <strong>
@@ -204,67 +185,32 @@ const C3 = () => {
               <FormulaBox2>
                 <ContinueButton>Convertir des unités </ContinueButton>
 
+                <img src={"/images/Math/C/C3/unité.png"} alt="comparaison" />
                 <br></br>
-                <NumberDisplay><strong>
-                  Parfois, nous avons besoin de changer d'une unité à une autre.
-                  C'est comme échanger des pièces de monnaie : 100 centimes font 1 euro. De la même manière, 100 centimètres font 1 mètre.
+
+
+                <Orange_NumberDisplay>
+                  <strong>N.B<br />
+                    Pour pouvoir faire des calculs de mesures, il faut que celles-ci soient toutes dans la même unité.</strong>
+                </Orange_NumberDisplay>
+
+                <strong>
 
                 </strong>
+                <strong>Exemple :</strong>
 
-
-                  <NumberDisplay>
-                    <strong>Astuce :</strong> Pour passer du mètre au centimètre, multiplie par 100. Pour faire l'inverse, divise par 100. Avec les autres unités, les chiffres peuvent être différents, mais l'idée est la même. Avec un peu de pratique, tu maîtriseras rapidement ces conversions !
-
-                  </NumberDisplay>
-                  <img src={"/images/Math/C/C3/tab3.png"} alt="Teacher" />
-
-
-                </NumberDisplay>
+                <Beige_NumberDisplay>Pour passer du mètre au centimètre, multiplie par 100.Pour faire l'inverse, divise par 100. </Beige_NumberDisplay>
 
 
 
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
+                <Violet_NumberDisplay>
+                  Une autre méthode permet de passer d'une unité à l'autre, elle consiste à créer un tableau de conversion tel que celui-ci :
+                </Violet_NumberDisplay>
+
+                <img src={"/images/Math/C/C3/tab3.png"} alt="Teacher" />
 
 
 
-
-          <Swipe_Section ref={section4Ref}>
-            <SectionContainer2>
-            <FormulaBox2>
-              <ContinueButton>🍕Activité 1 </ContinueButton>
-
-              <div>
-              <C3A1 />
-              </div>
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-
-
-          <Swipe_Section ref={section5Ref}>
-            <SectionContainer2>
-            <FormulaBox2>
-              <ContinueButton>🍕Activité 2 </ContinueButton>
-              <div >
-
-              <img src={"/images/Math/C/C3/cable.png"} alt="Teacher" />
-              <C3A3 />
-
-              </div>
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-
-
-          <Swipe_Section ref={section6Ref}>
-            <SectionContainer2>
-            <FormulaBox2>
-              <ContinueButton>🍕Activité 2 </ContinueButton>
-              <C3A2/>
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
@@ -273,12 +219,86 @@ const C3 = () => {
 
           <Swipe_Section ref={section7Ref}>
             <SectionContainer2>
-            <FormulaBox2>
-              <ContinueButton>🍕Activité 2 </ContinueButton>
-              <QCMC3/>
+              <FormulaBox2>
+                <ContinueButton>🍕Activité 2 </ContinueButton>
+                <Table_mesure />
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
+
+
+          <Swipe_Section ref={section7Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>🍕Exercices  </ContinueButton>
+
+                <img src={"/images/Math/C/C3/Exercice.gif"} alt="Teacher" />
+                Exercice 1 :
+                <Exercice />
+                Exercice 2 :
+                <Exercice1 />
+                Exercice 3:
+                <Exercice2 />
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+          <Swipe_Section ref={section4Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>🍕Activité 1 </ContinueButton>
+                <img src={"/images/train2.png"} alt="Teacher" />
+                <div>
+                  <C3A1 />
+                </div>
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+          <Swipe_Section ref={section5Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>🍕Activité 2 </ContinueButton>
+                <div >
+
+                  <img src={"/images/Math/C/C3/phone.gif"} alt="Teacher" />
+                  <C3A3 />
+
+                </div>
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+          <Swipe_Section ref={section6Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>🍕Activité 2 </ContinueButton>
+                <img src={"/images/train.png"} alt="Teacher" />
+                <C3A2 />
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+          <Swipe_Section ref={section7Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>🍕Activité 2 </ContinueButton>
+                <QCMC3 />
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+
+
 
         </SwipeContainer2>
       </StyledBox>

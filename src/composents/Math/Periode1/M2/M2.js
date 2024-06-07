@@ -190,14 +190,9 @@ const M2 = () => {
 
                                 <br></br>
 
-                                <img src={"/images/Math/C/C11/divi.png"} alt="attention" />
-
-
-
-
-
-
-
+                            
+                                <img src={"/images/Math/C/C11/divi.png"}  style ={{ width:'50%'  ,height: '10%',marginLeft:'50px' }} alt="attention" />
+<br></br>
                                 <strong>Unité de mesure :</strong>
                                 <NumberDisplay2 >
                                     <strong>
@@ -258,9 +253,8 @@ const M2 = () => {
                             <FormulaBox2>
                                 <ContinueButton>🍕Activites🍕</ContinueButton>
 
-                                <br></br><br></br>
-                                <br></br>  <br></br><br></br>
-                                <br></br>  <br></br><br></br>
+                                <img src={'/images/Math/C/C11/deux.png'} alt="division" />
+                                <br></br> <br></br> <br></br><br></br> <br></br> <br></br>
                                    <M2A3 />
 
                             </FormulaBox2>

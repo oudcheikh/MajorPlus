@@ -10,22 +10,18 @@ import C2E1 from "./C2E1";
 import C2E2 from "./C2E2";
 import QCMC2 from "./QCMC2";
 import styled from "styled-components";
-import Audio from "./Audio2";
+
 
 
 
 import {
-  Container,
-  SectionContainer,
-  ImageContainer,
+  Orange_NumberDisplay,imageStyle_Mot_Clé, imageStyle_Important,Beige_NumberDisplay,Vert_Fancee_NumberDisplay,middle_Green_NumberDisplay,Green_NumberDisplay,NumberDisplay,
   Card,
   BodyText,
-  Title,
-  Subtitle,
-  FormulaBox,
   FormulaText,
   ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section,
+ 
 } from '../../../Styles/MajorStyles';
 
 
@@ -34,35 +30,7 @@ const StyledBox = styled(Box)({
 
 });
 
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  margin: '20px auto',
-  padding: '20px',
-  backgroundColor: 'FF7F50',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
-
-
-
-
-
-
-
 const C2 = () => {
-
-  
   const [scrollPosition, setScrollPosition] = useState(0);
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
@@ -70,21 +38,10 @@ const C2 = () => {
   const section4Ref = useRef(null);
   const section5Ref = useRef(null);
   const section6Ref = useRef(null);
-  const section7Ref = useRef(null);
-  const section8Ref = useRef(null);
-  const section9Ref = useRef(null);
-
   const navigate = useNavigate();
-
-
   const [progress, setProgress] = useState(0);
-
-
   const [sectionsViewed, setSectionsViewed] = useState(0);
-  const totalSections = 8; // Nombre total de sections
-
-
-
+  const totalSections = 8;
 
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
@@ -149,15 +106,16 @@ const C2 = () => {
                 </button>
 
 
-                <imageStyle> <img src={"/images/Math/C/C2/compare.png"} alt="comparaison" /></imageStyle>
+                <img src={"/images/Math/C/C2/comp1.png"} alt="comparaison" />
 
 
                 <Card>
 
                   <BodyText>
-
-                    Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
-                    passionnant :  <strong className="mot_importante"> Comparer et ordonner des nombers.</strong>
+                    <strong>
+                      Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
+                      passionnant :  <strong className="mot_importante"> Comparer et ordonner des nombers.</strong>
+                    </strong>
                   </BodyText>
 
                 </Card>
@@ -173,26 +131,56 @@ const C2 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>Concept clés</ContinueButton>
-                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
-                <strong>Comparer des nombres :</strong>
-                < NumberDisplay> <strong>C'est déterminer lequel est le plus grand, le plus petit ou s'ils sont égaux. On compare d'abord les parties entières, puis les parties après la virgule pour les nombres décimaux. Les nombres négatifs, c'est comme des températures : plus le chiffre est gros, plus il fait froid !
-                </strong> </NumberDisplay>
-                <br></br>
-                <strong>Ordonner des nombres :</strong>
-                <NumberDisplay>
-                <strong>   L'ordre croissant est une disposition de nombres allant du plus petit au plus grand.</strong>
-                </NumberDisplay>
-                <NumberDisplay>
-                <strong>  L'ordre décroissant est une disposition de nombres allant du plus grand au plus petit.</strong>
-                </NumberDisplay>
+                <img src={"/images/Math/C/C2/compare.png"} style={imageStyle_Important} alt="Teacher" />
+
+            <FormulaText><strong>Comparer des nombres :</strong></FormulaText>    
+
+                <Beige_NumberDisplay>
+                  <strong>
+                    C'est déterminer lequel est le plus grand, le plus petit ou s'ils sont égaux.
+                  </strong>
+              </Beige_NumberDisplay>
+
+
+
+
+               
                 <Card>
                   <br></br>
 
                   <FormulaText>
-                <strong> <span style={{color:'blue'}}>Astuce : </span>
-                 Pour t'aider, 
-                imagine une ligne de nombres. Placer les nombres dessus pour voir leur ordre. Avec de la pratique, tout deviendra facile !
-               </strong>  </FormulaText> </Card>
+                    <strong> <span style={{ color: 'blue' }}>Astuce : </span>
+                    On compare d'abord les parties entières, puis les parties après la virgule pour les nombres décimaux. Les nombres négatifs, c'est comme des températures : plus le chiffre est gros, plus il fait froid !
+
+                    </strong>  </FormulaText> </Card>
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+          <Swipe_Section ref={section3Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>Ordonner des nombres</ContinueButton>
+
+               <FormulaText><strong> Ordre croissant </strong></FormulaText>
+                <img src={"/images/Math/C/C2/ordonner.png"}  alt="Teacher" />
+
+                <Orange_NumberDisplay>
+                  <strong>   L'ordre croissant est une disposition de nombres allant du plus petit au plus grand.</strong>
+                </Orange_NumberDisplay>
+
+                <br></br>
+
+
+                <FormulaText><strong> Ordre dècroissant </strong></FormulaText>
+                <img src={"/images/Math/C/C2/decroissant.png"}  alt="Teacher" />
+
+                <Orange_NumberDisplay>
+                  <strong>   L'ordre décroissant est une disposition de nombres allant du plus grand au plus petit.</strong>
+                </Orange_NumberDisplay>
+
+
+               
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
@@ -202,9 +190,11 @@ const C2 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>🍕Activité 1🍕</ContinueButton>
-                <C2A1/>
+                <img src={"/images/train.png"}  alt="Teacher" />
 
-                </FormulaBox2>
+                <C2A1 />
+
+              </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
 
@@ -214,9 +204,10 @@ const C2 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>🍕Activité 2🍕</ContinueButton>
-                <C2E1/>
+                <img src={"/images/train2.png"}  alt="Teacher" />
+                <C2E1 />
 
-                </FormulaBox2>
+              </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
 
@@ -225,9 +216,12 @@ const C2 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>🍕Activité 3🍕</ContinueButton>
-                <C2E2/>
+                <img  src='/images/Math/C/imgC19/Activity.png' alt="Activity"  />
+            <div style={{width:'100%'}}>
+            <C2E2 />
+            </div>
 
-                </FormulaBox2>
+              </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
 
@@ -237,9 +231,9 @@ const C2 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>QCM</ContinueButton>
-                <QCMC2/>
+                <QCMC2 />
 
-                </FormulaBox2>
+              </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
 

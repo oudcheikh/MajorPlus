@@ -207,7 +207,7 @@ import Sign_in from'./composents/Sign_in/Sign_in'
 
 import CalculeAire from './composents/C20/CalculeAire';
 // import SousEtAddFraction from './composents/C17/SousEtAddFraction';
-import PatageInegaux from './composents/C19/PatageInegaux';
+import PatageInegaux from './composents/Math/Periode3/C19/PatageInegaux.js'
 import NomberDecimaux from './composents/C18/NomberDecimaux';
 
 import Periode4 from './composents/Math/Periode4/periode4.js';
@@ -220,7 +220,7 @@ import Les_mesures_Agrairs from'./composents/Math/Periode4/MesureAgraires/Mesure
 import Division  from'./composents/Math/Periode2/C09/P2A1A.js'
 import M3  from'./composents/Math/Periode2/M3/M3.js'
 import Book  from'./composents/tourner page/Book.js'
-
+import Quiz2  from'./composents/Math/Quiz.js'
 
 
 function App() {
@@ -440,9 +440,9 @@ function App() {
           <Route path= "/Division" element={<Division/>} />
           <Route path= "/M3" element={<M3/>} />
           <Route path= "/Book" element={<Book/>} />
-         
+          <Route path= "/Quiz2" element={<Quiz2/>} />
+           
   
-        
       
         </Routes>
       

@@ -9,7 +9,7 @@ import QCMC7 from './QCMC7';
 
 import { Box } from '@mui/material';
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    Beige_NumberDisplay,    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 
@@ -30,25 +30,7 @@ const StyledBox = styled(Box)({
 });
 
 
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'rgb(248, 248, 227)',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
+
 
 const C7 = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -135,7 +117,7 @@ const C7 = () => {
                                 <button className="continue-button" >
                                     <FormulaText><strong> l' Addition des grandes nombres </strong></FormulaText>
                                 </button>
-                                <br>
+                                 <br>
                                 </br>
                                 <br>
                                 </br>
@@ -146,7 +128,8 @@ const C7 = () => {
                                 <br>
                                 </br>
                                 <br>
-                                </br>
+                                </br> 
+                                <div style={{padding_bottom:'50px', padding_top:'50px',margin_bottom:'50px', margin_top:'50px'}}></div>
                                 <imageStyle> <img src={"/images/Math/C/C7/addition.gif"} alt="angle" /></imageStyle>
 
 
@@ -184,19 +167,19 @@ const C7 = () => {
 
                                 <br></br>
 
-                                <img src={"/images/Math/C/C11/divi.png"} alt="attention" />
+                                <img src={"/images/Math/C/C11/divi.png"}  style ={{ width:'50%'  ,height: '10%',marginLeft:'50px' }} alt="attention" />
 
-
+<br></br>
                                 <strong>Multiplication :</strong>
 
-                                <NumberDisplay2 >
+                                <Beige_NumberDisplay >
                                     <strong>
                                         Pour additionner des grands nombres, on additionne chiffre par chiffre les chiffres de même rang, en commençant par les unités. Pour poser l'addition, on aligne les nombres sur la droite.
                                         On place les unités sous les unités, les dizaines sous les dizaines... <br></br>
                                         <span style={{ color: 'red' }}> Il ne faut pas oublier de reporter la (ou les) retenue.</span>
                                     </strong>
 
-                                </NumberDisplay2>
+                                </Beige_NumberDisplay>
 
 
 

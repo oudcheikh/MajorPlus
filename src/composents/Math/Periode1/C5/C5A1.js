@@ -45,10 +45,10 @@ function C5A1() {
   const [targetNumber, setTargetNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState(["", "", ""]);
   const [areCorrect, setAreCorrect] = useState([null, null, null]);
-  
+
   const generateNumbers = () => {
     let numbers = [];
-    for(let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
       numbers.push(Math.floor(Math.random() * 10) + 1);
     }
     setRandomNumbers(numbers);
@@ -63,7 +63,7 @@ function C5A1() {
     generateNumbers();
   }, []);
 
-  
+
   const checkAnswer = (index, correctAnswer) => {
     try {
       setAreCorrect(areCorrect.map((_, i) => i === index ? eval(userAnswers[i]) === correctAnswer : null));
@@ -74,187 +74,197 @@ function C5A1() {
 
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <StyledText>1er Activite</StyledText>
+    <strong style={{color:'orange'}}>Exercice 1 </strong>
       <card>
-      <CardContent>
-        <Box my={2}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"/images/Math/C/imagesC5/branches.png"}
-              
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
-            />
-            <Card
-              style={{
-                borderRadius: '20px',
-                backgroundColor: '#1877f2',
-                padding: '10px',
-              }}
-            >
-              <CardContent>
-                
+        <CardContent>
+        <img
+                src={"/images/Math/C/C5/arbre.gif"}
+
+                // style={{
+                //   width: '100px',
+                //   marginBottom: '10px',
+                //   marginRight: '10px',
+                // }}
+              />
+          <Box my={2}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+           
+              <Card
+                style={{
+                  borderRadius: '20px',
+                  backgroundColor: '#1877f2',
+                  padding: '10px',
+                }}
+              >
+                <CardContent>
+
                   <Typography variant="body1" style={{ color: '#ffffff' }}>
                     J'ai {branches[0]} branches portant chacune {branches[1]} branches qui portent chacune elles-mêmes {branches[2]} branches munies chacune de {branches[3]} feuilles. Combien de feuilles ai-je en tout ?
                   </Typography>
-                
-          
-                
-              </CardContent>
-            </Card>
-          </div>
-        </Box>
-       
+
+
+
+                </CardContent>
+              </Card>
+            </div>
+          </Box>
+
           <Box my={2}>
             <form >
               <TextField
-                 variant="outlined" 
-                 type="number" 
-                 value={userAnswers[0]} 
-                 onChange={e => setUserAnswers([parseInt(e.target.value), ...userAnswers.slice(1)])}
-                 label="Votre réponse"
-                
-                
+                variant="outlined"
+                type="number"
+                value={userAnswers[0]}
+                onChange={e => setUserAnswers([parseInt(e.target.value), ...userAnswers.slice(1)])}
+                label="Votre réponse"
+
+
                 fullWidth
               />
               <h1></h1>
               <div className={classes.buttons}>
-            <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(0, branches[0]*branches[1]*branches[2]*branches[3])}>OK</Button>
-            <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-          </div>
-          {areCorrect[0] !== null && (
-            <Typography color={areCorrect[0] ? 'success.main' : 'error.main'}>
-              {areCorrect[0] ? 'Correct!' : 'Incorrect.'}
-            </Typography>
-          )}
+                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(0, branches[0] * branches[1] * branches[2] * branches[3])}>OK</Button>
+                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
+              </div>
+              {areCorrect[0] !== null && (
+                <Typography color={areCorrect[0] ? 'success.main' : 'error.main'}>
+                  {areCorrect[0] ? 'Correct!' : 'Incorrect.'}
+                </Typography>
+              )}
             </form>
           </Box>
-        
-      </CardContent>
+
+        </CardContent>
       </card>
+
+
+<br></br><br></br>
       <card>
-      <StyledText>2eme Activite</StyledText>
-      <CardContent>
-        <Box my={2}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"/images/Math/C/imagesC5/Eggs.png"}
-              
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
-            />
-            <Card
-              style={{
-                borderRadius: '20px',
-                backgroundColor: '#1877f2',
-                padding: '10px',
-              }}
-            >
-              <CardContent>
-               
+    <strong style={{color:'orange'}}>Exercice 2 </strong>
+        <CardContent>
+
+        <img
+                src={"/images/Math/C/C5/egggs.gif"}
+
+                // style={{
+                //   width: '100px',
+                //   marginBottom: '10px',
+                //   marginRight: '10px',
+               // }}
+              />
+          <Box my={2}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+            
+              <Card
+                style={{
+                  borderRadius: '20px',
+                  backgroundColor: '#1877f2',
+                  padding: '10px',
+                }}
+              >
+                <CardContent>
+
                   <Typography variant="body1" style={{ color: '#ffffff' }}>
-                     Il reste sur le comptoir de la boutique {completeTrays} plateaux d'œufs complets. Combien d'œufs reste-t-il ?
+                    Il reste sur le comptoir de la boutique {completeTrays} plateaux d'œufs complets. Combien d'œufs reste-t-il ?
                   </Typography>
-                
-              
-              </CardContent>
-            </Card>
-          </div>
-        </Box>
-        
+
+
+                </CardContent>
+              </Card>
+            </div>
+          </Box>
+
           <Box my={2}>
             <form >
               <TextField
-               variant="outlined" 
-               type="number" 
-               value={userAnswers[1]} 
-               onChange={e => setUserAnswers([userAnswers[0], parseInt(e.target.value), userAnswers[2]])}
-               label="Votre réponse"
-                
-                
+                variant="outlined"
+                type="number"
+                value={userAnswers[1]}
+                onChange={e => setUserAnswers([userAnswers[0], parseInt(e.target.value), userAnswers[2]])}
+                label="Votre réponse"
+
+
                 fullWidth
               />
               <h1></h1>
               <div className={classes.buttons}>
-            <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(1, completeTrays*12)}>OK</Button>
-            <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-          </div>
-          {areCorrect[1] !== null && (
-            <Typography color={areCorrect[1] ? 'success.main' : 'error.main'}>
-              {areCorrect[1] ? 'Correct!' : 'Incorrect.'}
-            </Typography>
-          )}
+                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(1, completeTrays * 12)}>OK</Button>
+                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
+              </div>
+              {areCorrect[1] !== null && (
+                <Typography color={areCorrect[1] ? 'success.main' : 'error.main'}>
+                  {areCorrect[1] ? 'Correct!' : 'Incorrect.'}
+                </Typography>
+              )}
             </form>
           </Box>
-      
-      </CardContent>
+
+        </CardContent>
       </card>
-      
+
+
+<br></br><br></br>
       <card>
-      <StyledText>3eme Activite</StyledText>
-      <CardContent>
-        <Box my={2}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"images/Images/teacher.png"}
-              
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
-            />
-            <Card
-              style={{
-                borderRadius: '20px',
-                backgroundColor: '#1877f2',
-                padding: '10px',
-              }}
-            >
-              <CardContent>
-                
+         <strong style={{color:'orange'}}>Exercice 3 </strong>
+        <CardContent>
+
+        <img
+                src={"images/math/teacher.png"}
+
+                style={{
+                  width: '220px',
+                  marginBottom: '10px',
+                  
+                }}
+              />
+          <Box my={2}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+            
+              <Card
+                style={{
+                  borderRadius: '20px',
+                  backgroundColor: '#1877f2',
+                  padding: '10px',
+                }}
+              >
+                <CardContent>
+
                   <Typography variant="body1" style={{ color: '#ffffff' }}>
-                     Voici les nombres : {randomNumbers.join(", ")}. Essayez d'atteindre le nombre : {targetNumber}. 
-                     utiliser chaque nombre une seule fois.
+                    Voici les nombres : {randomNumbers.join(", ")}. Essayez d'atteindre le nombre : {targetNumber}.
+                    utiliser chaque nombre une seule fois.
                   </Typography>
-                
-              
-              </CardContent>
-            </Card>
-          </div>
-        </Box>
-        
+
+
+                </CardContent>
+              </Card>
+            </div>
+          </Box>
+
           <Box my={2}>
             <form >
               <TextField
-               variant="outlined" 
-               type="text" 
-               value={userAnswers[2]} 
-               onChange={e => setUserAnswers(userAnswers.slice(0, 2).concat(e.target.value))}
-               label="Votre formule"
-                
+                variant="outlined"
+                type="text"
+                value={userAnswers[2]}
+                onChange={e => setUserAnswers(userAnswers.slice(0, 2).concat(e.target.value))}
+                label="Votre formule"
+
                 fullWidth
               />
               <h1></h1>
               <div className={classes.buttons}>
-            <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(2, targetNumber)}>OK</Button>
-            <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-          </div>
-          {areCorrect[2] !== null && (
-            <Typography color={areCorrect[2] ? 'success.main' : 'error.main'}>
-              {areCorrect[2] ? 'Correct!' : 'Incorrect.'}
-            </Typography>
-          )}
+                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(2, targetNumber)}>OK</Button>
+                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
+              </div>
+              {areCorrect[2] !== null && (
+                <Typography color={areCorrect[2] ? 'success.main' : 'error.main'}>
+                  {areCorrect[2] ? 'Correct!' : 'Incorrect.'}
+                </Typography>
+              )}
             </form>
           </Box>
-        
-      </CardContent>
+
+        </CardContent>
       </card>
     </Box>
   );

@@ -189,8 +189,8 @@ const G1 = () => {
 
 
                                 <br></br>
-
-                                <img src={"/images/Math/C/C11/divi.png"} alt="attention" />
+                                <img src={"/images/Math/C/C11/divi.png"}  style ={{ width:'50%'  ,height: '10%',marginLeft:'50px' }} alt="attention" />
+<br></br>
 
 
                                 <strong>Droites  parallèles</strong>

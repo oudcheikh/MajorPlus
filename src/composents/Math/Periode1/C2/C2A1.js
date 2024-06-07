@@ -185,7 +185,7 @@ const C2A1 = () => {
       <Box>
         <CustomDragLayer />
        <Card1> <StyledText>
-           Formez le  plus grand nombre possible
+          <strong> Formez le  plus grand nombre possible </strong> 
         </StyledText></Card1>
         <br></br>
         <br></br>

@@ -19,7 +19,7 @@ const StyledText = styled.p`
   &:hover {
     transform: scale(1.05);
   }`;
-  
+
 const ResetButton = styled.button`
 border-radius: 5px;
 background-color: #45a05c;
@@ -77,7 +77,7 @@ const C2A1 = () => {
     const newQuestions = [generateNumbers()];
     setQuestions(newQuestions);
     setShowCongratulations(false);
-    
+
   };
   const generateNumbers = () => {
     const first = Math.floor(Math.random() * 1000000000);
@@ -114,7 +114,7 @@ const C2A1 = () => {
     setSelectedSymbol(symbol);
   };
 
- 
+
 
 
 
@@ -127,95 +127,96 @@ const C2A1 = () => {
     generateQuestion();
   }, []);
 
-  
+
 
   const resetGame = () => {
     if (opverify) {
-    generateQuestion();
-    setShowCongratulations(false);
-    setOpverify(false);
+      generateQuestion();
+      setShowCongratulations(false);
+      setOpverify(false);
     }
   };
 
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
+      {/* <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           bgcolor: 'background.default',
-        }}>
+          marginRight:'0px'
+        }}> */}
         <Card elevation={3}>
           <CardContent>
-          <StyledText>
-           Comparaidon des nombres
+            <StyledText>
+              <strong>  Comparaidon des nombres</strong>
             </StyledText>
             <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center" }}>
-            <StyledText>
-            {questions.map((q, index) => (
-                    <span>{q.first}</span>
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <StyledText>
+                  {questions.map((q, index) => (
+                   <strong style={{color:'blue'}}>{q.first}</strong>
                   ))}
                 </StyledText>
 
-              <FormulaBox className="mainSymb">{selectedSymbol}</FormulaBox>
+                <FormulaBox className="mainSymb">{selectedSymbol}</FormulaBox>
 
-              <StyledText>
-              {questions.map((q, index) => (
-                    <span>{q.last}</span>
+                <StyledText>
+                  {questions.map((q, index) => (
+                    <strong style={{color:'blue'}}>{q.last}</strong>
                   ))}
                 </StyledText>
+              </div>
             </div>
-</div>
 
-            <Grid container spacing={2} justifyContent="center" style={{marginTop: '2em'}}>
-                <FormulaBox 
+            <Grid container spacing={2} justifyContent="center" style={{ marginTop: '2em' }}>
+              <FormulaBox
                 className="symbols" onClick={() => handleSymbolClick("<")}>
                 &#60;
-                </FormulaBox>
-                <FormulaBox 
+              </FormulaBox>
+              <FormulaBox
                 className="symbols"
                 onClick={() => handleSymbolClick("=")}>
                 &#61;
-                </FormulaBox>
-                <FormulaBox className="symbols"
+              </FormulaBox>
+              <FormulaBox className="symbols"
                 onClick={() => handleSymbolClick(">")}>
                 &#62;
-                </FormulaBox>
+              </FormulaBox>
             </Grid>
             <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div  style={{ display: "flex", alignItems: "center" ,marginTop:"10px" }}>
-            <Grid>
-              {showX && <span>✖️</span>}
-              {showCongratulations && <span>✅</span>}
-              </Grid>
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", marginTop: "10px" }}>
+                <Grid>
+                  {showX && <span>✖️</span>}
+                  {showCongratulations && <span>✅</span>}
+                </Grid>
+              </div>
             </div>
-            </div>
-            <Grid container spacing={2} justifyContent="center" style={{marginTop: '2em'}}>
+            <Grid container spacing={2} justifyContent="center" style={{ marginTop: '2em' }}>
               <Grid item>
                 <VerifyButtom onClick={verify}>
                   OK
                 </VerifyButtom>
               </Grid>
-              
+
               <Grid item>
-                <ResetButton 
-                  onClick={resetGame} 
-                   // Change button and text color
+                <ResetButton
+                  onClick={resetGame}
+                // Change button and text color
                 >
                   RESET
                 </ResetButton>
@@ -223,7 +224,7 @@ const C2A1 = () => {
             </Grid>
           </CardContent>
         </Card>
-      </Box>
+      {/* </Box> */}
     </DndProvider>
   );
 };

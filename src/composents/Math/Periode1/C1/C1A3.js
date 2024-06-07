@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import {
   Box, Button, Typography, Table, TableBody, TableCell,
-  TableContainer, TableRow, TextField, LinearProgress, Grid
+  TableContainer, TableRow, TextField, LinearProgress, Grid,
+  Dialog, DialogTitle, DialogContent, DialogActions
 } from "@mui/material";
 import _ from "lodash";
 import styled from "styled-components";
+import { Card } from '../../../Styles/MajorStyles';
+import { useSpring, animated } from 'react-spring';
 
 const Fraction = styled.div`
     box-sizing: border-box;
@@ -42,6 +45,8 @@ const StyledTextField = styled(TextField)`
 const ranges = [999, 99999, 9999999, 999999999, 99999999999];
 
 const C1A3 = () => {
+
+  const [result, setResult] = useState(' ')
   const [progress, setProgress] = useState(0);
   const [randomNumber, setRandomNumber] = useState(_.random(0, ranges[progress]));
   const [score, setScore] = useState(0);
@@ -53,6 +58,7 @@ const C1A3 = () => {
     unités: { C: "", D: "", U: "" },
   });
 
+ 
   const handleChange = (event, type, col) => {
     setNumbers({ ...numbers, [type]: { ...numbers[type], [col]: event.target.value } });
   };
@@ -71,14 +77,18 @@ const C1A3 = () => {
       parseInt(numbers.unités.C || 0) * 100 +
       parseInt(numbers.unités.D || 0) * 10 +
       parseInt(numbers.unités.U || 0);
+
     if (total === randomNumber) {
       setScore(score + 4);
+      setResult("Bravo ! passez au nombre suivant");
+      setOpen(true); // Ouvrir le modal pour afficher le message
       if (progress < 4) {
         setProgress(progress + 1);
         setRandomNumber(_.random(0, ranges[progress + 1]));
       } else {
         setOpen(true);
       }
+
       setNumbers({ 
         milliards: { C: "", D: "", U: "" },
         millions: { C: "", D: "", U: "" },
@@ -86,11 +96,13 @@ const C1A3 = () => {
         unités: { C: "", D: "", U: "" },
       });
     } else {
-      alert("Faux!");
+      setResult("Faux!");
+      setOpen(true); // Ouvrir le modal pour afficher le message
     }
   };
 
   const handleReset = () => {
+    setResult(' ')
     setProgress(0);
     setRandomNumber(_.random(0, ranges[0]));
     setScore(0);
@@ -107,45 +119,55 @@ const C1A3 = () => {
     <Grid container justifyContent="center">
       <Grid item xs={12} md={8}>
        
-        
-          <Typography variant="h5">Remplir la table par : {randomNumber}</Typography>
-          <TableContainer>
-            <Table>
-              <TableBody>
-                <TableRow>
-                  {["", "C", "D", "U"].map((value, i) => (
-                    <TableCell key={i} align="center">
-                      {value}
+
+        <Typography variant="h5">Remplir la table par : {randomNumber}</Typography>
+        <TableContainer>
+          <Table>
+            <TableBody>
+              <TableRow>
+                {["", "C", "D", "U"].map((value, i) => (
+                  <TableCell key={i} align="center">
+                    {value}
+                  </TableCell>
+                ))}
+              </TableRow>
+              {["milliards", "millions", "mille", "unités"].map((type) => (
+                <TableRow key={type}>
+                  <TableCell>{type}</TableCell>
+                  {["C", "D", "U"].map((col) => (
+                    <TableCell key={col}>
+                      <StyledTextField
+                        variant="outlined"
+                        value={numbers[type][col]}
+                        onChange={(event) => handleChange(event, type, col)}
+                      />
                     </TableCell>
                   ))}
                 </TableRow>
-                {["milliards", "millions", "mille", "unités"].map((type) => (
-                  <TableRow key={type}>
-                    <TableCell>{type}</TableCell>
-                    {["C", "D", "U"].map((col) => (
-                      <TableCell key={col}>
-                        <StyledTextField
-                          variant="outlined"
-                          value={numbers[type][col]}
-                          onChange={(event) => handleChange(event, type, col)}
-                        />
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Box display="flex" justifyContent="center" mt={2}>
-            <Button variant="contained" color="primary" onClick={handleValidate}>
-              Valider
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Box display="flex" justifyContent="center" mt={2}>
+          <Button variant="contained" color="primary" onClick={handleValidate}>
+            Valider
+          </Button>
+          <Button variant="contained" color="primary" style={{ marginLeft: '20px' }} onClick={handleReset}>
+            Réinitialiser
+          </Button>
+        </Box>
+
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>Résultat</DialogTitle>
+          <DialogContent>
+            <Typography>{result}</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpen(false)} color="primary">
+              Fermer
             </Button>
-            
-            <Button variant="contained" color="primary"  style={{ marginLeft: '20px' }} onClick={handleReset}>
-              Réinitialiser
-            </Button>
-          </Box>
-       
+          </DialogActions>
+        </Dialog>
       </Grid>
     </Grid>
   );

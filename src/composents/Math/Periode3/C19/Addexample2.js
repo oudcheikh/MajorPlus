@@ -3,7 +3,7 @@ import './FractionsCalculator.css';
 
 import {
   FormulaText
-} from '../Styles/MajorStyles';
+} from '../../../Styles/MajorStyles';
 
 const FractionAdditionDisplay = () => {
   // Les valeurs pour l'exemple

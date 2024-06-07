@@ -49,50 +49,52 @@ function C3A3() {
   };
 
   return (
-    
-      <Card>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
-            C3A3 Activité
+
+    <Card>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>
+          Exercice
+        </Typography>
+        <Typography variant="body1">
+          <strong> Les employés du téléphone doivent installer une ligne à deux fils. Ils disposent de {numRolls} rouleaux de {rollLength} mètres chacun.
+            Les deux fils posés, il leur reste {unusedCable} mètres de fil non utilisé. Quelle est la longueur de la ligne téléphonique installée ?</strong>
+        </Typography>
+        
+        <TextField
+          type="number"
+          label="Votre réponse"
+          variant="outlined"
+          value={userAnswer}
+          onChange={e => setUserAnswer(e.target.value)}
+          fullWidth
+          sx={{ marginTop: 2 }}
+        />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={checkAnswer}
+            sx={{ borderRadius: '50%', minWidth: '56px' }}
+          >
+            OK
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={generateNewValues}
+            sx={{ borderRadius: '50%', minWidth: '56px' }}
+          >
+            Reset
+          </Button>
+        </Box>
+        {isCorrect !== null && (
+          <Typography variant="body1" color={isCorrect ? 'success.main' : 'error.main'} sx={{ marginTop: 2 }}>
+            {isCorrect ? 'Votre réponse est correcte!' : 'Votre réponse est incorrecte.'}
           </Typography>
-          <Typography variant="body1">
-            Les employés du téléphone doivent installer une ligne à deux fils. Ils disposent de {numRolls} rouleaux de {rollLength} mètres chacun. Les deux fils posés, il leur reste {unusedCable} mètres de fil non utilisé. Quelle est la longueur de la ligne téléphonique installée ?
-          </Typography>
-          <TextField
-            type="number"
-            label="Votre réponse"
-            variant="outlined"
-            value={userAnswer}
-            onChange={e => setUserAnswer(e.target.value)}
-            fullWidth
-            sx={{ marginTop: 2 }}
-          />
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={checkAnswer}
-              sx={{ borderRadius: '50%', minWidth: '56px' }}
-            >
-              OK
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={generateNewValues}
-              sx={{ borderRadius: '50%', minWidth: '56px' }}
-            >
-              Reset
-            </Button>
-          </Box>
-          {isCorrect !== null && (
-            <Typography variant="body1" color={isCorrect ? 'success.main' : 'error.main'} sx={{ marginTop: 2 }}>
-              {isCorrect ? 'Votre réponse est correcte!' : 'Votre réponse est incorrecte.'}
-            </Typography>
-          )}
-        </CardContent>
-      </Card>
-    
+        )}
+      </CardContent>
+    </Card>
+
   );
 }
 

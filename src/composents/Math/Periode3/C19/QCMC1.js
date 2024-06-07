@@ -1,4 +1,4 @@
-import QCM from '../QCM';
+import QCM from '../../../QCM';
 import React, { useEffect, useState } from 'react';
 
 

@@ -22,8 +22,10 @@ function Acceuil() {
         <CardButton title="Les nombers Decimaux" navigateTo="/NomberDecimaux" />
         <CardButton title="PartageInegaux" navigateTo="/PatageInegaux" />
         <CardButton title="CalculeAire" navigateTo="/CalculeAire" />
+        <CardButton title="Quiz" navigateTo="/Quiz2" />
       </div>
     </div>
+    
   );
 }
 

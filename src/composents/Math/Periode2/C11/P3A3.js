@@ -14,13 +14,14 @@ import Audio from "./Audio11";
 
 
 import {
-  Container, SectionContainer, ImageContainer, Card, BodyText,
+  Container, SectionContainer, ImageContainer, Card, BodyText,NumberDisplay,
   Title, Subtitle, FormulaBox, FormulaText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
 
 import styled from 'styled-components';
 import { Box } from '@mui/material';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -28,7 +29,7 @@ import { Box } from '@mui/material';
 export const StyledBox = styled.div`
 padding-left: 2px;
 padding-right:2px;
-padding-top: 340%;
+padding-top: 320%;
 padding-bottom:2px;
   width: 100%;
   max-width: 100%;
@@ -38,45 +39,6 @@ padding-bottom:2px;
   align-items: center;
 `;
 
-const NumberDisplay3 = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  // margin: '20px auto',
-  padding: '5px',
-  backgroundColor: ' white',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
-
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  // margin: '20px auto',
-  padding: '5px',
-  backgroundColor: ' hsl(210, 75%, 63%);',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
 
 
 // App Component
@@ -161,8 +123,9 @@ const P3A8 = () => {
   }
 
 
+const Exercice1 =()=>{
 
-
+}
   return (
 
     <Container_Progress_Bar>
@@ -248,23 +211,29 @@ const P3A8 = () => {
 
               
 
-                  <NumberDisplay3>
+                  <NumberDisplay>
                     <img src={'/images/Math/C/C11/deux.png'} alt="division" />
                     <strong> 234 est divisible par 2, car 4 est pair </strong>
-                  </NumberDisplay3>
+                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
+                  </NumberDisplay>
                   <br></br><br></br>
 
-                  <NumberDisplay3>
+                  <NumberDisplay>
                     <img src={'/images/Math/C/C11/cinq.png'} alt="division" />
                     <strong> 450 est divisible par 5, car chiffre des unities est 0</strong>
                     <strong> 455 est divisible par 5, car chiffre des unities est 5</strong>
                     <strong> 452 n'est pas  divisible par 5, car chiffre des unities est ni 0 , ni 5 </strong>
-                  </NumberDisplay3>
+
+                    <br></br>
+                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
+                  </NumberDisplay>
                   <br></br><br></br>
-                  <NumberDisplay3>
+                  <NumberDisplay>
                     <img src={'/images/Math/C/C11/troiss.png'} alt="division" />
                     <strong> 321 est divisible par 3 car 3+2+1=6 et 6 est parmi les multiple de 3 </strong>
-                  </NumberDisplay3>
+                    <br></br>
+                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
+                  </NumberDisplay>
 
               </FormulaBox2>
             </SectionContainer2>

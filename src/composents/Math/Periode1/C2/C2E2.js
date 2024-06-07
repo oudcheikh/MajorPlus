@@ -184,21 +184,10 @@ const C2A1 = () => {
   return (
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <Box>
-        <img
-          src={"images/Images/inestine.png"}
-          alt="Teacher"
-          style={{
-            marginTop: "25px",
-            width: "50%", // ou une valeur spécifique comme "100px"
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        />
 
         <CustomDragLayer />
         <Card1><StyledText>
-          Ordonnez ces nomber de plus haut vers le plus petis
+         <strong>Ordonnez ces nomber de plus haut vers le plus petis</strong> 
         </StyledText></Card1>
         <br></br>
         <br></br>

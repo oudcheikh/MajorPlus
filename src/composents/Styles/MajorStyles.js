@@ -459,6 +459,107 @@ export const NumberDisplay = styled(Box)(({ isActive }) => ({
         transform: 'scale(1.05)',
     },
 }));
+
+
+export const middle_Green_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: '#18d382f9',
+  border: '3px dashed black',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+
+export const Green_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'green',
+  border: '3px dashed black',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+
+export const Vert_Fancee_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'rgb(0, 255, 145)',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+
+export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'orange',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+
+export const Beige_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'beige',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
 export const NumberDisplay2 = styled(Box)(({ isActive }) => ({
     boxSizing: 'border-box',
     width: '100%',
@@ -478,6 +579,128 @@ export const NumberDisplay2 = styled(Box)(({ isActive }) => ({
         transform: 'scale(1.05)',
     },
 }));
+export const Pink_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'pink',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
+export const Bleu_ciel_NumberDisplay3 = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: '#B3E5FC',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+export const Bleu_ciel_Bleu_ciel_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  margin: '20px auto',
+  padding: '20px',
+  backgroundColor: 'FF7F50',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
+export const Violet_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: ' rgb(205, 205, 241)',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
+
+export const Red_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: '#af5543',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
 
 
+export const imageStyle_Mot_Clé = {
+  width: '40%', 
+  height: 'auto', 
+  maxWidth: '90%',
+  display: 'block', 
+  marginLeft: 'auto', 
+  marginRight: 'auto' 
+};
+
+export const imageStyle_Important = {
+  width: '90%', 
+  height: 'auto', 
+  maxWidth: '90%',
+  display: 'block', 
+  marginLeft: 'auto', 
+  marginRight: 'auto' 
+};
+
+export const imageStyle_grand = {
+  width: '100%', 
+  height: '100%', 
+  maxWidth: '90%',
+  display: 'block', 
+  marginLeft: 'auto', 
+  marginRight: 'auto' 
+};
 

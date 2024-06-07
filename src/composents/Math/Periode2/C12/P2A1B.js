@@ -304,9 +304,9 @@ const P2A1B = () => {
                                 <ContinueButton> Formules Clés</ContinueButton>
 
                               
+                                
 
-
-                             
+                                <img src={"/images/Math/periode2/multiple.png"} alt="douze" />
 
                                 <NumberDisplay3>
                                     <FormulaText><strong>Multiple</strong> =Un nombre obtenu en multipliant un nombre donné par un autre nombre entier.</FormulaText>
@@ -323,28 +323,13 @@ const P2A1B = () => {
 
 
 
+
+
+
+
+
+
                     <Swipe_Section ref={section7Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton> QCM</ContinueButton>
-
-
-                                <div>
-                                    <Test2 />
-                                </div>
-
-
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-
-
-
-
-
-                    <Swipe_Section ref={section8Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton> Activites</ContinueButton>
@@ -362,7 +347,7 @@ const P2A1B = () => {
 
 
 
-                    <Swipe_Section ref={section9Ref}>
+                    <Swipe_Section ref={section8Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton> Activites</ContinueButton>
@@ -375,6 +360,23 @@ const P2A1B = () => {
                         </SectionContainer2>
                     </Swipe_Section>
 
+
+
+
+                    <Swipe_Section ref={section9Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton> QCM</ContinueButton>
+
+
+                                <div>
+                                    <Test2 />
+                                </div>
+
+
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
 
                 </SwipeContainer2>
 

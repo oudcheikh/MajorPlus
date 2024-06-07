@@ -23,7 +23,7 @@ import {
     FormulaBox,
     FormulaText,
     ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
-    SwipeContainer2, Swipe_Section,
+    SwipeContainer2, Swipe_Section,imageStyle_Mot_Clé,NumberDisplay
 } from '../../../Styles/MajorStyles';
 
 import styled from "styled-components";
@@ -32,25 +32,6 @@ const StyledBox = styled(Box)({
 
 });
 
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'FF7F50',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 
 const C2 = () => {
 
@@ -136,7 +117,7 @@ const C2 = () => {
                         <SectionContainer2>
                             <FormulaBox2>
                                 <button className="continue-button" >
-                                    <FormulaText><strong>Convertiseur d'unités de longueur</strong></FormulaText>
+                                    <FormulaText><strong>Ajouter et retrancher</strong></FormulaText>
                                 </button>
                                 <br>
                                 </br>
@@ -172,18 +153,19 @@ const C2 = () => {
                             <FormulaBox2>
 
                                 <ContinueButton>Concept clés</ContinueButton>
-                                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+                                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" style={imageStyle_Mot_Clé}/>
 
 
 
-                                <strong>Ajouter :</strong>
+                               <FormulaText> <strong style={{color:'blue'}}>Ajouter :</strong></FormulaText>
                                 <NumberDisplay>
                                     <strong>
                                         C'est combiner des nombres. Si tu as 3 pommes et que tu en prends 2 de plus, tu as alors 3 + 2 = 5 pommes. </strong>
                                 </NumberDisplay>
 
 
-                                <strong>Retrancher :</strong>
+                               
+                                <FormulaText> <strong style={{color:'blue'}}>Retrancher :</strong></FormulaText>
                                 <NumberDisplay>
                                     <strong>
                                         C'est enlever une quantité d'un nombre. Si tu as 5 pommes et que tu en manges 2, il te reste 5 - 2 = 3 pommes.

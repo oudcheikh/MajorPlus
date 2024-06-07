@@ -217,8 +217,9 @@ const C1 = () => {
 
 
                                 <br></br>
+                                <img src={"/images/Math/C/C11/divi.png"}  style ={{ width:'50%'  ,height: '10%',marginLeft:'50px',marginReight:'50px' }} alt="attention" />
 
-                                <img src={"/images/Math/C/C11/divi.png"} alt="attention" />
+                               <br></br>
 
 
                                 <strong>Multiplication :</strong>

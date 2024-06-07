@@ -77,17 +77,19 @@ function P2A3_1() {
   return (
     <Card style={{ minHeight: '400px' }}>
       <CardContent>
+
+      <img
+              src={"/images/Math/periode2/compte.gif"}
+              alt="mony"
+              // style={{
+              //   width: '100px',
+              //   marginBottom: '10px',
+              //   marginRight: '10px',
+              // }}
+            />
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"/images/Math/C/imagesC12/coins.png"}
-              alt="kangaroo"
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
-            />
+           
             <Card
               style={{
                 borderRadius: '20px',

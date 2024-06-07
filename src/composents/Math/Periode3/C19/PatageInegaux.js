@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import '../Math/Periode4/progressBar/SegmentedProgressBar.css'
-import SegmentedProgressBar from '../Math/Periode4/progressBar/ProgressBar'
+import '../../Periode4/progressBar/SegmentedProgressBar.css'
+import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar'
 
 
 import QCMC1 from './QCMC1';
@@ -20,52 +20,13 @@ import { Box } from '@mui/material';
 import {
   Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section
-} from '../Styles/MajorStyles';
+} from '../../../Styles/MajorStyles';
 
 
 
 const StyledBox = styled(Box)({
 
 });
-
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  margin: '20px auto',
-  padding: '20px',
-  backgroundColor: 'FF7F50',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  margin: '20px auto',
-  padding: '20px',
-  backgroundColor: 'rgb(248, 248, 227)',
-  border: '3px dashed #B3E5FC',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
 
 const imageStyle = {
   width: '90%', // L'image prendra 80% de la largeur de son parent
@@ -84,21 +45,12 @@ const C1 = () => {
   const section4Ref = useRef(null);
   const section5Ref = useRef(null);
   const section6Ref = useRef(null);
-  const section7Ref = useRef(null);
-  const section8Ref = useRef(null);
-  const section9Ref = useRef(null);
+
 
   const navigate = useNavigate();
-
-
   const [progress, setProgress] = useState(0);
-
-
   const [sectionsViewed, setSectionsViewed] = useState(0);
-  const totalSections = 5; 
-
-
-
+  const totalSections = 6; 
 
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
@@ -112,7 +64,8 @@ const C1 = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-      
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth,+ section6Ref.current.offsetWidth, //5
+
 
     ];
 
@@ -217,7 +170,7 @@ const C1 = () => {
 
 
 
-          <Swipe_Section ref={section2Ref}>
+          <Swipe_Section ref={section3Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  Parts avec différence</ContinueButton>
@@ -255,7 +208,7 @@ const C1 = () => {
           </Swipe_Section>
 
 
-          <Swipe_Section ref={section3Ref}>
+          <Swipe_Section ref={section4Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>
@@ -267,7 +220,7 @@ const C1 = () => {
 
 
 
-          <Swipe_Section ref={section4Ref}>
+          <Swipe_Section ref={section5Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>
@@ -279,7 +232,7 @@ const C1 = () => {
           </Swipe_Section>
 
 
-          <Swipe_Section ref={section5Ref}>
+          <Swipe_Section ref={section6Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>

@@ -1,0 +1,22 @@
+ 
+.header-group-1 {
+  background-color: lightblue;
+}
+
+.header-group-2 {
+  background-color: lightcoral;
+}
+
+.header-group-3 {
+  background-color: lightyellow;
+}
+
+.header-group-4 {
+  background-color: lightgreen;
+}
+
+.header-sub {
+  background-color: white;
+  font-weight: bold;
+}
+

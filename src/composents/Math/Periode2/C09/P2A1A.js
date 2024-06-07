@@ -13,6 +13,12 @@ import {
     Container, SectionContainer, ImageContainer, Card, BodyText,
     Title, Subtitle, FormulaBox, FormulaText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
+    Violet_NumberDisplay,
+    Green_NumberDisplay,
+    Red_NumberDisplay,
+    Pink_NumberDisplay,
+    NumberDisplay,
+    Bleu_ciel_NumberDisplay3
 } from '../../../Styles/MajorStyles';
 
 
@@ -29,48 +35,10 @@ padding-bottom:2px;
     align-items: center;
 `;
 
-const NumberDisplay3 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    // margin: '20px auto',
-    padding: '5px',
-    backgroundColor: ' pink',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    // margin: '20px auto',
-    padding: '5px',
-    backgroundColor: ' hsl(210, 75%, 63%);',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 const P2A1A = () => {
-   
-   
+
+
 
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
@@ -136,7 +104,7 @@ const P2A1A = () => {
     }
 
 
-  
+
 
 
     return (
@@ -263,44 +231,44 @@ const P2A1A = () => {
                                 <strong><h2>Solution</h2></strong>
                                 <br></br>
 
-                              
-
-                                    <img src={"/images/Math/C/imagesC09/exemple1.png"} alt="Teacher" style={{ width: "170px", marginTop: "20px" }} />
-
-                                    <NumberDisplay3>
-                                        <strong>Etape1:</strong>
-                                        <strong> chercher combien de 8 dans les deux premiers nombre , de 141(14),14 contient 8 seulment 1 fois. metter 1 dans le quotion et le resultat (8 x 1=8) dans le 2eme cas<br></br>
-                                        </strong>
-                                    </NumberDisplay3>
-                                
 
 
+                                <img src={"/images/Math/C/imagesC09/exemple1.png"} alt="Teacher" style={{ width: "170px", marginTop: "20px" }} />
 
-                               
-                                    <img src={"/images/Math/C/imagesC09/exemple2.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-                                
-                                    <NumberDisplay3>
-                                        <strong>Etape2:</strong>
-                                        <strong> 
+                                <Pink_NumberDisplay>
+                                    <strong>Etape1:</strong>
+                                    <strong> chercher combien de 8 dans les deux premiers nombre , de 141(14),14 contient 8 seulment 1 fois. metter 1 dans le quotion et le resultat (8 x 1=8) dans le 2eme cas<br></br>
+                                    </strong>
+                                </Pink_NumberDisplay>
+
+
+
+
+
+                                <img src={"/images/Math/C/imagesC09/exemple2.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
+
+                                <Pink_NumberDisplay>
+                                    <strong>Etape2:</strong>
+                                    <strong>
                                         Soustraction 8 de 14, le resultat est 6, deplacer le 3 eme nombre restant de notre dividende 141(1) et combiner avec 6, deplacer le resultat (61) vers le 3eme cas,
-                                        </strong>
-                                    </NumberDisplay3>
+                                    </strong>
+                                </Pink_NumberDisplay>
 
-                                
-                                    <img src={"/images/Math/C/imagesC09/exemple.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-                               
-                                    <NumberDisplay3>
-                                        <strong>Etape3:</strong>
 
-                                        <strong> 
+                                <img src={"/images/Math/C/imagesC09/exemple.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
+
+                                <Pink_NumberDisplay>
+                                    <strong>Etape3:</strong>
+
+                                    <strong>
                                         De meme chercher combien de 8 dans 61, 61 contient  8 exactement 7 fois,metter 7 dans le quotion  et le resultat (8 x 7=56) dans le dernier cas<br></br>
-                                            comme le nombre restant de la soustraction de 61 et 56 inferieur a 8, arreter l operation et
-                                            voila votre resultat de division.   
-                                         </strong>
+                                        comme le nombre restant de la soustraction de 61 et 56 inferieur a 8, arreter l operation et
+                                        voila votre resultat de division.
+                                    </strong>
 
-                                    </NumberDisplay3>
+                                </Pink_NumberDisplay>
 
-                              
+
 
                             </FormulaBox2>
                         </SectionContainer2>
@@ -311,25 +279,34 @@ const P2A1A = () => {
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Formules clés</ContinueButton>
-
-                                <NumberDisplay>
-                                <strong>Dividende</strong> = Signifie le  nombre que tu divises.
-                                </NumberDisplay>
-
-<br></br>
-                                <NumberDisplay>
-                                <strong> Diviseur = Signifie le nombre par lequel tu divises.</strong>
-                                </NumberDisplay>
+                                <br></br>
+                                <img src={"/images/Math/periode2/divisioneuclidienne.PNG"}/>
 
                                 <br></br>
-                                <NumberDisplay>
-                                <strong>  Quotient = Signifie le résultat de la division</strong>
-                                </NumberDisplay>
+                                <br></br>
+                                <br></br>
+
+
+                                <Violet_NumberDisplay>
+                                    <strong>Dividende: Signifie le  nombre que tu divises.</strong> 
+                                </Violet_NumberDisplay>
 
                                 <br></br>
-                                <NumberDisplay>
-                                <strong>Rest = Signifie le rest de la division</strong>
-                                </NumberDisplay>
+                                <Bleu_ciel_NumberDisplay3>
+                                    <strong> Diviseur = Signifie le nombre par lequel tu divises.</strong>
+                                </Bleu_ciel_NumberDisplay3>
+
+                                <br></br>
+
+                                <Red_NumberDisplay>
+                                    <strong>  Quotient = Signifie le résultat de la division</strong>
+                                </Red_NumberDisplay>
+
+                                <br></br>
+                                
+                                <Green_NumberDisplay>
+                                    <strong>Reste = Signifie le rest de la division</strong>
+                                </Green_NumberDisplay>
 
 
                             </FormulaBox2>

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
+
 import { Card } from 'react-bootstrap';
+
+
+import {
+  Box, Button
+} from "@mui/material";
 
 const imageStyle = {
   width: '40%',
@@ -48,7 +53,8 @@ const NumberDisplay2 = styled(Box)(({ isActive }) => ({
 const Démonstration = () => {
   const [step, setStep] = useState(0);
   const [result, setResult] = useState('Taper suivant pour mieux comprendre');
-
+const[Suivant, setSuivant]=useState(true)
+const[refaire, setRefaire]=useState(false)
   const images = [
     '/images/Math/C/C1/start.gif',
     '/images/Math/C/C1/chiffre1.png',
@@ -72,6 +78,14 @@ const Démonstration = () => {
 
   ];
 
+
+  const initialiser=() =>{
+    setStep(0)
+    setResult('Taper suivant pour mieux comprendre')
+    setSuivant(true)
+    setRefaire(false)
+
+  }
   const handleNextStep = () => {
     if (step < images.length - 1) {
       setStep(prevStep => prevStep + 1);
@@ -84,6 +98,7 @@ const Démonstration = () => {
         setResult('Aujourd hui on va comprendre comment lire ce grand nombre !');
         setStep(1)
         break;
+        
       case 1:
         setResult('d abord tu vas commencer par la droite');
         setStep(2)
@@ -151,12 +166,12 @@ const Démonstration = () => {
 
       case 16:
         setResult('tu vois c est trés facile !');
-    
-setStep(17)
+
+        setStep(17)
 
       default:
-        setResult('Taper suivant pour mieux comprendre');
-        setStep(0)
+        setSuivant(false)
+        setRefaire(true)
         break;
     }
   };
@@ -172,7 +187,31 @@ setStep(17)
       <img src={images[step]} alt={`image ${step}`} style={imageStyle2} />
 
       <br />
-      <button onClick={handleNextStep}>Suivant</button>
+
+
+      {
+        Suivant &&
+
+        <div>
+          <Button variant="contained" color="primary" onClick={handleNextStep}>
+            Suivant
+          </Button>
+        </div>
+      }
+
+
+
+
+{
+        refaire &&
+
+        <div>
+          <Button variant="contained" color="primary" onClick={initialiser}>
+            Refaire
+          </Button>
+        </div>
+      }
+
     </div>
   );
 };

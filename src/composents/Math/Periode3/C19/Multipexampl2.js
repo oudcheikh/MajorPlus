@@ -4,9 +4,9 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import 'katex/dist/katex.min.css';
-import correctSound from '../sounds/correct.mp3';
-import incorrectSound from '../sounds/incorrect.mp3';
-import { FormulaText } from '../Styles/MajorStyles';
+import correctSound from '../../../sounds/correct.mp3';
+import incorrectSound from '../../../sounds/incorrect.mp3';
+import { FormulaText } from '../../../Styles/MajorStyles';
 
 const FractionToDecimalBoundary = () => {
   const [prevValue, setPrevValue] = useState('');

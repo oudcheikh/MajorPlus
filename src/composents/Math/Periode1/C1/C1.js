@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import '../../Periode4/progressBar/SegmentedProgressBar.css'
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
 
-
 import C1A1 from './C1A1';
 import C1A2 from './C1A2';
 import C1A3 from './C1A3';
 import QCMC1 from './QCMC1';
+import Exercice2 from './Exercice2';
 
 
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ import './C1.css';
 import { Box } from '@mui/material';
 
 import {
-    StyledBox2, Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    NumberDisplay,   imageStyle_Mot_Clé, StyledBox2, Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
 import Démonstration from "./Démonstration";
@@ -41,26 +41,6 @@ const StyledBox = styled(Box)({
 });
 
 
-
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'FF7F50',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
 const NumberDisplay2 = styled(Box)(({ isActive }) => ({
     boxSizing: 'border-box',
     width: '100%',
@@ -81,14 +61,6 @@ const NumberDisplay2 = styled(Box)(({ isActive }) => ({
     },
 }));
 
-const imageStyle = {
-    width: '90%', // L'image prendra 80% de la largeur de son parent
-    height: 'auto', // La hauteur change automatiquement pour garder les proportions
-    maxWidth: '90%', // Assure que l'image ne dépasse pas la largeur de la carte
-    display: 'block', // Empêche l'image de prendre plus de place que nécessaire
-    marginLeft: 'auto', // Marges automatiques à gauche pour centrer l'image
-    marginRight: 'auto' // Marges automatiques à droite pour centrer l'image
-};
 
 const C1 = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -101,13 +73,11 @@ const C1 = () => {
     const section7Ref = useRef(null);
     const section8Ref = useRef(null);
     const section9Ref = useRef(null);
+    const section10Ref = useRef(null);
+
 
     const navigate = useNavigate();
-
-
     const [progress, setProgress] = useState(0);
-
-
     const [sectionsViewed, setSectionsViewed] = useState(0);
     const totalSections = 8; // Nombre total de sections
 
@@ -129,7 +99,9 @@ const C1 = () => {
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth,
-            
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth + section9Ref.current.offsetWidth,
+            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth + section9Ref.current.offsetWidth+ section10Ref.current.offsetWidth,
+
 
 
         ];
@@ -178,12 +150,12 @@ const C1 = () => {
                                 <button className="continue-button" >
                                     <FormulaText><strong>  Les grands nombres </strong></FormulaText>
                                 </button>
-                                <div style={{marginTop:'200px'}}></div>
-                              
+                                <div style={{ marginTop: '200px' }}></div>
+
                                 <imageStyle> <img src={"/images/Math/periode2/grand nombre.png"} alt="angle" /></imageStyle>
 
 
-                              
+
                                 <Card>
 
                                     <BodyText>
@@ -192,8 +164,8 @@ const C1 = () => {
                                     </BodyText>
 
                                 </Card>
-                                
-                                <div style={{marginTop:'100px'}}></div>
+
+                                <div style={{ marginTop: '100px' }}></div>
 
                             </FormulaBox2>
                         </SectionContainer2>
@@ -205,7 +177,7 @@ const C1 = () => {
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Concept clés</ContinueButton>
-                                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+                                <img src={"/images/Math/C/C11/divi.png"} style={imageStyle_Mot_Clé} alt="Teacher" />
 
                                 < Card>
                                     <FormulaText>
@@ -237,7 +209,7 @@ const C1 = () => {
                             <FormulaBox2>
                                 <ContinueButton>Concept clés</ContinueButton>
 
-                                <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
+                                <img src={"/images/Math/C/C11/divi.png"} style={imageStyle_Mot_Clé} alt="Teacher" />
 
                                 <FormulaText>
                                     <strong style={{ color: 'blueviolet' }}>Noms des grands nombres :</strong>
@@ -268,7 +240,7 @@ const C1 = () => {
                                         <strong>*une tarte qui contient  des milliers de cerise,</strong>
 
 
-                                        <img src={'/images/Math/C/C1/i10.png'} alt="tarte" style={imageStyle} />
+                                        <img src={'/images/Math/C/C1/i10.png'} alt="tarte" />
 
 
                                     </FormulaText>
@@ -283,8 +255,39 @@ const C1 = () => {
                     </Swipe_Section>
 
 
-
                     <Swipe_Section ref={section5Ref}>
+                        <SectionContainer2>
+                            <FormulaBox2>
+                                <ContinueButton>Démonstration</ContinueButton>
+
+                                <div style={{ marginBottom: '50px', width: '100%' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <br></br>
+
+                                        <Démonstration />
+                                    </div>
+
+                                </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+                    
+
+                    <Swipe_Section ref={section6Ref}>
+                        <SectionContainer2>
+
+                            <FormulaBox2>
+                                <ContinueButton>Exercice </ContinueButton>
+                                <img src={"images/Math/periode2/Exercice.png"} alt="Enseignant" />
+                                <div>
+                                    <Exercice2 />
+                                </div>
+                            </FormulaBox2>
+                        </SectionContainer2>
+                    </Swipe_Section>
+
+
+                    <Swipe_Section ref={section7Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Exercice</ContinueButton>
@@ -318,7 +321,7 @@ const C1 = () => {
                     </Swipe_Section>
 
 
-                    <Swipe_Section ref={section6Ref}>
+                    <Swipe_Section ref={section8Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Exercice</ContinueButton>
@@ -341,7 +344,9 @@ const C1 = () => {
 
 
 
-                    <Swipe_Section ref={section7Ref}>
+
+
+                    <Swipe_Section ref={section9Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Exercice</ContinueButton>
@@ -349,7 +354,7 @@ const C1 = () => {
                                 <div style={{ marginBottom: '50px', width: '100%' }}>
                                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                         <ImageContainer>
-                                     
+
                                             <img src={"images/Math/C/C1/exercice.png"} alt="Enseignant" />
                                         </ImageContainer>
                                         <C1A3 />
@@ -362,25 +367,10 @@ const C1 = () => {
 
 
 
-                    <Swipe_Section ref={section7Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Démonstration</ContinueButton>
-
-                                <div style={{ marginBottom: '50px', width: '100%' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-<br></br>
-
-                                        <Démonstration />
-                                    </div>
-
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
+                 
 
 
-                    <Swipe_Section ref={section8Ref}>
+                    <Swipe_Section ref={section10Ref}>
                         <SectionContainer2>
 
                             <FormulaBox2>
@@ -392,6 +382,10 @@ const C1 = () => {
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
+
+
+                   
+
 
 
 
