@@ -23,7 +23,7 @@ function AcceuilDiv() {
 
   return (
     <AnimatedCard className="animated-card">
-  
+  <img src={'/images/petitInestine.png'}/>
   <DivisionComponent />
     </AnimatedCard>
   );

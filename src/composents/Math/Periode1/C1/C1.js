@@ -41,25 +41,25 @@ const StyledBox = styled(Box)({
 });
 
 
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'rgb(248, 248, 227)',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
+// const NumberDisplay2 = styled(Box)(({ isActive }) => ({
+//     boxSizing: 'border-box',
+//     width: '100%',
+//     height: 'auto',
+//     margin: '20px auto',
+//     padding: '20px',
+//     backgroundColor: 'rgb(248, 248, 227)',
+//     border: '3px dashed #B3E5FC',
+//     transition: 'background-color 0.4s, transform 0.3s',
+//     cursor: 'pointer',
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//     fontSize: '1em',
+//     fontFamily: "'Comic Sans MS', sans-serif",
+//     '&:hover': {
+//         transform: 'scale(1.05)',
+//     },
+// }));
 
 
 const C1 = () => {
@@ -214,10 +214,10 @@ const C1 = () => {
                                 <FormulaText>
                                     <strong style={{ color: 'blueviolet' }}>Noms des grands nombres :</strong>
 
-                                    <NumberDisplay2 ><strong>1 000 =<span style={{ color: '#FF7F50' }}>"mille"</span></strong></NumberDisplay2>
+                                    <NumberDisplay ><strong>1 000 =<span style={{ color: '#FF7F50' }}>"mille"</span></strong></NumberDisplay>
 
-                                    <NumberDisplay2 ><strong> 1 000 000 =   <span style={{ color: '#FF7F50' }}>"million"</span></strong></NumberDisplay2>
-                                    <NumberDisplay2 > <h4>1 000 000 000 =</h4>  <span style={{ color: '#FF7F50' }}>"milliard"</span></NumberDisplay2>
+                                    <NumberDisplay ><strong> 1 000 000 =   <span style={{ color: '#FF7F50' }}>"million"</span></strong></NumberDisplay>
+                                    <NumberDisplay > <h4>1 000 000 000 =</h4>  <span style={{ color: '#FF7F50' }}>"milliard"</span></NumberDisplay>
 
 
                                 </FormulaText>

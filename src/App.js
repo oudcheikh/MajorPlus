@@ -221,6 +221,7 @@ import Division  from'./composents/Math/Periode2/C09/P2A1A.js'
 import M3  from'./composents/Math/Periode2/M3/M3.js'
 import Book  from'./composents/tourner page/Book.js'
 import Quiz2  from'./composents/Math/Quiz.js'
+import V  from'./composents/Modals/V.js'
 
 
 function App() {
@@ -441,7 +442,7 @@ function App() {
           <Route path= "/M3" element={<M3/>} />
           <Route path= "/Book" element={<Book/>} />
           <Route path= "/Quiz2" element={<Quiz2/>} />
-           
+          <Route path= "/V" element={<V/>} />
   
       
         </Routes>

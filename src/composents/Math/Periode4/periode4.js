@@ -23,6 +23,7 @@ function Acceuil() {
         <CardButton title="Les mesures agraires " navigateTo="/Les_mesures_Agrairs" />
         
         <CardButton title="livre " navigateTo="/Book" />
+        <CardButton title="modal " navigateTo="/V" />
  
       </div>
     </div>

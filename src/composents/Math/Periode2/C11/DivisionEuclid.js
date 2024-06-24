@@ -9,31 +9,6 @@ import { Link } from 'react-router-dom';
 import TransitionComponent from './TransitionComponent ';
 
 
-const FadingNumber = styled.span`
-  &.fade-animation {
-    animation: fade 1s ease-in-out forwards;
-  }
-
-  @keyframes fade {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-`;
-const Container = styled.div`
-  width: 300px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-
 const TopRow = styled.div`
 display: flex;
 position: relative; /* Ajout du style position: relative sur le conteneur parent */
@@ -87,21 +62,7 @@ const QuotientContainer = styled.div`
   align-items: center;
 `;
 
-const Quotient = styled.div`
-  font-size: 24px;
-  margin-bottom: 10px;
-`;
 
-const Remainder = styled.div`
-  font-size: 24px;
-  color: red;
-`;
-const AlertMessageInvalide = styled.div`
-  color: red;
-`;
-const AlertMessageValide = styled.div`
-  color: green;
-`;
 
 function DivisionComponent() {
 

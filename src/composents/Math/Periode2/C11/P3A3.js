@@ -14,7 +14,7 @@ import Audio from "./Audio11";
 
 
 import {
-  Container, SectionContainer, ImageContainer, Card, BodyText,NumberDisplay,
+  Container, SectionContainer, ImageContainer, Card, BodyText, NumberDisplay,
   Title, Subtitle, FormulaBox, FormulaText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
@@ -23,6 +23,9 @@ import styled from 'styled-components';
 import { Box } from '@mui/material';
 import { Button } from 'react-bootstrap';
 
+import Exercice2 from './Exercice2'
+import Exercice3 from './Exercice3'
+import Exercice5 from './Exercice5'
 
 
 
@@ -63,9 +66,8 @@ const P3A8 = () => {
   const section5Ref = useRef(null);
   const section6Ref = useRef(null);
   const section7Ref = useRef(null);
-  const section8Ref = useRef(null);
-  const section9Ref = useRef(null);
 
+  const [div1, setDiv1] = useState(false)
   const navigate = useNavigate();
 
 
@@ -74,9 +76,6 @@ const P3A8 = () => {
 
   const [sectionsViewed, setSectionsViewed] = useState(0);
   const totalSections = 5; // Nombre total de sections
-
-
-
 
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
@@ -89,11 +88,9 @@ const P3A8 = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
-       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-      // section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
-      // section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
-      // section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth,
-      // section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth + section9Ref.current.offsetWidth,
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth,, //5
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,, //5
 
 
     ];
@@ -123,9 +120,11 @@ const P3A8 = () => {
   }
 
 
-const Exercice1 =()=>{
+  const Exercice1 = () => {
+    console.log(div1)
+    setDiv1(true)
 
-}
+  }
   return (
 
     <Container_Progress_Bar>
@@ -199,73 +198,69 @@ const Exercice1 =()=>{
           </Swipe_Section>
 
 
-
-
-
           <Swipe_Section ref={section3Ref}>
             <SectionContainer2>
               <FormulaBox2>
-                <ContinueButton >
-                  <FormulaText><strong> Exemples </strong></FormulaText>
-                </ContinueButton>
+                <ContinueButton > <FormulaText><strong> Divisibilité par 2  </strong></FormulaText>   </ContinueButton >
 
-              
-
-                  <NumberDisplay>
-                    <img src={'/images/Math/C/C11/deux.png'} alt="division" />
-                    <strong> 234 est divisible par 2, car 4 est pair </strong>
-                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
-                  </NumberDisplay>
-                  <br></br><br></br>
-
-                  <NumberDisplay>
-                    <img src={'/images/Math/C/C11/cinq.png'} alt="division" />
-                    <strong> 450 est divisible par 5, car chiffre des unities est 0</strong>
-                    <strong> 455 est divisible par 5, car chiffre des unities est 5</strong>
-                    <strong> 452 n'est pas  divisible par 5, car chiffre des unities est ni 0 , ni 5 </strong>
-
-                    <br></br>
-                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
-                  </NumberDisplay>
-                  <br></br><br></br>
-                  <NumberDisplay>
-                    <img src={'/images/Math/C/C11/troiss.png'} alt="division" />
-                    <strong> 321 est divisible par 3 car 3+2+1=6 et 6 est parmi les multiple de 3 </strong>
-                    <br></br>
-                    <div> <Button variant="contained" color="primary" onClick={Exercice1}> Exercice </Button></div>
-                  </NumberDisplay>
+                <Exercice2 />
 
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
 
           <Swipe_Section ref={section4Ref}>
             <SectionContainer2>
               <FormulaBox2>
-                <ContinueButton>Activites</ContinueButton>
+                <ContinueButton > <FormulaText><strong> Divisibilité par 5 </strong></FormulaText>   </ContinueButton >
 
-                <Divs/>
-  
+                <Exercice5 />
+
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
 
           <Swipe_Section ref={section5Ref}>
             <SectionContainer2>
               <FormulaBox2>
-              <ContinueButton>QCM</ContinueButton>
-                
+                <ContinueButton > <FormulaText><strong> Divisibilité par 5 </strong></FormulaText>   </ContinueButton >
 
-                <QCM11/>
-                  
+                <Exercice3 />
+
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-     
+
+
+
+
+          <Swipe_Section ref={section6Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>Activites</ContinueButton>
+
+                <Divs />
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
+
+
+          <Swipe_Section ref={section7Ref}>
+            <SectionContainer2>
+              <FormulaBox2>
+                <ContinueButton>QCM</ContinueButton>
+
+
+                <QCM11 />
+
+              </FormulaBox2>
+            </SectionContainer2>
+          </Swipe_Section>
+
         </SwipeContainer2>
       </StyledBox>
     </Container_Progress_Bar>
