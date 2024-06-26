@@ -10,10 +10,6 @@ import C2E1 from "./C2E1";
 import C2E2 from "./C2E2";
 import QCMC2 from "./QCMC2";
 import styled from "styled-components";
-
-
-
-
 import {
   Orange_NumberDisplay,imageStyle_Mot_Clé, imageStyle_Important,Beige_NumberDisplay,Vert_Fancee_NumberDisplay,middle_Green_NumberDisplay,Green_NumberDisplay,NumberDisplay,
   Card,
@@ -26,6 +22,7 @@ import {
 
 
 import { Box } from '@mui/material';
+import Acceuil from "../../../_ReusableComponents/Accueil";
 const StyledBox = styled(Box)({
 
 });
@@ -47,7 +44,6 @@ const C2 = () => {
     const { scrollLeft } = event.target;
     setScrollPosition(scrollLeft);
 
-    // Récupérer les positions de début de chaque section
     const sectionPositions = [
       0, // Position de début de la première section
       section1Ref.current.offsetWidth, // Position de début de la deuxième section
@@ -56,8 +52,6 @@ const C2 = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
-
-
     ];
 
     // Trouver la section actuelle en fonction de la position de défilement
@@ -69,58 +63,20 @@ const C2 = () => {
 
       }
     }
-
-    // Afficher la section actuelle dans la console
-    console.log("Section actuelle :", currentSection + 1);
     setSectionsViewed(currentSection + 1);
     setProgress(currentSection + 1)
-
-
-
   };
 
-
-  const move = () => {
-    navigate("/M3 ");
-  }
-
-
-
   return (
-
-
     <Container_Progress_Bar>
-
-
-
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
 
       <StyledBox>
         <SwipeContainer2 onScroll={handleScroll}>
-
           <Swipe_Section ref={section1Ref}>
             <SectionContainer2>
               <FormulaBox2>
-                <button className="continue-button" >
-                  <FormulaText><strong>  Comparer et ordonner des nombers</strong></FormulaText>
-                </button>
-
-
-                <img src={"/images/Math/C/C2/comp1.png"} alt="comparaison" />
-
-
-                <Card>
-
-                  <BodyText>
-                    <strong>
-                      Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
-                      passionnant :  <strong className="mot_importante"> Comparer et ordonner des nombers.</strong>
-                    </strong>
-                  </BodyText>
-
-                </Card>
-                <br></br> <br></br> <br></br> <br></br>
-
+<Acceuil  titre={' Comparer et ordonner des nombers'} imgSrc={"/images/Math/C/C2/comp1.png"}  altText={"Comparer et ordonner des nombers"}> </Acceuil>
 
               </FormulaBox2>
             </SectionContainer2>

@@ -8,7 +8,6 @@ import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 
-
 import P3A5_2 from "./P3A5-2";
 import Bend from "./Bend";
 import "./bend.css";
@@ -16,13 +15,14 @@ import useSound from "use-sound";
 import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";
 import QCMC14 from './QCMC14';
-import { ContinueButton } from '../../../Styles/MajorStyles';
+import { ContinueButton, Maron_NumberDisplay } from '../../../Styles/MajorStyles';
 
 import {
-  SectionContainer, ImageContainer, BodyText, Container, Card,
+  SectionContainer, ImageContainer, BodyText, Container, Card,StyledBox,
   Title, Subtitle, FormulaBox, FormulaText, Container_Progress_Bar, SectionContainer2, FormulaBox2,
   SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
+import Acceuil from "../../../_ReusableComponents/Accueil";
 const BandeBox = styled.div`
   width: 150px;
   height: 20px;
@@ -58,8 +58,6 @@ const FractionBande = styled.div`
   }
 `;
 
-
-
 const SymbContainers = styled.div`
   margin-right: 10px;
 `;
@@ -68,8 +66,6 @@ const DescContainers = styled.div`
   margin-right: 30px;
   margin-top: 15px;
 `;
-
-
 
 const VerifieButton = styled.button`
   border-radius: 5px;
@@ -99,41 +95,6 @@ const ResetButton = styled.button`
   }
 `;
 
-export const StyledBox = styled.div`
-padding-left: 0px;
-padding-right:0px;
-padding-top: 270%;
-padding-bottom:2px;
-    width: 100%;
-    max-width: 100%;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-
-const NumberDisplay3 = styled(Box)(({ isActive }) => ({
-  boxSizing: 'border-box',
-  width: '100%',
-  height: 'auto',
-  // margin: '20px auto',
-  padding: '5px',
-  backgroundColor: ' rgb(202, 166, 100);',
-  border: '3px dashed black',
-  transition: 'background-color 0.4s, transform 0.3s',
-  cursor: 'pointer',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  fontSize: '1em',
-  fontFamily: "'Comic Sans MS', sans-serif",
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
-
-// App Component
 const P3A5 = () => {
   const [play] = useSound(correctSound);
   const [play1] = useSound(incorrectSound);
@@ -143,16 +104,7 @@ const P3A5 = () => {
   const [questions, setQuestions] = useState([]);
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [section, setSection] = useState(0);
-  const [showSections, setShowSections] = useState([
-    true,
-    true,
-    true,
-    true,
-    true,
-  ]);
-
-
-
+  const [showSections, setShowSections] = useState([true,true,true,true,true]);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const section1Ref = useRef(null);
@@ -164,14 +116,9 @@ const P3A5 = () => {
 
 
   const navigate = useNavigate();
-
-
   const [progress, setProgress] = useState(0);
-
-
   const [sectionsViewed, setSectionsViewed] = useState(0);
   const totalSections = 5; // Nombre total de sections
-
 
   const toggleSection = (index) => {
     const updatedShowSections = [...showSections];
@@ -237,10 +184,6 @@ const P3A5 = () => {
     VerifieSumbol();
   };
 
-
-
-
-
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
     setScrollPosition(scrollLeft);
@@ -254,7 +197,6 @@ const P3A5 = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
 
-
     ];
 
     // Trouver la section actuelle en fonction de la position de défilement
@@ -262,68 +204,30 @@ const P3A5 = () => {
     for (let i = 0; i < sectionPositions.length; i++) {
       if (scrollLeft >= sectionPositions[i]) {
         currentSection = i;
-
-
       }
     }
 
-    // Afficher la section actuelle dans la console
-    console.log("Section actuelle :", currentSection + 1);
     setSectionsViewed(currentSection + 1);
     setProgress(currentSection + 1)
-
-
-
   };
-
-
-  const nextChap = () => {
-    navigate("/Les_solides");
-  }
-
-
-
-
 
   return (
 
 
     <Container>
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
       <StyledBox>
         <SwipeContainer2 onScroll={handleScroll}>
-
-
 
           <Swipe_Section ref={section1Ref}>
             <SectionContainer2>
               <FormulaBox2>
-                <button className="continue-button" >
-                  <FormulaText><strong> Comparaison des fractions </strong></FormulaText>
-                </button>
-
-                <img src={"/images/Math/periode2/comparaison.png"} alt="Teacher" />
-
-
-                <Card>
-                  <strong>
-                    <BodyText>
-                      Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
-                      passionnant :
-                      <br></br>
-                      <span style={{ color: 'blue' }}> la comparaison des fractions.    </span>
-
-                    </BodyText>
-                  </strong>
-                </Card>
+              
+<Acceuil titre={"Comparaison des fractions"} imgSrc={"/images/Math/periode2/comparaison.png"} altText={"la comparaison des fractions. "}> </Acceuil>
 
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
-
-
 
           <Swipe_Section ref={section2Ref}>
             <SectionContainer2>
@@ -331,32 +235,18 @@ const P3A5 = () => {
                 <ContinueButton> Concept clés </ContinueButton>
 
                 <img src={"/images/Math/C/C11/divi.png"} alt="Teacher" />
-
-
-
-
-
                 <FormulaText>Pour une comparaison équitable on doit faire attention a ces points:</FormulaText>
-
-                < NumberDisplay3>
+                < Maron_NumberDisplay>
                   <li>Si les dénominateurs sont égeaux , il suffit de comparer les numérateurs</li>
-                </NumberDisplay3>
-                
+                </Maron_NumberDisplay>
                 <br></br>
-                < NumberDisplay3>
+                < Maron_NumberDisplay>
                   <li>Si les dénominateurs ne sont pas égeaux , il faut trouver des fractions équivalentes avec le même dénominateur pour une comparaison précise.</li>
-                </NumberDisplay3>
-
-
-
-
-
+                </Maron_NumberDisplay>
 
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
-
 
           <Swipe_Section ref={section3Ref}>
             <SectionContainer2>
@@ -366,13 +256,9 @@ const P3A5 = () => {
                 <div>
                   <Bend />
                 </div>
-
-
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
           <Swipe_Section ref={section4Ref}>
             <SectionContainer2>
@@ -402,11 +288,6 @@ const P3A5 = () => {
             </SectionContainer2>
           </Swipe_Section>
 
-
-
-
-
-
           <Swipe_Section ref={section5Ref}>
             <SectionContainer2>
               <FormulaBox2>
@@ -419,14 +300,12 @@ const P3A5 = () => {
                     >
                       &#62;
                     </FormulaBox>
-
                     <FormulaBox
                       className="symbols"
                       onClick={() => handleSymbolClick("<")}
                     >
                       &#60;
                     </FormulaBox>
-
                     <FormulaBox
                       className="symbols"
                       onClick={() => handleSymbolClick("=")}
@@ -525,7 +404,6 @@ const P3A5 = () => {
                   </div>
                 </SectionContainer>
 
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
@@ -534,9 +412,7 @@ const P3A5 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton> QCM </ContinueButton>
-
                 <QCMC14 />
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
@@ -548,118 +424,3 @@ const P3A5 = () => {
 };
 
 export default P3A5;
-
-// const MainContainer = styled.div`
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-//   min-height: 100vh;
-//   background-color: #f5f5f5;
-// `;
-
-// const Box = styled.div`
-//   width: 300px;
-//   height: 300px;
-//   border: 4px solid #4CAF50;
-//   ;
-//   border-radius: 50%;
-//   background-color: #FFEB3B;
-//   display: flex;
-//   font-size: 0.9em;
-//   justify-content: center;
-//   position: relative;
-// `;
-
-// const Fraction = styled.div`
-//   width: 100%;
-//   height: 23%;
-
-//   background-color: ${(props) => (props.isActive ? '#FFC107' : '#E1F5FE')};
-//   border: ${(props) => (props.isActive ? '3px dashed #FF5722' : '3px dashed #B3E5FC')};
-//   transition: background-color 0.4s, transform 0.3s;
-//   cursor: pointer;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: 0.9em;
-//   font-weight: bold;
-//   text-align: center;
-//   border-radius: 0px 0px 0 100%;
-
-// `;
-
-// const ResetButton = styled.button`
-//   margin-top: 20px;
-//   background-color: #4CAF50;
-//   color: white;
-//   padding: 10px 20px;
-//   border: none;
-//   border-radius: 5px;
-//   font-size: 1em;
-//   cursor: pointer;
-//   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-//   &:hover {
-//     background-color: #45a049;
-//   }
-
-// `;
-
-// const FractionActivity = () => {
-//   const [activeFractions, setActiveFractions] = useState([false, false, false, false]);
-
-//   const toggleFraction = (index) => {
-//     const updatedActiveFractions = [...activeFractions];
-//     updatedActiveFractions[index] = !updatedActiveFractions[index];
-//     setActiveFractions(updatedActiveFractions);
-//   };
-
-//   const reset = () => {
-//     setActiveFractions([false, false, false, false]);
-//   };
-
-//   return (
-//     <MainContainer>
-//       <Box>
-//         <Fraction
-//           isActive={activeFractions[0]}
-//           onClick={() => toggleFraction(0)}
-//           style={{transform: 'translate(50%, 50%) scale(2.05)rotate(90deg)'}}
-//         >
-//         <span style={{ transform: 'rotate(270deg)'}}>{activeFractions[0] ? '1/4' : ''}</span>
-//         </Fraction>
-//         <Fraction
-//           isActive={activeFractions[1]}
-//           onClick={() => toggleFraction(1)}
-//           style={{ transform: 'translate(150%, 50%) scale(2.05) rotate(180deg)' }}
-//         >
-//           <span style={{ transform: 'rotate(180deg)'}}>{activeFractions[1] ? '1/4' : ''}</span>
-//         </Fraction>
-//         <Fraction
-//           isActive={activeFractions[2]}
-//           onClick={() => toggleFraction(2)}
-//           style={{ transform: 'translate( 50%, 250%) scale(2.05) rotate(270deg)'}}
-//         >
-//           <span style={{ transform: 'rotate(90deg)'}}>{activeFractions[2] ? '1/4' : ''}</span>
-//         </Fraction>
-//         <Fraction
-//           isActive={activeFractions[3]}
-//           onClick={() => toggleFraction(3)}
-//           style={{ transform: 'translate(-250%, 250%) scale(2.1) rotate(360deg)' }}
-//         >
-//           {activeFractions[3] ? '1/4' : ''}
-//         </Fraction>
-//       </Box>
-//       <ResetButton onClick={reset}>Réinitialiser</ResetButton>
-//     </MainContainer>
-//   );
-// }
-// const Dodecagon = () => {
-//   return (
-//     <div className="dodecagon">
-//       {/* You can add content inside the dodecagon if needed */}
-//     </div>
-//   );
-// };
-// export default FractionActivity;

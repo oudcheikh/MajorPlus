@@ -40,7 +40,7 @@ const Modal = ({ show, handleClose, imgSrc, altText }) => {
             <ModalOverlay>
                 <ModalContent>
                     <CloseButton onClick={handleClose}>X</CloseButton>
-                    {/* <img src={imgSrc} alt={altText} style={{ width: '200px', height: '200px' }} /> */}
+                   
                     <img src={imgSrc} alt="Result" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
                     <p>{altText}</p>
                 </ModalContent>

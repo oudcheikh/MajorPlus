@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import { useNavigate } from 'react-router-dom';
-
 import '../../Periode4/progressBar/SegmentedProgressBar.css'
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
 import {
@@ -10,7 +8,6 @@ import {
   SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
 
-
 import Draggable from 'react-draggable';
 import { Button, Container, Box, Card, CardContent, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -18,13 +15,7 @@ import { styled } from '@mui/material/styles';
 import Chap10 from './Chap10';
 import P2A4 from './P2A4';
 import QCMM5 from './QCMM5';
-
-
-
-
-
-
-
+import Acceuil from "../../../_ReusableComponents/Accueil";
 
 const PlayArea = styled(Box)({
   width: '100%',
@@ -35,17 +26,11 @@ const PlayArea = styled(Box)({
   position: 'relative',
   overflow: 'hidden',
 });
-
-
-
 const ImageBox = styled(Box)({
   position: 'absolute',
   cursor: 'pointer',
   zIndex: 10,
 });
-
-
-
 const TargetZone = styled(Box)({
   position: 'absolute',
   bottom: 10,
@@ -63,22 +48,11 @@ const MesurAire = () => {
   const section3Ref = useRef(null);
   const section4Ref = useRef(null);
   const section5Ref = useRef(null);
-  const section6Ref = useRef(null);
-  const section7Ref = useRef(null);
-  const section8Ref = useRef(null);
-  const section9Ref = useRef(null);
 
   const navigate = useNavigate();
-
-
   const [progress, setProgress] = useState(0);
-
-
   const [sectionsViewed, setSectionsViewed] = useState(0);
   const totalSections = 5; // Nombre total de sections
-
-
-
 
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
@@ -92,8 +66,6 @@ const MesurAire = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-
-
     ];
 
     // Trouver la section actuelle en fonction de la position de défilement
@@ -101,26 +73,11 @@ const MesurAire = () => {
     for (let i = 0; i < sectionPositions.length; i++) {
       if (scrollLeft >= sectionPositions[i]) {
         currentSection = i;
-
-
       }
     }
-
-    // Afficher la section actuelle dans la console
-    console.log("Section actuelle :", currentSection + 1);
     setSectionsViewed(currentSection + 1);
     setProgress(currentSection + 1)
-
-
-
   };
-
-
-  const move = () => {
-    navigate("/ ");
-  }
-
-
   const targetZones = [
     { id: 1, x: 10, width: 50 },
     { id: 2, x: 70, width: 55 },
@@ -157,63 +114,28 @@ const MesurAire = () => {
     }
     setIsCorrect(true);
   };
-
   const [section, setSection] = useState(0);
   const nextSection = () => {
     setSection(prevSection => prevSection + 1);
   };
   const [showSections, setShowSections] = useState([true, true, true, true]);
-
-
-
-
   return (
-
-
     <Container_Progress_Bar>
-
-
-
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
-
       <SwipeContainer2 onScroll={handleScroll}>
-
         <Swipe_Section ref={section1Ref}>
           <SectionContainer2>
             <FormulaBox2>
-              <button className="continue-button" >
-                <FormulaText><strong>  Mesure des aires</strong></FormulaText>
-              </button>
-
-              <img src={"/images/Math/periode2/mesures des aires.png"} alt="mesure des aires" />
-
-
-              <Card>
-                <strong>
-                  <BodyText>
-                    Salut! Aujourd'hui, on va parler d'un sujet intéressant :                                         <br></br>
-                    <span style={{ color: 'blue' }}>  Mesure des aires.   </span>
-
-                  </BodyText>
-                </strong>
-              </Card>
-
+  <Acceuil  titre={"Mesure des aires"}  imgSrc={"/images/Math/periode2/mesures des aires.png"}altText={" Mesure des aires."} > </Acceuil>
             </FormulaBox2>
           </SectionContainer2>
         </Swipe_Section>
 
-
-
-
         <Swipe_Section ref={section2Ref}>
-
           <ContinueButton>Exercice 1 </ContinueButton>
-
           <Container maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%', justifyContent: 'center' }}>
               <img src={"/images/Images/Prof1.png"} alt="Enseignant" style={{ maxWidth: '50%', height: 'auto' }} />
-
               <Card sx={{
                 borderRadius: 15,
                 backgroundColor: '#2196F3',
@@ -233,7 +155,6 @@ const MesurAire = () => {
                 </CardContent>
               </Card>
             </Box>
-
             <PlayArea>
               {targetZones.map(zone => (
                 <TargetZone
@@ -268,35 +189,21 @@ const MesurAire = () => {
           </Container>
         </Swipe_Section>
 
-
-
         <Swipe_Section ref={section3Ref}>
-
           <ContinueButton>Exercice 2 </ContinueButton>
           <Chap10 />
         </Swipe_Section>
-
-
         <Swipe_Section ref={section4Ref}>
-
           <ContinueButton>Exercice 3 </ContinueButton>
           <P2A4 />
         </Swipe_Section>
 
-
         <Swipe_Section ref={section5Ref}>
-
           <ContinueButton>QCM</ContinueButton>
           <QCMM5 />
         </Swipe_Section>
-
-
-
-
       </SwipeContainer2>
-
     </Container_Progress_Bar>
-
   );
 };
 

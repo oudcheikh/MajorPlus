@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import '../../Periode4/progressBar/SegmentedProgressBar.css'
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
-
 
 import M2A2 from './M2A2'
 import QCMC6 from './QCMM2';
@@ -10,51 +8,12 @@ import QCMC6 from './QCMM2';
 import M2A1 from './M2A1';
 import M2A3 from './M2A3';
 
-
-
-
-import { Box } from '@mui/material';
 import {
-    Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    StyledBox,Beige_NumberDisplay,   Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
-} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+} from '../../../Styles/MajorStyles'; 
 
-import styled from 'styled-components';
-export const textStyle = styled.h2`
-        font-family: "Roboto", sans-serif;
-        font-size: 20px;
-        color: #444;
-    
-        @media (max-width: 480px) {
-            font-size: 18px;
-        }
-    `;
-
-
-const StyledBox = styled(Box)({
-
-});
-
-
-const NumberDisplay2 = styled(Box)(({ isActive }) => ({
-    boxSizing: 'border-box',
-    width: '100%',
-    height: 'auto',
-    margin: '20px auto',
-    padding: '20px',
-    backgroundColor: 'rgb(248, 248, 227)',
-    border: '3px dashed #B3E5FC',
-    transition: 'background-color 0.4s, transform 0.3s',
-    cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontSize: '1em',
-    fontFamily: "'Comic Sans MS', sans-serif",
-    '&:hover': {
-        transform: 'scale(1.05)',
-    },
-}));
+import Acceuil from "../../../_ReusableComponents/Accueil";
 
 const M2 = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -64,21 +23,10 @@ const M2 = () => {
     const section4Ref = useRef(null);
     const section5Ref = useRef(null);
     const section6Ref = useRef(null);
-    const section7Ref = useRef(null);
-    const section8Ref = useRef(null);
-    const section9Ref = useRef(null);
-
-    const navigate = useNavigate();
-
 
     const [progress, setProgress] = useState(0);
-
-
     const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 6; // Nombre total de sections
-
-
-
+    const totalSections = 6;
 
     const handleScroll = (event) => {
         const { scrollLeft } = event.target;
@@ -92,9 +40,6 @@ const M2 = () => {
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
             section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
-      
-      
-
         ];
 
         // Trouver la section actuelle en fonction de la position de défilement
@@ -102,128 +47,57 @@ const M2 = () => {
         for (let i = 0; i < sectionPositions.length; i++) {
             if (scrollLeft >= sectionPositions[i]) {
                 currentSection = i;
-
-
             }
         }
 
-        // Afficher la section actuelle dans la console
-        console.log("Section actuelle :", currentSection + 1);
         setSectionsViewed(currentSection + 1);
         setProgress(currentSection + 1)
-
-
-
     };
-
-
-    const move = () => {
-        navigate("/M3 ");
-    }
-
-
-
     return (
-
-
         <Container_Progress_Bar>
-
-
-
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
             <StyledBox>
                 <SwipeContainer2 onScroll={handleScroll}>
 
                     <Swipe_Section ref={section1Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
-                                <button className="continue-button" >
-                                    <FormulaText><strong> Mesure des Masses </strong></FormulaText>
-                                </button>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <imageStyle> <img src={"/images/Math/M/imagesM2/masse.png"} alt="angle" /></imageStyle>
-
-
-                                <br>
-                                </br><br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <br>
-                                </br>
-                                <Card>
-
-                                    <BodyText>
-
-                                        <strong>  Salut à tous ! Aujourd'hui, nous allons plonger dans un sujet
-                                            passionnant :<span style={{ color: 'blue' }}> Mesure des Masses </span>     </strong>             </BodyText>
-
-                                </Card>
-                                <br></br> <br></br> <br></br> <br></br>
-
-
+                                <Acceuil titre={" Mesure des Masses"} imgSrc={"/images/Math/M/imagesM2/masse_.gif"} altText={"  Les mesures des masses"}> </Acceuil>
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
-
 
                     <Swipe_Section ref={section2Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>Concepts clés🔍</ContinueButton>
-
-
-
                                 <br></br>
-
-                            
-                                <img src={"/images/Math/C/C11/divi.png"}  style ={{ width:'50%'  ,height: '10%',marginLeft:'50px' }} alt="attention" />
-<br></br>
+                                <img src={"/images/Math/C/C11/divi.png"} style={{ width: '50%', height: '10%', marginLeft: '50px' }} alt="attention" />
+                                <br></br>
                                 <strong>Unité de mesure :</strong>
-                                <NumberDisplay2 >
+                                <Beige_NumberDisplay >
                                     <strong>
                                         <FormulaText>L'unité de base pour la mesure de la masse dans le Système International est le kilogramme (kg). D'autres unités dérivées incluent le gramme (g) qui est égal à 1/1000 de kilogramme.</FormulaText>
                                     </strong>
-                                </NumberDisplay2>
-
-
+                                </Beige_NumberDisplay>
 
                                 <strong>Conversion:</strong>
-                                <NumberDisplay2 >
+                                <Beige_NumberDisplay >
                                     <strong>
                                         <FormulaText> 1 kilogramme (kg) est équivalent à 1000 grammes (g), 1 gramme (g) est équivalent à 1000 milligrammes (mg).</FormulaText>
                                     </strong>
-                                </NumberDisplay2>
-
-
+                                </Beige_NumberDisplay>
 
                                 <strong>Balance:</strong>
-                                <NumberDisplay2 >
+                                <Beige_NumberDisplay >
                                     <strong>
                                         <FormulaText>C'est un outil utilisé pour mesurer la masse d'un objet. Les balances modernes peuvent être numériques et donner une lecture directe de la masse, tandis que les balances traditionnelles utilisent un ensemble de poids pour équilibrer et déterminer la masse de l'objet.</FormulaText>
                                     </strong>
-                                </NumberDisplay2>
+                                </Beige_NumberDisplay>
 
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
-
-
-
 
                     <Swipe_Section ref={section3Ref}>
                         <SectionContainer2>
@@ -235,8 +109,6 @@ const M2 = () => {
                         </SectionContainer2>
                     </Swipe_Section>
 
-
-
                     <Swipe_Section ref={section4Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
@@ -247,7 +119,6 @@ const M2 = () => {
                         </SectionContainer2>
                     </Swipe_Section>
 
-
                     <Swipe_Section ref={section5Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
@@ -255,33 +126,24 @@ const M2 = () => {
 
                                 <img src={'/images/Math/C/C11/deux.png'} alt="division" />
                                 <br></br> <br></br> <br></br><br></br> <br></br> <br></br>
-                                   <M2A3 />
+                                <M2A3 />
 
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
-
-
-
 
                     <Swipe_Section ref={section6Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
                                 <ContinueButton>QCM</ContinueButton>
-                                <QCMC6 /> 
+                                <QCMC6 />
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
 
-
-
-
-
                 </SwipeContainer2>
             </StyledBox>
         </Container_Progress_Bar>
-
     );
 }
-
 export default M2;

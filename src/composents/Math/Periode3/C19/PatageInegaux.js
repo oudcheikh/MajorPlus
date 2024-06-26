@@ -2,31 +2,13 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../../Periode4/progressBar/SegmentedProgressBar.css'
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar'
-
-
-import QCMC1 from './QCMC1';
-import Addexemple1 from './Addexemple1';
 import Addexemple2 from './Addexample2';
 import Multipexempl from './Multipexempl';
 import Multipexampl2 from './Multipexampl2';
-import Divisionexampl1 from './Divisionexampl1';
-import Fractiondetail from './Fractiondetail';
-
-
-
-import styled from 'styled-components';
-import { Box } from '@mui/material';
-
-import {
-  Container, SectionContainer, ImageContainer, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
-  SwipeContainer2, Swipe_Section
+import { FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+  SwipeContainer2, Swipe_Section, StyledBox
 } from '../../../Styles/MajorStyles';
-
-
-
-const StyledBox = styled(Box)({
-
-});
+import Acceuil from "../../../_ReusableComponents/Accueil";
 
 const imageStyle = {
   width: '90%', // L'image prendra 80% de la largeur de son parent
@@ -46,17 +28,14 @@ const C1 = () => {
   const section5Ref = useRef(null);
   const section6Ref = useRef(null);
 
-
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [sectionsViewed, setSectionsViewed] = useState(0);
-  const totalSections = 6; 
+  const totalSections = 6;
 
   const handleScroll = (event) => {
     const { scrollLeft } = event.target;
     setScrollPosition(scrollLeft);
-
-    
     const sectionPositions = [
       0, // Position de début de la première section
       section1Ref.current.offsetWidth, // Position de début de la deuxième section
@@ -64,9 +43,7 @@ const C1 = () => {
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
       section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth,+ section6Ref.current.offsetWidth, //5
-
-
+      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, + section6Ref.current.offsetWidth, //5
     ];
 
     // Trouver la section actuelle en fonction de la position de défilement
@@ -74,111 +51,54 @@ const C1 = () => {
     for (let i = 0; i < sectionPositions.length; i++) {
       if (scrollLeft >= sectionPositions[i]) {
         currentSection = i;
-
-
       }
     }
-
-    // Afficher la section actuelle dans la console
-    console.log("Section actuelle :", currentSection + 1);
     setSectionsViewed(currentSection + 1);
     setProgress(currentSection + 1)
-
-
-
   };
 
-
-  const move = () => {
-    navigate("/M3 ");
-  }
-
-
-
   return (
-
-
     <Container_Progress_Bar>
-
-
-
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
       <StyledBox>
         <SwipeContainer2 onScroll={handleScroll}>
-
           <Swipe_Section ref={section1Ref}>
             <SectionContainer2>
               <FormulaBox2>
-                <button className="continue-button" >
-                  <FormulaText><strong>  Partages Inégaux </strong></FormulaText>
-                </button>
-                <div style={{ marginTop: '200px' }}></div>
-
-                <imageStyle> <img src={"/images/Math/C/imgC19/partageInegueau.PNG"} alt="angle" /></imageStyle>
-
-
-
-                <Card>
-
-                  <BodyText>
-
-                    Salut! Aujourd'hui, on va parler d'un sujet intéressant :   <strong className="mot_importante">le Partage inégaux</strong>
-                  </BodyText>
-
-                </Card>
-
-                <div style={{ marginTop: '100px' }}></div>
-
+                <Acceuil titre={"le Partage inégaux"} imgSrc={"/images/Math/C/imgC19/partageInegueau.PNG"} altText={" le Partage inégaux "} > </Acceuil>
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
           <Swipe_Section ref={section2Ref}>
             <SectionContainer2>
               <FormulaBox2>
-              <ContinueButton> Exemple</ContinueButton>
-
-              <br></br>
+                <ContinueButton> Exemple</ContinueButton>
+                <br></br>
                 <Card>
-
                   <FormulaText>
                     <strong>
                       Imagine que tu partages un gâteau avec ta soeur ou ton frére : tu donnes une grande part à toi et une petite à lui
-
                     </strong>
                   </FormulaText>
-
                   <img src={"/images/Math/C/imgC19/Choo.png"} alt="Teacher" style={imageStyle} />
-
-
-
 
                   <FormulaText>
                     <strong>
-
                       C'est le partage inégal : quand tout le monde ne reçoit pas la même taille de part.
                     </strong>
                   </FormulaText>
                 </Card>
-
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
-
 
           <Swipe_Section ref={section3Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  Parts avec différence</ContinueButton>
-
                 <Card>
-
                   <img src='/images/Math/C/imgC19/petitInestine.png' alt="Teacher" style={imageStyle} />
-
                   <FormulaText><strong>
                     Sidi et Moussa possèdent ensemble <span style={{ color: '#FF0000' }}>550 Um</span>.
                     Sidi a <span style={{ color: '#0000FF' }}>210 Um</span> de plus que Moussa.
@@ -198,47 +118,34 @@ const C1 = () => {
                   <FormulaText><strong>
                     Je vérifie :<br /> <span style={{ color: '#FF00FF' }}>380</span> + <span style={{ color: '#FFA500' }}>170</span> = <span style={{ color: '#FF0000' }}>550 Um</span>
                   </strong></FormulaText>
-
-
                 </Card>
-
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
           <Swipe_Section ref={section4Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>
-                  <Addexemple2></Addexemple2>
-           
+                <Addexemple2></Addexemple2>
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
-
 
           <Swipe_Section ref={section5Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>
-
-    <Multipexempl></Multipexempl>
-
+                <Multipexempl></Multipexempl>
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
-
 
           <Swipe_Section ref={section6Ref}>
             <SectionContainer2>
               <FormulaBox2>
                 <ContinueButton>  un part est un</ContinueButton>
-
                 <Multipexampl2></Multipexampl2>
-
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>
@@ -248,7 +155,4 @@ const C1 = () => {
     </Container_Progress_Bar>
   )
 }
-
-
-
 export default C1;

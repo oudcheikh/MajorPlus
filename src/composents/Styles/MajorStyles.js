@@ -617,6 +617,26 @@ export const Bleu_ciel_NumberDisplay3 = styled(Box)(({ isActive }) => ({
     transform: 'scale(1.05)',
   },
 }));
+ export const Blue_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: ' hsl(210, 75%, 63%);',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
+
 export const Bleu_ciel_Bleu_ciel_NumberDisplay = styled(Box)(({ isActive }) => ({
   boxSizing: 'border-box',
   width: '100%',
@@ -676,7 +696,45 @@ export const Red_NumberDisplay = styled(Box)(({ isActive }) => ({
   },
 }));
 
+export const Maron_NumberDisplay = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: ' rgb(202, 166, 100);',
+  border: '3px dashed #B3E5FC',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
 
+export const blue_vert_d_eau = styled(Box)(({ isActive }) => ({
+  boxSizing: 'border-box',
+  width: '100%',
+  height: 'auto',
+  // margin: '20px auto',
+  padding: '5px',
+  backgroundColor: ' #d8e8fa;',
+  border: '3px dashed black',
+  transition: 'background-color 0.4s, transform 0.3s',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  fontSize: '1em',
+  fontFamily: "'Comic Sans MS', sans-serif",
+  '&:hover': {
+      transform: 'scale(1.05)',
+  },
+}));
 export const imageStyle_Mot_Clé = {
   width: '40%', 
   height: 'auto', 

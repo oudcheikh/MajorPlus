@@ -20,6 +20,7 @@ import {
     NumberDisplay,
     Bleu_ciel_NumberDisplay3
 } from '../../../Styles/MajorStyles';
+import Acceuil from '../../../_ReusableComponents/Accueil';
 
 
 export const StyledBox = styled.div`
@@ -37,9 +38,6 @@ padding-bottom:2px;
 
 
 const P2A1A = () => {
-
-
-
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -48,21 +46,11 @@ const P2A1A = () => {
     const section5Ref = useRef(null);
     const section6Ref = useRef(null);
     const section7Ref = useRef(null);
-    const section8Ref = useRef(null);
-
-
+    
     const navigate = useNavigate();
-
-
     const [progress, setProgress] = useState(0);
-
-
     const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 7; // Nombre total de sections
-
-
-
-
+    const totalSections = 7; 
     const handleScroll = (event) => {
         const { scrollLeft } = event.target;
         setScrollPosition(scrollLeft);
@@ -84,74 +72,31 @@ const P2A1A = () => {
         for (let i = 0; i < sectionPositions.length; i++) {
             if (scrollLeft >= sectionPositions[i]) {
                 currentSection = i;
-
-
             }
         }
 
-        // Afficher la section actuelle dans la console
-        console.log("Section actuelle :", currentSection + 1);
         setSectionsViewed(currentSection + 1);
         setProgress(currentSection + 1)
-
-
-
     };
-
-
-    const nextChap = () => {
-        navigate("/Les_solides");
-    }
-
-
-
-
 
     return (
 
-
-        <Container_Progress_Bar>
-
-
-
+  <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
             <StyledBox>
                 <SwipeContainer2 onScroll={handleScroll}>
-
                     <Swipe_Section ref={section1Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
-                                <button className="continue-button" >
-                                    <FormulaText><strong> La Division des nombres </strong></FormulaText>
-                                </button>
-
-
-                                <img src={'/images/Math/C/imagesC09/div.png'} alt="univers" />
-                                <strong>
-                                    <Card>
-                                        <BodyText>
-
-                                            Salut à tous ! Aujourd'hui, nous allons plonger dans un autre sujet passionnant :
-
-                                            <strong style={{ color: 'orange' }}> la division.</strong>
-                                        </BodyText>
-
-                                    </Card>
-                                </strong>
+                                   <Acceuil titre={" La Division des nombres "} imgSrc={'/images/Math/C/imagesC09/div.png'} altText={" La Division des nombres "}> </Acceuil>
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
-
-
+                    
                     <Swipe_Section ref={section2Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
-                                <ContinueButton>
-                                    Définition
-                                </ContinueButton>
-
-
+                                <ContinueButton> Définition </ContinueButton>
                                 <img src={"/images/Math/C/imagesC09/owl4.png"} alt="owl4" />
 
 
@@ -180,25 +125,16 @@ const P2A1A = () => {
                                 </ContinueButton>
 
                                 <img src={"/images/Math/C/imagesC09/divisionPizza.png"} alt="Teacher" />
-
-
-
-
-
                                 <div>
-
                                     <strong>
                                         <Card>
                                             <BodyText>
                                                 Partage de pizza de 9 pieces sur 4 personnes, 2 pieces pour chaqun. Le Rest est un piece.
                                             </BodyText>
-
                                         </Card>
                                     </strong>
-
                                     <img src={"/images/Math/C/imagesC09/pizza3.png"} alt="pizza" />
                                 </div>
-
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
@@ -208,68 +144,41 @@ const P2A1A = () => {
                     <Swipe_Section ref={section4Ref}>
                         <SectionContainer2>
                             <FormulaBox2>
-
                                 <ContinueButton>
                                     Exemple numérique de la division
                                 </ContinueButton>
-
                                 <img src={"/images/Math/C/imagesC09/candy.png"} alt="Teacher" />
-
                                 <Card>
                                     <strong>
                                         <BodyText>
                                             Partagez équitabtement 141 bonbons entre 8 enfants. Combien en auront-ils chacun ? Combien en restera-t-il dans le sac ?"
                                         </BodyText>
-
                                     </strong>
-
                                 </Card>
-
-
-
-
                                 <strong><h2>Solution</h2></strong>
                                 <br></br>
-
-
-
                                 <img src={"/images/Math/C/imagesC09/exemple1.png"} alt="Teacher" style={{ width: "170px", marginTop: "20px" }} />
-
                                 <Pink_NumberDisplay>
                                     <strong>Etape1:</strong>
                                     <strong> chercher combien de 8 dans les deux premiers nombre , de 141(14),14 contient 8 seulment 1 fois. metter 1 dans le quotion et le resultat (8 x 1=8) dans le 2eme cas<br></br>
                                     </strong>
                                 </Pink_NumberDisplay>
-
-
-
-
-
                                 <img src={"/images/Math/C/imagesC09/exemple2.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-
                                 <Pink_NumberDisplay>
                                     <strong>Etape2:</strong>
                                     <strong>
                                         Soustraction 8 de 14, le resultat est 6, deplacer le 3 eme nombre restant de notre dividende 141(1) et combiner avec 6, deplacer le resultat (61) vers le 3eme cas,
                                     </strong>
                                 </Pink_NumberDisplay>
-
-
                                 <img src={"/images/Math/C/imagesC09/exemple.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-
                                 <Pink_NumberDisplay>
                                     <strong>Etape3:</strong>
-
                                     <strong>
                                         De meme chercher combien de 8 dans 61, 61 contient  8 exactement 7 fois,metter 7 dans le quotion  et le resultat (8 x 7=56) dans le dernier cas<br></br>
                                         comme le nombre restant de la soustraction de 61 et 56 inferieur a 8, arreter l operation et
                                         voila votre resultat de division.
                                     </strong>
-
                                 </Pink_NumberDisplay>
-
-
-
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
@@ -281,34 +190,24 @@ const P2A1A = () => {
                                 <ContinueButton>Formules clés</ContinueButton>
                                 <br></br>
                                 <img src={"/images/Math/periode2/divisioneuclidienne.PNG"}/>
-
                                 <br></br>
                                 <br></br>
                                 <br></br>
-
-
                                 <Violet_NumberDisplay>
                                     <strong>Dividende: Signifie le  nombre que tu divises.</strong> 
                                 </Violet_NumberDisplay>
-
                                 <br></br>
                                 <Bleu_ciel_NumberDisplay3>
                                     <strong> Diviseur = Signifie le nombre par lequel tu divises.</strong>
                                 </Bleu_ciel_NumberDisplay3>
-
                                 <br></br>
-
                                 <Red_NumberDisplay>
                                     <strong>  Quotient = Signifie le résultat de la division</strong>
                                 </Red_NumberDisplay>
-
                                 <br></br>
-                                
                                 <Green_NumberDisplay>
                                     <strong>Reste = Signifie le rest de la division</strong>
                                 </Green_NumberDisplay>
-
-
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
@@ -319,15 +218,11 @@ const P2A1A = () => {
                             <FormulaBox2>
                                 <ContinueButton>Activité:</ContinueButton>
                                 <P2A1A_1 />
-
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
-
-
                     <Swipe_Section ref={section7Ref}>
                         <SectionContainer2>
-
                             <FormulaBox2>
                                 <ContinueButton>  QCM  </ContinueButton>
                                 <Test3 />
@@ -335,14 +230,9 @@ const P2A1A = () => {
                         </SectionContainer2>
                     </Swipe_Section>
 
-
-
                 </SwipeContainer2>
-
             </StyledBox>
         </Container_Progress_Bar>
-
     );
 }
-
 export default P2A1A;
