@@ -19,7 +19,7 @@ import {
 import Démonstration from "./Démonstration";
 import Acceuil from "../../../_ReusableComponents/Accueil";
 
-const C1 = () => {
+const C1 = ({ oo }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -69,6 +69,14 @@ const C1 = () => {
         setProgress(currentSection + 1)
     };
 
+  
+
+    const handleFinish = () => {
+        console.log("c1")
+        oo();
+        navigate('/ProgressMap');
+    };
+
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
@@ -79,6 +87,7 @@ const C1 = () => {
                         <SectionContainer2>
                             <FormulaBox2>
                                 <Acceuil titre={' Les grands nombres'} imgSrc={"/images/Math/periode2/grand nombre.png"} altText={" Les grands nombres"}> </Acceuil>
+                                <button onClick={handleFinish}>Terminer</button>
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>

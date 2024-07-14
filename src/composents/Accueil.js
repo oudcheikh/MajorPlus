@@ -34,6 +34,8 @@ function Acceuil() {
         <Card title="اللغة العربية " content="" icon={"images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
         <Card title="Français" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
         <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in" />
+        <Card title="Accueil" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="ProgressMap"/>
+
       </div>
     </div>
   );

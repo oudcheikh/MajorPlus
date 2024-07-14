@@ -1,0 +1,58 @@
+.level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.level.completed {
+    /* background-color: #4caf50; */
+    background-image: url('/public/images/completed.PNG');
+    color: rgb(7, 7, 7);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.level.in-progress {
+    background-image: url("/public/images/bouton.PNG");
+    background-repeat: no-repeat;
+    color: black;
+}
+
+.level.locked {
+    background-color: white;
+    color: rgb(13, 13, 13);
+    cursor: not-allowed;
+    background-image: url("/public/images/locked.PNG");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.level-title {
+    color: rgb(21, 20, 20);
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 200px;
+  }
+
+/*por les icones des boutons */
+.icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: bold;
+}

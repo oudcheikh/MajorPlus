@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Accueil from './composents/Accueil';
 import Math from './composents/Math/Math';
@@ -10,6 +10,8 @@ import PrepaFrançais from './composents/PrepaFrançais';
 
 import Vocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Vocabulaire';
 import Acueilvocabulaire from './composents/_FRANCAIS/Français/Vocabulaire/Acueilvocabulaire';
+
+
 
 import C1 from './composents/Math/Periode1/C1/C1';
 import C2 from './composents/Math/Periode1/C2/C2';
@@ -222,9 +224,31 @@ import M3  from'./composents/Math/Periode2/M3/M3.js'
 import Book  from'./composents/tourner page/Book.js'
 import Quiz2  from'./composents/Math/Quiz.js'
 import V  from'./composents/Modals/V.js'
+import ProgressMap from'./composents/Accueil/Accuiel.js'
+
+import Exercice1 from'./composents/Accueil/Exercice1.js'
+import Exercice2 from './composents/Accueil/Exercice2.js'
 
 
 function App() {
+ 
+  const [levels, setLevels] = useState([
+    { id: 0, title: 'Level 1', path: '/Exercice1', status: 'in-progress', backgroundImage: 'path_to_image1' },
+    { id: 0, title: 'Level 2', path: '/Exercice2', status: 'locked', backgroundImage: 'path_to_image2' }, 
+  ]);
+
+  const handleComplete = (index) => {
+      const newLevels = [...levels];
+      newLevels[index].status = 'completed';
+
+      if (newLevels[index + 1]) {
+          newLevels[index + 1].status = 'in-progress';
+      }
+      setLevels(newLevels);
+     
+  };
+
+
   return (
     <Router>
       <div className="App">
@@ -232,6 +256,12 @@ function App() {
         <Routes>
            
           <Route path= "/" element={<Accueil/>} />
+         
+          <Route path= "/ProgressMap" element={<ProgressMap   levels={levels}   />} />
+                <Route path="/Exercice1" element={<Exercice1 index={0} onComplete={handleComplete} />} />
+                <Route path="/Exercice2" element={<Exercice2 index={1} onComplete={handleComplete} />} />
+            
+
           <Route path= "/Accueilarab" element={<Accueilarab/>} />
           <Route path= "/Acceuilfrançais" element={<Acceuilfrançais/>} />
           <Route path= "/PrepaArabe" element={<PrepaArabe/>} />
@@ -443,12 +473,15 @@ function App() {
           <Route path= "/Book" element={<Book/>} />
           <Route path= "/Quiz2" element={<Quiz2/>} />
           <Route path= "/V" element={<V/>} />
-  
-      
+          
+         
+         
+
+
         </Routes>
       
       </div>
-    </Router>
+      </Router>
   )
 }
 
