@@ -19,7 +19,7 @@ import {
 import Démonstration from "./Démonstration";
 import Acceuil from "../../../_ReusableComponents/Accueil";
 
-const C1 = ({ oo }) => {
+const C1 = ({ index, onComplete }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -69,14 +69,19 @@ const C1 = ({ oo }) => {
         setProgress(currentSection + 1)
     };
 
-  
+    
 
     const handleFinish = () => {
-        console.log("c1")
-        oo();
-        navigate('/ProgressMap');
+      console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
+      console.log(index)
+  
+      if (onComplete) {
+        onComplete(index); 
+        console.log("----")
+        console.log(onComplete(index))
+      }
+      navigate('/Step_finale_nchallh'); 
     };
-
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />

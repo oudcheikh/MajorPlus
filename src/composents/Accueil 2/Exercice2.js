@@ -11,7 +11,6 @@ function Exercice2({ index, onComplete }) {
     if (onComplete) {
       onComplete(index); // Appelez onComplete avec l'index
     }
-    
     navigate('/ProgressMap'); // Naviguez à l'endroit désiré après la complétion
   };
 

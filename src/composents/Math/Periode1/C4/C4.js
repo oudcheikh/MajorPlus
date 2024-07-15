@@ -20,7 +20,7 @@ import Acceuil from "../../../_ReusableComponents/Accueil";
 const StyledBox = styled(Box)({
 
 });
-const C2 = () => {
+const C2 = ({index,onComplete}) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -67,6 +67,17 @@ const C2 = () => {
         setProgress(currentSection + 1)
     };
 
+    const handleFinish = () => {
+        console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
+        console.log(index)
+    
+        if (onComplete) {
+          onComplete(index); 
+          console.log("----")
+          console.log(onComplete(index))
+        }
+        navigate('/Step_finale_nchallh'); 
+      };
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
@@ -76,6 +87,8 @@ const C2 = () => {
                         <SectionContainer2>
                             <FormulaBox2>
                                 <Acceuil titre={"Ajouter et retrancher "} imgSrc={"/images/Math/C/C4/addition.png"} altText={"Ajouter et retrancher."}> </Acceuil>
+                           
+                           <button onClick={handleFinish}>Terminer</button>
                             </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>

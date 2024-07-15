@@ -1,0 +1,18 @@
+.App22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image: url("/public/images/bg.PNG")
+  }
+  
+  .path {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px;
+  }
+  

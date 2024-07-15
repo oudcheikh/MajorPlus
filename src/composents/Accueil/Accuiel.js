@@ -1,36 +1,46 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Level from './Level';
-import Exercice1 from './Exercice1';
-import Exercice2 from './Exercice2'; // Assurez-vous que vous avez bien le bon import
-
+import Connector from './Connector';
 import './accueil.css';
-
-
-function Application({ levels }) {
-     const navigate = useNavigate();
-    const goTo = (path) => {
-        navigate(path);
+const levelsData = [
+    { title: 'Level 1', path: '/exercice1', status: 'in-progress', backgroundImage: 'path_to_image1' },
+    { title: 'Level 2', path: '/exercice2', status: 'locked', backgroundImage: 'path_to_image2' },
+    // Ajoutez d'autres niveaux ici
+  ];
+  
+  function App() {
+    const [levels, setLevels] = useState(levelsData);
+  
+    const handleComplete = (index) => {
+      const newLevels = [...levels];
+      newLevels[index].status = 'completed';
+      if (newLevels[index + 1]) {
+        newLevels[index + 1].status = 'in-progress';
+      }
+      setLevels(newLevels);
     };
+  return (
 
-    return (
-        <div className="application">
-            <div className="levels">
-                {levels.map((level, index) => (
-                    <Level
-                        key={level.id} // Utilisez level.id comme clé unique
-                        title={level.title}
-                        status={level.status}
-                        backgroundImage={level.backgroundImage}
-                        path={level.path}
-                        onClick={() => goTo(level.path)}
-                        id={level.id}
-                    />
-                ))}
-            </div>
-          
-        </div>
-    );
+    <div className="application">
+      <div className="path">
+        {levels.map((level, index) => (
+          <React.Fragment key={index}>
+            <Level
+              title={level.title}
+              status={level.status}
+              onComplete={() => handleComplete(index)}
+            />
+            {index < levels.length - 1 && (
+              <Connector
+                completed={levels[index].status === "completed"}
+                inProgress={levels[index + 1].status === "in-progress"}
+              />
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default Application;
+export default App;

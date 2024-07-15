@@ -35,6 +35,9 @@ function Acceuil() {
         <Card title="Français" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
         <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in" />
         <Card title="Accueil" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="ProgressMap"/>
+        <Card title="ProgressMap" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Step_finale_nchallh"/>
+
+        <Card title="trajectoire" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="ProgressMap3"/>
 
       </div>
     </div>

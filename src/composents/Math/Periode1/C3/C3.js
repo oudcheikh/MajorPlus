@@ -23,12 +23,13 @@ import {
 import { Box } from '@mui/material';
 import Table_mesure from "./Table_mesure";
 import Acceuil from "../../../_ReusableComponents/Accueil";
+import { useNavigate } from "react-router-dom";
 const StyledBox = styled(Box)({
 
 });
 
-const C3 = () => {
-
+const C3 = ({index,onComplete}) => {
+const navigate=useNavigate()
   const [scrollPosition, setScrollPosition] = useState(0);
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
@@ -72,6 +73,17 @@ const C3 = () => {
     setProgress(currentSection + 1)
 
   };
+  const handleFinish = () => {
+    console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
+    console.log(index)
+
+    if (onComplete) {
+      onComplete(index); 
+      console.log("----")
+      console.log(onComplete(index))
+    }
+    navigate('/Step_finale_nchallh'); 
+  };
   return (
     <Container_Progress_Bar>
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
@@ -81,6 +93,7 @@ const C3 = () => {
             <SectionContainer2>
               <FormulaBox2>
                 <Acceuil titre={"Convertiseur d'unités de longueur"} imgSrc={"/images/Math/C/C3/regleetmatre.png"} altText={"Convertiseur d'unités de longueur"}> </Acceuil>
+                <button onClick={handleFinish}>Terminer</button>
               </FormulaBox2>
             </SectionContainer2>
           </Swipe_Section>

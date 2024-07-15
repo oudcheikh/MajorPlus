@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Exercice2({ index, onComplete }) {
+function Exercice1({ index, onComplete }) {
   const navigate = useNavigate();
 
   const handleFinish = () => {
@@ -11,7 +11,6 @@ function Exercice2({ index, onComplete }) {
     if (onComplete) {
       onComplete(index); // Appelez onComplete avec l'index
     }
-    
     navigate('/ProgressMap'); // Naviguez à l'endroit désiré après la complétion
   };
 
@@ -24,4 +23,4 @@ function Exercice2({ index, onComplete }) {
   );
 }
 
-export default Exercice2;
+export default Exercice1;
