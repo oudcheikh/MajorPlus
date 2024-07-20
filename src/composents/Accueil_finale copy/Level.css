@@ -3,16 +3,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0px 0;
-    padding: 0px;
+    margin: 20px 0;
+    padding: 20px;
     border-radius: 50%;
     width: 100px;
     height: 100px;
     text-align: center;
-    transition: transform 0.20s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
     position: relative;
-    z-index: 9;
+    z-index: 1;
 }
 
 .level.completed {
@@ -42,7 +42,7 @@
     color: rgb(21, 20, 20);
     font-weight: bold;
     text-align: center;
-    padding: 100px;
+    padding: 10px;
    
   }
 
@@ -56,50 +56,3 @@
     font-size: 1.2em;
     font-weight: bold;
 }
-
-.C1{
-    border-color: white;
-    background-color: white;
-      border-radius: 50%;
-      width: 190px;
-      height: 190px;
-      position: relative;
-      top: 400px;
-      left: 600px;
-      color: hwb(0 2% 98%);
-     
-  }
-  .C2{
-      border-radius: 50%;
-      border-color: white;
-      background-color: white;
-      width: 190px;
-      height: 190px;
-      position: relative;
-      top: 400px;
-      left: 60px;
-      color: rgb(17, 16, 16);  
-      
-  }
-  .C3{
-      opacity: 100%;
-      border-radius: 50%;
-      width: 190px;
-      height: 190px;
-      position: relative;
-      border-color: aqua;
-      top: 400px;
-      left: 600px;
-      color: hwb(0 2% 98%);
-     
-  }
-  .C4{
-      border-radius: 50%;
-      width: 190px;
-      height: 190px;
-      position: relative;
-      top: 400px;
-      left: 60px;
-      color: rgb(17, 16, 16);  
-      
-  }

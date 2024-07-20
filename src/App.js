@@ -228,10 +228,43 @@ import ProgressMap from './composents/Accueil/Accuiel.js'
 
 import Exercice1 from './composents/Accueil/Exercice1.js'
 import Exercice2 from './composents/Accueil/Exercice2.js'
-import Step_finale_nchallh from './composents/Accueil_finale/Accueil.js'
+ import Step_finale_nchallh from './composents/Accueil_finale/Acc2.js'
+// import Step_finale_nchallh from './composents/Correcte/Acc2.js'
 import ProgressMap3 from './composents/Accueil3/ProgressMap.js'
 
+const initialState = {
+  buttons: [
+
+    { id: 0, status: 'inProgress',title:"C1",path:"/C1",ClassTitre:"T1",chapitre:"les grands nombres" },
+    { id: 1, status: 'locked',title:"C2" ,path:"/C2",ClassTitre:"T2",chapitre:"la division" },
+    { id: 2, status: 'locked',title:"C3" ,path:"/C3",ClassTitre:"T3",chapitre:"les aires" },
+    { id: 3, status: 'locked' ,title:"C4",path:"/C4",ClassTitre:"T4",chapitre:"Multuplication"},
+    { id: 4, status: 'locked' ,title:"C5",path:"/C5" ,ClassTitre:"T5",chapitre:"Addition"},
+    { id: 5, status: 'locked' ,title:"C6" ,path:"/C6",ClassTitre:"T6",chapitre:"les surfaces"},
+    { id: 6, status: 'locked' ,title:"C7" ,path:"/C7",ClassTitre:"T7",chapitre:"la soustraction"},
+    { id: 7, status: 'locked' ,title:"C8" ,path:"/C8",ClassTitre:"T8",chapitre:"les angles"},
+    { id: 8, status: 'locked' ,title:"C9" ,path:"/C9",ClassTitre:"T9",chapitre:"les mesures agraires"},
+    { id: 9, status: 'locked' ,title:"C10" ,path:"/C10",ClassTitre:"T10",chapitre:"la proportionnalité"}
+  ],
+  lines: [
+    { id: 0, status: 'inactive',points:"70,50 100,100" ,svgClass:"svg1"},
+    { id: 1, status: 'inactive',points:"20,50 100,50 " ,svgClass:"svg2"},
+    { id: 2, status: 'inactive',points:"80,10 80,90" ,svgClass:"svg3"},
+    { id: 3, status: 'inactive',points:"  140,60 30,20" ,svgClass:"svg4"},
+    { id: 4, status: 'inactive',points:"140,15 80,90" ,svgClass:"svg5"},
+    { id: 5, status: 'inactive',points:"20,50 140,70" ,svgClass:"svg6"},
+    { id: 6, status: 'inactive',points:"100,0 120,80" ,svgClass:"svg7"},
+    { id: 7, status: 'inactive',points:"100,60 20,30" ,svgClass:"svg8"},
+    { id: 8, status: 'inactive',points:"80,8 20,90" ,svgClass:"svg9"},
+
+  ]
+};
+
+
+
 function App() {
+  const[progress, setProgress]=useState(initialState)
+
 
   const [levels, setLevels] = useState([
     { id: 0, title: 'C1', path: '/C1', status: 'in-progress', backgroundImage: 'path_to_image1' },
@@ -239,6 +272,8 @@ function App() {
     { id: 2, title: 'C3', path: '/C3', status: 'locked', backgroundImage: 'path_to_image1' },
     { id: 3, title: 'C4', path: '/C4', status: 'locked', backgroundImage: 'path_to_image2' }
   ]);
+
+
 
   const handleComplete = (index) => {
     const newLevels = [...levels];
@@ -251,6 +286,39 @@ function App() {
 
   };
 
+
+  const changer_etat=(index)=>{
+    console.log("----------------------------")
+    
+    console.log("c est de la fonction mere",index)
+    const newButtons = [...progress.buttons];
+    const newLines = [...progress.lines];
+    newButtons[index] = { ...newButtons[index], status: 'completed' };
+    newLines[index] = { ...newLines[index], status: 'active' };
+    if (newButtons[index + 1]) {
+      newButtons[index + 1] = { ...newButtons[index + 1], status: 'inProgress' };
+      
+  }
+
+  setProgress({ ...progress, buttons: newButtons, lines: newLines });
+  
+  const lines = document.querySelectorAll('.polyline');
+  lines.forEach((line, i) => {
+    if (newLines[i].status === 'active') {
+      line.classList.remove('inactive');
+      line.classList.add('active');
+    } else {
+      line.classList.remove('active');
+      line.classList.add('inactive');
+    }
+  });
+
+  console.log(progress.buttons)
+  console.log(progress.lines)
+ 
+  
+  
+  }
 
   return (
     <Router>
@@ -265,11 +333,12 @@ function App() {
           <Route path="/Exercice2" element={<Exercice2 index={1} onComplete={handleComplete} />} />
 
 
-          <Route path="/Step_finale_nchallh" element={<Step_finale_nchallh  levels={levels} />} />
-          <Route path="/C1" element={<C1 index={0} onComplete={handleComplete} />} />
-          <Route path="/C2" element={<C2 index={1} onComplete={handleComplete} />} />
-          <Route path="/C3"element={<C3 index={2} onComplete={handleComplete} />} />
-          <Route path="/C4" element={<C4 index={3} onComplete={handleComplete} />} />
+          <Route path="/Step_finale_nchallh" element={<Step_finale_nchallh  initialState={progress} />} />
+
+          <Route path="/C1" element={<C1 index={0} onComplete={changer_etat} />} />
+          <Route path="/C2" element={<C2 index={1} onComplete={changer_etat} />} />
+          <Route path="/C3"element={<C3 index={2} onComplete={changer_etat} />} />
+          <Route path="/C4" element={<C4 index={3} onComplete={changer_etat} />} />
 
 
 

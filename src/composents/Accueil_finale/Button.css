@@ -1,0 +1,223 @@
+.button {
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    position: relative;
+    color: hwb(0 2% 98%);
+
+}
+
+.C1{
+position: relative;
+  top: 0px;
+  left: 5%;
+  border-color: white;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  color: hwb(0 2% 98%);
+}
+
+.C2{
+    position: relative;
+    top: 0px;
+    left:30%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    
+    color: hwb(0 2% 98%);
+
+}
+
+.C3{
+    position: relative;
+    top: -80px;
+    left:70%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+}
+
+.C4{
+    position: relative;
+    top: 0px;
+    left:70%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C5{
+    position: relative;
+    top: -70px;
+    left:30%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C6{
+    position: relative;
+    top: 0px;
+    left:10%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C7{
+    position: relative;
+    top: -80px;
+    left:60%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C8{
+    position: relative;
+    top: 0px;
+    left:70%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C9{
+    position: relative;
+    top: -130px;
+    left:30%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+.C10{
+    position: relative;
+    top: -100px;
+    left:0%;
+    border-color: white;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+   
+    color: hwb(0 2% 98%);
+
+} 
+
+
+.T1{
+    position: absolute;
+    top: 140px;
+    left: 120px;
+    width: fit-content;
+ background-color: white;
+  }
+  .T2{
+    position: absolute;
+    top: 290px;
+    left: 120px;
+    width: fit-content;
+  
+  }
+  .T3{
+    position: absolute;
+    top: 200px;
+    right:30px;
+    width: fit-content;
+  
+  }
+  .T4{
+    position: absolute;
+    top: 350px;
+    right:30px;
+    width: fit-content;
+  
+  }.T5{
+    position: absolute;
+    top: 380px;
+    left: 120px;
+    width: fit-content;
+  
+  }.T6{
+    position: absolute;
+    top: 550px;
+    left:10px;
+    width: fit-content;
+  
+  }.T7{
+    position: absolute;
+    top: 550px;
+    right: 2px;
+    width: fit-content;
+  
+  }
+  .T8{
+    position: absolute;
+    top: 850px;
+    right:20px;
+    width: fit-content;
+  
+  }
+  .T9{
+    position: absolute;
+    top: 690px;
+    right: 180px;
+    width: fit-content;
+  
+  }
+  .T10{
+    position: absolute;
+    top: 890px;
+    left: 120px;
+    width: fit-content;
+  
+  }
+  .completed {
+    background-color: white;
+    background-image: url('/public/images/completed.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .inProgress {
+    background-color: white;
+    position: center;
+    background-image: url('/public/images/inProgress.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .locked {
+    background-color: white;
+    background-image: url('/public/images/locked.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  

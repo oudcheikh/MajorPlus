@@ -68,16 +68,13 @@ const C2 = ({index,onComplete}) => {
   };
   
   const handleFinish = () => {
-    console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
-    console.log(index)
-
     if (onComplete) {
-      onComplete(index); 
-      console.log("----")
-      console.log(onComplete(index))
+      onComplete(index);
+      navigate('/Step_finale_nchallh');
     }
-    navigate('/Step_finale_nchallh'); 
   };
+
+
   return (
     <Container_Progress_Bar>
       <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />

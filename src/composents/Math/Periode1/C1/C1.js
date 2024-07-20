@@ -19,7 +19,7 @@ import {
 import Démonstration from "./Démonstration";
 import Acceuil from "../../../_ReusableComponents/Accueil";
 
-const C1 = ({ index, onComplete }) => {
+const C1 = ({index,onComplete }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
@@ -70,18 +70,32 @@ const C1 = ({ index, onComplete }) => {
     };
 
     
-
     const handleFinish = () => {
-      console.log("bbbbbbbbbbbbbbbbbbbbbbbbb")
-      console.log(index)
+        // if (onComplete) {
+        //   onComplete(index);
+        //   navigate('/Step_finale_nchallh');
+
+        // }
+
+console.log("c'est de C1" ,index)
+if (onComplete) {
+    onComplete(index); 
+    navigate('/Step_finale_nchallh');
+}
+
+      };
+
+    // const handleFinish = () => {
+    
+    //   if (onComplete) {
+    //     onComplete(); 
+
+    //   }
+    // navigate('/Step_finale_nchallh'); 
   
-      if (onComplete) {
-        onComplete(index); 
-        console.log("----")
-        console.log(onComplete(index))
-      }
-      navigate('/Step_finale_nchallh'); 
-    };
+    // };
+
+
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
@@ -93,7 +107,9 @@ const C1 = ({ index, onComplete }) => {
                             <FormulaBox2>
                                 <Acceuil titre={' Les grands nombres'} imgSrc={"/images/Math/periode2/grand nombre.png"} altText={" Les grands nombres"}> </Acceuil>
                                 <button onClick={handleFinish}>Terminer</button>
-                            </FormulaBox2>
+
+                       
+                                  </FormulaBox2>
                         </SectionContainer2>
                     </Swipe_Section>
 

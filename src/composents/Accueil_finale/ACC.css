@@ -1,0 +1,161 @@
+.app23{
+   position: center;
+    width: 100%;
+    height: 200dvh;
+    /* background-color: rgb(207, 159, 159); */
+    padding-bottom:2px;
+    
+    /* background-image: url("/public/images/bg.PNG"); */
+}
+.mesBoutons{
+  padding-top: 50px;
+}
+
+
+.DivB2{
+    position: reletive;
+    margin: 100px;
+   }
+   .completed {
+    background-color: white;
+    background-image: url('/public/images/completed.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .inProgress {
+    background-color: white;
+    position: center;
+    background-image: url('/public/images/inProgress.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .locked {
+    background-color: white;
+    background-image: url('/public/images/locked.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  
+.title1{
+  position: relative;
+}
+
+.svg1{
+  background-color: blue;
+  position: relative;
+  top:-900px;
+  left:10%; 
+}
+.svg2{
+  background-color: rgb(179, 255, 0);
+  position: relative;
+  top:-800px;
+  left:10%; 
+}
+.svg3{
+  background-color: rgb(203, 173, 149);
+  position: relative;
+  top:-830px;
+  left:60%; 
+}
+.svg4{
+  position: relative;
+  top:-700px;
+  left:10%; 
+}
+
+.svg5{
+  position: relative;
+  top:-750px;
+  left:10%; 
+}
+
+.svg6{
+  position: relative;
+  top:-650px;
+  right:10%;
+}
+
+.svg7{
+  position: relative;
+  top:-670px;
+  left:50%;
+}
+
+.svg8{
+  position: relative;
+  top:-600px;
+  left:10%;
+}
+.svg9{
+  position: relative;
+  top:-700px;
+  left:10%;
+}
+
+
+ 
+
+
+
+ 
+
+
+  .polyline {
+
+    stroke-width: 5;
+    stroke-dasharray:16;
+    fill: none;
+    animation: drawAndChangeColor 4s forwards; /* Augmentez la durée si nécessaire */
+  }
+  
+
+
+
+    
+   @keyframes drawAndChangeColor {
+    0% {
+      stroke-dasharray: 0, 100;
+      stroke-dashoffset: 0;
+      stroke: black;
+    }
+    100% {
+      stroke-dasharray: 100, 0;
+      stroke-dashoffset: -100;
+      stroke:gray; 
+    }
+  }
+  
+  .polyline {
+    stroke-width: 5;
+    stroke-dasharray: 10;
+    fill: none;
+    animation: drawAndChangeColor 9s forwards;
+  }
+
+  .active {
+    stroke: rgb(22, 183, 52); 
+  }
+  
+  .inactive {
+    stroke: rgb(120, 124, 124); 
+  } 
+.Exercices{
+  position: center;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+
+.T1{
+  position: absolute;
+  background-color: beige;
+  top: 0px;
+  right: 10px;
+
+}

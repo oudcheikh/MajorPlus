@@ -1,0 +1,206 @@
+.app23{
+   
+    width: 100vh;
+    height: 100vh;
+    background-image: url("/public/images/bg.PNG");
+}
+
+
+
+
+.B1{
+  border-color: white;
+  background-color: white;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    position: relative;
+    top: 400px;
+    left: 600px;
+    color: hwb(0 2% 98%);
+   
+}
+
+.title1{
+  position: relative;
+  color: black;
+  top: 450px;
+  left: 600px;
+}
+
+.B2{
+    border-radius: 50%;
+    border-color: white;
+    background-color: white;
+    width: 190px;
+    height: 190px;
+    position: relative;
+    top: 400px;
+    left: 60px;
+    color: rgb(17, 16, 16);  
+    
+}
+.title2{
+  position: relative;
+  color: black;
+  top: 400px;
+  left: 60px;
+}
+.B3{
+    opacity: 100%;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    position: relative;
+    top: 400px;
+    left: 600px;
+    color: hwb(0 2% 98%);
+   
+}
+
+
+.title3{
+  position: relative;
+  color: black;
+  top: 400px;
+  left: 600px;
+}
+
+.B4{
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    position: relative;
+    top: 400px;
+    left: 60px;
+    color: rgb(17, 16, 16);  
+    
+}
+.title4{
+  position: relative;
+  color: black;
+  top: 400px;
+    left: 60px;
+}
+.DivB2{
+    position: reletive;
+    margin: 100px;
+   }
+   .completed {
+    background-color: white;
+    background-image: url('/public/images/completed.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .inProgress {
+    background-color: white;
+    position: center;
+    background-image: url('/public/images/inProgress.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .locked {
+    background-color: white;
+    background-image: url('/public/images/locked.PNG');
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  
+
+
+
+  /* .B1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+  }
+  
+  .B2 {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+  }
+  
+  .B3 {
+    position: absolute;
+    top: 300px;
+    left: 300px;
+  }
+  
+  .B4 {
+    position: absolute;
+    top: 400px;
+    left: 400px;
+  }
+ */
+
+
+   .svgComponent{
+    background-color: blue;
+    opacity: 100%;
+    position: relative;
+    top: -700px;
+    left: 150px;
+   }
+
+
+
+
+   .svgComponent2{
+    background-color: rgb(0, 255, 21);
+
+    position: relative;
+    top: -550px;
+    left: 150px;
+   }
+   .svgComponent3{
+    background-color: rgb(255, 174, 0);
+
+    position: relative;
+    top: -600px;
+    left: 200px;
+   }
+
+
+  .polyline {
+
+    stroke-width: 5;
+    stroke-dasharray: 10;
+    fill: none;
+    animation: drawAndChangeColor 4s forwards; /* Augmentez la durée si nécessaire */
+  }
+  
+
+
+
+    
+   @keyframes drawAndChangeColor {
+    0% {
+      stroke-dasharray: 0, 100;
+      stroke-dashoffset: 0;
+      stroke: black;
+    }
+    100% {
+      stroke-dasharray: 100, 0;
+      stroke-dashoffset: -100;
+      stroke:gray; 
+    }
+  }
+  
+  .polyline {
+    stroke-width: 5;
+    stroke-dasharray: 10;
+    fill: none;
+    animation: drawAndChangeColor 9s forwards;
+  }
+
+  .active {
+    stroke: rgb(22, 183, 52); 
+  }
+  
+  .inactive {
+    stroke: rgb(120, 124, 124); 
+  } 

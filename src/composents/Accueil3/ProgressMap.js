@@ -9,11 +9,13 @@ function ProgressMap() {
       <div className="button-container">
         <Link to="/C1" className="progress-button" id="btn1">C1</Link>
         <Link to="/C2" className="progress-button" id="btn2">C2</Link>
-        {/* ... add more buttons */}
+        <Link to="/C1" className="progress-button" id="btn1">C1</Link>
+        <Link to="/C2" className="progress-button" id="btn2">C2</Link>
+       
       </div>
       <svg className="lines">
-        <polyline points="20,20 100,20 100,80 200,80,200 1000,200 " />
-        {/* ... add more polylines as needed */}
+        <polyline points="200,20 100" />
+       
       </svg>
     </div>
   );
