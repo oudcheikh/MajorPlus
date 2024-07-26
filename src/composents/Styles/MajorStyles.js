@@ -745,9 +745,9 @@ export const imageStyle_Mot_Clé = {
 };
 
 export const imageStyle_Important = {
-  width: '90%', 
+  width: '70%', 
   height: 'auto', 
-  maxWidth: '90%',
+  maxWidth: '70%',
   display: 'block', 
   marginLeft: 'auto', 
   marginRight: 'auto' 

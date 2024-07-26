@@ -104,10 +104,19 @@ const NumberTable = () => {
         }
     };
 
-
+    const imageStyle = {
+        width: '70%',
+        height: 'auto',
+        maxWidth: '70%',
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      };
 
     return (
         <div>
+                  <img  src='/images/Math/C/imgC19/Activity.png' alt="Activity" style={imageStyle} />
+
             <h2 style={{ color: 'blue' }}>Compléter le tableau suivant:</h2>
             <h3>Classez les chiffres du nombre : {randomNumber}</h3>
             

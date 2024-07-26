@@ -1,43 +1,28 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import '../../Periode4/progressBar/SegmentedProgressBar.css'
+import '../../Periode4/progressBar/SegmentedProgressBar.css';
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
-import C1A1 from './C1A1';
-import C1A2 from './C1A2';
-import C1A3 from './C1A3';
-import QCMC1 from './QCMC1';
 import Exercice2 from './Exercice2';
 import styled from 'styled-components';
 import './C1.css';
 // Import des styles
-import { Box } from '@mui/material';
+import { Box,Button } from '@mui/material';
 
 import {
-    StyledBox,   NumberDisplay, imageStyle_Mot_Clé, SectionContainer, ImageContainer, FormulaText, Card, BodyText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
+    StyledBox, NumberDisplay, imageStyle_Important, imageStyle_Mot_Clé, SectionContainer, ImageContainer, FormulaText, Card, BodyText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
     SwipeContainer2, Swipe_Section,
 } from '../../../Styles/MajorStyles';
-import Démonstration from "./Démonstration";
-import Acceuil from "../../../_ReusableComponents/Accueil";
 
-const C1 = ({index,onComplete }) => {
+const C1 = ({ index, onComplete }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
-    const section3Ref = useRef(null);
-    const section4Ref = useRef(null);
-    const section5Ref = useRef(null);
-    const section6Ref = useRef(null);
-    const section7Ref = useRef(null);
-    const section8Ref = useRef(null);
-    const section9Ref = useRef(null);
-    const section10Ref = useRef(null);
-
+    const [showExercise, setShowExercise] = useState(false);
 
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
     const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 8; // Nombre total de sections
-
+    const totalSections = 2; // Nombre total de sections
 
     const handleScroll = (event) => {
         const { scrollLeft } = event.target;
@@ -47,15 +32,6 @@ const C1 = ({index,onComplete }) => {
         const sectionPositions = [
             0, // Position de début de la première section
             section1Ref.current.offsetWidth, // Position de début de la deuxième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth,
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth + section9Ref.current.offsetWidth,
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth + section8Ref.current.offsetWidth + section9Ref.current.offsetWidth + section10Ref.current.offsetWidth,
         ];
 
         // Trouver la section actuelle en fonction de la position de défilement
@@ -69,217 +45,89 @@ const C1 = ({index,onComplete }) => {
         setProgress(currentSection + 1)
     };
 
-    
     const handleFinish = () => {
-        // if (onComplete) {
-        //   onComplete(index);
-        //   navigate('/Step_finale_nchallh');
+        console.log("c'est de C1", index);
+        if (onComplete) {
+            onComplete(index);
+            navigate('/Step_finale_nchallh');
+        }
+    };
 
-        // }
+    const handleShowExercise = () => {
+        setShowExercise(true);
+    };
 
-console.log("c'est de C1" ,index)
-if (onComplete) {
-    onComplete(index); 
-    navigate('/Step_finale_nchallh');
-}
+    if (showExercise) {
+        return (
+            <StyledBox>
+                <SectionContainer2>
+                    <FormulaBox2>
+                        <Exercice2 />
+                    </FormulaBox2>
+                </SectionContainer2>
+                <Button  variant="contained" color="primary"  style={{ display: 'block', margin: '80px auto' }} onClick={() => setShowExercise(false)}>Retour</Button>
+            </StyledBox>
+        );
+    }
 
-      };
-
-    // const handleFinish = () => {
-    
-    //   if (onComplete) {
-    //     onComplete(); 
-
-    //   }
-    // navigate('/Step_finale_nchallh'); 
   
-    // };
-
-
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
             <StyledBox>
                 <SwipeContainer2 onScroll={handleScroll}>
-
                     <Swipe_Section ref={section1Ref}>
                         <SectionContainer2>
-                            <FormulaBox2>
-                                <Acceuil titre={' Les grands nombres'} imgSrc={"/images/Math/periode2/grand nombre.png"} altText={" Les grands nombres"}> </Acceuil>
-                                <button onClick={handleFinish}>Terminer</button>
-
-                       
-                                  </FormulaBox2>
+                            <FormulaText>
+                                <strong style={{ color: 'blueviolet', fontSize: '24px', textAlign: 'center', display: 'block', marginBottom: '10px' }}> Les grands nombres :</strong>
+                                <img src={"/images/Math/C/C1/Po.png"} style={imageStyle_Important} alt="Teacher" />
+                                <ul>
+                                    <li><h4>1 00 = <span style={{ color: '#FF7F50' }}>"cent"</span></h4></li>
+                                    <li><h4>1 000 = <span style={{ color: '#FF7F50' }}>"mille"</span></h4></li>
+                                    <li><h4>1 000 000 = <span style={{ color: '#FF7F50' }}>"million"</span></h4></li>
+                                    <li><h4>1 000 000 000 = <span style={{ color: '#FF7F50' }}>"milliard"</span></h4></li>
+                                </ul>
+                            </FormulaText>
                         </SectionContainer2>
                     </Swipe_Section>
 
                     <Swipe_Section ref={section2Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Concept clés</ContinueButton>
-                                <img src={"/images/Math/C/C11/divi.png"} style={imageStyle_Mot_Clé} alt="Teacher" />
-
-                                < Card>
-                                    <FormulaText>
-                                        <strong>Plus un nombre a de chiffres, plus il est grand.
-                                            <br></br>
-                                            Ainsi,<br></br>
-                                            <NumberDisplay >
-                                                <span style={{ color: 'green' }}>100</span> est plus grand que <span style={{ color: 'brown' }}>99.</span>
-                                            </NumberDisplay>
-                                            <br></br>
-                                            On utilise des séparateurs, comme une virgule, pour faciliter la lecture:
-                                            <NumberDisplay ><span style={{ color: 'blue' }}>1 000<span style={{ color: 'green' }}>, </span> 10 000</span></NumberDisplay>
-                                        </strong>
-                                    </FormulaText>
-                                </Card>
-                            </FormulaBox2>
-                        </SectionContainer2>
+                        <ContinueButton>Activité 1</ContinueButton>
+                        <VideoContainer>
+                            <iframe 
+                                width="90%" 
+                                height="315" 
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Explication de l'activité" 
+                                frameBorder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowFullScreen>
+                            </iframe>
+                            <VideoDescription>
+                                <p>Regardez cette vidéo pour comprendre l'activité et comment résoudre les exercices associés.</p>
+                            </VideoDescription>
+                        </VideoContainer>
+                        <Button  variant="contained" color="primary"  style={{ display: 'block', margin: '80px auto' }} onClick={handleShowExercise}>ouvrire l'activité</Button>
                     </Swipe_Section>
-
-                    <Swipe_Section ref={section3Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Concept clés</ContinueButton>
-                                <img src={"/images/Math/C/C11/divi.png"} style={imageStyle_Mot_Clé} alt="Teacher" />
-                                <FormulaText>
-                                    <strong style={{ color: 'blueviolet' }}>Noms des grands nombres :</strong>
-                                    <NumberDisplay ><strong>1 000 =<span style={{ color: '#FF7F50' }}>"mille"</span></strong></NumberDisplay>
-                                    <NumberDisplay ><strong> 1 000 000 =   <span style={{ color: '#FF7F50' }}>"million"</span></strong></NumberDisplay>
-                                    <NumberDisplay > <h4>1 000 000 000 =</h4>  <span style={{ color: '#FF7F50' }}>"milliard"</span></NumberDisplay>
-                                </FormulaText>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-                    <Swipe_Section ref={section4Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Exemple</ContinueButton>
-                                <Card>
-                                    <FormulaText>
-                                        <strong style={{ color: 'maroon' }}>Astuce :Pense à des situations réelles: </strong>
-                                        <br></br>
-                                        <strong>*une tarte qui contient  des milliers de cerise,</strong>
-
-
-                                        <img src={'/images/Math/C/C1/i10.png'} alt="tarte" />
-                                    </FormulaText>
-                                </Card>
-
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-                    <Swipe_Section ref={section5Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Démonstration</ContinueButton>
-
-                                <div style={{ marginBottom: '50px', width: '100%' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <br></br>
-
-                                        <Démonstration />
-                                    </div>
-
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-                    <Swipe_Section ref={section6Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Exercice </ContinueButton>
-                                <img src={"images/Math/periode2/Exercice.png"} alt="Enseignant" />
-                                <div>
-                                    <Exercice2 />
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-                    <Swipe_Section ref={section7Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Exercice</ContinueButton>
-                                <div>
-                                    <SectionContainer>
-                                        <ImageContainer>
-                                            <img src={"images/Math/C/images C18/PetiTeacher.png"} alt="Enseignant" />
-                                        </ImageContainer>
-                                        <Card>
-                                            <BodyText>
-                                                <strong style={{ color: 'blue' }}>Écris un nombre et découvre ses détails.</strong>
-                                            </BodyText>
-                                        </Card>
-                                    </SectionContainer>
-                                    <br></br>
-                                    <br></br>
-
-                                    <div style={{ marginBottom: '50px', width: '100%', height: '100%' }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                            <C1A1 />
-                                        </div>
-                                        <div className="separator">
-                                        </div>
-                                    </div>
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-                    <Swipe_Section ref={section8Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Exercice</ContinueButton>
-                                <div style={{ marginBottom: '50px', width: '100%' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <ImageContainer>
-                                            <img src={"images/Math/C/C1/teacher.png"} alt="Enseignant" />
-                                        </ImageContainer>
-                                        <C1A2 />
-                                    </div>
-                                </div>
-
-
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-                    <Swipe_Section ref={section9Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Exercice</ContinueButton>
-                                <div style={{ marginBottom: '50px', width: '100%' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <ImageContainer>
-                                            <img src={"images/Math/C/C1/exercice.png"} alt="Enseignant" />
-                                        </ImageContainer>
-                                        <C1A3 />
-                                    </div>
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-                    <Swipe_Section ref={section10Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>QCM</ContinueButton>
-                                <div>
-                                    <QCMC1 />
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
                 </SwipeContainer2>
             </StyledBox>
         </Container_Progress_Bar>
     );
 }
+
+// Styled Components for video container and description
+const VideoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+`;
+
+const VideoDescription = styled.div`
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+`;
+
 export default C1;
