@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import '../../Periode4/progressBar/SegmentedProgressBar.css';
 import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
 import Exercice2 from './Exercice2';
+import CustomCard from './CustomCard';
 import styled from 'styled-components';
 import './C1.css';
 // Import des styles
-import { Box,Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 import {
     StyledBox, NumberDisplay, imageStyle_Important, imageStyle_Mot_Clé, SectionContainer, ImageContainer, FormulaText, Card, BodyText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
@@ -17,6 +18,7 @@ const C1 = ({ index, onComplete }) => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const section1Ref = useRef(null);
     const section2Ref = useRef(null);
+    const videoRef = useRef(null);
     const [showExercise, setShowExercise] = useState(false);
 
     const navigate = useNavigate();
@@ -42,7 +44,11 @@ const C1 = ({ index, onComplete }) => {
             }
         }
         setSectionsViewed(currentSection + 1);
-        setProgress(currentSection + 1)
+        setProgress(currentSection + 1);
+
+        if (currentSection !== 1 && videoRef.current) {
+            videoRef.current.pause();
+        }
     };
 
     const handleFinish = () => {
@@ -65,12 +71,17 @@ const C1 = ({ index, onComplete }) => {
                         <Exercice2 />
                     </FormulaBox2>
                 </SectionContainer2>
-                <Button  variant="contained" color="primary"  style={{ display: 'block', margin: '80px auto' }} onClick={() => setShowExercise(false)}>Retour</Button>
+                <Button variant="contained" color="primary" style={{ display: 'block', margin: '80px auto' }} onClick={() => setShowExercise(false)}>Retour</Button>
             </StyledBox>
         );
     }
+const question = "Quel est le nom correcte  pour  3 000 000 ?";
+const options = [" deux cent", "trois mille", "trois million", "milliard"];
+const correctAnswer = "trois million";
+const explanation = "La bonne réponse est trois million car c'est 1 000 000 + 1 000 000 + 1 000 000";
 
-  
+    
+
     return (
         <Container_Progress_Bar>
             <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
@@ -88,26 +99,33 @@ const C1 = ({ index, onComplete }) => {
                                     <li><h4>1 000 000 000 = <span style={{ color: '#FF7F50' }}>"milliard"</span></h4></li>
                                 </ul>
                             </FormulaText>
+                            
                         </SectionContainer2>
+                        <CustomCard 
+            question={question}
+            options={options}
+            correctAnswer={correctAnswer}
+            explanation={explanation}
+        />
                     </Swipe_Section>
 
                     <Swipe_Section ref={section2Ref}>
                         <ContinueButton>Activité 1</ContinueButton>
                         <VideoContainer>
-                            <iframe 
+                            <video 
+                                ref={videoRef} 
                                 width="90%" 
                                 height="315" 
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                                title="Explication de l'activité" 
-                                frameBorder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowFullScreen>
-                            </iframe>
+                                controls
+                            >
+                                <source src={"/Videos/video.mp4"} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
                             <VideoDescription>
                                 <p>Regardez cette vidéo pour comprendre l'activité et comment résoudre les exercices associés.</p>
                             </VideoDescription>
                         </VideoContainer>
-                        <Button  variant="contained" color="primary"  style={{ display: 'block', margin: '80px auto' }} onClick={handleShowExercise}>ouvrire l'activité</Button>
+                        <Button variant="contained" color="primary" style={{ display: 'block', margin: '80px auto' }} onClick={handleShowExercise}>Ouvrir l'activité</Button>
                     </Swipe_Section>
                 </SwipeContainer2>
             </StyledBox>
