@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import flask from '../composents/home/Icones/arabic-language.png';
 // import calculator from '../composents/home/Icones/eiffel-tower.png';
 import '../composents/home/Major.css';
-import Accueilarab from '../composents/_ARABE_Folder/Accueilarab';
+
 import Acceuilfrançais from './Acceuilfrançais';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
