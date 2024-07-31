@@ -1,0 +1,15 @@
+.CC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.line-drawing-demo {
+    position: relative;
+}
+
+.line-drawing-demo .lines {
+    display: block;
+    margin: auto;
+}

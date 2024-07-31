@@ -62,6 +62,9 @@ import M3 from './composents/Math/Periode2/M3/M3.js'
 import Quiz2 from './composents/Math/Quiz.js'
 import V from './composents/Modals/V.js'
 
+import  Annimation from './composents/AnnimationSVG/Annimation.js' 
+
+import  ProgressMap from './composents/ProgressMap/Acc.js' 
 
 const initialState = {
   buttons: [
@@ -157,11 +160,11 @@ function App() {
 
         <Routes>
 
-          <Route path="/" element={<Accueil />} />
+          <Route path="/Accueil" element={<Accueil />} />
 
           
-
-         
+          <Route path="/" element={<Annimation />} />
+          <Route path="/ProgressMap" element={<ProgressMap  initialState={progress}/>} />
 
           <Route path="/C1" element={<C1 index={0} onComplete={changer_etat} />} />
           <Route path="/C2" element={<C2 index={1} onComplete={changer_etat} />} />

@@ -82,7 +82,7 @@ const navigate=useNavigate()
       console.log("----")
       console.log(onComplete(index))
     }
-    navigate('/Step_finale_nchallh'); 
+    navigate('/ProgressMap'); 
   };
   return (
     <Container_Progress_Bar>

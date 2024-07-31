@@ -11,14 +11,18 @@ function ProgressMap({ initialState }) {
 
   const navigate = useNavigate();
   const [progress, setProgress] = useState(initialState);
-
-
-
-
+const goToAccueil=()=>{
+  navigate('/Accueil')
+  
+}
+ 
   return (
     <div className='app23'>
       <div className='Exercices'>
-        <ContinueButton>Periode 1 </ContinueButton>
+        <ContinueButton onClick={goToAccueil}>Periode 1 </ContinueButton>
+
+
+        {/* <button class="glow-on-hover" type="button" onClick={goToAccueil}>Math</button> */}
       </div>
      
       <div className='mesBoutons'>

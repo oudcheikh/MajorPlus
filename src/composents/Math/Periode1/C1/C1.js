@@ -51,14 +51,18 @@ const C1 = ({ index, onComplete }) => {
         }
     };
 
+
+
     const handleFinish = () => {
-        console.log("c'est de C1", index);
+
+
+        console.log("c'est de C1", index)
         if (onComplete) {
             onComplete(index);
-            navigate('/Step_finale_nchallh');
+            navigate('/ProgressMap');
         }
-    };
 
+    };
     const handleShowExercise = () => {
         setShowExercise(true);
     };
@@ -75,12 +79,12 @@ const C1 = ({ index, onComplete }) => {
             </StyledBox>
         );
     }
-const question = "Quel est le nom correcte  pour  3 000 000 ?";
-const options = [" deux cent", "trois mille", "trois million", "milliard"];
-const correctAnswer = "trois million";
-const explanation = "La bonne réponse est trois million car c'est 1 000 000 + 1 000 000 + 1 000 000";
+    const question = "Quel est le nom correcte  pour  3 000 000 ?";
+    const options = [" deux cent", "trois mille", "trois million", "milliard"];
+    const correctAnswer = "trois million";
+    const explanation = "La bonne réponse est trois million car c'est 1 000 000 + 1 000 000 + 1 000 000";
 
-    
+
 
     return (
         <Container_Progress_Bar>
@@ -98,24 +102,26 @@ const explanation = "La bonne réponse est trois million car c'est 1 000 000 + 1
                                     <li><h4>1 000 000 = <span style={{ color: '#FF7F50' }}>"million"</span></h4></li>
                                     <li><h4>1 000 000 000 = <span style={{ color: '#FF7F50' }}>"milliard"</span></h4></li>
                                 </ul>
+
+                                <button onClick={handleFinish}>terminer</button>
                             </FormulaText>
-                            
+
                         </SectionContainer2>
-                        <CustomCard 
-            question={question}
-            options={options}
-            correctAnswer={correctAnswer}
-            explanation={explanation}
-        />
+                        <CustomCard
+                            question={question}
+                            options={options}
+                            correctAnswer={correctAnswer}
+                            explanation={explanation}
+                        />
                     </Swipe_Section>
 
                     <Swipe_Section ref={section2Ref}>
                         <ContinueButton>Activité 1</ContinueButton>
                         <VideoContainer>
-                            <video 
-                                ref={videoRef} 
-                                width="90%" 
-                                height="315" 
+                            <video
+                                ref={videoRef}
+                                width="90%"
+                                height="315"
                                 controls
                             >
                                 <source src={"/Videos/video.mp4"} type="video/mp4" />

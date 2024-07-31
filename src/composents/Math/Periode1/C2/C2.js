@@ -70,7 +70,7 @@ const C2 = ({index,onComplete}) => {
   const handleFinish = () => {
     if (onComplete) {
       onComplete(index);
-      navigate('/Step_finale_nchallh');
+      navigate('/ProgressMap');
     }
   };
 
