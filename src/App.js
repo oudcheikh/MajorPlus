@@ -66,6 +66,9 @@ import  Annimation from './composents/AnnimationSVG/Annimation.js'
 
 import  ProgressMap from './composents/ProgressMap/Acc.js' 
 
+import  SVG from './composents/ProgressMap/Svg.js' 
+import  Login from './composents/Sign_in/Login.js' 
+
 const initialState = {
   buttons: [
 
@@ -81,7 +84,7 @@ const initialState = {
     { id: 9, status: 'locked' ,title:"C10" ,path:"/C10",ClassTitre:"T10",chapitre:"la proportionnalité"}
   ],
   lines: [
-    { id: 0, status: 'inactive',points:"70,50 100,100" ,svgClass:"svg1"},
+    { id: 0, status: 'inactive',points:"M805 1078 c-60 -31 -370 -209 -543 -310 -84 -50 -157 -99 -162 -109 -8 -15 -3 -23 32 -47 71 -48 298 -180 581 -337 147 -82 266 -154 264 -159 -2  -6 -39 -31 -81 -56 -58 -34 -73 -46 -57 -48 47 -7 181 76 181 112 0 17 -17 27 -460 276 -179 100 -349 196 -377 212 -29 16 -53 33 -53 37 0 8 705 411 719 411 4 0 55 -27 112 -60 102 -59 134 -71 127 -48 -4 11 -224 148 -237 148 -3 -1 -24 -10 -46 -22z" ,svgClass:"svg1"},
     { id: 1, status: 'inactive',points:"20,50 100,50 " ,svgClass:"svg2"},
     { id: 2, status: 'inactive',points:"80,10 80,90" ,svgClass:"svg3"},
     { id: 3, status: 'inactive',points:"  140,60 30,20" ,svgClass:"svg4"},
@@ -160,10 +163,15 @@ function App() {
 
         <Routes>
 
-          <Route path="/Accueil" element={<Accueil />} />
+        
 
           
           <Route path="/" element={<Annimation />} />
+          <Route path="/Accueil" element={<Accueil />} />
+          <Route path="/SVG" element={<SVG  initialState={progress}/>} />
+
+
+
           <Route path="/ProgressMap" element={<ProgressMap  initialState={progress}/>} />
 
           <Route path="/C1" element={<C1 index={0} onComplete={changer_etat} />} />
@@ -219,7 +227,7 @@ function App() {
           
 
 
-          <Route path="/Sign_in" element={<Sign_in />} />
+          <Route path="/Accueil/Sign_in" element={<Sign_in />} />
 
           <Route path="/PatageInegaux" element={<PatageInegaux />} />
           <Route path="/NomberDecimaux" element={<NomberDecimaux />} />
@@ -235,6 +243,7 @@ function App() {
           
           <Route path="/Quiz2" element={<Quiz2 />} />
           <Route path="/V" element={<V />} />
+          <Route path="/Login" element={<Login />} />
 
 
 

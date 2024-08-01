@@ -2,7 +2,7 @@ import React from 'react';
 import './button.css'; 
 import { FormulaText } from '../Styles/MajorStyles';
 import { useNavigate } from 'react-router-dom';
-
+import DoneIcon from '@mui/icons-material/Done';
 
   function Button({ClassTitre, title,status, onClick, className,path ,chapitre}) {
   const navigate=useNavigate()
@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
           case 'locked':
             return '🔒'; // Émoji pour verrouillé
           case 'completed':
-            return '☑️'; // Émoji pour complété
+            return '☑️'; // Émoji pour complété ☑️
           case 'inProgress':
             return ' ◻️'; // Pas d'émoji pour en cours
           default:

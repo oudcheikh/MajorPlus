@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, RadioGroup, FormControlLabel, Radio, Button, Box } from '@mui/material';
 import styled, { css } from 'styled-components';
-
+import './Style2.css'
 const CustomCard = ({ question, options, correctAnswer, explanation }) => {
     const [selectedValue, setSelectedValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(null);
@@ -34,7 +34,7 @@ const CustomCard = ({ question, options, correctAnswer, explanation }) => {
                         </Typography>
                         <RadioGroup value={selectedValue} onChange={handleChange}>
                             {options.map((option, index) => (
-                                <FormControlLabel key={index} value={option} control={<Radio />} label={option} />
+                                <FormControlLabel  className="Radio"    key={index} value={option} control={<Radio />} label={option} />
                             ))}
                         </RadioGroup>
                         {isCorrect !== null && (

@@ -45,3 +45,8 @@ avv {
 x {
     color: hsl(210, 75%, 63%);
 }
+
+
+.Radio svg{
+border: none;
+}

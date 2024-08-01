@@ -38,6 +38,7 @@ function Acceuil() {
         <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in" />
       
         <Card title="ProgressMap" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Step_finale_nchallh"/>
+        <Card title="SVG" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/SVG"/>
 
 
       </div>
