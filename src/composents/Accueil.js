@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import flask from '../composents/home/Icones/arabic-language.png';
 // import calculator from '../composents/home/Icones/eiffel-tower.png';
 import '../composents/home/Major.css';
-import Accueilarab from '../composents/_ARABE_Folder/Accueilarab';
+
 import Acceuilfrançais from './Acceuilfrançais';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
@@ -23,8 +23,10 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
         <p>{content}</p>
       </div>
     </div>
+    
   );
 };
+
 
 function Acceuil() {
   return (
@@ -32,10 +34,11 @@ function Acceuil() {
 
       <div className="full-width-container">
         <Card title="اللغة العربية " content="" icon={"images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
-        <Card title="Français" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
+        <Card title="Math" content="" icon={"images/Icones/calculator-simple.png"} full navigateTo="/Math" />
         <Card title="Sign_in" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Sign_in" />
       
-        <Card title="ProgressMap" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="Step_finale_nchallh"/>
+        <Card title="ProgressMap" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/Step_finale_nchallh"/>
+        <Card title="SVG" content="" icon={"images/Icones/eiffel-tower.png"} full navigateTo="/SVG"/>
 
 
       </div>
