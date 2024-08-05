@@ -43,7 +43,6 @@ import Fraction2 from "./composents/Math/Periode2/M5/Fraction2";
 import Periode1 from "./composents/Math/Periode1";
 import Periode2 from "./composents//Math/Periode2";
 import Period3 from "./composents//Math/period3";
-import Sign_in from "./composents/Sign_in/Sign_in";
 import CalculeAire from "./composents/C20/CalculeAire";
 // import SousEtAddFraction from './composents/C17/SousEtAddFraction';
 import PatageInegaux from "./composents/Math/Periode3/C19/PatageInegaux.js";
@@ -68,6 +67,10 @@ import ProgressMap from "./composents/ProgressMap/Acc.js";
 
 import SVG from "./composents/ProgressMap/Svg.js";
 import Login from "./composents/Sign_in/Login.js";
+import { AuthProvider } from "./composents/Sign_in/v2/context/AuthContext.js";
+import ProtectedRoute from "./composents/Sign_in/v2/components/ProtectedRoute.js";
+import SignIn from "./composents/Sign_in/v2/components/SignIn.js";
+import SignUp from "./composents/Sign_in/v2/components/SignUp.js";
 
 const initialState = {
     buttons: [
@@ -150,80 +153,80 @@ function App() {
     };
 
     return (
-        <Router>
-            <div className="App">
-                <Routes>
-                    <Route path="/" element={<Annimation />} />
-                    <Route path="/Accueil" element={<Accueil />} />
-                    <Route path="/SVG" element={<SVG initialState={progress} />} />
+        <AuthProvider>
+            <Router>
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={<Annimation />} />
+                        <Route path="/signin" element={<SignIn />} />
+                        <Route path="/signup" element={<SignUp />} />
 
-                    <Route path="/ProgressMap" element={<ProgressMap initialState={progress} />} />
-
-                    <Route path="/C1" element={<C1 index={0} onComplete={changer_etat} />} />
-                    <Route path="/C1_new" element={<C1_new />} />
-                    <Route path="/C2" element={<C2 index={1} onComplete={changer_etat} />} />
-                    <Route path="/C3" element={<C3 index={2} onComplete={changer_etat} />} />
-                    <Route path="/C4" element={<C4 index={3} onComplete={changer_etat} />} />
-
-                    <Route path="/QuizTest" element={<QuizTest />} />
-                    <Route path="/QuizTestarab" element={<QuizTestarab />} />
-
-                    <Route path="/SousEtAddFraction" element={<SousEtAddFraction />} />
-
-                    <Route path="/C5A1" element={<C5 />} />
-                    <Route path="/Math" element={<Math />} />
-                    <Route path="/C5A3" element={<C5A3 />} />
-                    <Route path="/C5A4" element={<C5A4 />} />
-                    <Route path="/Kangaroo" element={<Kangaroo />} />
-                    <Route path="/C5A5" element={<C5A5 />} />
-                    <Route path="/C6" element={<C6 />} />
-                    <Route path="/C7" element={<C7 />} />
-                    <Route path="/M2A1" element={<M2A1 />} />
-                    <Route path="/M2A2" element={<M2A2 />} />
-                    <Route path="/M2A3" element={<M2A3 />} />
-                    <Route path="/M2" element={<M2 />} />
-                    <Route path="/G1" element={<G1 />} />
-                    <Route path="/G2" element={<G2 />} />
-                    <Route path="/G1A2" element={<G1A2 />} />
-                    <Route path="/G3" element={<G3 />} />
-                    <Route path="/G1" element={<G1 />} />
-                    <Route path="/Periode1" element={<Periode1 />} />
-                    <Route path="/Periode2" element={<Periode2 />} />
-                    <Route path="/Period3" element={<Period3 />} />
-
-                    <Route path="/P2A1A" element={<P2A1A />} />
-                    <Route path="/P2A1C" element={<P2A1C />} />
-                    <Route path="/P2A1B" element={<P2A1B />} />
-                    <Route path="/P3A3" element={<P3A3 />} />
-                    <Route path="/P3A4" element={<P3A4 />} />
-                    <Route path="/P3A5" element={<P3A5 />} />
-                    <Route path="/P3A6" element={<P3A6 />} />
-                    <Route path="/P3A7" element={<P3A7 />} />
-                    <Route path="/P3A8" element={<P3A8 />} />
-                    <Route path="/Chap13" element={<Chap13 />} />
-                    <Route path="/Aire2" element={<Aire2 />} />
-                    <Route path="/Fraction2" element={<Fraction2 />} />
-
-                    <Route path="/Accueil/Sign_in" element={<Sign_in />} />
-
-                    <Route path="/PatageInegaux" element={<PatageInegaux />} />
-                    <Route path="/NomberDecimaux" element={<NomberDecimaux />} />
-                    <Route path="/CalculeAire" element={<CalculeAire />} />
-
-                    <Route path="/Periode4" element={<Periode4 />} />
-                    <Route path="/La_proportionnalité" element={<La_proportionnalité />} />
-                    <Route path="/Les_solides" element={<Les_solides />} />
-
-                    <Route path="/Les_mesures_Agrairs" element={<Les_mesures_Agrairs />} />
-                    <Route path="/Division" element={<Division />} />
-                    <Route path="/M3" element={<M3 />} />
-
-                    <Route path="/Quiz2" element={<Quiz2 />} />
-                    <Route path="/V" element={<V />} />
-                    <Route path="/Login" element={<Login />} />
-                </Routes>
-            </div>
-        </Router>
+                        <Route path="/Accueil" element={<Accueil />} />
+                        <Route path="/SVG" element={<SVG initialState={progress} />} />
+                        <Route path="/ProgressMap" element={<ProgressMap initialState={progress} />} />
+                        <Route path="/C1" element={<C1 index={0} onComplete={changer_etat} />} />
+                        <Route
+                            path="/C1_new"
+                            element={
+                                <ProtectedRoute>
+                                    <C1_new />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/C2" element={<C2 index={1} onComplete={changer_etat} />} />
+                        <Route path="/C3" element={<C3 index={2} onComplete={changer_etat} />} />
+                        <Route path="/C4" element={<C4 index={3} onComplete={changer_etat} />} />
+                        <Route path="/QuizTest" element={<QuizTest />} />
+                        <Route path="/QuizTestarab" element={<QuizTestarab />} />
+                        <Route path="/SousEtAddFraction" element={<SousEtAddFraction />} />
+                        <Route path="/C5A1" element={<C5 />} />
+                        <Route path="/Math" element={<Math />} />
+                        <Route path="/C5A3" element={<C5A3 />} />
+                        <Route path="/C5A4" element={<C5A4 />} />
+                        <Route path="/Kangaroo" element={<Kangaroo />} />
+                        <Route path="/C5A5" element={<C5A5 />} />
+                        <Route path="/C6" element={<C6 />} />
+                        <Route path="/C7" element={<C7 />} />
+                        <Route path="/M2A1" element={<M2A1 />} />
+                        <Route path="/M2A2" element={<M2A2 />} />
+                        <Route path="/M2A3" element={<M2A3 />} />
+                        <Route path="/M2" element={<M2 />} />
+                        <Route path="/G1" element={<G1 />} />
+                        <Route path="/G2" element={<G2 />} />
+                        <Route path="/G1A2" element={<G1A2 />} />
+                        <Route path="/G3" element={<G3 />} />
+                        <Route path="/G1" element={<G1 />} />
+                        <Route path="/Periode1" element={<Periode1 />} />
+                        <Route path="/Periode2" element={<Periode2 />} />
+                        <Route path="/Period3" element={<Period3 />} />
+                        <Route path="/P2A1A" element={<P2A1A />} />
+                        <Route path="/P2A1C" element={<P2A1C />} />
+                        <Route path="/P2A1B" element={<P2A1B />} />
+                        <Route path="/P3A3" element={<P3A3 />} />
+                        <Route path="/P3A4" element={<P3A4 />} />
+                        <Route path="/P3A5" element={<P3A5 />} />
+                        <Route path="/P3A6" element={<P3A6 />} />
+                        <Route path="/P3A7" element={<P3A7 />} />
+                        <Route path="/P3A8" element={<P3A8 />} />
+                        <Route path="/Chap13" element={<Chap13 />} />
+                        <Route path="/Aire2" element={<Aire2 />} />
+                        <Route path="/Fraction2" element={<Fraction2 />} />
+                        <Route path="/PatageInegaux" element={<PatageInegaux />} />
+                        <Route path="/NomberDecimaux" element={<NomberDecimaux />} />
+                        <Route path="/CalculeAire" element={<CalculeAire />} />
+                        <Route path="/Periode4" element={<Periode4 />} />
+                        <Route path="/La_proportionnalité" element={<La_proportionnalité />} />
+                        <Route path="/Les_solides" element={<Les_solides />} />
+                        <Route path="/Les_mesures_Agrairs" element={<Les_mesures_Agrairs />} />
+                        <Route path="/Division" element={<Division />} />
+                        <Route path="/M3" element={<M3 />} />
+                        <Route path="/Quiz2" element={<Quiz2 />} />
+                        <Route path="/V" element={<V />} />
+                        <Route path="/Login" element={<Login />} />
+                    </Routes>
+                </div>
+            </Router>
+        </AuthProvider>
     );
 }
 
