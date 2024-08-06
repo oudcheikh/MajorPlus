@@ -116,6 +116,7 @@ function App() {
     const handleComplete = (index) => {
         const newLevels = [...levels];
         newLevels[index].status = "completed";
+        
 
         if (newLevels[index + 1]) {
             newLevels[index + 1].status = "in-progress";
