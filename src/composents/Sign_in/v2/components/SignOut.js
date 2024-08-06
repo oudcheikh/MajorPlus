@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { Button } from "@mui/material";
 
 const SignOut = () => {
     const navigate = useNavigate();
@@ -11,13 +12,17 @@ const SignOut = () => {
         try {
             await signOut(auth);
             console.log("User signed out successfully");
-            navigate("/login");
+            navigate("/signin");
         } catch (error) {
             console.error("Error signing out:", error);
         }
     };
 
-    return <button onClick={handleSignOut}>Sign Out</button>;
+    return (
+        <Button variant="contained" color="secondary" onClick={handleSignOut}>
+            Sign Out
+        </Button>
+    );
 };
 
 export default SignOut;
