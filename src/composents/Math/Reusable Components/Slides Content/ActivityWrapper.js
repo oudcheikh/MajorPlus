@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ExplanationVideo from "./ExplanationVideo";
 import { Button } from "@mui/material";
 import { collection, addDoc } from "firebase/firestore";
@@ -18,32 +18,41 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
         console.log("Activity started at: ", now); // Affiche le moment où l'activité commence
     };
 
+    const returnToVideo = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - startTime) / 1000; // Calcul du temps passé en secondes
+
+        // Appeler onSubmit pour obtenir le résultat et le score
+        const { allAnswersCorrect, calculatedScore } = onSubmit();
+
+        const activityData = {
+            activityName: activityName,
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            isCompleted: allAnswersCorrect,
+            score: calculatedScore,
+        };
+
+        console.log("Storing activity data: ", activityData); // Affiche les données à stocker
+
+        await storeActivityData(user.uid, activityData); // Stocke les données dans Firestore
+
+        setShowVideo(true);
+    };
+
     const checkAnswer = async () => {
         if (!user || !user.uid) {
             console.error("User is not defined or does not have a uid");
             return;
         }
-
-        const endTime = new Date();
-        const timeSpent = (endTime - startTime) / 1000; // Calcul du temps passé en secondes
-
-        const activityData = {
-            userId: user.uid,
-            activityName: activityName,
-            entryTime: entryTime.toISOString(),
-            timeSpent: timeSpent
-        };
-
-        console.log("Storing activity data: ", activityData); // Affiche les données à stocker
-
-        await storeActivityData(activityData); // Stocke les données dans Firestore
-
-        onSubmit(); // Appel de la fonction de soumission après le stockage des données
+        await returnToVideo(); // Appeler returnToVideo pour enregistrer les données
     };
 
-    const storeActivityData = async (activityData) => {
+    const storeActivityData = async (userId, activityData) => {
         try {
-            const docRef = await addDoc(collection(db, 'activities'), activityData);
+            // Référence à la sous-collection 'activities' sous chaque utilisateur
+            const userActivitiesCollection = collection(db, 'users', userId, 'activities');
+            const docRef = await addDoc(userActivitiesCollection, activityData);
             console.log('Document written with ID: ', docRef.id); // Affiche l'ID du document stocké
         } catch (e) {
             console.error('Error adding document: ', e);
@@ -56,7 +65,6 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
             {showVideo ? (
                 <div className="video-wrapper">
                     <ExplanationVideo videoUrl={explanationVideoUrl} explanationParagraph={["First paragraph", "Second paragraph"]} altText="Video description" />
-
                     <Button variant="contained" onClick={startActivity}>
                         Start Activity
                     </Button>
@@ -65,7 +73,10 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
                 <div className="activity-wrapper">
                     <div className="children-wrapper">{children}</div>
                     <div className="button-wrapper">
-                        <Button variant="contained" onClick={() => setShowVideo(true)}>
+                        <Button variant="contained" onClick={async () => {
+                            await checkAnswer();
+                            setShowVideo(true);
+                        }}>
                             Retourner a la video
                         </Button>
                         <Button variant="contained" onClick={checkAnswer}>

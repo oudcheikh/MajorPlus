@@ -15,7 +15,7 @@ const SignIn = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             console.log("User signed in successfully");
-            navigate("/C1_new");
+            navigate("/Math");
         } catch (error) {
             console.error("Error signing in:", error);
         }
@@ -25,13 +25,13 @@ const SignIn = () => {
         <Container maxWidth="sm">
             <Box mt={5}>
                 <Typography variant="h4" component="h1" gutterBottom>
-                    Sign In
+                    Connecter vous
                 </Typography>
                 <form onSubmit={handleSignIn}>
-                    <TextField label="Email" variant="outlined" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <TextField label="Email" variant="outlined" type="Email" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <TextField label="Password" variant="outlined" type="password" fullWidth margin="normal" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <Button type="submit" variant="contained" color="primary" fullWidth>
-                        Sign In
+                        se connecter
                     </Button>
                 </form>
             </Box>

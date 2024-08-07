@@ -18,7 +18,7 @@ function Accueil() {
   return (
     <div className="app-container">
       <div className="card-grid">
-        <CardButton title="C1" navigateTo="/C1" />
+        <CardButton title="C1" navigateTo="/C1_new" />
         <CardButton title="C2" navigateTo="/C2" />
         <CardButton title="C3" navigateTo="/C3" />
         <CardButton title="C4" navigateTo="/C4" />

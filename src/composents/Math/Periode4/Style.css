@@ -124,3 +124,18 @@ input[type="number"] {
   background-repeat: no-repeat;
   background-size: 100px 100px;
 }
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.swipe-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.custom-card {
+  margin-bottom: 10px;
+}
