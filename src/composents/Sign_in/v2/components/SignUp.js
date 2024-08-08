@@ -34,61 +34,8 @@ const SignUp = () => {
                 </Typography>
                 {error && <Alert severity="error">{error}</Alert>}
                 <form onSubmit={handleSignUp}>
-                    <TextField
-                        label="Prénom"
-                        variant="outlined"
-                        type="Prénom"
-                        fullWidth
-                        margin="normal"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                    <TextField
-                        label="Nom"
-                        variant="outlined"
-                        type="Nom"
-                        fullWidth
-                        margin="normal"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                    <TextField
-                        label="Date de naissance"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        type="date"
-                        InputLabelProps={{ shrink: true }}
-                        value={dateOfBirth}
-                        onChange={(e) => setDateOfBirth(e.target.value)}
-                    />
-                    <TextField
-                        label="Adresse"
-                        variant="outlined"
-                        type="Adresse"
-                        fullWidth
-                        margin="normal"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        type="Email"
-                        fullWidth
-                        margin="normal"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        label="Password"
-                        variant="outlined"
-                        type="password"
-                        fullWidth
-                        margin="normal"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <TextField label="Email" variant="outlined" fullWidth margin="normal" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <TextField label="Password" variant="outlined" type="password" fullWidth margin="normal" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         S'inscrir
                     </Button>
