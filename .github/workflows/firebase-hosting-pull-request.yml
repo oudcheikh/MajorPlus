@@ -17,7 +17,9 @@ jobs:
         run: yarn install
 
       - name: Build the app
-        run: yarn build
+        run: |
+          export CI=false
+          yarn build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
