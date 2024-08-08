@@ -28,7 +28,7 @@ const SignUp = () => {
                     Sign Up
                 </Typography>
                 <form onSubmit={handleSignUp}>
-                    <TextField label="Email" variant="outlined" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <TextField label="Email" variant="outlined" fullWidth margin="normal" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <TextField label="Password" variant="outlined" type="password" fullWidth margin="normal" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         Sign Up
