@@ -1,49 +1,52 @@
-import { Checkbox } from "@mui/material";
-import React, { useState, useImperativeHandle, forwardRef } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
+import PropTypes from "prop-types";
 
-// Option Component
-const Option = ({ option, onChange, isChecked, isDisabled }) => (
-    <div>
-        <Checkbox type={isDisabled ? "text" : "checkbox"} checked={isChecked} onChange={() => onChange(option)} disabled={isDisabled} />
-        {option}
-    </div>
-);
-
-// Quiz Component
-const Quiz = forwardRef(({ question, options, multipleChoice = false, onSubmit }, ref) => {
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
-    const handleOptionChange = (option) => {
-        if (multipleChoice) {
-            setSelectedOptions((prev) => (prev.includes(option) ? prev.filter((opt) => opt !== option) : [...prev, option]));
-        } else {
-            setSelectedOptions([option]);
-        }
-    };
+const Quiz = forwardRef(({ questions }, ref) => {
+    const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null));
 
     useImperativeHandle(ref, () => ({
-        getSelectedOptions: () => {
-            return selectedOptions;
-        },
-        setSelectedOptions: (newMessage) => {
-            setSelectedOptions(newMessage);
-        },
+        getSelectedOptions: () => selectedOptions
     }));
 
-    const handleSubmit = () => {
-        onSubmit(selectedOptions);
+    const handleOptionChange = (questionIndex, option) => {
+        const newSelectedOptions = [...selectedOptions];
+        newSelectedOptions[questionIndex] = option;
+        setSelectedOptions(newSelectedOptions);
     };
 
     return (
         <div>
-            <h3>{question}</h3>
-            <div>
-                {options.map((option) => (
-                    <Option key={option.value} option={option} onChange={handleOptionChange} isChecked={selectedOptions.includes(option)} isDisabled={multipleChoice && !option.isEnabled} />
-                ))}
-            </div>
+            {questions.map((q, index) => (
+                <div key={index}>
+                    <h3>{q.question}</h3>
+                    {q.options.map((option, optionIndex) => (
+                        <div key={optionIndex}>
+                            <input
+                                type="radio"
+                                id={`q${index}_option${optionIndex}`}
+                                name={`q${index}`}
+                                value={option}
+                                checked={selectedOptions[index] === option}
+                                onChange={() => handleOptionChange(index, option)}
+                            />
+                            <label htmlFor={`q${index}_option${optionIndex}`}>{option}</label>
+                        </div>
+                    ))}
+                </div>
+            ))}
         </div>
     );
 });
+
+Quiz.propTypes = {
+    questions: PropTypes.arrayOf(
+        PropTypes.shape({
+            question: PropTypes.string.isRequired,
+            options: PropTypes.arrayOf(PropTypes.string).isRequired,
+            correctAnswer: PropTypes.string.isRequired,
+            explanation: PropTypes.string.isRequired
+        })
+    ).isRequired
+};
 
 export default Quiz;

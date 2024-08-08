@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Box, Button, Typography, LinearProgress, Grid, Card, CardContent, Fab } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Button, Typography, Grid, Card, CardContent, Fab } from "@mui/material";
 import { styled } from "@mui/system";
 import writtenNumber from "written-number";
 import ReplayIcon from "@mui/icons-material/Replay";
+import ActivityWrapper from "../../../ReusableComponents/SlidesContent/ActivityWrapper";
+import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
+import SuccessDialog from "../../../ReusableComponents/Activities/SuccessDialog";
 
 const StyledBox = styled(Box)({});
 
@@ -67,6 +70,12 @@ const C1A2 = () => {
     const [, setOpen] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState(null);
     const [score, setScore] = useState(0);
+    const { currentUser } = useAuth();
+    const [sucessDialogOpen, setSucessDialogOpen] = useState(false);
+
+    useEffect(() => {
+        getRandomNumber(0);
+    }, []);
 
     const handleNumberClick = (number) => {
         setIsValid(true);
@@ -80,7 +89,7 @@ const C1A2 = () => {
         if (!validation) {
             setUserInput("");
         } else {
-            setScore(score + 4); // Increase score by 4 for correct answer
+            setScore(score + 20); // Increase score by 20 for correct answer
             setShowNextButton(true);
         }
     };
@@ -90,7 +99,7 @@ const C1A2 = () => {
             setProgress(progress + 1);
             getRandomNumber(progress + 1);
         } else {
-            setOpen(true);
+            handleClickOpen();
         }
         setShowNextButton(false);
         setUserInput("");
@@ -115,63 +124,81 @@ const C1A2 = () => {
         getRandomNumber(0);
     };
 
+    const checkAnswer = () => {
+        const allAnswersCorrect = isValid;
+        return { allAnswersCorrect, calculatedScore: score };
+    };
+
+    const handleClickOpen = () => {
+        setSucessDialogOpen(true);
+    };
+
     const handleClose = () => {
-        setOpen(false);
+        setSucessDialogOpen(false);
     };
 
     return (
-        <StyledBox>
-            <Grid container justifyContent="center">
-                <Grid item xs={12} md={6}>
-                    <StyledCard>
-                        <CardContent>
-                            <NumberDisplay>
-                                <Typography>Ecrire ce nombre en chiffres : {writtenNumber(randomNumber, { lang: "fr" })}</Typography>
-                            </NumberDisplay>
-                            <NumberDisplay>
-                                <Typography> {userInput}</Typography>
-                            </NumberDisplay>
+        <ActivityWrapper
+            activityTitle={"Number Sorting"}
+            explanationVideoUrl={"/Videos/number_sorting.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="NumberSorting"
+        >
+            <StyledBox>
+                <Grid container justifyContent="center">
+                    <Grid item xs={12} md={6}>
+                        <StyledCard>
+                            <CardContent>
+                                <NumberDisplay>
+                                    <Typography>Ecrire ce nombre en chiffres : {writtenNumber(randomNumber, { lang: "fr" })}</Typography>
+                                </NumberDisplay>
+                                <NumberDisplay>
+                                    <Typography> {userInput}</Typography>
+                                </NumberDisplay>
 
-                            <br />
+                                <br />
 
-                            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                                <Grid container spacing={-8}>
-                                    {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((number) => (
-                                        <Grid item xs={4} key={number}>
-                                            <VibrantFab onClick={() => handleNumberClick(number)} $isSelected={selectedNumber === number}>
-                                                {number}
+                                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                                    <Grid container spacing={-8}>
+                                        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((number) => (
+                                            <Grid item xs={4} key={number}>
+                                                <VibrantFab onClick={() => handleNumberClick(number)} $isSelected={selectedNumber === number}>
+                                                    {number}
+                                                </VibrantFab>
+                                            </Grid>
+                                        ))}
+                                        <Grid item xs={4}>
+                                            <VibrantFab onClick={() => handleNumberClick(9)}>9</VibrantFab>
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            <VibrantFab onClick={handleReset}>
+                                                <ReplayIcon />
                                             </VibrantFab>
                                         </Grid>
-                                    ))}
-                                    <Grid item xs={4}>
-                                        <VibrantFab onClick={() => handleNumberClick(9)}>9</VibrantFab>
+                                        <Grid item xs={4}>
+                                            <VibrantFab variant="contained" onClick={handleValidate}>
+                                                Ok
+                                            </VibrantFab>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <VibrantFab onClick={handleReset}>
-                                            <ReplayIcon />
-                                        </VibrantFab>
-                                    </Grid>
-                                    <Grid item xs={4}>
-                                        <VibrantFab variant="contained" onClick={handleValidate}>
-                                            Ok
-                                        </VibrantFab>
-                                    </Grid>
-                                </Grid>
-                            </Box>
+                                </Box>
 
-                            {!isValid && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
-                            {isValid && showNextButton && <Typography color="primary">Bravo, c'est correct !</Typography>}
+                                {!isValid && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
+                                {isValid && showNextButton && <Typography color="primary">Bravo, c'est correct !</Typography>}
 
-                            {showNextButton && (
-                                <StyledButton variant="contained" onClick={handleNextQuestion}>
-                                    Suivant
-                                </StyledButton>
-                            )}
-                        </CardContent>
-                    </StyledCard>
+                                {showNextButton && (
+                                    <StyledButton variant="contained" onClick={handleNextQuestion}>
+                                        Suivant
+                                    </StyledButton>
+                                )}
+                            </CardContent>
+                        </StyledCard>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </StyledBox>
+            </StyledBox>
+            <SuccessDialog open={sucessDialogOpen} onClose={handleClose} />
+        </ActivityWrapper>
     );
 };
 
