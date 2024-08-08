@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../NumberTable.css";
 import { Button } from "@mui/material";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../../Sign_in/v2/firebase";
+import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 
 const NumberTable = () => {
     const [userInputs, setUserInputs] = useState(Array(12).fill("0"));
     const [result, setResult] = useState("");
     const [step, setStep] = useState(1);
     const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 999));
+    const [entryTime, setEntryTime] = useState(null);
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
 
     const handleChange = (index, value) => {
         if (/^\d?$/.test(value)) {
-            // Allow only digits or empty string
             const newInputs = [...userInputs];
             newInputs[index] = value;
             setUserInputs(newInputs);
@@ -24,6 +33,40 @@ const NumberTable = () => {
         console.log(result);
     };
 
+    const storeActivityData = async (activityData) => {
+        try {
+            const docRef = await addDoc(collection(db, 'activities'), activityData);
+            console.log('Document written with ID: ', docRef.id);
+        } catch (e) {
+            console.error('Error adding document: ', e);
+        }
+    };
+
+    const next = async () => {
+        checkAnswer();
+        if (result === "Bonne réponse!") {
+            const endTime = new Date();
+            const timeSpent = (endTime - entryTime) / 1000; // Temps passé en secondes
+
+            const activityData = {
+                userId: currentUser.uid,
+                activityName: "NumberTable",
+                entryTime: entryTime.toISOString(),
+                timeSpent: timeSpent,
+                step: step,
+                result: result
+            };
+
+            await storeActivityData(activityData);
+
+            const nextStep = step + 1;
+            setStep(nextStep);
+            setRandomNumber(generateRandomNumber(nextStep));
+            setUserInputs(Array(12).fill(""));
+            setResult("");
+        }
+    };
+
     const tableStyle = {
         borderCollapse: "collapse",
         margin: "40px 0",
@@ -35,9 +78,9 @@ const NumberTable = () => {
     const headerStyle = {
         padding: "10px 3px",
         border: "1px solid black",
-        fontSize: "18px", // Changer la taille de la police
-        fontFamily: "Arial, sans-serif", // Changer la police
-        color: "black", // Changer la couleur du texte
+        fontSize: "18px",
+        fontFamily: "Arial, sans-serif",
+        color: "black",
     };
 
     const inputStyle = {
@@ -47,9 +90,9 @@ const NumberTable = () => {
         margin: "1px",
         border: "1px solid #ccc",
         borderRadius: "2px",
-        fontSize: "16px", // Changer la taille de la police
-        fontFamily: "Arial, sans-serif", // Changer la police
-        color: "black", // Changer la couleur du texte
+        fontSize: "16px",
+        fontFamily: "Arial, sans-serif",
+        color: "black",
     };
 
     function generateRandomNumber(step) {
@@ -79,17 +122,6 @@ const NumberTable = () => {
 
         return "Bravooo !";
     }
-
-    const next = () => {
-        checkAnswer();
-        if (result === "Bonne réponse!") {
-            const nextStep = step + 1;
-            setStep(nextStep);
-            setRandomNumber(generateRandomNumber(nextStep));
-            setUserInputs(Array(12).fill(""));
-            setResult("");
-        }
-    };
 
     const imageStyle = {
         width: "50%",
@@ -141,9 +173,9 @@ const NumberTable = () => {
                     </tr>
                 </tbody>
             </table>
-            {/* <Button variant="contained" color="primary" onClick={next}>
+            <Button variant="contained" color="primary" onClick={next}>
                 suivant
-            </Button> */}
+            </Button>
             {result && <p style={{ color: "red" }}>{result}</p>}
         </div>
     );
