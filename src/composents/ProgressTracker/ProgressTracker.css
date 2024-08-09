@@ -1,0 +1,24 @@
+.progress-tracker {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .progress-tracker:before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0;
+  }
+  
+  .progress-tracker .progress-item:first-child:before {
+    top: 50%;
+  }
+  
+  .progress-tracker .progress-item:last-child:before {
+    bottom: 50%;
+  }
+  
