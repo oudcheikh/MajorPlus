@@ -2,6 +2,7 @@ import React from "react";
 import SwipeableScreens from "../../../Reusable Components/Swipeable/SwipeableScreen";
 import C1A1 from "./C1A1";
 import C1A2 from "./C1A2";
+import Exercice2 from'./Exercice2';
 import Swipe_Section from "../../../Reusable Components/introduction/Swipe_Section"; // Importez le nouveau composant
 import { useNavigate } from "react-router-dom";
 
@@ -25,9 +26,8 @@ export default function C1_new({onFinish}) {
 
     const slides = [
         () => <Swipe_Section introProps={introProps} question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />,
-        () => <C1A1 onFinish={onFinish} />, 
-        C1A2
-    ];
+        C1A2,
+        Exercice2, ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
 }
