@@ -102,6 +102,8 @@ const C1A2 = () => {
         setUserInput(""); // Réinitialiser le champ d'entrée après chaque validation
     };
 
+    
+
     const getRandomNumber = (progress) => {
         const min = ranges[progress][0],
             max = ranges[progress][1];
