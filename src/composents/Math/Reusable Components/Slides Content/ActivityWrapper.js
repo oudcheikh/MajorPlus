@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ExplanationVideo from "./ExplanationVideo";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase"; // Assurez-vous que le chemin est correct
 import "./SlideContent.css";
@@ -9,6 +9,21 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
     const [showVideo, setShowVideo] = useState(true);
     const [startTime, setStartTime] = useState(null);
     const [entryTime, setEntryTime] = useState(null);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+
+    useEffect(() => {
+        const handleBeforeUnload = async (event) => {
+            if (questionsAnswered >= 1) {
+                await sendActivityData();
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [questionsAnswered]);
 
     const startActivity = () => {
         const now = new Date();
@@ -19,33 +34,30 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
     };
 
     const returnToVideo = async () => {
+        await sendActivityData();
+        setShowVideo(true);
+    };
+
+    const sendActivityData = async () => {
         const endTime = new Date();
         const timeSpent = (endTime - startTime) / 1000; // Calcul du temps passé en secondes
 
-        // Appeler onSubmit pour obtenir le résultat et le score
-        const { allAnswersCorrect, calculatedScore } = onSubmit();
+        // Appeler onSubmit pour obtenir le résultat
+        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = onSubmit();
 
         const activityData = {
             activityName: activityName,
             entryTime: entryTime.toISOString(),
             timeSpent: timeSpent,
             isCompleted: allAnswersCorrect,
-            score: calculatedScore,
+            totalQuestions: totalQuestions,
+            correctAnswers: correctAnswers,
+            incorrectAnswers: incorrectAnswers,
         };
 
         console.log("Storing activity data: ", activityData); // Affiche les données à stocker
 
         await storeActivityData(user.uid, activityData); // Stocke les données dans Firestore
-
-        setShowVideo(true);
-    };
-
-    const checkAnswer = async () => {
-        if (!user || !user.uid) {
-            console.error("User is not defined or does not have a uid");
-            return;
-        }
-        await returnToVideo(); // Appeler returnToVideo pour enregistrer les données
     };
 
     const storeActivityData = async (userId, activityData) => {
@@ -64,25 +76,42 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
             <div className="activity-title">{activityTitle}</div>
             {showVideo ? (
                 <div className="video-wrapper">
-                    <ExplanationVideo videoUrl={explanationVideoUrl} explanationParagraph={["First paragraph", "Second paragraph"]} altText="Video description" />
-                    <Button variant="contained" onClick={startActivity}>
-                        Start Activity
-                    </Button>
+                    <ExplanationVideo videoUrl={explanationVideoUrl} explanationParagraph={["Video explicatif", "🎥 Regardez la vidéo pour savoir comment réaliser l'activité 🎬"]} altText="Video description" />
+                    <Box display="flex" justifyContent="center" mt={2}>
+                        <Button
+                            variant="contained"
+                            onClick={startActivity}
+                            style={{
+                                backgroundColor: "#007BFF",
+                                color: "white",
+                                borderRadius: "8px",
+                                padding: "10px 20px",
+                                fontSize: "16px",
+                                textTransform: "none"
+                            }}
+                        >
+                            Start Activity
+                        </Button>
+                    </Box>
                 </div>
             ) : (
                 <div className="activity-wrapper">
                     <div className="children-wrapper">{children}</div>
-                    <div className="button-wrapper">
-                        <Button variant="contained" onClick={async () => {
-                            await checkAnswer();
-                            setShowVideo(true);
-                        }}>
-                            Retourner a la video
+                    <Box display="flex" justifyContent="center" mt={2}>
+                        <Button
+                            variant="contained"
+                            onClick={returnToVideo}
+                            style={{
+                               
+                                borderRadius: "8px",
+                                padding: "10px 20px",
+                                fontSize: "16px",
+                                textTransform: "none"
+                            }}
+                        >
+                            🎬 Voir la vidéo
                         </Button>
-                        <Button variant="contained" onClick={checkAnswer}>
-                            Verifier la correction
-                        </Button>
-                    </div>
+                    </Box>
                 </div>
             )}
         </div>
