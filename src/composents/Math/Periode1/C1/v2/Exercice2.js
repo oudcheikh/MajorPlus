@@ -35,10 +35,10 @@ const NumberTable = () => {
 
     const storeActivityData = async (activityData) => {
         try {
-            const docRef = await addDoc(collection(db, 'activities'), activityData);
-            console.log('Document written with ID: ', docRef.id);
+            const docRef = await addDoc(collection(db, "activities"), activityData);
+            console.log("Document written with ID: ", docRef.id);
         } catch (e) {
-            console.error('Error adding document: ', e);
+            console.error("Error adding document: ", e);
         }
     };
 
@@ -54,7 +54,7 @@ const NumberTable = () => {
                 entryTime: entryTime.toISOString(),
                 timeSpent: timeSpent,
                 step: step,
-                result: result
+                result: result,
             };
 
             await storeActivityData(activityData);
