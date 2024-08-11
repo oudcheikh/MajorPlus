@@ -4,6 +4,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../Sign_in/v2/firebase";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
+import correctSoundFile from '../../../../sounds/correct.mp3'; 
+import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
 
 const NumberTable = () => {
     const [userInputs, setUserInputs] = useState(Array(12).fill(""));
@@ -15,11 +17,13 @@ const NumberTable = () => {
     const [isAnsweredCorrectly, setIsAnsweredCorrectly] = useState(false);
     const [isLastStep, setIsLastStep] = useState(false); // Pour contrôler l'état du bouton "Terminer"
 
+    const correctSound = new Audio(correctSoundFile);
+    const incorrectSound = new Audio(incorrectSoundFile);
+
     useEffect(() => {
         const now = new Date();
         setEntryTime(now);
     }, []); 
-    
 
     function generateRandomNumber(step) {
         switch (step) {
@@ -30,7 +34,7 @@ const NumberTable = () => {
             case 3:
                 return Math.floor(10000 + Math.random() * 90000).toString();
             default:
-                return "Bravooo !";
+                return "";
         }
     }
 
@@ -47,6 +51,13 @@ const NumberTable = () => {
         const isCorrect = formattedNumber.every((digit, index) => userInputs[index] === digit || userInputs[index] === "");
         setResult(isCorrect ? "Bonne réponse!" : "Mauvaise réponse. Essayez encore.");
         setIsAnsweredCorrectly(isCorrect);
+
+        // Jouer le son correspondant
+        if (isCorrect) {
+            correctSound.play();
+        } else {
+            incorrectSound.play();
+        }
 
         if (step < 3) {
             setTimeout(() => {
