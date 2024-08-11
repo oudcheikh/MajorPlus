@@ -18,7 +18,8 @@ const NumberTable = () => {
     useEffect(() => {
         const now = new Date();
         setEntryTime(now);
-    }, []);
+    }, []); 
+    
 
     function generateRandomNumber(step) {
         switch (step) {
