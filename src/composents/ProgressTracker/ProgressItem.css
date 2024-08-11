@@ -1,0 +1,466 @@
+.progress-tracker {
+  position: relative;
+  width: 100%; /* Adjust width as needed */
+  height: 700px; /* Adjust height as needed */
+  margin: 0 auto;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: absolute; /* Absolute positioning for exact placement */
+}
+
+.progress-item .icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 70px; /* Set a fixed width for the container */
+  height: 70px; /* Set a fixed height for the container */
+  perspective: 200px; /* Adding perspective for 3D effect */
+}
+
+.cube {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bottom-cube {
+  width: 70px; /* Adjusted size for bottom cube */
+  height: 70px; /* Adjusted size for bottom cube */
+  background-color: #bc5d5d;
+  position: relative;
+  transform: translateY(10px); /* Adjusted for better positioning */
+  transform: rotateX(45deg) rotateZ(45deg); /* Rotation for 3D effect */
+}
+
+
+
+.bottom-cube::before, .bottom-cube::after {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+}
+
+.bottom-cube::before {
+  width: 100%; /* Width matches the bottom cube */
+  height: 10px; /* Increased height for the bottom side */
+  bottom: -10px; /* Position it below the bottom cube */
+  left: 0;
+  transform: skewX(45deg); /* Skew to form the bottom face */
+  transform-origin: top;
+  background-color: #2e2e2e; /* Dark grey color for the 3D effect */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-cube::after {
+  width: 10px; /* Increased width for the right side */
+  height: 100%; /* Height matches the bottom cube */
+  right: -10px; /* Position it to the right of the bottom cube */
+  top: 0;
+  transform: skewY(45deg); /* Skew to form the right face */
+  transform-origin: left;
+  background-color: #2e2e2e; /* Dark grey color for the 3D effect */
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-cube {
+  width: 50px; /* Increased size for top cube */
+  height: 50px; /* Increased size for top cube */
+  background-color: #6e6e6e;
+  position: absolute; /* Use absolute positioning */
+  top: 50%; /* Adjusted positioning to center */
+  left: 50%; /* Adjusted positioning to center */
+  transform: translate(-55%,-75%) rotateZ(45deg);
+  cursor: pointer; /* Make it clear the cube is clickable */
+  border-radius: 4px; /* Reduced rounding for a flatter look */
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-cube::before, .top-cube::after {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  border-radius: 4px;
+}
+
+.top-cube::before {
+  width: 100%; /* Width matches the top cube */
+  height: 8px; /* Increased height for the bottom side */
+  bottom: -8px; /* Position it below the top cube */
+  left: 0;
+  transform: skewX(45deg); /* Skew to form the bottom face */
+  transform-origin: top;
+  background-color: #5e5e5e; /* Dark grey color for the 3D effect */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-cube::after {
+  width: 8px; /* Increased width for the right side */
+  height: 100%; /* Height matches the top cube */
+  right: -8px; /* Position it to the right of the top cube */
+  top: 0;
+  transform: skewY(45deg); /* Skew to form the right face */
+  transform-origin: left;
+  background-color: #5e5e5e; /* Dark grey color for the 3D effect */
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-cube.clicked {
+  transform: translate(-50%, -50%) scale(0.5) translateY(15px); /* Animation on click */
+  opacity: 0; /* Fade out the top cube */
+}
+
+.top-cube.completed {
+  display: none; /* Hide the small cube completely when completed */
+}
+
+.top-cube img {
+  width: 24px; /* Adjust the size of the image */
+  height: 24px; /* Adjust the size of the image */
+}
+
+.progress-item.completed .bottom-cube,
+.progress-item.completed .bottom-cube::before,
+.progress-item.completed .bottom-cube::after {
+  background: #000080; /* Dark blue for the bottom cube */
+  box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Blue shadow */
+}
+
+.progress-item.completed .top-cube,
+.progress-item.completed .top-cube::before,
+.progress-item.completed .top-cube::after {
+  display: none; /* Hide the small cube completely when completed */
+}
+
+.progress-item.current .bottom-cube,
+.progress-item.current .bottom-cube::before,
+.progress-item.current .bottom-cube::after,
+.progress-item.current .top-cube,
+.progress-item.current .top-cube::before,
+.progress-item.current .top-cube::after {
+  background: linear-gradient(145deg, #9e9e9e, #757575); /* Same color as locked */
+  color: white;
+}
+
+.progress-item.locked .bottom-cube,
+.progress-item.locked .bottom-cube::before,
+.progress-item.locked .bottom-cube::after,
+.progress-item.locked .top-cube,
+.progress-item.locked .top-cube::before,
+.progress-item.locked .top-cube::after {
+  background: linear-gradient(145deg, #9e9e9e, #757575);
+  color: white;
+}
+
+.progress-item .current-indicator {
+  width: 40px;
+  height: 40px;
+  background-color: #0000FF; /* Blue color for current indicator */
+  position: absolute;
+  top: -40px; /* Adjust to position above the cube */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 85% 15%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 15% 15%);
+}
+
+.progress-item .current-indicator::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 70% 15%, 85% 50%, 70% 85%, 50% 100%, 30% 85%, 15% 50%, 30% 15%);
+}
+
+
+.title {
+
+ font-size: 20px;
+ position: absolute;
+ white-space: nowrap; }
+
+.title-0 {top: 90px; left: 10px;}
+.title-1 { top: 100px;  left: 5px;}
+.title-2 {  top: 120px;  left: 0px;}
+.title-3 {top: 120px; left: 0px;}
+
+
+
+
+
+/* Specific positions for the items */
+.position-1 { top: 80px; left: 200px; }
+.position-2 { top: 220px; left: 50px; }
+.position-3 { top: 350px; left: 190px; }
+.position-4 { top: 620px; left: 170px; }
+
+.lineP {
+  position: absolute;
+  background-color: #c4c7c6; /* Line color */
+  z-index: -1; /* Place lines behind the progress items */
+  height: 7px; 
+  border-radius: 30px;
+}
+
+.line-1 {
+  top: 60px; /* Vertical line down from position-1 */
+  left: 149px;
+  border-radius: 30px;
+  width: 50px;
+  transform: rotate(30deg);
+}
+
+.line-2 {
+  top: 80px; /* Vertical line down from position-1 */
+  left: 45px;
+  width: 120px;
+  transform: rotate(-35deg);
+}
+
+.line-3 {
+  top: 150px; /* Vertical line down from position-1 */
+  left: 45px;
+  border-radius: 10px; /* Creates rounded corners */
+  width: 130px;
+  transform: rotate(30deg);
+}
+
+.line-4 {
+  top: 200px;
+  left: 120px;
+  border-radius: 10px; 
+  width: 50px;
+  transform: rotate(-35deg);
+}
+
+.line-5 {
+  top: 250px; 
+  left: 5px;
+  width: 110px;
+  transform: rotate(-35deg);
+}
+
+
+.line-6 {
+  top: 330px; 
+  left:-5px;
+  width: 180px;
+  transform: rotate(35deg);
+
+}
+
+.line-7 {
+  top: 368px; /* Vertical line down from position-1 */
+  left:155px;
+  border-radius: 10px; /* Creates rounded corners */
+  width: 50px;
+  transform: rotate(-35deg);
+
+}
+
+.line-8 {
+  top: 310px; /* Vertical line down from position-1 */
+  left:240px;
+  border-radius: 10px; /* Creates rounded corners */
+  width: 50px;
+  transform: rotate(-35deg);
+
+}
+
+
+.line-9 {
+  top: 350px; 
+  left: 267px;;
+  border-radius: 10px;
+  width: 180px;
+  transform: rotate(35deg);
+}
+
+
+.line-10 {
+  top: 430px; 
+  left: 340px;;
+  border-radius: 10px;
+  width: 100px;
+  transform: rotate(-35deg);
+}
+
+
+.line-11 {
+  top: 450px; 
+  left: 330px;
+  border-radius: 10px;
+  height: 30px;
+  width: 30px;
+  transform: rotate(-45deg);
+}
+
+
+/* 
+.line-12 {
+  top: 40px; 
+  left: 320px;
+  border-radius: 10px;
+  height: 2px;
+  width: 110px;
+  transform: rotate(-35deg);
+}
+
+.line-13 {
+  top: 85px; 
+  left: 330px;
+  border-radius: 10px;
+  height: 2px;
+  width: 60px;
+  transform: rotate(25deg);
+}
+
+.line-14 {
+  top: 99px; 
+  left: 388px;
+  border-radius: 10px;
+  height: 16px;
+  width: 12px;
+  transform: rotate(40deg);
+}
+ */
+
+
+/* P2 */
+
+/* .line-15 {
+  top: 220px; 
+  left: 345px;
+  border-radius: 10px;
+  height: 2px;
+  width: 80px;
+  transform: rotate(25deg);
+}
+
+.line-16 {
+  top: 258px; 
+  left: 350px;
+  border-radius: 10px;
+  height: 2px;
+  width: 70px;
+  transform: rotate(-35deg);
+}
+
+.line-17 {
+  top: 297px; 
+  left: 359px;
+  border-radius: 10px;
+  height: 2px;
+  width: 90px;
+  transform: rotate(25deg);
+} */
+
+
+/* .line-12 {
+  top: 130px; 
+  left: 320px;
+  border-radius: 10px;
+  height: 2px;
+  width: 80px;
+  transform: rotate(-35deg);
+} */
+
+/* 
+
+.line-18 {
+  top: 300px; 
+  left: 359px;
+  border-radius: 10px;
+  height: 2px;
+  width: 50px;
+  transform: rotate(25deg);
+}
+
+.line-19 {
+  top: 320px; 
+  left: 380px;
+  border-radius: 10px;
+  height: 2px;
+  width: 30px;
+  transform: rotate(-45deg);
+}
+
+.line-20 {
+  top: 340px; 
+  left: 380px;
+  border-radius: 10px;
+  height: 1px;
+  width: 30px;
+  transform: rotate(35deg);
+} */
+
+
+/* .line-21 {
+  top: 340px; 
+  left: 403px;
+  border-radius: 10px;
+  height: 1px;
+  width: 30px;
+  transform: rotate(-45deg);
+}
+ */
+
+
+
+
+
+
+
+.line-22 {
+  top: 450px; 
+  left: 5px;
+  border-radius: 10px;
+  height: 2px;
+  width: 100px;
+  transform: rotate(-35deg);
+}
+.line-23 {
+  top: 392px; 
+  left: -5px;
+  border-radius: 10px;
+  height: 2px;
+  width: 110px;
+  transform: rotate(35deg);
+}
+
+
+
+
+.line-24 {
+  top: 550px; 
+  left: 5px;
+  border-radius: 10px;
+  height: 2px;
+  width: 80px;
+  transform: rotate(-35deg);
+}
+.line-25 {
+  top: 510px; 
+  left: 30px;
+  border-radius: 10px;
+  height: 2px;
+  width: 50px;
+  transform: rotate(35deg);
+}
+.line-26 {
+  top: 480px; 
+  left: 30px;
+  border-radius: 10px;
+  height: 2px;
+  width: 40px;
+  transform: rotate(-35deg);
+}

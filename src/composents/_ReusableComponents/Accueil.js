@@ -18,6 +18,10 @@ const navigate = useNavigate();
       <div style={styles.buttonContainer}>
       <button style={styles.btnSignin} onClick={() => navigate('/signin')}>Se connecter</button>
       <button style={styles.btnSignup} onClick={() => navigate('/signup')}>S'inscrir</button>
+
+
+
+
       </div>
     </div>
   );

@@ -11,35 +11,39 @@ import SignOut from "./composents/Sign_in/v2/components/SignOut.js";
 import Acceuil from "./composents/_ReusableComponents/Accueil.js";
 import Math from "./composents/Math/Math.js";
 
+
+import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
+
+import C1_new from './composents/Math/Periode1/C1/v2/C1_new.js';
+
+import SecondComponent from './composents/ProgressTracker/SecondComponent';
+
+
+
 // Import routes
 import HomeRoutes from "./routes/HomeRoutes.js";
 import MathRoutes from "./routes/MathRoutes.js";
 import PeriodRoutes from "./routes/PeriodRoutes.js";
 
-// Définir initialState
 const initialState = [
-    { id: 0, title: "C1", path: "/C1", status: "in-progress", backgroundImage: "path_to_image1" },
-    { id: 1, title: "C2", path: "/C2", status: "locked", backgroundImage: "path_to_image2" },
-    { id: 2, title: "C3", path: "/C3", status: "locked", backgroundImage: "path_to_image1" },
-    { id: 3, title: "C4", path: "/C4", status: "locked", backgroundImage: "path_to_image2" },
+    { title: 'les grands nombres', status: 'in-progress', isCurrent: true },
+    { title: 'l addition', status: 'locked', isCurrent: false },
+    { title: 'La multiplication', status: 'locked', isCurrent: false },
+    { title: 'Equivalent Fractions', status: 'locked', isCurrent: false },
 ];
 
 function App() {
     const [progress, setProgress] = useState(initialState);
-    const [levels, setLevels] = useState(initialState);
 
-    const handleComplete = (index) => {
-        const newLevels = [...levels];
-        newLevels[index].status = "completed";
-        if (newLevels[index + 1]) {
-            newLevels[index + 1].status = "in-progress";
-        }
-        setLevels(newLevels);
+    const handleFinish = (index) => {
+        const newProgress = progress.map((item, i) => {
+            if (i === index) return { ...item, status: 'completed', isCurrent: false };
+            if (i === index + 1) return { ...item, status: 'in-progress', isCurrent: true };
+            return item;
+        });
+        setProgress(newProgress);
     };
 
-    const changer_etat = (index) => {
-        // Function implementation
-    };
 
     return (
         <AuthProvider>
@@ -53,8 +57,13 @@ function App() {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/signout" element={<SignOut />} />
 
-                        <Route path="/SVG" element={<SVG />} />
-                        <Route path="/ProgressMap" element={<ProgressMap />} />
+                       
+
+                        <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
+                        <Route path="/C1_new" element={<C1_new onFinish={() => handleFinish(0)} />} />
+                        <Route path="/second" element={<SecondComponent onFinish={() => handleFinish(1)} />} />
+
+
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>

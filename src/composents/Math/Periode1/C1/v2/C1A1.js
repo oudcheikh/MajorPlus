@@ -3,11 +3,15 @@ import ActivityWrapper from "../../../Reusable Components/Slides Content/Activit
 import Quiz from "../../../Reusable Components/Activities/Quiz";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-const C1A1 = () => {
+const C1A1 =({ onFinish }) => {
     const quizRef = React.useRef();
     const [sucessDialogOpen, setSucessDialogOpen] = React.useState(false);
     const { currentUser } = useAuth(); // Récupère l'utilisateur actuel du contexte
+
+    const navigate = useNavigate();
+
 
     const questions = [
         {
@@ -36,12 +40,22 @@ const C1A1 = () => {
         }
     ];
 
+
+    const handleFinish = () => {
+        if (onFinish) {
+            onFinish(); 
+        }
+        navigate('/ProgressTracker'); 
+    };
     const checkAnswer = () => {
         const selectedOptions = quizRef.current.getSelectedOptions();
         const allAnswersCorrect = questions.every((q, index) => selectedOptions[index] === q.correctAnswer);
         if (allAnswersCorrect) {
             handleClickOpen();
+            handleFinish();
+
         }
+
         const calculatedScore = allAnswersCorrect ? 100 : (selectedOptions.filter((option, index) => option === questions[index].correctAnswer).length / questions.length) * 100;
         return { allAnswersCorrect, calculatedScore };
     };
@@ -66,6 +80,9 @@ const C1A1 = () => {
                 <Quiz ref={quizRef} questions={questions} />
             </ActivityWrapper>
             <SuccessDialog open={sucessDialogOpen} onClose={handleClose} />
+
+
+
         </div>
     );
 };
