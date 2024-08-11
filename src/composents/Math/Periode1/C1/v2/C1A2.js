@@ -5,37 +5,37 @@ import writtenNumber from "written-number";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
-import ReplyIcon from "@mui/icons-material/Reply";
 import "../../../../../App.css";
-import FirebaseImage from "../../../Reusable Components/Slides Content/FirebaseImage";
+import correctSoundFile from '../../../../sounds/correct.mp3'; 
+import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
 
 const StyledBox = styled(Box)({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "20px",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
 });
 
 const MessageCard = styled(Card)({
-    borderRadius: "40px",
-    maxWidth: "300px",
-    boxShadow: "4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
-    padding: "2px",
-    marginLeft: "10px",
-    marginTop: "-50px",
-    marginRight: "10px",
-    textAlign: "center",
-    transition: "transform 0.3s",
+    borderRadius: '40px',
+    maxWidth: '300px',
+    boxShadow: '4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)',
+    padding: '2px',
+    marginLeft: '10px',
+    marginTop: '-50px',
+    marginRight: '10px',
+    textAlign: 'center',
+    transition: 'transform 0.3s',
     "&:hover": {
-        transform: "scale(1.05)",
+        transform: 'scale(1.05)',
     },
 });
 
 const ranges = [
-    [0, 9], // plage pour progress=0
-    [10, 99], // plage pour progress=1
-    [100, 999], // plage pour progress=2
-    [1000, 9999], // plage pour progress=3
+    [0, 9], 
+    [10, 99], 
+    [100, 999], 
+    [1000, 9999],
 ];
 
 const StyledButton = styled(Button)({
@@ -49,10 +49,10 @@ const StyledButton = styled(Button)({
 });
 
 const ButtonContainer = styled(Box)({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "20px",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
 });
 
 const imageStyle = {
@@ -68,12 +68,16 @@ const C1A2 = () => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
-    const [isValid, setIsValid] = useState(null); // Initial value set to null
+    const [isValid, setIsValid] = useState(null); 
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const { currentUser } = useAuth();
     const [sucessDialogOpen, setSucessDialogOpen] = useState(false);
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false); // État pour contrôler l'activation du bouton "Terminer"
+
+    const correctSound = new Audio(correctSoundFile);
+    const incorrectSound = new Audio(incorrectSoundFile);
 
     useEffect(() => {
         getRandomNumber(0);
@@ -84,23 +88,28 @@ const C1A2 = () => {
         setIsValid(validation);
         if (!validation) {
             setIncorrectAnswers(incorrectAnswers + 1);
+            incorrectSound.play();
         } else {
             setCorrectAnswers(correctAnswers + 1);
+            correctSound.play();
         }
 
-        // Mise à jour du compteur de questions répondues
-        setQuestionsAnswered((prev) => prev + 1);
-        setProgress((prevProgress) => {
-            const newProgress = prevProgress + 1;
-            if (newProgress >= 4) {
-                handleClickOpen();
-            } else {
-                getRandomNumber(newProgress);
-            }
-            return newProgress;
-        });
+        setQuestionsAnswered(prev => prev + 1);
 
-        setUserInput(""); // Réinitialiser le champ d'entrée après chaque validation
+        if (progress + 1 < ranges.length) {
+            // Si ce n'est pas la dernière question, on passe à la suivante après 3 secondes
+            setTimeout(() => {
+                setProgress(prevProgress => {
+                    const newProgress = prevProgress + 1;
+                    getRandomNumber(newProgress);
+                    return newProgress;
+                });
+                setUserInput("");
+            }, 3000);
+        } else {
+            // Si c'est la dernière question, activer le bouton "Terminer"
+            setIsLastQuestion(true);
+        }
     };
 
     const getRandomNumber = (progress) => {
@@ -109,19 +118,8 @@ const C1A2 = () => {
         setRandomNumber(Math.floor(Math.random() * (max - min + 1) + min));
     };
 
-    const handleReset = () => {
-        setProgress(0);
-        setRandomNumber(0);
-        setUserInput("");
-        setIsValid(null); // Reset the value to null
-        setCorrectAnswers(0);
-        setIncorrectAnswers(0);
-        setQuestionsAnswered(0);
-        getRandomNumber(0);
-    };
-
     const handleInputChange = (event) => {
-        setIsValid(null); // Reset the value to null
+        setIsValid(null); 
         setUserInput(event.target.value);
     };
 
@@ -134,6 +132,9 @@ const C1A2 = () => {
     const handleClickOpen = () => {
         sendActivityData();
         setSucessDialogOpen(true);
+
+        // Réinitialiser l'activité après l'envoi des données
+        handleReset();
     };
 
     const handleClose = () => {
@@ -141,46 +142,80 @@ const C1A2 = () => {
     };
 
     const sendActivityData = () => {
-        // Logique pour envoyer les données à Firestore
         const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
         const activityData = {
             activityName: "C1A2",
             totalQuestions,
             correctAnswers,
             incorrectAnswers,
-            allAnswersCorrect,
+            allAnswersCorrect
         };
-        console.log("Sending activity data:", activityData);
+        console.log('Sending activity data:', activityData);
         // Ajouter la logique Firebase ici pour envoyer les données
     };
 
+    const handleReset = () => {
+        setProgress(0);
+        setRandomNumber(0);
+        setUserInput("");
+        setIsValid(null); 
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setQuestionsAnswered(0);
+        setIsLastQuestion(false); // Désactiver à nouveau le bouton "Terminer"
+        getRandomNumber(0);
+    };
+
     return (
-        <ActivityWrapper activityTitle={"C1A2"} explanationVideoUrl={"/Videos/video.mp4"} onSubmit={checkAnswer} user={currentUser} activityName="C1A2">
+        <ActivityWrapper
+            activityTitle={"C1A2"}
+            explanationVideoUrl={"/Videos/number_sorting.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="C1A2"
+        >
             <StyledBox>
-                <FirebaseImage imagePath="/images/Math/C/C1/pro2.png" altText="Activity" style={imageStyle} />
+                <img src="/images/Math/C/C1/Pro2.png" alt="Activity" style={imageStyle} />
                 <MessageCard>
                     <CardContent>
                         <Typography>
                             Ecrire ce nombre en chiffres : <br></br>
-                            <span style={{ fontSize: "1.3em", fontWeight: "bold", color: "#007BFF" }}>{writtenNumber(randomNumber, { lang: "fr" })}</span>
+                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
+                                {writtenNumber(randomNumber, { lang: "fr" })}
+                            </span>
                         </Typography>
                     </CardContent>
                 </MessageCard>
             </StyledBox>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField label="Entrez le chiffre" variant="outlined" type="number" value={userInput} onChange={handleInputChange} style={{ marginTop: "20px", width: "70%" }} />
+                <TextField
+                    label="Entrez le chiffre"
+                    variant="outlined"
+                    type="number"
+                    value={userInput}
+                    onChange={handleInputChange}
+                    style={{ marginTop: "20px", width: "70%" }}
+                />
                 <ButtonContainer>
-                    <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}>
-                        OK
+                    <Button 
+                        variant="contained" 
+                        style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} 
+                        onClick={handleValidate}
+                    >
+                        Répondre
                     </Button>
-                    <Button className="Muifix" variant="contained" onClick={handleReset}>
-                        <ReplyIcon className="social-button"></ReplyIcon>
+                    <Button 
+                        variant="contained" 
+                        disabled={!isLastQuestion} // Le bouton devient actif si c'est la dernière question
+                        onClick={handleClickOpen}
+                    >
+                        Terminer
                     </Button>
                 </ButtonContainer>
                 {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
                 {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
             </Box>
-            <SuccessDialog open={sucessDialogOpen} onClose={handleClose} />
+           
         </ActivityWrapper>
     );
 };
