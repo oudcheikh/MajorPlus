@@ -27,7 +27,6 @@ const NumberTable = () => {
                 return Math.floor(1000 + Math.random() * 9000).toString();
             case 3:
                 return Math.floor(10000 + Math.random() * 90000).toString();
-          
 
             default:
                 return "Bravooo !";
@@ -43,11 +42,11 @@ const NumberTable = () => {
     };
 
     const checkAnswer = () => {
-        const formattedNumber = randomNumber.toString().padStart(12, "0").split('');
+        const formattedNumber = randomNumber.toString().padStart(12, "0").split("");
         const isCorrect = formattedNumber.every((digit, index) => userInputs[index] === digit || userInputs[index] === "");
         setResult(isCorrect ? "Bonne réponse!" : "Mauvaise réponse. Essayez encore.");
         setIsAnsweredCorrectly(isCorrect);
-    
+
         return {
             allAnswersCorrect: isCorrect,
             totalQuestions: step,
@@ -55,14 +54,13 @@ const NumberTable = () => {
             incorrectAnswers: isCorrect ? 0 : 1,
         };
     };
-    
 
     const storeActivityData = async (activityData) => {
         try {
-            const docRef = await addDoc(collection(db, 'activities'), activityData);
-            console.log('Document written with ID: ', docRef.id);
+            const docRef = await addDoc(collection(db, "activities"), activityData);
+            console.log("Document written with ID: ", docRef.id);
         } catch (e) {
-            console.error('Error adding document: ', e);
+            console.error("Error adding document: ", e);
         }
     };
 
@@ -76,7 +74,7 @@ const NumberTable = () => {
             entryTime: entryTime.toISOString(),
             timeSpent: timeSpent,
             step: step,
-            result: result
+            result: result,
         };
 
         await storeActivityData(activityData);
@@ -139,19 +137,13 @@ const NumberTable = () => {
     };
 
     return (
-        <ActivityWrapper
-            activityTitle={"Exercice 2"}
-            explanationVideoUrl={"/path/to/video.mp4"}
-            user={currentUser}
-            onSubmit={checkAnswer}
-            activityName="NumberTable"
-        >
+        <ActivityWrapper activityTitle={"Exercice 2"} explanationVideoUrl={"/path/to/video.mp4"} user={currentUser} onSubmit={checkAnswer} activityName="NumberTable">
             <div style={containerStyle}>
                 <img src="/images/Math/C/imgC19/Activity.png" alt="Activity" style={imageStyle} />
 
                 <h2 style={{ color: "blue" }}>Compléter le tableau suivant:</h2>
                 <h3>Classez les chiffres du nombre : {randomNumber}</h3>
-        
+
                 <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                     <table style={tableStyle}>
                         <thead>
@@ -188,19 +180,15 @@ const NumberTable = () => {
                         </tbody>
                     </table>
                 </div>
-               <div>
-                <Button variant="contained" color="primary" onClick={checkAnswer} style={{ margin: "30px" }}>
-                    Répondre
-                </Button>
-                <Button variant="contained" color="primary" onClick={next}>
-                    Suivant
-                </Button>
+                <div>
+                    <Button variant="contained" color="primary" onClick={checkAnswer} style={{ margin: "30px" }}>
+                        Répondre
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={next}>
+                        Suivant
+                    </Button>
                 </div>
-                {result && (
-                    <p style={{ color: isAnsweredCorrectly ? "green" : "red" }}>
-                        {result}
-                    </p>
-                )}
+                {result && <p style={{ color: isAnsweredCorrectly ? "green" : "red" }}>{result}</p>}
             </div>
         </ActivityWrapper>
     );

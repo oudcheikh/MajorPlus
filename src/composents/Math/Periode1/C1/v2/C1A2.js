@@ -5,28 +5,29 @@ import writtenNumber from "written-number";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
-import ReplyIcon from '@mui/icons-material/Reply';
+import ReplyIcon from "@mui/icons-material/Reply";
 import "../../../../../App.css";
+import FirebaseImage from "../../../Reusable Components/Slides Content/FirebaseImage";
 
 const StyledBox = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '20px',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
 });
 
 const MessageCard = styled(Card)({
-    borderRadius: '40px',
-    maxWidth: '300px',
-    boxShadow: '4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)',
-    padding: '2px',
-    marginLeft: '10px',
-    marginTop: '-50px',
-    marginRight: '10px',
-    textAlign: 'center',
-    transition: 'transform 0.3s',
+    borderRadius: "40px",
+    maxWidth: "300px",
+    boxShadow: "4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
+    padding: "2px",
+    marginLeft: "10px",
+    marginTop: "-50px",
+    marginRight: "10px",
+    textAlign: "center",
+    transition: "transform 0.3s",
     "&:hover": {
-        transform: 'scale(1.05)',
+        transform: "scale(1.05)",
     },
 });
 
@@ -48,10 +49,10 @@ const StyledButton = styled(Button)({
 });
 
 const ButtonContainer = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '20px',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
 });
 
 const imageStyle = {
@@ -88,8 +89,8 @@ const C1A2 = () => {
         }
 
         // Mise à jour du compteur de questions répondues
-        setQuestionsAnswered(prev => prev + 1);
-        setProgress(prevProgress => {
+        setQuestionsAnswered((prev) => prev + 1);
+        setProgress((prevProgress) => {
             const newProgress = prevProgress + 1;
             if (newProgress >= 4) {
                 handleClickOpen();
@@ -101,8 +102,6 @@ const C1A2 = () => {
 
         setUserInput(""); // Réinitialiser le champ d'entrée après chaque validation
     };
-
-    
 
     const getRandomNumber = (progress) => {
         const min = ranges[progress][0],
@@ -149,42 +148,27 @@ const C1A2 = () => {
             totalQuestions,
             correctAnswers,
             incorrectAnswers,
-            allAnswersCorrect
+            allAnswersCorrect,
         };
-        console.log('Sending activity data:', activityData);
+        console.log("Sending activity data:", activityData);
         // Ajouter la logique Firebase ici pour envoyer les données
     };
 
     return (
-        <ActivityWrapper
-            activityTitle={"C1A2"}
-            explanationVideoUrl={"/Videos/number_sorting.mp4"}
-            onSubmit={checkAnswer}
-            user={currentUser}
-            activityName="C1A2"
-        >
+        <ActivityWrapper activityTitle={"C1A2"} explanationVideoUrl={"/Videos/video.mp4"} onSubmit={checkAnswer} user={currentUser} activityName="C1A2">
             <StyledBox>
-                <img src="/images/Math/C/C1/Pro2.png" alt="Activity" style={imageStyle} />
+                <FirebaseImage imagePath="/images/Math/C/C1/pro2.png" altText="Activity" style={imageStyle} />
                 <MessageCard>
                     <CardContent>
                         <Typography>
                             Ecrire ce nombre en chiffres : <br></br>
-                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
-                                {writtenNumber(randomNumber, { lang: "fr" })}
-                            </span>
+                            <span style={{ fontSize: "1.3em", fontWeight: "bold", color: "#007BFF" }}>{writtenNumber(randomNumber, { lang: "fr" })}</span>
                         </Typography>
                     </CardContent>
                 </MessageCard>
             </StyledBox>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField
-                    label="Entrez le chiffre"
-                    variant="outlined"
-                    type="number"
-                    value={userInput}
-                    onChange={handleInputChange}
-                    style={{ marginTop: "20px", width: "70%" }}
-                />
+                <TextField label="Entrez le chiffre" variant="outlined" type="number" value={userInput} onChange={handleInputChange} style={{ marginTop: "20px", width: "70%" }} />
                 <ButtonContainer>
                     <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}>
                         OK
