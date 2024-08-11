@@ -175,7 +175,7 @@ const C1A2 = () => {
             activityName="C1A2"
         >
             <StyledBox>
-                <img src="/images/Math/C/C1/Pro2.png" alt="Activity" style={imageStyle} />
+                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
                 <MessageCard>
                     <CardContent>
                         <Typography>
