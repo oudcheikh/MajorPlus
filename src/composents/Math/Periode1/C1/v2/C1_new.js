@@ -26,7 +26,7 @@ export default function C1_new({onFinish}) {
     const slides = [
         () => <Swipe_Section introProps={introProps} question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />,
         () => <C1A1 onFinish={onFinish} />, 
-        C1A2
+        C1A2 
     ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;

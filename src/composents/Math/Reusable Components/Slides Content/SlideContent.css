@@ -64,3 +64,6 @@
     font-weight: bold;
     margin-bottom: 10vh;
 }
+.contained svg{
+    border:none;
+}

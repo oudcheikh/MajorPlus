@@ -30,6 +30,8 @@ const IntroSlide = ({ title, imageSrc, content }) => {
                                 <h4 dangerouslySetInnerHTML={{ __html: item }}></h4>
                             </li>
                         ))}
+
+                        
                     </ul>
                 </FormulaText>
             </div>

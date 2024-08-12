@@ -65,7 +65,10 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
             {showVideo ? (
                 <div className="video-wrapper">
                     <ExplanationVideo videoUrl={explanationVideoUrl} explanationParagraph={["First paragraph", "Second paragraph"]} altText="Video description" />
-                    <Button variant="contained" onClick={startActivity}>
+                 
+                 
+                 
+                   <Button variant="contained" onClick={startActivity}>
                         Start Activity
                     </Button>
                 </div>

@@ -183,6 +183,8 @@ const C1A2 = () => {
                                     </Grid>
                                 </Box>
 
+
+
                                 {!isValid && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
                                 {isValid && showNextButton && <Typography color="primary">Bravo, c'est correct !</Typography>}
 

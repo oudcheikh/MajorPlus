@@ -3,13 +3,10 @@ import React from "react";
 import SwipeableScreens from "../../../Reusable Components/Swipeable/SwipeableScreen";
 import Swipe_Section from "../../../Reusable Components/introduction/Swipe_Section"; 
 
+import C2E1 from "../C2E1";
+import C2E2 from "../C2E2";
 
-import C2E2 from "./C2E2";
-// import C2A1 from "./C2A1"
-import C2A11 from "./C2A11"
-import C2E11 from "./C2E11"
-
-export default function C2_new({onFinish})  {
+export default function C3_new({onFinish})  {
 
     const question = "100 est --- à 2000";
     const options = ["Superieur", "inferieure", "égale"];
@@ -25,8 +22,6 @@ export default function C2_new({onFinish})  {
             '1 000 > <span style={{ color: "#FF7F50" }}>500</span>',
             '1 000 000 < <span style={{ color: "#FF7F50" }}>50 000 000</span>',
             
-
- 
         ],
     };
 
@@ -35,12 +30,14 @@ export default function C2_new({onFinish})  {
 
         //  question={question} options={options} correctAnswer={correctAnswer} explanation={explanation}
         () => <Swipe_Section introProps={introProps} question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />,
-      
-      C2A11,
-      C2E11,
-    C2E2
+      , 
+
+     C2E1,
+    C2E2 
 
     ];
+
+
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
 }

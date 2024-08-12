@@ -15,6 +15,7 @@ const ExplanationVideo = ({ videoUrl = "none", explanationParagraph = ["Watch th
                 <p key={index}>{paragraph}</p>
             ))}
         </div>
+        
     );
 };
 export default ExplanationVideo;

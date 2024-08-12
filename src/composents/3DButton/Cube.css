@@ -1,0 +1,74 @@
+.cubic-button {
+    position: relative;
+    width: 200px; /* Base width of the larger cube */
+    height: 200px; /* Base height of the larger cube */
+    perspective: 1000px; /* Perspective to give depth */
+}
+
+.cube {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.large-cube {
+    width: 100px;
+    height: 10px; /* Reduced height */
+    transform: rotateX(-30deg) rotateY(-30deg);
+}
+
+
+
+.small-cube {
+    width: 75px; /* Smaller cube dimensions */
+    height: 35px; /* Keep height of small cube */
+    top: -25px; /* Adjust to keep it above the large cube */
+    left: -10px; /* Keep the same positioning */
+    transform: rotateX(-30deg) rotateY(-30deg) translateZ(-40px); /* Perpendicular to the large cube */
+}
+
+.face {
+    position: absolute;
+    background: rgba(0, 128, 128, 0.8);
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-sizing: border-box;
+}
+
+.large-cube .face {
+    width: 50px;
+    height: 50px; /* Match reduced height */
+}
+
+
+/* .small-cube .face {
+    width: 75px;
+    height: 35px; 
+
+} */
+
+
+
+.face-front  { transform: translateZ(calc(var(--z-depth) * 1px)); }
+.face-back   { transform: rotateY(180deg) translateZ(calc(var(--z-depth) * 1px)); }
+.face-left   { transform: rotateY(-90deg) translateZ(calc(var(--x-depth) * 1px)); }
+.face-right  { transform: rotateY(90deg) translateZ(calc(var(--x-depth) * 1px)); }
+.face-top    { transform: rotateX(90deg) translateZ(calc(var(--y-depth) * 1px)); }
+.face-bottom { transform: rotateX(-90deg) translateZ(calc(var(--y-depth) * 1px)); }
+
+.large-cube .face-front { --z-depth: 5; } /* Adjust Z-depth for the reduced height */
+.large-cube .face-back  { --z-depth: 5; }
+.large-cube .face-left  { --x-depth: 30; }
+.large-cube .face-right { --x-depth: 5; }
+.large-cube .face-top   { --y-depth: 5; }
+.large-cube .face-bottom{ --y-depth: 5; }
+
+/* 
+.small-cube .face-front { --z-depth: 17.5; } 
+.small-cube .face-back  { --z-depth: 17.5; }
+.small-cube .face-left  { --x-depth: 17.5; }
+.small-cube .face-right { --x-depth: 17.5; }
+.small-cube .face-top   { --y-depth: 17.5; }
+.small-cube .face-bottom{ --y-depth: 17.5; } */
