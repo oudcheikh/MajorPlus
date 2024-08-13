@@ -1,94 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
-import '../../Periode4/progressBar/SegmentedProgressBar.css';
-import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
+import React from "react";
+import SwipeableScreens from "../../Reusable Components/Swipeable/SwipeableScreen";
+import M2A1 from "./M2A1";
+import M2A2 from "./M2A2";
+import SwipeSection from "../../Reusable Components/introduction/SwipeSection";
+import { useNavigate } from "react-router-dom";
 
-import M2A2 from './M2A2';
-import M2A1 from './M2A1';
+export default function C1_new({ onFinish }) {
+    const question1 = "Quelle est l'unité de mesure correspondant à 1000g ?";
+    const options1 = ["centigramme", "décagramme", "kilogramme", "hectogramme"];
+    const correctAnswer1 = "kilogramme";
+    const explanation1 = "1000g est égal à 1 kilogramme (kg).";
 
-import {
-    StyledBox, SectionContainer2, FormulaBox2, ContinueButton
-} from '../../../Styles/MajorStyles'; 
-
-import Acceuil from "../../../_ReusableComponents/Accueil";
-
-const M2 = () => {
-    const section1Ref = useRef(null);
-    const section2Ref = useRef(null);
-    const section3Ref = useRef(null);
-
-    const [progress, setProgress] = useState(0);
-    const totalSections = 3;
-
-    const handleScroll = () => {
-        if (!section1Ref.current || !section2Ref.current || !section3Ref.current) {
-            return;
-        }
-
-        const sectionPositions = [
-            section1Ref.current.offsetTop,
-            section2Ref.current.offsetTop,
-            section3Ref.current.offsetTop,
-        ];
-
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-        let currentSection = 0;
-        for (let i = 0; i < sectionPositions.length; i++) {
-            if (scrollPosition >= sectionPositions[i]) {
-                currentSection = i;
-            }
-        }
-
-        setProgress(currentSection + 1);
+    const introProps = {
+        title: "Les unités de mesure de la masse:",
+        imagePath: "/images/Math/C/C1/Po.png", // Remplacez par le bon chemin d'image
+        content: [
+            
+            'Voici les unités de mesure de la masse :',
+            '1. Gramme (g)',
+            '2. Décagramme (dag) = 10 grammes',
+            '3. Hectogramme (hg) = 100 grammes',
+            '4. Kilogramme (kg) = 1000 grammes'
+        ],
     };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+    const slides = [
+        () => <SwipeSection introProps={introProps} question={question1} options={options1} correctAnswer={correctAnswer1} explanation={explanation1} />, 
+        M2A1, 
+        M2A2
+    ];
 
-        // Cleanup event listener on component unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    const handleFinish = () => {
-        console.log("Activité terminée");
-    };
-
-    return (
-        <div className="container_progress_bar">
-            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-            <StyledBox>
-                <div ref={section1Ref}>
-                    <SectionContainer2>
-                       
-                            <Acceuil titre={" Mesure des Masses"} imgSrc={"/images/Math/M/imagesM2/masse_.gif"} altText={"  Les mesures des masses"}> </Acceuil>
-                       
-                    </SectionContainer2>
-                </div>
-
-                <div ref={section2Ref}>
-                    <SectionContainer2>
-                        <FormulaBox2>
-                            <ContinueButton>🍕Activités🍕</ContinueButton>
-                            <M2A1 />
-                        </FormulaBox2>
-                    </SectionContainer2>
-                </div>
-
-                <div ref={section3Ref}>
-                    <SectionContainer2>
-                        <FormulaBox2>
-                            <ContinueButton>🍕Activités🍕</ContinueButton>
-                            <M2A2 />
-                        </FormulaBox2>
-                    </SectionContainer2>
-                </div>
-
-                <button className="finish_button" onClick={handleFinish}>Terminer</button>
-            </StyledBox>
-        </div>
-    );
+    return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
 }
-
-export default M2;

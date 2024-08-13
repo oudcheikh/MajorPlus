@@ -8,6 +8,8 @@ import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog
 import "../../../../../App.css";
 import correctSoundFile from '../../../../sounds/correct.mp3'; 
 import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../../Sign_in/v2/firebase";
 
 const StyledBox = styled(Box)({
     display: 'flex',
@@ -64,6 +66,8 @@ const imageStyle = {
     marginRight: "auto",
 };
 
+
+
 const C1A2 = () => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
@@ -75,9 +79,16 @@ const C1A2 = () => {
     const [sucessDialogOpen, setSucessDialogOpen] = useState(false);
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [isLastQuestion, setIsLastQuestion] = useState(false); // État pour contrôler l'activation du bouton "Terminer"
+    const [entryTime, setEntryTime] = useState(null);
+
 
     const correctSound = new Audio(correctSoundFile);
     const incorrectSound = new Audio(incorrectSoundFile);
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
 
     useEffect(() => {
         getRandomNumber(0);
@@ -141,18 +152,31 @@ const C1A2 = () => {
         setSucessDialogOpen(false);
     };
 
-    const sendActivityData = () => {
+    
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000; // Temps passé en secondes
         const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+
         const activityData = {
+            userId: currentUser.uid,
             activityName: "C1A2",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
             totalQuestions,
             correctAnswers,
             incorrectAnswers,
             allAnswersCorrect
         };
-        console.log('Sending activity data:', activityData);
-        // Ajouter la logique Firebase ici pour envoyer les données
+
+        try {
+            await addDoc(collection(db, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
     };
+
 
     const handleReset = () => {
         setProgress(0);
