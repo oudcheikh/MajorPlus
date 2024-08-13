@@ -14,6 +14,8 @@ import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
 
 import C1_new from './composents/Math/Periode1/C1/v2/C1_new.js';
 import C2_new from './composents/Math/Periode1/C2/v2/C2_new.js';
+import C3_new from './composents/Math/Periode1/C3/V2/C3_new.js';
+import C4 from './composents/Math/Periode1/C4/C4.js';
 
 import SecondComponent from './composents/ProgressTracker/SecondComponent';
 
@@ -62,6 +64,9 @@ function App() {
                         <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
                         <Route path="/C1_new" element={<C1_new onFinish={() => handleFinish(0)} />} />
                         <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
+                        <Route path="/C3_new" element={<C3_new onFinish={() => handleFinish(2)} />} />
+                        <Route path="/C4" element={<C4 onFinish={() => handleFinish(3)} />} />
+
 
                         <Route path="/Buuton3D" element={<Buuton3D />} />
 

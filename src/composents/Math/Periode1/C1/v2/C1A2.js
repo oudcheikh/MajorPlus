@@ -1,54 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Typography, Grid, Card, CardContent, Fab } from "@mui/material";
+import { Box, Button, Typography, TextField, Card, CardContent } from "@mui/material";
 import { styled } from "@mui/system";
 import writtenNumber from "written-number";
-import ReplayIcon from "@mui/icons-material/Replay";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
+import "../../../../../App.css";
+import correctSoundFile from '../../../../sounds/correct.mp3';
+import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 
-const StyledBox = styled(Box)({});
-
-const NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: "border-box",
-    width: "100%",
-    height: "auto",
-    margin: "20px auto",
-    padding: "20px",
-    backgroundColor: "#E1F5FE",
-    border: "3px dashed #B3E5FC",
-    transition: "background-color 0.4s, transform 0.3s",
-    cursor: "pointer",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    fontSize: "1em",
-    fontFamily: "'Comic Sans MS', sans-serif",
-    "&:hover": {
-        transform: "scale(1.05)",
-    },
-}));
-
-const ranges = [
-    [0, 9], // plage pour progress=0
-    [10, 99], // plage pour progress=1
-    [100, 999], // plage pour progress=2
-    [1000, 9999], // plage pour progress=3
-];
-
-const StyledCard = styled(Card)({
-    maxWidth: "100%",
-    margin: "0 auto",
+const StyledBox = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
 });
 
-const VibrantFab = styled(Fab)(({ $isSelected }) => ({
-    margin: "10px",
-    backgroundColor: $isSelected ? "blue" : "#007BFF",
-    color: "white",
-    "&:hover, &:focus-visible": {
-        backgroundColor: "#0056b3",
+const MessageCard = styled(Card)({
+    borderRadius: '40px',
+    maxWidth: '300px',
+    boxShadow: '4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)',
+    padding: '2px',
+    marginLeft: '10px',
+    marginTop: '-50px',
+    marginRight: '10px',
+    textAlign: 'center',
+    transition: 'transform 0.3s',
+    "&:hover": {
+        transform: 'scale(1.05)',
     },
-}));
+});
+
+const ranges = [
+    [0, 9],
+    [10, 99],
+    [100, 999],
+    [1000, 9999],
+];
 
 const StyledButton = styled(Button)({
     margin: "10px",
@@ -60,49 +48,68 @@ const StyledButton = styled(Button)({
     borderRadius: "15px",
 });
 
+const ButtonContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+});
+
+const imageStyle = {
+    width: "50%",
+    height: "auto",
+    maxWidth: "70%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
+
 const C1A2 = () => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
-    const [isValid, setIsValid] = useState(true);
-    const [showNextButton, setShowNextButton] = useState(false);
-    const [, setOpen] = useState(false);
-    const [selectedNumber, setSelectedNumber] = useState(null);
-    const [score, setScore] = useState(0);
+    const [isValid, setIsValid] = useState(null);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const { currentUser } = useAuth();
     const [sucessDialogOpen, setSucessDialogOpen] = useState(false);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false); // État pour contrôler l'activation du bouton "Terminer"
+
+    const correctSound = new Audio(correctSoundFile);
+    const incorrectSound = new Audio(incorrectSoundFile);
 
     useEffect(() => {
         getRandomNumber(0);
     }, []);
 
-    const handleNumberClick = (number) => {
-        setIsValid(true);
-        setUserInput(userInput + number);
-        setSelectedNumber(number);
-    };
-
     const handleValidate = () => {
         const validation = writtenNumber(parseInt(userInput), { lang: "fr" }) === writtenNumber(randomNumber, { lang: "fr" });
         setIsValid(validation);
         if (!validation) {
-            setUserInput("");
+            setIncorrectAnswers(incorrectAnswers + 1);
+            incorrectSound.play();
         } else {
-            setScore(score + 25); // Increase score by 25 for correct answer
-            setShowNextButton(true);
+            setCorrectAnswers(correctAnswers + 1);
+            correctSound.play();
         }
-    };
 
-    const handleNextQuestion = () => {
-        if (progress < 3) { // Limiting to 4 questions
-            setProgress(progress + 1);
-            getRandomNumber(progress + 1);
+        setQuestionsAnswered(prev => prev + 1);
+
+        if (progress + 1 < ranges.length) {
+            // Si ce n'est pas la dernière question, on passe à la suivante après 3 secondes
+            setTimeout(() => {
+                setProgress(prevProgress => {
+                    const newProgress = prevProgress + 1;
+                    getRandomNumber(newProgress);
+                    return newProgress;
+                });
+                setUserInput("");
+            }, 3000);
         } else {
-            handleClickOpen();
+            // Si c'est la dernière question, activer le bouton "Terminer"
+            setIsLastQuestion(true);
         }
-        setShowNextButton(false);
-        setUserInput("");
-        setSelectedNumber(null);
     };
 
     const getRandomNumber = (progress) => {
@@ -111,29 +118,52 @@ const C1A2 = () => {
         setRandomNumber(Math.floor(Math.random() * (max - min + 1) + min));
     };
 
-    const handleReset = () => {
-        setProgress(0);
-        setRandomNumber(0);
-        setUserInput("");
-        setIsValid(true);
-        setShowNextButton(false);
-        setOpen(false);
-        setSelectedNumber(null);
-        setScore(0);
-        getRandomNumber(0);
+    const handleInputChange = (event) => {
+        setIsValid(null);
+        setUserInput(event.target.value);
     };
 
     const checkAnswer = () => {
-        const allAnswersCorrect = isValid;
-        return { allAnswersCorrect, calculatedScore: score };
+        const totalQuestions = questionsAnswered;
+        const allAnswersCorrect = correctAnswers === totalQuestions;
+        return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
     };
 
     const handleClickOpen = () => {
+        sendActivityData();
         setSucessDialogOpen(true);
+
+        // Réinitialiser l'activité après l'envoi des données
+        handleReset();
     };
 
     const handleClose = () => {
         setSucessDialogOpen(false);
+    };
+
+    const sendActivityData = () => {
+        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+        const activityData = {
+            activityName: "C1A2",
+            totalQuestions,
+            correctAnswers,
+            incorrectAnswers,
+            allAnswersCorrect
+        };
+        console.log('Sending activity data:', activityData);
+        // Ajouter la logique Firebase ici pour envoyer les données
+    };
+
+    const handleReset = () => {
+        setProgress(0);
+        setRandomNumber(0);
+        setUserInput("");
+        setIsValid(null);
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setQuestionsAnswered(0);
+        setIsLastQuestion(false); // Désactiver à nouveau le bouton "Terminer"
+        getRandomNumber(0);
     };
 
     return (
@@ -145,60 +175,34 @@ const C1A2 = () => {
             activityName="C1A2"
         >
             <StyledBox>
-                <Grid container justifyContent="center">
-                    <Grid item xs={12} md={6}>
-                        <StyledCard>
-                            <CardContent>
-                                <NumberDisplay>
-                                    <Typography>Ecrire ce nombre en chiffres : {writtenNumber(randomNumber, { lang: "fr" })}</Typography>
-                                </NumberDisplay>
-                                <NumberDisplay>
-                                    <Typography> {userInput}</Typography>
-                                </NumberDisplay>
-
-                                <br />
-
-                                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                                    <Grid container spacing={-8}>
-                                        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((number) => (
-                                            <Grid item xs={4} key={number}>
-                                                <VibrantFab onClick={() => handleNumberClick(number)} $isSelected={selectedNumber === number}>
-                                                    {number}
-                                                </VibrantFab>
-                                            </Grid>
-                                        ))}
-                                        <Grid item xs={4}>
-                                            <VibrantFab onClick={() => handleNumberClick(9)}>9</VibrantFab>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <VibrantFab onClick={handleReset}>
-                                                <ReplayIcon />
-                                            </VibrantFab>
-                                        </Grid>
-                                        <Grid item xs={4}>
-                                            <VibrantFab variant="contained" onClick={handleValidate}>
-                                                Ok
-                                            </VibrantFab>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-
-
-                                {!isValid && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
-                                {isValid && showNextButton && <Typography color="primary">Bravo, c'est correct !</Typography>}
-
-                                {showNextButton && (
-                                    <StyledButton variant="contained" onClick={handleNextQuestion}>
-                                        Suivant
-                                    </StyledButton>
-                                )}
-                            </CardContent>
-                        </StyledCard>
-                    </Grid>
-                </Grid>
+                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
+                <MessageCard>
+                    <CardContent>
+                        <Typography>
+                            Ecrire ce nombre en chiffres : <br></br>
+                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
+                                {writtenNumber(randomNumber, { lang: "fr" })}
+                            </span>
+                        </Typography>
+                    </CardContent>
+                </MessageCard>
             </StyledBox>
-            <SuccessDialog open={sucessDialogOpen} onClose={handleClose} />
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <TextField  label="Entrez le chiffre"  variant="outlined"  type="number" value={userInput}  onChange={handleInputChange}  style={{ marginTop: "20px", width: "70%" }} />
+              
+              
+                <ButtonContainer>
+                    <Button variant="contained"  style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}  >
+                        Répondre
+                    </Button>
+                    <Button variant="contained" disabled={!isLastQuestion}  onClick={handleClickOpen} > Terminer </Button>
+                </ButtonContainer>
+                
+                
+                {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
+                {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
+            </Box>
+
         </ActivityWrapper>
     );
 };

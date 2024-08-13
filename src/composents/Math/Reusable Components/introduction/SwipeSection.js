@@ -2,10 +2,10 @@ import React from "react";
 import CustomCard from "../../Periode1/C1/CustomCard";
 import IntroSlide from "./IntroSlide"; // Assurez-vous d'importer IntroSlide correctement
 
-const Swipe_Section = ({ introProps, question, options, correctAnswer, explanation }) => {
+const SwipeSection = ({ introProps, question, options, correctAnswer, explanation }) => {
     return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", height: "100%", padding: "20px" }}>
-            <IntroSlide {...introProps} />
+            <IntroSlide title={introProps.title} imagePath={introProps.imagePath} content={introProps.content} />
             <div style={{ marginTop: "20px" }}>
 
 
@@ -15,9 +15,8 @@ const Swipe_Section = ({ introProps, question, options, correctAnswer, explanati
 
 
             </div>
-           
         </div>
     );
 };
 
-export default Swipe_Section;
+export default SwipeSection;

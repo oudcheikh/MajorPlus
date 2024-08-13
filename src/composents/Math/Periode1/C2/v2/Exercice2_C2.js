@@ -8,10 +8,27 @@ import styled from "styled-components";
 import { Card as Card1 } from '../../../../Styles/MajorStyles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReplyIcon from '@mui/icons-material/Reply';
-import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper"; // Import ActivityWrapper
-import { useAuth } from "../../../../Sign_in/v2/context/AuthContext"; // Import useAuth hook
+
+import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
+
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../../Sign_in/v2/firebase";
+
 import './c2.css'
 
+
+
+
+
+
+
+const ButtonContainer = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: '20px',
+});
 
 const ItemType = 'card';
 
@@ -26,6 +43,15 @@ const StyledText = styled.p`
     transform: scale(1.05);
   }`;
 
+
+const imageStyle = {
+  width: "50%",
+  height: "auto",
+  maxWidth: "70%",
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+};
 const layerStyles = {
   position: 'fixed',
   pointerEvents: 'none',
@@ -132,6 +158,20 @@ const C2A1 = () => {
   const [success, setSuccess] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const { currentUser } = useAuth(); // Use the authentication context
+  const [score, setScore] = useState(0);
+  const [entryTime, setEntryTime] = useState(null);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [repondre, setReponder] = useState(true)
+  const [rejouer, setRejouer] = useState(true)
+
+  const [terminer, setTerminer] = useState(false)
+
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+  }, []);
+
 
   useEffect(() => {
     const newCards = [];
@@ -150,6 +190,7 @@ const C2A1 = () => {
   };
 
   useEffect(() => {
+
     if (cards.length === 3) {
       setFinished(true);
     }
@@ -161,10 +202,18 @@ const C2A1 = () => {
 
     if (isOrderedDescending) {
       setSuccess(true);
+      setScore(100)
+
     } else {
       setSuccess(false);
     }
     setShowResult(true);
+
+    setRejouer(false)
+    setReponder(false)
+    setTerminer(true)
+
+
   };
 
   const resetGame = () => {
@@ -180,6 +229,12 @@ const C2A1 = () => {
     setFinished(false);
     setSuccess(false);
     setShowResult(false);
+    setScore(0)
+    setTerminer(false)
+    setRejouer(true)
+    setReponder(true)
+    setSuccess(false)
+
   };
 
   const checkAnswer = () => {
@@ -187,6 +242,43 @@ const C2A1 = () => {
       allAnswersCorrect: success,
       calculatedScore: success ? 100 : 0, // Example score calculation
     };
+  };
+
+
+
+
+
+
+
+  const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    // const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "Comparaison",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      score: score
+      // totalQuestions,
+      // correctAnswers,
+      // incorrectAnswers,
+      // allAnswersCorrect
+    };
+
+    try {
+      await addDoc(collection(db, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+  };
+
+
+  const handleFinish = () => {
+    sendActivityData();
+    resetGame();
   };
 
   return (
@@ -197,7 +289,8 @@ const C2A1 = () => {
       user={currentUser}
       activityName="C2E2"
     >
-      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+      <DndProvider backend={HTML5Backend}>
+
         <Box>
           <CustomDragLayer />
           <Card1>
@@ -205,6 +298,9 @@ const C2A1 = () => {
               <strong>Ordonnez ces nombres du plus grand au plus petit</strong>
             </StyledText>
           </Card1>
+
+          <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
+
           <br />
           <br />
 
@@ -224,7 +320,7 @@ const C2A1 = () => {
             ))}
           </Grid>
           <Grid container spacing={2} justifyContent="center" style={{ marginTop: '2em' }}>
-            <Grid item>
+            {/* <Grid item>
               <Button   className='mySvg' onClick={checkResult} variant='contained' color='primary' disabled={!finished}>
                 <CheckCircleIcon />
               </Button>
@@ -235,8 +331,24 @@ const C2A1 = () => {
               </Button>
               <br />
 
+            </Grid> */}
+
+
+            <Grid>
+              <ButtonContainer>
+                {repondre && <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }}
+                  onClick={checkResult} > Répondre  </Button>}
+                {terminer && <Button variant="contained" onClick={handleFinish}  >   Terminer  </Button>}
+                {rejouer && <Button variant="contained" onClick={resetGame} > Rejouer </Button>}
+
+
+              </ButtonContainer>
             </Grid>
-            <br />
+
+
+
+
+            <br /> <br /> <br />
             {showResult && (
               <Alert severity={success ? "success" : "error"}>
                 {success
@@ -247,6 +359,7 @@ const C2A1 = () => {
           </Grid>
         </Box>
       </DndProvider>
+
     </ActivityWrapper>
   );
 };
