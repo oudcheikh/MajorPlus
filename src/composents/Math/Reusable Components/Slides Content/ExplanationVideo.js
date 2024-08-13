@@ -56,6 +56,7 @@ const ExplanationVideo = ({ videoPath, explanationParagraph = ["Watch the video 
                 <p key={index}>{paragraph}</p>
             ))}
         </div>
+        
     );
 };
 

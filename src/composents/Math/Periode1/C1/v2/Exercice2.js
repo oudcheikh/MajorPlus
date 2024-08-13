@@ -75,7 +75,7 @@ const NumberTable = () => {
 
     const sendActivityData = async () => {
         const endTime = new Date();
-        const timeSpent = (endTime - entryTime) / 1000; // Temps passé en secondes
+        const timeSpent = (endTime - entryTime) / 1000; 
         const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
 
         const activityData = {
@@ -127,7 +127,6 @@ const NumberTable = () => {
                 <img src="/images/Math/C/imgC19/Activity.png" alt="Activity" style={{ width: "50%", height: "auto", maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto" }} />
                 <h2 style={{ color: "blue" }}>Compléter le tableau suivant:</h2>
                 <h3>Classez les chiffres du nombre : {randomNumber}</h3>
-        
                 <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                     <table style={{ borderCollapse: "collapse", margin: "30px 0", fontSize: "10px", textAlign: "center", width: "90%" }}>
                         <thead>

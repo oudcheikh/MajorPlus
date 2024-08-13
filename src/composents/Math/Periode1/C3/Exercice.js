@@ -1,14 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import { FormulaText, Violet_NumberDisplay, Beige_NumberDisplay } from '../../../Styles/MajorStyles';
 import './Style.css'
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
 
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+
+const imageStyle = {
+    width: "50%",
+    height: "auto",
+    maxWidth: "70%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
+export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
+    boxSizing: "border-box",
+    width: "80%",
+    height: "auto",
+    margin: "20px auto",
+    padding: "20px",
+    backgroundColor: "orange",
+    border: "3px dashed #B3E5FC",
+    transition: "background-color 0.4s, transform 0.3s",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    fontSize: "1em",
+    fontFamily: "'Comic Sans MS', sans-serif",
+    "&:hover": {
+        transform: "scale(1.05)",
+    },
+}));
 function Table_mesure() {
     // Définir un état local pour stocker les données du tableau
     const [réponse, setReponse] = useState("")
     const [victoire, setVictoire] = useState(false)
     const [echec, setEchec] = useState(false)
+    const { currentUser } = useAuth();
+    const [score, setScore] = useState(0);
+    const [entryTime, setEntryTime] = useState(null);
+
+
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
+
+ 
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000;
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "mesure",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            score: score
+          
+        };
+
+        try {
+            await addDoc(collection(db, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+    };
+
+
+
+
+
 
     const [tableData, setTableData] = useState([
         { carreaux: '50', dm: '', cm: '' },
@@ -33,6 +103,9 @@ function Table_mesure() {
 
     // Fonction de vérification
     const handleSubmit = () => {
+
+        setScore(0); 
+        console.log("score",score)
         // Vérifier si les données de l'utilisateur correspondent aux bonnes réponses
         const userResponses = tableData.map(row => ({ dm: parseFloat(row.dm), cm: parseFloat(row.cm) }));
         const isValid = userResponses.every(response => !isNaN(response.dm) && !isNaN(response.cm) && response.dm >= 0 && response.cm >= 0);
@@ -46,26 +119,35 @@ function Table_mesure() {
             if (JSON.stringify(userResponsesDm) === JSON.stringify(bonnesReponsesDm) &&
                 JSON.stringify(userResponsesCm) === JSON.stringify(bonnesReponsesCm)) {
                 const h = "Bravo! Les données sont correctes.";
-                setEchec(false)
-                setVictoire(true)
+                // setEchec(false)
+                // setVictoire(true)
                 setReponse(h);
+
+                setScore(100)
+
             } else {
                 const V = "Désolé, les données ne sont pas correctes.";
                 setReponse(V);
+                setScore(0)
 
-                setEchec(true)
 
-                console.log(victoire)
-                setVictoire(false)
+
+                // setEchec(true)
+
+                // console.log(victoire)
+                // setVictoire(false)
             }
         } else {
-            // Si les réponses de l'utilisateur ne sont pas valides, afficher un message d'erreur
-            setReponse("Veuillez entrer des valeurs numériques valides pour les colonnes ca et ha.");
+
+            setReponse("Veuillez entrer des valeurs numériques valides");
         }
     };
 
 
-
+    const verifier = () => {
+        handleSubmit()
+        sendActivityData()
+    }
 
 
     const voir_bonne_reponce = () => {
@@ -96,19 +178,36 @@ function Table_mesure() {
         setReponse('')
         setEchec(false)
         setVictoire(false)
+        setScore(0)
     };
 
 
 
 
 
+    const checkAnswer = () => {
+    }
+
     return (
 
-        <div>
+
+        <ActivityWrapper
+            activityTitle={"Exercice 1"}
+            explanationVideoUrl={"/Videos/number_sorting.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="C3Ecercice1"
+        >
 
 
 
 
+            <img src={"/images/mesure.png"} alt="comparaison" style={imageStyle} />
+            <br></br>
+            <Orange_NumberDisplay>
+                <strong>N.B<br />
+                    Pour passer du mètre au centimètre, multiplie par 100.Pour faire l'inverse, on divise par 100.</strong>
+            </Orange_NumberDisplay>
 
 
             <FormulaText>
@@ -167,7 +266,7 @@ function Table_mesure() {
 
                 </div>}
                 <div>
-                    <button onClick={handleSubmit}>Vérifier</button>
+                    <button onClick={verifier}>Vérifier</button>
                     &nbsp;
 
                     <button onClick={handleReset}>Recommencer</button>
@@ -176,11 +275,13 @@ function Table_mesure() {
 
                 </div>
 
+
                 <br></br>
                 <br></br>
 
             </FormulaText>
-        </div>
+        </ActivityWrapper>
+
     );
 }
 

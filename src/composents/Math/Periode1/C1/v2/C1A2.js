@@ -6,8 +6,8 @@ import ActivityWrapper from "../../../Reusable Components/Slides Content/Activit
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
 import "../../../../../App.css";
-import correctSoundFile from '../../../../sounds/correct.mp3'; 
-import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
+import correctSoundFile from '../../../../sounds/correct.mp3';
+import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 
 const StyledBox = styled(Box)({
     display: 'flex',
@@ -32,9 +32,9 @@ const MessageCard = styled(Card)({
 });
 
 const ranges = [
-    [0, 9], 
-    [10, 99], 
-    [100, 999], 
+    [0, 9],
+    [10, 99],
+    [100, 999],
     [1000, 9999],
 ];
 
@@ -68,7 +68,7 @@ const C1A2 = () => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
-    const [isValid, setIsValid] = useState(null); 
+    const [isValid, setIsValid] = useState(null);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const { currentUser } = useAuth();
@@ -119,7 +119,7 @@ const C1A2 = () => {
     };
 
     const handleInputChange = (event) => {
-        setIsValid(null); 
+        setIsValid(null);
         setUserInput(event.target.value);
     };
 
@@ -158,7 +158,7 @@ const C1A2 = () => {
         setProgress(0);
         setRandomNumber(0);
         setUserInput("");
-        setIsValid(null); 
+        setIsValid(null);
         setCorrectAnswers(0);
         setIncorrectAnswers(0);
         setQuestionsAnswered(0);
@@ -188,34 +188,21 @@ const C1A2 = () => {
                 </MessageCard>
             </StyledBox>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField
-                    label="Entrez le chiffre"
-                    variant="outlined"
-                    type="number"
-                    value={userInput}
-                    onChange={handleInputChange}
-                    style={{ marginTop: "20px", width: "70%" }}
-                />
+                <TextField  label="Entrez le chiffre"  variant="outlined"  type="number" value={userInput}  onChange={handleInputChange}  style={{ marginTop: "20px", width: "70%" }} />
+              
+              
                 <ButtonContainer>
-                    <Button 
-                        variant="contained" 
-                        style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} 
-                        onClick={handleValidate}
-                    >
+                    <Button variant="contained"  style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}  >
                         Répondre
                     </Button>
-                    <Button 
-                        variant="contained" 
-                        disabled={!isLastQuestion} // Le bouton devient actif si c'est la dernière question
-                        onClick={handleClickOpen}
-                    >
-                        Terminer
-                    </Button>
+                    <Button variant="contained" disabled={!isLastQuestion}  onClick={handleClickOpen} > Terminer </Button>
                 </ButtonContainer>
+                
+                
                 {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
                 {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
             </Box>
-           
+
         </ActivityWrapper>
     );
 };

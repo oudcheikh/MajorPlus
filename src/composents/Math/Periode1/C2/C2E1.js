@@ -151,7 +151,7 @@ const C2A1 = () => {
         <Card elevation={3}>
           <CardContent>
             <StyledText>
-              <strong>  Comparaidon des nombres</strong>
+              <strong>  Comparaison des nombres</strong>
             </StyledText>
             <div
               style={{
