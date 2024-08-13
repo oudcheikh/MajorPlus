@@ -70,13 +70,16 @@ function App() {
 
                         <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
                         <Route path="/C1_new" element={<C1_new onFinish={() => handleFinish(0)} />} />
-                        <Route path="/C6" element={<C6 />} />
-                        <Route path="/M2" element={<M2 />} />
-                        <Route path="/G1" element={<G1 />} />
+                    
 
                         <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
                         <Route path="/C3_new" element={<C3_new onFinish={() => handleFinish(2)} />} />
-                        <Route path="/C4" element={<C4 onFinish={() => handleFinish(3)} />} />
+                       
+
+                        <Route path="/C6" element={<C6 onFinish={() => handleFinish(3)} />} />
+                        <Route path="/G1" element={<G1 onFinish={() => handleFinish(4)} />} />
+                        <Route path="/M2" element={<M2 onFinish={() => handleFinish(5)} />} />
+                       
 
 
                         <Route path="/Buuton3D" element={<Buuton3D />} />
