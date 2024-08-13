@@ -10,6 +10,10 @@ import SignUp from "./composents/Sign_in/v2/components/SignUp.js";
 import SignOut from "./composents/Sign_in/v2/components/SignOut.js";
 import Acceuil from "./composents/_ReusableComponents/Accueil.js";
 import Math from "./composents/Math/Math.js";
+import C6 from "./composents/Math/Periode1/C6/C6.js";
+import M2 from "./composents/Math/Periode1/M2/M2.js";
+import G1 from "./composents/Math/Periode1/G1/G1.js";
+
 import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
 
 import C1_new from './composents/Math/Periode1/C1/v2/C1_new.js';
@@ -63,14 +67,16 @@ function App() {
 
                         <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
                         <Route path="/C1_new" element={<C1_new onFinish={() => handleFinish(0)} />} />
+                        <Route path="/C6" element={<C6 />} />
+                        <Route path="/M2" element={<M2 />} />
+                        <Route path="/G1" element={<G1 />} />
+
                         <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
                         <Route path="/C3_new" element={<C3_new onFinish={() => handleFinish(2)} />} />
                         <Route path="/C4" element={<C4 onFinish={() => handleFinish(3)} />} />
 
 
                         <Route path="/Buuton3D" element={<Buuton3D />} />
-
-
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>
