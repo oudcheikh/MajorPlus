@@ -29,9 +29,12 @@ import PeriodRoutes from "./routes/PeriodRoutes.js";
 
 const initialState = [
     { title: 'les grands nombres', status: 'in-progress', isCurrent: true },
-    { title: 'l addition', status: 'locked', isCurrent: false },
-    { title: 'La multiplication', status: 'locked', isCurrent: false },
-    { title: 'Equivalent Fractions', status: 'locked', isCurrent: false },
+    { title: 'La comparaison', status: 'locked', isCurrent: false },
+    { title: 'Les mesures', status: 'locked', isCurrent: false },
+    { title: 'M1', status: 'locked', isCurrent: false },
+    { title: 'C6', status: 'locked', isCurrent: false },
+    { title: 'G2', status: 'locked', isCurrent: false },
+   
 ];
 
 function App() {
