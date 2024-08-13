@@ -14,15 +14,17 @@ import C6 from "./composents/Math/Periode1/C6/C6.js";
 import M2 from "./composents/Math/Periode1/M2/M2.js";
 import G1 from "./composents/Math/Periode1/G1/G1.js";
 
-
-
 import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
 
 import C1_new from './composents/Math/Periode1/C1/v2/C1_new.js';
+import C2_new from './composents/Math/Periode1/C2/v2/C2_new.js';
+import C3_new from './composents/Math/Periode1/C3/V2/C3_new.js';
+import C4 from './composents/Math/Periode1/C4/C4.js';
 
 import SecondComponent from './composents/ProgressTracker/SecondComponent';
 
 
+import Buuton3D from './composents/3DButton/Button.js';
 
 // Import routes
 import HomeRoutes from "./routes/HomeRoutes.js";
@@ -69,7 +71,12 @@ function App() {
                         <Route path="/M2" element={<M2 />} />
                         <Route path="/G1" element={<G1 />} />
 
-                        <Route path="/second" element={<SecondComponent onFinish={() => handleFinish(1)} />} />
+                        <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
+                        <Route path="/C3_new" element={<C3_new onFinish={() => handleFinish(2)} />} />
+                        <Route path="/C4" element={<C4 onFinish={() => handleFinish(3)} />} />
+
+
+                        <Route path="/Buuton3D" element={<Buuton3D />} />
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>
