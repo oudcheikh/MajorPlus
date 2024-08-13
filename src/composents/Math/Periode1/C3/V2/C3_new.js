@@ -7,6 +7,8 @@ import StepFinale from './StepFinale'
 import SwipeSection from "../../../Reusable Components/introduction/SwipeSection"; // Importez le nouveau composant
 import { useNavigate } from "react-router-dom";
 import C3A1 from '../C3A1'
+import C3A2 from "../C3A2";
+import C3A3 from "../C3A3";
 export default function C1_new({ onFinish }) {
     const question = "Pour passer du mètre au centimètre, multiplie par ?";
     const options = ["100", "10", "1000"];
@@ -22,7 +24,8 @@ export default function C1_new({ onFinish }) {
     const slides = [() => <SwipeSection introProps={introProps} question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />
       , C3A1
         , Exercice, Exercice1, Exercice2,
-        () => <StepFinale onFinish={onFinish} />];
+        // C3A3,
+        () => <StepFinale onFinish={onFinish}/>];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
 }

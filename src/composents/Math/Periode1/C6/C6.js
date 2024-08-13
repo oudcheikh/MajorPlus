@@ -5,6 +5,7 @@ import C1A2 from "./C5A3";
 import SwipeSection from "../../Reusable Components/introduction/SwipeSection";
 import C5A5 from "./C5A5";
 import { useNavigate } from "react-router-dom";
+import StepFinale from "./StepFinale";
 
 export default function C1_new({ onFinish }) {
     const question1 = "Combien fait 5 × 6 ?";
@@ -27,7 +28,7 @@ export default function C1_new({ onFinish }) {
     const slides = [
         () => <SwipeSection introProps={introProps} question={question1} options={options1} correctAnswer={correctAnswer1} explanation={explanation1} />, 
         C5A4, 
-        C5A5
+        C5A5,() => <StepFinale onFinish={onFinish} />
     ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;

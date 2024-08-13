@@ -197,11 +197,15 @@
 
 
 
-/* Specific positions for the items */
+
 .position-1 { top: 80px; left: 200px; }
 .position-2 { top: 220px; left: 50px; }
 .position-3 { top: 350px; left: 190px; }
 .position-4 { top: 620px; left: 170px; }
+.position-5 { top: 750px; left: 170px; }
+.position-6 { top: 890px; left: 170px; }
+.position-7 { top: 990px; left: 170px; }
+.position-8 { top: 1090px; left: 170px; }
 
 .lineP {
   position: absolute;

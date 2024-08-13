@@ -6,7 +6,22 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import styled from "styled-components";
+import { FormulaText} from '../../../Styles/MajorStyles';
 
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+
+const imageStyle = {
+  width: "50%",
+  height: "auto",
+  maxWidth: "70%",
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+};
 const ResetButton = styled.button`
 border-radius: 5px;
 background-color: #45a05c;
@@ -27,6 +42,9 @@ function C3A3() {
   const [unusedCable, setUnusedCable] = useState(0);
   const [userAnswer, setUserAnswer] = useState(0);
   const [isCorrect, setIsCorrect] = useState(null);
+  const { currentUser } = useAuth();
+  const [score, setScore] = useState(0);
+  const [entryTime, setEntryTime] = useState(null);
 
   // Fonction pour générer de nouvelles valeurs aléatoires
   const generateNewValues = () => {
@@ -50,14 +68,25 @@ function C3A3() {
 
   return (
 
+    <ActivityWrapper
+    activityTitle={"Exercice 1"}
+    explanationVideoUrl={"/Videos/number_sorting.mp4"}
+    onSubmit={checkAnswer}
+    user={currentUser}
+    activityName="C3Ecercice1"
+>
+
+<img src="/images/Math/C/imgC19/Activity.png" alt="Activity" style={{ width: "50%", height: "auto", maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto" }} />
+<br></br>
     <Card>
       <CardContent>
         <Typography variant="h5" gutterBottom>
           Exercice
         </Typography>
         <Typography variant="body1">
-          <strong> Les employés du téléphone doivent installer une ligne à deux fils. Ils disposent de {numRolls} rouleaux de {rollLength} mètres chacun.
-            Les deux fils posés, il leur reste {unusedCable} mètres de fil non utilisé. Quelle est la longueur de la ligne téléphonique installée ?</strong>
+
+        <FormulaText> <strong> Les employés du téléphone doivent installer une ligne à deux fils. Ils disposent de {numRolls} rouleaux de {rollLength} mètres chacun.
+            Les deux fils posés, il leur reste {unusedCable} mètres de fil non utilisé. Quelle est la longueur de la ligne téléphonique installée ?</strong></FormulaText>
         </Typography>
         
         <TextField
@@ -94,7 +123,7 @@ function C3A3() {
         )}
       </CardContent>
     </Card>
-
+</ActivityWrapper>
   );
 }
 

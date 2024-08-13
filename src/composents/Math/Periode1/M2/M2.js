@@ -4,6 +4,7 @@ import M2A1 from "./M2A1";
 import M2A2 from "./M2A2";
 import SwipeSection from "../../Reusable Components/introduction/SwipeSection";
 import { useNavigate } from "react-router-dom";
+import StepFinale from "./StepFinale";
 
 export default function C1_new({ onFinish }) {
     const question1 = "Quelle est l'unité de mesure correspondant à 1000g ?";
@@ -27,7 +28,8 @@ export default function C1_new({ onFinish }) {
     const slides = [
         () => <SwipeSection introProps={introProps} question={question1} options={options1} correctAnswer={correctAnswer1} explanation={explanation1} />, 
         M2A1, 
-        M2A2
+        M2A2,
+        () => <StepFinale  onFinish={onFinish} />
     ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
