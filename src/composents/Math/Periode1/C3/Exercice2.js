@@ -1,14 +1,84 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import { FormulaText, Violet_NumberDisplay, Beige_NumberDisplay } from '../../../Styles/MajorStyles';
 import './Style.css'
 
+
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+
+
+
+const imageStyle = {
+    width: "50%",
+    height: "auto",
+    maxWidth: "70%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
+export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
+    boxSizing: "border-box",
+    width: "80%",
+    height: "auto",
+    margin: "20px auto",
+    padding: "20px",
+    backgroundColor: "orange",
+    border: "3px dashed #B3E5FC",
+    transition: "background-color 0.4s, transform 0.3s",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    fontSize: "1em",
+    fontFamily: "'Comic Sans MS', sans-serif",
+    "&:hover": {
+        transform: "scale(1.05)",
+    },
+}));
 function Table_mesure() {
     // Définir un état local pour stocker les données du tableau
     const [réponse, setReponse] = useState("")
     const [victoire, setVictoire] = useState(false)
     const [echec, setEchec] = useState(false)
+    const { currentUser } = useAuth();
+
+    const [score, setScore] = useState(0);
+    const [entryTime, setEntryTime] = useState(null);
+
+
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
+
+ 
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000;
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "mesure",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            score: score
+          
+        };
+
+        try {
+            await addDoc(collection(db, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+    };
 
     const [tableData, setTableData] = useState([
         { carreaux: '90 ', Km: '', hm: '' },
@@ -19,8 +89,8 @@ function Table_mesure() {
 
     const bonnesReponses = [
         { Km: '90000', hm: '9000' },
-        {  Km: '410000', hm: '41000' },
-        {  Km: '2000', hm: '200' }
+        { Km: '410000', hm: '41000' },
+        { Km: '2000', hm: '200' }
 
     ];
 
@@ -31,9 +101,7 @@ function Table_mesure() {
         setTableData(updatedData);
     };
 
-    // Fonction de vérification
     const handleSubmit = () => {
-        // Vérifier si les données de l'utilisateur correspondent aux bonnes réponses
         const userResponses = tableData.map(row => ({ dm: parseFloat(row.Km), cm: parseFloat(row.hm) }));
         const isValid = userResponses.every(response => !isNaN(response.Km) && !isNaN(response.hm) && response.km >= 0 && response.hm >= 0);
 
@@ -46,21 +114,24 @@ function Table_mesure() {
             if (JSON.stringify(userResponsesKm) === JSON.stringify(bonnesReponsesKm) &&
                 JSON.stringify(userResponsesHm) === JSON.stringify(bonnesReponsesHm)) {
                 const h = "Bravo! Les données sont correctes.";
-                setEchec(false)
-                setVictoire(true)
+                // setEchec(false)
+                // setVictoire(true)
                 setReponse(h);
+                setScore(100)
             } else {
                 const V = "Désolé, les données ne sont pas correctes.";
+                                
+                setScore(0)
                 setReponse(V);
 
-                setEchec(true)
+                // setEchec(true)
 
-                console.log(victoire)
-                setVictoire(false)
+                // console.log(victoire)
+                // setVictoire(false)
             }
+            setScore(score)
         } else {
-            // Si les réponses de l'utilisateur ne sont pas valides, afficher un message d'erreur
-            setReponse("Veuillez entrer des valeurs numériques valides pour les colonnes ca et ha.");
+            setReponse("Veuillez entrer des valeurs numériques valides.");
         }
     };
 
@@ -99,27 +170,37 @@ function Table_mesure() {
     };
 
 
-
-
+    const checkAnswer = () => {
+    }
 
     return (
 
         <div>
 
 
-
-
+         <ActivityWrapper
+                activityTitle={"Exercice 2"}
+                explanationVideoUrl={"/Videos/number_sorting.mp4"}
+                onSubmit={checkAnswer}
+                user={currentUser}
+                activityName="C3_Exercice1"
+            >
 
 
             <FormulaText>
 
-                <strong><span style={{ color: '#FF7F50' }}>passer du mètre vers le  dm et le cm  :</span></strong>
+
+            <img src="/images/Math/C/imgC19/Activity.png" alt="Activity" style={{ width: "50%", height: "auto", maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto" }} />
+<Orange_NumberDisplay>
+Pour passer du mètre vers le  Km et le hm on doit diviser !
+</Orange_NumberDisplay>
+                <strong><span style={{ color: '#FF7F50' }}>passer du mètre vers le  Km et le hm  :</span></strong>
                 <br />
                 <div className="table-container" >
                     <table>
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>m</th>
                                 <th>(Km)</th>
                                 <th>(hm)</th>
 
@@ -180,6 +261,7 @@ function Table_mesure() {
                 <br></br>
 
             </FormulaText>
+            </ActivityWrapper> 
         </div>
     );
 }

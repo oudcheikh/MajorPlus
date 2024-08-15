@@ -15,9 +15,22 @@ const ProgressTracker = ({ progress, onFinish }) => {
       if (index === 0) {
         navigate('/C1_new');
       } else if (index === 1) {
-        navigate('/C1_new');
+        navigate('/C2_new');
       }
-      // Add more navigation logic as needed
+      else if (index === 2) {
+        navigate('/C3_new');
+      }
+      else if (index === 3) {
+        navigate('/C6');
+      }
+      else if (index === 4) {
+        navigate('/G1');
+      }
+      else if (index === 5) {
+        navigate('/M2');
+      }
+      
+      
     }
   };
 

@@ -33,6 +33,14 @@ const StyledTableCell = styled(TableCell)({
   fontFamily: "'Comic Sans MS', sans-serif",
 });
 
+const imageStyle = {
+  width: "80%",
+  height: "auto",
+  maxWidth: "70%",
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+};
 
 const Converter = () => {
   const [value, setValue] = useState("");
@@ -67,7 +75,10 @@ const Converter = () => {
   };
 
   return (
-    
+    <div>
+      <br></br> <br></br>
+      <br></br> <br></br> <br></br>    <img src={"/images/Calculm.png"} alt="comparaison" style={imageStyle} />
+      <br></br>
     <Card sx={{ marginTop: '10px', width: '90vw', margin: '0 auto', maxWidth: '320px' }}>
 
         <CardContent>
@@ -121,7 +132,7 @@ const Converter = () => {
     </StyledTableContainer>
         </CardContent>
       </Card>
-  
+      </div>
   );
 }
 

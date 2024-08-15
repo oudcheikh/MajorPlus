@@ -1,52 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Box, Grid } from '@mui/material';
 import { Howl } from 'howler';
+import correctSoundFile from '../../../sounds/correct.mp3';
+import incorrectSoundFile from '../../../sounds/incorrect.mp3';
 
+import ActivityWrapper from '../../Reusable Components/Slides Content/ActivityWrapper';
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
 
-// import Leau from './imagesM2/Leau.png'; // Remplacez par le chemin correct
-// import Milk from './imagesM2/Milk.png'; // Remplacez par le chemin correct
-// import gasoil from './imagesM2/gasoil.png'; // Remplacez par le chemin correct
-// import Oil from './imagesM2/Oil.png'; // Remplacez par le chemin correct
-
-
-
-import correctSoundFile from '../../../sounds/correct.mp3'; // Remplacez par le chemin correct
-import incorrectSoundFile from '../../../sounds/incorrect.mp3'; // Remplacez par le chemin correct
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ReplyIcon from '@mui/icons-material/Reply';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import styled from 'styled-components';
 const objects = [
-    { name: 'L\'eau', massPerLiter: 1000, image: "images/Math/M/imagesM2/Leau.png"},
-    { name: 'Le lait', massPerLiter: 1030, image: "images/Math/M/imagesM2/Milk.png"},
-    { name: 'Le gasoil', massPerLiter: 830, image: "images/Math/M/imagesM2/gasoil.png" }, 
-    { name: 'Le pétrole', massPerLiter: 900, image: "images/Math/M/imagesM2/Oil.png"},
+    { name: 'eau', massPerLiter: 1000, image: "images/Math/M/imagesM2/Leau.png" },
+    { name: ' lait', massPerLiter: 1030, image: "images/Math/M/imagesM2/Milk.png" },
+    { name: ' gasoil', massPerLiter: 830, image: "images/Math/M/imagesM2/gasoil.png" }, 
+    { name: ' pétrole', massPerLiter: 900, image: "images/Math/M/imagesM2/Oil.png" },
 ];
 
-const StyledText = styled.div`
-box-sizing: border-box;
-width: 100%; 
-height: 80%; 
-background-color: ${(props) => (props.isActive ? '#FFC107' : '#E1F5FE')};
-
-transition: background-color 0.4s, transform 0.3s;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 1em;
-font-family: 'Comic Sans MS', sans-serif;
-&:hover {
-    transform: scale(1.05);
-}
-`;
-
+const TOTAL_QUESTIONS = objects.length;
 
 function M2A1() {
     const [currentObjectIndex, setCurrentObjectIndex] = useState(0);
     const [volume, setVolume] = useState(1);
     const [userAnswer, setUserAnswer] = useState('');
     const [isCorrect, setIsCorrect] = useState(null);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false);
+    const [entryTime, setEntryTime] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const { currentUser } = useAuth();
 
     const correctSound = new Howl({
         src: [correctSoundFile]
@@ -57,6 +40,8 @@ function M2A1() {
     });
 
     useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
         setVolume(Math.floor(Math.random() * 10) + 1);
     }, [currentObjectIndex]);
 
@@ -67,84 +52,176 @@ function M2A1() {
 
         input.split(' ').forEach(part => {
             const value = parseFloat(part);
-            const unit = part.match(/[a-z]+/)[0];
+            const unit = part.match(/[a-z]+/i);
 
-            if (units.includes(unit)) {
-                total += value * conversionRates[units.indexOf(unit)];
+            if (unit && units.includes(unit[0])) {
+                total += value * conversionRates[units.indexOf(unit[0])];
             }
         });
 
         return total;
     };
 
+    const validateInput = (input) => {
+        const unitPattern = /[a-z]+/i;
+        const hasUnit = unitPattern.test(input);
+        const hasNumber = /\d/.test(input);
+        const hasSpace = /\s/.test(input);
+
+        // Allow inputs without a space if they have both a number and unit (e.g., "1kg", "1000g")
+        if (hasUnit && hasNumber && !hasSpace && input.match(/^\d+[a-z]+$/i)) {
+            setErrorMessage('');
+            return true;
+        }
+
+        if (!hasUnit || !hasNumber) {
+            setErrorMessage("Veuillez inclure un nombre et une unité (par exemple, '4kg' ou '988g').");
+            return false;
+        }
+
+        if (!hasSpace && input.split(' ').length === 1) {
+            setErrorMessage("Veuillez séparer les unités et les nombres par un espace si vous utilisez plusieurs unités (par exemple, '1kg 200g').");
+            return false;
+        }
+
+        setErrorMessage('');
+        return true;
+    };
+
     const checkAnswer = () => {
+        if (!validateInput(userAnswer)) {
+            setIsCorrect(null);
+            return;
+        }
+
         const correctAnswer = volume * objects[currentObjectIndex].massPerLiter;
         const convertedAnswer = convertToGrams(userAnswer);
         setIsCorrect(Math.abs(convertedAnswer - correctAnswer) < 10);
         if (Math.abs(convertedAnswer - correctAnswer) < 10) {
+            setCorrectAnswers(correctAnswers + 1);
             correctSound.play();
         } else {
+            setIncorrectAnswers(incorrectAnswers + 1);
             incorrectSound.play();
         }
-    };
 
-    const nextObject = () => {
-        if (currentObjectIndex < objects.length - 1) {
-            setCurrentObjectIndex(currentObjectIndex + 1);
-            setIsCorrect(null);
-            setUserAnswer('');
+        setQuestionsAnswered(questionsAnswered + 1);
+        if (questionsAnswered + 1 >= TOTAL_QUESTIONS) {
+            setIsLastQuestion(true);
+        } else {
+            setTimeout(() => {
+                handleNewQuestion();
+            }, 3000); // Wait for 3 seconds before moving to the next question
         }
     };
 
-    const resetActivity = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        checkAnswer();
+    };
+
+    const handleNewQuestion = () => {
+        setCurrentObjectIndex((currentObjectIndex + 1) % objects.length);
+        setIsCorrect(null);
+        setUserAnswer('');
+        setVolume(Math.floor(Math.random() * 10) + 1);
+    };
+
+    const handleReset = () => {
         setCurrentObjectIndex(0);
         setIsCorrect(null);
         setUserAnswer('');
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setQuestionsAnswered(0);
+        setIsLastQuestion(false);
+        setVolume(Math.floor(Math.random() * 10) + 1);
+    };
+
+    const checkFinalResult = () => {
+        const allAnswersCorrect = correctAnswers === TOTAL_QUESTIONS;
+        return { allAnswersCorrect, totalQuestions: TOTAL_QUESTIONS, correctAnswers, incorrectAnswers };
+    };
+
+    const handleFinalSubmit = () => {
+        sendActivityData();
+    };
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000; // Time spent in seconds
+        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkFinalResult();
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "M2A1",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            totalQuestions,
+            correctAnswers,
+            incorrectAnswers,
+            allAnswersCorrect
+        };
+
+        try {
+            await addDoc(collection(db, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+
+        handleReset();  // Reset the activity after sending the data
     };
 
     return (
-        <Box m={2}>
-            <Grid container spacing={2} direction="column" alignItems="center" justifyContent="center">
+        <ActivityWrapper
+            activityTitle={"M2A1"}
+            explanationVideoUrl={"/Videos/liquid_conversion.mp4"}
+            onSubmit={checkFinalResult}
+            user={currentUser}
+            activityName="M2A1"
+        >
+            <Box m={2}>
                 <img 
                     src={objects[currentObjectIndex].image} 
                     alt={objects[currentObjectIndex].name} 
                     style={{ width: '50%', maxHeight: '150px', objectFit: 'contain' }} 
                 />
-               
+
                 <Typography variant="body1" sx={{ mt: 2 }}>
-                <StyledText>
-                    Si tu as {volume} litre(s) de {objects[currentObjectIndex].name}, combien cela pèserait-il en grammes ?
-                    </StyledText>
+                    Si tu as {volume} litre(s) du {objects[currentObjectIndex].name}, combien cela pèserait-il en kg, hg, dag et g ?
                 </Typography>
                 
-                <TextField 
-                    variant="outlined" 
-                    label="Ta réponse (ex: 1kg 200g)" 
-                    value={userAnswer}
-                    onChange={(e) => setUserAnswer(e.target.value)} 
-                    fullWidth
-                    sx={{ mt: 2 }}
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '50px', marginTop : '16px' }}>
-            <Button variant="contained" color="primary" onClick={checkAnswer}>
-                <CheckCircleIcon />
-            </Button>
-            <Button variant="contained" color="primary" onClick={nextObject}>
-                <NavigateNextIcon />
-            </Button>
-            <Button variant="contained" color="primary" onClick={resetActivity}>
-                <ReplyIcon />
-            </Button>
-        </div>
+                <form onSubmit={handleSubmit}>
+                    <TextField 
+                        variant="outlined" 
+                        label="Ta réponse (ex: 1kg 200g)" 
+                        type='object'
+                        value={userAnswer}
+                        onChange={(e) => setUserAnswer(e.target.value)} 
+                        style={{width:'100%'}}
+                        sx={{ mt: 2 }}
+                        error={!!errorMessage}
+                        helperText={errorMessage}
+                    />
+                    <Box display="flex" justifyContent="center" mt={2} gap={2}>
+                        <Button variant="contained" color="primary" type="submit" disabled={isCorrect !== null}>
+                            Répondre
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={handleFinalSubmit} disabled={!isLastQuestion}>
+                            Terminer
+                        </Button>
+                    </Box>
+                </form>
+
                 {isCorrect !== null && (
-                    <React.Fragment>
-                        <Typography variant="body1" sx={{ mt: 2, color: isCorrect ? 'green' : 'red' }}>
-                            {isCorrect ? 'Correct!' : 'Incorrect. Essaye encore.'}
-                        </Typography>
-                    </React.Fragment>
+                    <Typography variant="body1" sx={{ mt: 2, color: isCorrect ? 'green' : 'red' }}>
+                        {isCorrect ? 'Correct!' : 'Incorrect. Essaye encore.'
+                        }
+                    </Typography>
                 )}
-            </Grid>
-        </Box>
+            </Box>
+        </ActivityWrapper>
     );
 }
 

@@ -4,6 +4,7 @@ import { Button, Box } from "@mui/material";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase"; // Assurez-vous que le chemin est correct
 import "./SlideContent.css";
+import { getStorage, ref, getDownloadURL } from "firebase/storage"; // Import Firebase functions
 
 const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmit, user, activityName }) => {
     const [showVideo, setShowVideo] = useState(true);
@@ -18,10 +19,10 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
             }
         };
 
-        window.addEventListener('beforeunload', handleBeforeUnload);
+        window.addEventListener("beforeunload", handleBeforeUnload);
 
         return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
+            window.removeEventListener("beforeunload", handleBeforeUnload);
         };
     }, [questionsAnswered]);
 
@@ -63,11 +64,11 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
     const storeActivityData = async (userId, activityData) => {
         try {
             // Référence à la sous-collection 'activities' sous chaque utilisateur
-            const userActivitiesCollection = collection(db, 'users', userId, 'activities');
+            const userActivitiesCollection = collection(db, "users", userId, "activities");
             const docRef = await addDoc(userActivitiesCollection, activityData);
-            console.log('Document written with ID: ', docRef.id); // Affiche l'ID du document stocké
+            console.log("Document written with ID: ", docRef.id); // Affiche l'ID du document stocké
         } catch (e) {
-            console.error('Error adding document: ', e);
+            console.error("Error adding document: ", e);
         }
     };
 
@@ -76,7 +77,7 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
             <div className="activity-title">{activityTitle}</div>
             {showVideo ? (
                 <div className="video-wrapper">
-                    <ExplanationVideo videoUrl={explanationVideoUrl} explanationParagraph={["Video explicatif", "🎥 Regardez la vidéo pour savoir comment réaliser l'activité"]} altText="Video description" />
+                    <ExplanationVideo videoPath={explanationVideoUrl} explanationParagraph={["Video explicatif", "🎥 Regardez la vidéo pour savoir comment réaliser l'activité 🎬"]} altText="Video description" />
                     <Box display="flex" justifyContent="center" mt={2}>
                         <Button
                             variant="contained"
@@ -87,7 +88,7 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
                                 borderRadius: "8px",
                                 padding: "10px 20px",
                                 fontSize: "16px",
-                                textTransform: "none"
+                                textTransform: "none",
                             }}
                         >
                             Start Activity
@@ -102,11 +103,10 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
                             variant="contained"
                             onClick={returnToVideo}
                             style={{
-                               
                                 borderRadius: "8px",
                                 padding: "10px 20px",
                                 fontSize: "16px",
-                                textTransform: "none"
+                                textTransform: "none",
                             }}
                         >
                             🎬 Voir la vidéo
