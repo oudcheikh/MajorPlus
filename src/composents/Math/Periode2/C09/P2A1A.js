@@ -1,238 +1,212 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Test3 from './QCMC9';
-import P2A1A_1 from './P2A1A-1';
-import Audio from "./Audio09";
-import '../../Periode4/progressBar/SegmentedProgressBar.css'
-import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
-
-import styled from 'styled-components';
-import { Box } from '@mui/material';
-
+import React, { useState, useEffect } from "react";
 import {
-    Container, SectionContainer, ImageContainer, Card, BodyText,
-    Title, Subtitle, FormulaBox, FormulaText, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
-    SwipeContainer2, Swipe_Section,
-    Violet_NumberDisplay,
-    Green_NumberDisplay,
-    Red_NumberDisplay,
-    Pink_NumberDisplay,
-    NumberDisplay,
-    Bleu_ciel_NumberDisplay3
-} from '../../../Styles/MajorStyles';
-import Acceuil from '../../../_ReusableComponents/Accueil';
+  Button,
+  Card,
+  CardContent,
+  Box,
+  TextField,
+  Typography,
+} from "@mui/material";
+import useSound from "use-sound";
+import correctSound from '../../../sounds/correct.mp3';
+import incorrectSound from '../../../sounds/incorrect.mp3';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+import ScoreComponent from "../../Reusable Components/Animation"; // Assurez-vous que le chemin est correct
 
+function P3A4_1() {
+  const [questions, setQuestions] = useState([]);
+  const [answer, setAnswer] = useState('');
+  const [answer1, setAnswer1] = useState('');
+  const [isValid, setIsValid] = useState(null);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [showScoreComponent, setShowScoreComponent] = useState(false); // State to control ScoreComponent visibility
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
+  const [play] = useSound(correctSound);
+  const [play1] = useSound(incorrectSound);
+  const totalQuestions = 3;
 
-export const StyledBox = styled.div`
-padding-left: 2px;
-padding-right:2px;
-padding-top: 1100px;
-padding-bottom:2px;
-    width: 100%;
-    max-width: 100%;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+    generateQuestion();
+  }, []);
 
+  const generateQuestion = () => {
+    const newQuestions = [
+      generateSingleQuestion(),
+    ];
+    setQuestions(newQuestions);
+    setIsValid(null);
+    setAnswer('');
+    setAnswer1('');
+  };
 
-const P2A1A = () => {
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const section1Ref = useRef(null);
-    const section2Ref = useRef(null);
-    const section3Ref = useRef(null);
-    const section4Ref = useRef(null);
-    const section5Ref = useRef(null);
-    const section6Ref = useRef(null);
-    const section7Ref = useRef(null);
-    
-    const navigate = useNavigate();
-    const [progress, setProgress] = useState(0);
-    const [sectionsViewed, setSectionsViewed] = useState(0);
-    const totalSections = 7; 
-    const handleScroll = (event) => {
-        const { scrollLeft } = event.target;
-        setScrollPosition(scrollLeft);
+  const generateSingleQuestion = () => {
+    const numpieces = Math.floor(Math.random() * 91) + 10;
+    const nomTour = Math.floor(Math.random() * 10) + 1;
+    return { numpieces, nomTour };
+  };
 
-        // Récupérer les positions de début de chaque section
-        const sectionPositions = [
-            0, // Position de début de la première section
-            section1Ref.current.offsetWidth, // Position de début de la deuxième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth, //6
-            section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth + section6Ref.current.offsetWidth + section7Ref.current.offsetWidth,
-        ];
+  const handleValidate = () => {
+    const quotient = questions.reduce((sum, q) => sum + Math.floor(q.numpieces / q.nomTour), 0);
+    const rest = questions.reduce((sum, q) => sum + (q.numpieces % q.nomTour), 0);
 
-        // Trouver la section actuelle en fonction de la position de défilement
-        let currentSection = 0;
-        for (let i = 0; i < sectionPositions.length; i++) {
-            if (scrollLeft >= sectionPositions[i]) {
-                currentSection = i;
-            }
-        }
+    setQuestionsAnswered(prev => prev + 1);
 
-        setSectionsViewed(currentSection + 1);
-        setProgress(currentSection + 1)
+    if (parseInt(answer) === quotient && parseInt(answer1) === rest) {
+      setCorrectAnswers(correctAnswers + 1);
+      setIsValid(true);
+      play();
+    } else {
+      setIncorrectAnswers(incorrectAnswers + 1);
+      setIsValid(false);
+      play1();
+    }
+
+    if (questionsAnswered + 1 < totalQuestions) {
+      setTimeout(() => {
+        generateQuestion();
+      }, 2000);
+    } else {
+      setIsLastQuestion(true);
+    }
+  };
+
+  const handleInputChange = (event, setter) => {
+    setIsValid(null);
+    setter(event.target.value);
+  };
+
+  const checkAnswer = () => {
+    const allAnswersCorrect = correctAnswers === questionsAnswered;
+    return { allAnswersCorrect, totalQuestions: questionsAnswered, correctAnswers, incorrectAnswers };
+  };
+
+  const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000; 
+    const { allAnswersCorrect } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "P2A1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questionsAnswered,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect
     };
 
-    return (
+    try {
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
 
-  <Container_Progress_Bar>
-            <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-            <StyledBox>
-                <SwipeContainer2 onScroll={handleScroll}>
-                    <Swipe_Section ref={section1Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                   <Acceuil titre={" La Division des nombres "} imgSrc={'/images/Math/C/imagesC09/div.png'} altText={" La Division des nombres "}> </Acceuil>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-                    
-                    <Swipe_Section ref={section2Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton> Définition </ContinueButton>
-                                <img src={"/images/Math/C/imagesC09/owl4.png"} alt="owl4" />
+    setShowScoreComponent(true); // Show the ScoreComponent when "Terminer" is clicked
+  };
 
+  const handleClickOpen = () => {
+    sendActivityData();
+    handleReset();
+  };
 
-                                <strong>
-                                    <Card>
-                                        <BodyText>
+  const handleReset = () => {
+    setQuestionsAnswered(0);
+    setCorrectAnswers(0);
+    setIncorrectAnswers(0);
+    setIsLastQuestion(false);
+    setShowScoreComponent(false); // Hide the ScoreComponent when resetting
+    generateQuestion();
+  };
 
-                                            La division est une operation qui nous permet de partager les quantités équitablement,
-                                            <strong style={{ color: 'blue' }}>comme partager une pizza entre amis ! 😉</strong>
-                                        </BodyText>
-
-                                    </Card>
-                                </strong>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-
-
-                    <Swipe_Section ref={section3Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>
-                                    Exemple de division
-                                </ContinueButton>
-
-                                <img src={"/images/Math/C/imagesC09/divisionPizza.png"} alt="Teacher" />
-                                <div>
-                                    <strong>
-                                        <Card>
-                                            <BodyText>
-                                                Partage de pizza de 9 pieces sur 4 personnes, 2 pieces pour chaqun. Le Rest est un piece.
-                                            </BodyText>
-                                        </Card>
-                                    </strong>
-                                    <img src={"/images/Math/C/imagesC09/pizza3.png"} alt="pizza" />
-                                </div>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-
-                    <Swipe_Section ref={section4Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>
-                                    Exemple numérique de la division
-                                </ContinueButton>
-                                <img src={"/images/Math/C/imagesC09/candy.png"} alt="Teacher" />
-                                <Card>
-                                    <strong>
-                                        <BodyText>
-                                            Partagez équitabtement 141 bonbons entre 8 enfants. Combien en auront-ils chacun ? Combien en restera-t-il dans le sac ?"
-                                        </BodyText>
-                                    </strong>
-                                </Card>
-                                <strong><h2>Solution</h2></strong>
-                                <br></br>
-                                <img src={"/images/Math/C/imagesC09/exemple1.png"} alt="Teacher" style={{ width: "170px", marginTop: "20px" }} />
-                                <Pink_NumberDisplay>
-                                    <strong>Etape1:</strong>
-                                    <strong> chercher combien de 8 dans les deux premiers nombre , de 141(14),14 contient 8 seulment 1 fois. metter 1 dans le quotion et le resultat (8 x 1=8) dans le 2eme cas<br></br>
-                                    </strong>
-                                </Pink_NumberDisplay>
-                                <img src={"/images/Math/C/imagesC09/exemple2.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-                                <Pink_NumberDisplay>
-                                    <strong>Etape2:</strong>
-                                    <strong>
-                                        Soustraction 8 de 14, le resultat est 6, deplacer le 3 eme nombre restant de notre dividende 141(1) et combiner avec 6, deplacer le resultat (61) vers le 3eme cas,
-                                    </strong>
-                                </Pink_NumberDisplay>
-                                <img src={"/images/Math/C/imagesC09/exemple.png"} alt="Teacher" style={{ width: "170px", marginTop: "40px" }} />
-                                <Pink_NumberDisplay>
-                                    <strong>Etape3:</strong>
-                                    <strong>
-                                        De meme chercher combien de 8 dans 61, 61 contient  8 exactement 7 fois,metter 7 dans le quotion  et le resultat (8 x 7=56) dans le dernier cas<br></br>
-                                        comme le nombre restant de la soustraction de 61 et 56 inferieur a 8, arreter l operation et
-                                        voila votre resultat de division.
-                                    </strong>
-                                </Pink_NumberDisplay>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-                    <Swipe_Section ref={section5Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Formules clés</ContinueButton>
-                                <br></br>
-                                <img src={"/images/Math/periode2/divisioneuclidienne.PNG"}/>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <Violet_NumberDisplay>
-                                    <strong>Dividende: Signifie le  nombre que tu divises.</strong> 
-                                </Violet_NumberDisplay>
-                                <br></br>
-                                <Bleu_ciel_NumberDisplay3>
-                                    <strong> Diviseur = Signifie le nombre par lequel tu divises.</strong>
-                                </Bleu_ciel_NumberDisplay3>
-                                <br></br>
-                                <Red_NumberDisplay>
-                                    <strong>  Quotient = Signifie le résultat de la division</strong>
-                                </Red_NumberDisplay>
-                                <br></br>
-                                <Green_NumberDisplay>
-                                    <strong>Reste = Signifie le rest de la division</strong>
-                                </Green_NumberDisplay>
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-
-                    <Swipe_Section ref={section6Ref} >
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>Activité:</ContinueButton>
-                                <P2A1A_1 />
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-                    <Swipe_Section ref={section7Ref}>
-                        <SectionContainer2>
-                            <FormulaBox2>
-                                <ContinueButton>  QCM  </ContinueButton>
-                                <Test3 />
-                            </FormulaBox2>
-                        </SectionContainer2>
-                    </Swipe_Section>
-
-                </SwipeContainer2>
-            </StyledBox>
-        </Container_Progress_Bar>
-    );
+  return (
+    <ActivityWrapper
+      activityTitle={"P2A1"}
+      explanationVideoUrl={"/Videos/your_video_url.mp4"}
+      onSubmit={checkAnswer}
+      user={currentUser}
+      activityName="P2A1"
+    >
+      <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+      <Card style={{ minHeight: '400px' }}>
+        <CardContent>
+          <Box my={2}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src={"images/Images/fteacherr1.png"}
+                style={{
+                  width: '100px',
+                  marginBottom: '10px',
+                  marginRight: '10px',
+                }}
+              />
+              <Card
+                style={{
+                  borderRadius: '20px',
+                  backgroundColor: '#1877f2',
+                  padding: '10px',
+                }}
+              >
+                <CardContent>
+                  {questions.map((q, index) => (
+                    <Typography key={index} variant="body1" style={{ color: '#ffffff' }}>
+                      Sara veut partager ses {q.numpieces} pièces de bonbons avec sa classe de {q.nomTour} élèves. Combien de bonbons chaque élève aura-t-il et quel est le reste ?
+                    </Typography>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+          </Box>
+          <Box my={2}>
+            <form onSubmit={(e) => { e.preventDefault(); handleValidate(); }}>
+              <TextField
+                label="Nombre de bonbons par élève"
+                type="number"
+                value={answer}
+                onChange={(e) => handleInputChange(e, setAnswer)}
+                fullWidth
+              />
+              <h1></h1>
+              <TextField
+                label="Reste de bonbons"
+                type="number"
+                value={answer1}
+                onChange={(e) => handleInputChange(e, setAnswer1)}
+                fullWidth
+              />
+              <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px' }}>
+                Répondre
+              </Button>
+            </form>
+          </Box>
+          <Box my={2}>
+            <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} style={{ marginTop: '10px' }}>
+              Terminer
+            </Button>
+          </Box>
+          {isValid !== null && (
+            <Box mt={2}>
+              <Typography variant="body1" style={{ color: isValid ? '#28a745' : '#ff0000', textAlign: 'center' }}>
+                {isValid ? "Félicitations! Vous avez donné la bonne réponse!" : "Réponse incorrecte. Essayez encore!"}
+              </Typography>
+            </Box>
+          )}
+          {showScoreComponent && <ScoreComponent />} {/* Display ScoreComponent */}
+        </CardContent>
+      </Card>
+    </ActivityWrapper>
+  );
 }
-export default P2A1A;
+
+export default P3A4_1;

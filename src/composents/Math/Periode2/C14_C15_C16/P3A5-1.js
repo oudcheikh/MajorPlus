@@ -7,7 +7,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import fractions1 from "../images/farctions1.png";
 import useSound from "use-sound";
 import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
@@ -79,7 +78,7 @@ function P3A5_1() {
         <Box my={2}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
-              src={fractions1}
+              src={"/images/Math/periode2/compte.gif"}
               
               style={{
                 width: '100px',

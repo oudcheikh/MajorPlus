@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Button, Box as MuiBox, Typography } from "@mui/material";
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../../../Sign_in/v2/firebase";
 
 const MainContainer = styled.div`
     display: flex;
@@ -7,7 +12,6 @@ const MainContainer = styled.div`
     align-items: center;
     flex-direction: column;
     min-height: 30vh;
-   
 `;
 
 const StyledText = styled.p`
@@ -16,7 +20,7 @@ const StyledText = styled.p`
     border: ${(props) => (props.isActive ? '3px dashed #FF5722' : '3px dashed #B3E5FC')};
     transition: background-color 0.4s, transform 0.3s;
     cursor: pointer;
-    padding: 10px 20px;  // Pour donner de l'espace autour du texte
+    padding: 10px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +84,16 @@ const ResetButton = styled.button`
 
 const FractionActivity = () => {
     const [activeFractions, setActiveFractions] = useState([false, false, false, false]);
+    const [isValid, setIsValid] = useState(null);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false);
+    const [entryTime, setEntryTime] = useState(null);
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
 
     const toggleFraction = (index) => {
         const updatedActiveFractions = [...activeFractions];
@@ -89,31 +103,97 @@ const FractionActivity = () => {
 
     const reset = () => {
         setActiveFractions([false, false, false, false]);
+        setIsValid(null);
+        setIsLastQuestion(false);
+    };
+
+    const handleValidate = () => {
+        setQuestionsAnswered(prev => prev + 1);
+        const correctAnswer = activeFractions.filter(isActive => isActive).length === 1;
+        setIsValid(correctAnswer);
+
+        if (correctAnswer) {
+            setIsLastQuestion(true);
+        }
+    };
+
+    const checkAnswer = () => {
+        const totalQuestions = questionsAnswered;
+        const allAnswersCorrect = isValid === true;
+        return { allAnswersCorrect, totalQuestions, correctAnswers: isValid ? 1 : 0, incorrectAnswers: !isValid ? 1 : 0 };
+    };
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000; // Temps passé en secondes
+        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "FractionActivity",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            totalQuestions,
+            correctAnswers,
+            incorrectAnswers,
+            allAnswersCorrect
+        };
+
+        try {
+            await addDoc(collection(db, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+    };
+
+    const handleClickOpen = () => {
+        sendActivityData();
+        reset();
     };
 
     return (
-        <MainContainer>
-         <StyledText>Cocher une fraction</StyledText>
-            <Box>
-                {activeFractions.map((isActive, index) => (
-                    <Fraction
-                        key={index}
-                        isActive={isActive}
-                        onClick={() => toggleFraction(index)}
-                    >
-                        {isActive && 'Une fraction parmi 4 donc 1/4'}
-                    </Fraction>
-                ))}
-            </Box>
-            <ResetButton onClick={reset}>
-                ↺
-            </ResetButton>
-        </MainContainer>
+        <ActivityWrapper
+            activityTitle={"FractionActivity"}
+            explanationVideoUrl={"/Videos/your_video_url.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="FractionActivity"
+        >
+            <MainContainer>
+                <StyledText>Cocher une fraction</StyledText>
+                <Box>
+                    {activeFractions.map((isActive, index) => (
+                        <Fraction
+                            key={index}
+                            isActive={isActive}
+                            onClick={() => toggleFraction(index)}
+                        >
+                            {isActive && 'Une fraction parmi 4 donc 1/4'}
+                        </Fraction>
+                    ))}
+                </Box>
+                <MuiBox my={2}>
+                    <Button variant="contained" color="primary" onClick={handleValidate} style={{ marginRight: '10px' }}>
+                        Vérifier
+                    </Button>
+                    <ResetButton onClick={reset}>
+                        ↺
+                    </ResetButton>
+                    <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} style={{ marginLeft: '10px' }}>
+                        Terminer
+                    </Button>
+                </MuiBox>
+                {isValid !== null && (
+                    <MuiBox mt={2}>
+                        <Typography variant="body1" style={{ color: isValid ? '#28a745' : '#ff0000', textAlign: 'center' }}>
+                            {isValid ? "Félicitations! Vous avez sélectionné la bonne fraction!" : "Réponse incorrecte. Essayez encore!"}
+                        </Typography>
+                    </MuiBox>
+                )}
+            </MainContainer>
+        </ActivityWrapper>
     );
 }
 
 export default FractionActivity;
-
-
-
-
