@@ -1,52 +1,43 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import { Button, Typography, FormControl, RadioGroup, FormControlLabel, Radio, FormHelperText } from '@mui/material';
 
-const Quiz = forwardRef(({ questions }, ref) => {
-    const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null));
 
-    useImperativeHandle(ref, () => ({
-        getSelectedOptions: () => selectedOptions
-    }));
-
-    const handleOptionChange = (questionIndex, option) => {
-        const newSelectedOptions = [...selectedOptions];
-        newSelectedOptions[questionIndex] = option;
-        setSelectedOptions(newSelectedOptions);
+const Quiz = ({ question, options, correctAnswer, explanation, onVerify }) => {
+    const [selectedOption, setSelectedOption] = useState('');
+    const [isVerified, setIsVerified] = useState(false);
+  
+    const handleOptionChange = (event) => {
+      setSelectedOption(event.target.value);
     };
-
+  
+    const handleVerify = () => {
+      setIsVerified(true);
+      if (onVerify) {
+        onVerify(selectedOption === correctAnswer);
+      }
+    };
+  
     return (
-        <div>
-            {questions.map((q, index) => (
-                <div key={index}>
-                    <h3>{q.question}</h3>
-                    {q.options.map((option, optionIndex) => (
-                        <div key={optionIndex}>
-                            <input
-                                type="radio"
-                                id={`q${index}_option${optionIndex}`}
-                                name={`q${index}`}
-                                value={option}
-                                checked={selectedOptions[index] === option}
-                                onChange={() => handleOptionChange(index, option)}
-                            />
-                            <label htmlFor={`q${index}_option${optionIndex}`}>{option}</label>
-                        </div>
-                    ))}
-                </div>
+      <div style={{ margin: '20px' }}>
+        <Typography variant="h6">{question}</Typography>
+        <FormControl component="fieldset" style={{ margin: '20px 0' }}>
+          <RadioGroup value={selectedOption} onChange={handleOptionChange}>
+            {options.map((option, index) => (
+              <FormControlLabel key={index} value={option} control={<Radio />} label={option} />
             ))}
-        </div>
+          </RadioGroup>
+          {isVerified && (
+            <FormHelperText style={{ color: selectedOption === correctAnswer ? 'green' : 'red' }}>
+              {selectedOption === correctAnswer ? 'Correct!' : 'Incorrect!'}
+            </FormHelperText>
+          )}
+        </FormControl>
+        {isVerified && (
+          <Typography variant="body2" style={{ marginTop: '10px' }}>
+            Explanation: {explanation}
+          </Typography>
+        )}
+      </div>
     );
-});
-
-Quiz.propTypes = {
-    questions: PropTypes.arrayOf(
-        PropTypes.shape({
-            question: PropTypes.string.isRequired,
-            options: PropTypes.arrayOf(PropTypes.string).isRequired,
-            correctAnswer: PropTypes.string.isRequired,
-            explanation: PropTypes.string.isRequired
-        })
-    ).isRequired
 };
-
 export default Quiz;

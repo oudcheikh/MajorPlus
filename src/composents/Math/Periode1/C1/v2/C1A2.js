@@ -6,28 +6,28 @@ import ActivityWrapper from "../../../Reusable Components/Slides Content/Activit
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
 import "../../../../../App.css";
-import correctSoundFile from '../../../../sounds/correct.mp3';
-import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
+import correctSoundFile from "../../../../sounds/correct.mp3";
+import incorrectSoundFile from "../../../../sounds/incorrect.mp3";
 
 const StyledBox = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '20px',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
 });
 
 const MessageCard = styled(Card)({
-    borderRadius: '40px',
-    maxWidth: '300px',
-    boxShadow: '4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)',
-    padding: '2px',
-    marginLeft: '10px',
-    marginTop: '-50px',
-    marginRight: '10px',
-    textAlign: 'center',
-    transition: 'transform 0.3s',
+    borderRadius: "40px",
+    maxWidth: "300px",
+    boxShadow: "4px 4px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
+    padding: "2px",
+    marginLeft: "10px",
+    marginTop: "-50px",
+    marginRight: "10px",
+    textAlign: "center",
+    transition: "transform 0.3s",
     "&:hover": {
-        transform: 'scale(1.05)',
+        transform: "scale(1.05)",
     },
 });
 
@@ -49,10 +49,10 @@ const StyledButton = styled(Button)({
 });
 
 const ButtonContainer = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '20px',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
 });
 
 const imageStyle = {
@@ -94,12 +94,12 @@ const C1A2 = () => {
             correctSound.play();
         }
 
-        setQuestionsAnswered(prev => prev + 1);
+        setQuestionsAnswered((prev) => prev + 1);
 
         if (progress + 1 < ranges.length) {
             // Si ce n'est pas la dernière question, on passe à la suivante après 3 secondes
             setTimeout(() => {
-                setProgress(prevProgress => {
+                setProgress((prevProgress) => {
                     const newProgress = prevProgress + 1;
                     getRandomNumber(newProgress);
                     return newProgress;
@@ -148,9 +148,9 @@ const C1A2 = () => {
             totalQuestions,
             correctAnswers,
             incorrectAnswers,
-            allAnswersCorrect
+            allAnswersCorrect,
         };
-        console.log('Sending activity data:', activityData);
+        console.log("Sending activity data:", activityData);
         // Ajouter la logique Firebase ici pour envoyer les données
     };
 
@@ -167,42 +167,34 @@ const C1A2 = () => {
     };
 
     return (
-        <ActivityWrapper
-            activityTitle={"C1A2"}
-            explanationVideoUrl={"/Videos/number_sorting.mp4"}
-            onSubmit={checkAnswer}
-            user={currentUser}
-            activityName="C1A2"
-        >
+        <ActivityWrapper activityTitle={"C1A2"} explanationVideoUrl={"/Videos/number_sorting.mp4"} onSubmit={checkAnswer} user={currentUser} activityName="C1A2">
             <StyledBox>
                 <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
                 <MessageCard>
                     <CardContent>
                         <Typography>
                             Ecrire ce nombre en chiffres : <br></br>
-                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
-                                {writtenNumber(randomNumber, { lang: "fr" })}
-                            </span>
+                            <span style={{ fontSize: "1.3em", fontWeight: "bold", color: "#007BFF" }}>{writtenNumber(randomNumber, { lang: "fr" })}</span>
                         </Typography>
                     </CardContent>
                 </MessageCard>
             </StyledBox>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField  label="Entrez le chiffre"  variant="outlined"  type="number" value={userInput}  onChange={handleInputChange}  style={{ marginTop: "20px", width: "70%" }} />
-              
-              
+                <TextField label="Entrez le chiffre" variant="outlined" type="number" value={userInput} onChange={handleInputChange} style={{ marginTop: "20px", width: "70%" }} />
+
                 <ButtonContainer>
-                    <Button variant="contained"  style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}  >
+                    <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}>
                         Répondre
                     </Button>
-                    <Button variant="contained" disabled={!isLastQuestion}  onClick={handleClickOpen} > Terminer </Button>
+                    <Button variant="contained" disabled={!isLastQuestion} onClick={handleClickOpen}>
+                        {" "}
+                        Terminer{" "}
+                    </Button>
                 </ButtonContainer>
-                
-                
+
                 {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
                 {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
             </Box>
-
         </ActivityWrapper>
     );
 };

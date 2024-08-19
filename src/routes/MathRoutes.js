@@ -13,6 +13,7 @@ import Kangaroo from "../composents/Math/Periode1/C6/Kangaroo";
 import C5A5 from "../composents/Math/Periode1/C6/C5A5";
 import C6 from "../composents/Math/Periode1/C6/C6";
 import C7 from "../composents/Math/Periode1/C7/C7";
+import C4_new from "../composents/Math/Periode1/C4/v2/C4";
 
 const MathRoutes = (
     <>
@@ -22,6 +23,7 @@ const MathRoutes = (
         <Route path="/C2" element={<C2 index={1} />} />
         <Route path="/C3" element={<C3 index={2} />} />
         <Route path="/C4" element={<C4 index={3} />} />
+        <Route path="/C5" element={<C5 index={4} />} />
         <Route path="/C5A1" element={<C5 />} />
         <Route path="/C5A3" element={<C5A3 />} />
         <Route path="/C5A4" element={<C5A4 />} />
@@ -29,6 +31,7 @@ const MathRoutes = (
         <Route path="/C5A5" element={<C5A5 />} />
         <Route path="/C6" element={<C6 />} />
         <Route path="/C7" element={<C7 />} />
+        <Route path="/C4_new" element={<C4_new />} />
     </>
 );
 

@@ -5,13 +5,13 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase"; // Assurez-vous que le chemin est correct
 import "./SlideContent.css";
 import { getStorage, ref, getDownloadURL } from "firebase/storage"; // Import Firebase functions
-
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
 const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmit, user, activityName }) => {
     const [showVideo, setShowVideo] = useState(true);
     const [startTime, setStartTime] = useState(null);
     const [entryTime, setEntryTime] = useState(null);
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
-
+    user = useAuth();
     useEffect(() => {
         const handleBeforeUnload = async (event) => {
             if (questionsAnswered >= 1) {
