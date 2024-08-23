@@ -1,142 +1,258 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import '../../Periode4/progressBar/SegmentedProgressBar.css'
-import SegmentedProgressBar from '../../Periode4/progressBar/ProgressBar';
-import G3A1 from './G3A1';
-import G3A2 from './G3A2';
-import QCMG3 from './QCMG3';
-import Audio from "./AudioG3";
-import { Box } from '@mui/material';
-import {
-  StyledBox, Beige_NumberDisplay, NumberDisplay, FormulaText, Card, FormulaBox, BodyText, Subtitle, ContinueButton, Container_Progress_Bar, SectionContainer2, FormulaBox2,
-  SwipeContainer2, Swipe_Section,
-} from '../../../Styles/MajorStyles'; // Assurez-vous que le chemin est correct
+import React, { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import { Card, StyledText } from '../../../Styles/MajorStyles';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import styled from 'styled-components';
 
-import Acceuil from "../../../_ReusableComponents/Accueil";
-const G3 = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const section1Ref = useRef(null);
-  const section2Ref = useRef(null);
-  const section3Ref = useRef(null);
-  const section4Ref = useRef(null);
-  const section5Ref = useRef(null);
+const TOTAL_QUESTIONS = 7;
 
-  const [progress, setProgress] = useState(0);
-  const [sectionsViewed, setSectionsViewed] = useState(0);
-  const totalSections = 5; // Nombre total de sections
+const StyledBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
 
-  const handleScroll = (event) => {
-    const { scrollLeft } = event.target;
-    setScrollPosition(scrollLeft);
+const ButtonContainer = styled.div`
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-    // Récupérer les positions de début de chaque section
-    const sectionPositions = [
-      0, // Position de début de la première section
-      section1Ref.current.offsetWidth, // Position de début de la deuxième section
-      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth, // Position de début de la troisième section
-      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth, // Position de début de la troisième section
-      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth, //4
-      section1Ref.current.offsetWidth + section2Ref.current.offsetWidth + section3Ref.current.offsetWidth + section4Ref.current.offsetWidth + section5Ref.current.offsetWidth, //5
-    ];
-    // Trouver la section actuelle en fonction de la position de défilement
-    let currentSection = 0;
-    for (let i = 0; i < sectionPositions.length; i++) {
-      if (scrollLeft >= sectionPositions[i]) {
-        currentSection = i;
-      }
-    }
-    // Afficher la section actuelle dans la console
-    setSectionsViewed(currentSection + 1);
-    setProgress(currentSection + 1)
+const imageStyle = {
+    width: "50%",
+    height: "auto",
+    maxWidth: "70%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
+
+const AngleActivity = () => {
+  const [angle, setAngle] = useState(8);
+  const [message, setMessage] = useState("Glissez le slider pour ouvrir l'angle");
+  const [messageColor, setMessageColor] = useState("#000");
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+  }, []);
+
+  const getTextPosition = (radius, angle) => {
+    const halfAngle = angle / 2;
+    const distance = angle < 90 ? radius + 40 : radius + 20;
+    const position = polarToCartesian(100, 100, distance, halfAngle);
+    return position;
   };
+
+  const handleSliderChange = (event, newValue) => {
+    setAngle(newValue);
+  };
+
+  const disableScroll = (e) => {
+    e.preventDefault();
+  };
+
+  const handleSliderStart = () => {
+    document.body.style.overflowX = 'hidden';
+    window.addEventListener('touchmove', disableScroll, { passive: false });
+    window.addEventListener('mousemove', disableScroll, { passive: false });
+  };
+
+  const handleSliderEnd = () => {
+    document.body.style.overflowX = '';
+    window.removeEventListener('touchmove', disableScroll);
+    window.removeEventListener('mousemove', disableScroll);
+  };
+
+  const verifyAngle = () => {
+    let typeAngle = "";
+    let description = "";
+    let color = "#000";
+
+    if (angle <= 80) {
+      typeAngle = "aigu";
+      description = "Un angle aigu mesure moins de 90 degrés.";
+      color = "#4CAF50";
+      setCorrectAnswers(correctAnswers + 1);
+    } else if (angle >= 85 && angle <= 95) {
+      typeAngle = "droit";
+      description = "Un angle droit mesure exactement 90 degrés.";
+      color = "#2196F3";
+      setCorrectAnswers(correctAnswers + 1);
+    } else if (angle >= 100) {
+      typeAngle = "obtus";
+      description = "Un angle obtus mesure plus de 90 degrés mais moins de 180 degrés.";
+      color = "#F44336";
+      setIncorrectAnswers(incorrectAnswers + 1);
+    }
+
+    setMessage(`Vous avez formé un angle ${typeAngle}. ${description}`);
+    setMessageColor(color);
+    setQuestionsAnswered(questionsAnswered + 1);
+
+    if (questionsAnswered + 1 >= TOTAL_QUESTIONS) {
+      setIsLastQuestion(true);
+    }
+  };
+
+  const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+    const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+    return {
+      x: centerX + (radius * Math.cos(angleInRadians)),
+      y: centerY + (radius * Math.sin(angleInRadians))
+    };
+  };
+
+  const describeArc = (x, y, radius, startAngle, endAngle) => {
+    const start = polarToCartesian(x, y, radius, endAngle);
+    const end = polarToCartesian(x, y, radius, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    const d = [
+      "M", start.x, start.y, 
+      "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
+      "L", x, y,
+      "Z"
+    ].join(" ");
+    return d;
+  };
+
+  const resetAngle = () => {
+    setAngle(8);
+    setMessage("Glissez le slider pour ouvrir l'angle");
+  };
+
+  const handleFinalSubmit = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "AngleActivity",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: TOTAL_QUESTIONS,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect: correctAnswers === TOTAL_QUESTIONS,
+    };
+
+    try {
+      await addDoc(collection(db, "activities"), activityData);
+      console.log("Activity data sent:", activityData);
+    } catch (e) {
+      console.error("Error sending activity data:", e);
+    }
+
+    resetAngle(); // Reset the activity after sending the data
+  };
+
+  const radius = 60;
+
   return (
-    <Container_Progress_Bar>
-      <SegmentedProgressBar totalSegments={totalSections} currentSegment={progress} />
-
+    <ActivityWrapper
+      activityTitle={"AngleActivity"}
+      explanationVideoUrl={"/Videos/angle_activity.mp4"}
+      onSubmit={handleFinalSubmit}
+      user={currentUser}
+      activityName="AngleActivity"
+    >
       <StyledBox>
-        <SwipeContainer2 onScroll={handleScroll}>
-          <Swipe_Section ref={section1Ref}>
-            <SectionContainer2>
-              <FormulaBox2>
-                <Acceuil titre={"Mesures des Angles"} imgSrc={"/images/Math/G/G2/carree.gif"} altText={"Mesures des Angles"}> </Acceuil>
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-          <Swipe_Section ref={section2Ref}>
-            <SectionContainer2>
-              <FormulaBox2>
-                <ContinueButton>  Concept clés</ContinueButton>
-                <NumberDisplay>
-                <strong> Un angle est défini par la rencontre de deux demi-droites ayant une origine commune. La mesure de cet angle est l'écart entre ces deux demi-droites et elle est généralement exprimée en degrés (°).</strong> 
-                </NumberDisplay>
-                <Beige_NumberDisplay>
-                  <FormulaText>
-                    <strong>Angle aigu :</strong>
-                    Un angle dont la mesure est comprise entre 0° et 90° (non inclus).
-                  </FormulaText>
-                </Beige_NumberDisplay>
-                <Beige_NumberDisplay>
-                  <FormulaText>
-                    <strong>Angle droit :</strong>
-                    Un angle qui mesure exactement 90°.
-                  </FormulaText>
-                </Beige_NumberDisplay>
-                <Beige_NumberDisplay>
-                  <FormulaText>
-                    <strong>Angle obtus :</strong>
-                    Un angle dont la mesure est comprise entre 90° et 180° (non inclus).
-                  </FormulaText>
-                </Beige_NumberDisplay>
-
-                <Beige_NumberDisplay>
-                  <FormulaText>
-                    <strong>Angle plat :</strong>
-                    Un angle qui mesure exactement 180°.
-                  </FormulaText>
-                </Beige_NumberDisplay>
-
-                <Beige_NumberDisplay>
-                  <FormulaText>
-                    <strong>Angle plein :</strong>
-                    Un angle qui mesure exactement 360°.
-                  </FormulaText>
-                </Beige_NumberDisplay>
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-          <Swipe_Section ref={section3Ref}>
-            <SectionContainer2>
-              <FormulaBox2>
-                <ContinueButton>  Activité</ContinueButton>
-                <G3A1 />
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-
-          <Swipe_Section ref={section4Ref}>
-            <SectionContainer2>
-              <FormulaBox2>
-                <ContinueButton>  Activité</ContinueButton>
-                <G3A2 />
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-          <Swipe_Section ref={section5Ref}>
-            <SectionContainer2>
-              <FormulaBox2>
-                <ContinueButton> QCM</ContinueButton>
-                <QCMG3 />
-              </FormulaBox2>
-            </SectionContainer2>
-          </Swipe_Section>
-
-        </SwipeContainer2>
+        <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
+        <Card>
+          <StyledText>Formez un angle et découvrez s'il est aigu, droit ou obtus!</StyledText>
+        </Card>
       </StyledBox>
-    </Container_Progress_Bar>
-  )
-}
-export default G3;
+      <br />
+      <div style={{ position: 'relative', width: '200px', height: '200px', margin: '40px auto' }}>
+        <svg width="200" height="200" viewBox="0 0 200 200" style={{ position: 'absolute', top: '0', left: '0' }}>
+          <path d={describeArc(100, 100, radius, 0, angle)} fill="red" />
+          {angle > 0 && (
+            <text x={getTextPosition(radius, angle).x} y={getTextPosition(radius, angle).y} fill="white" dy=".3em" textAnchor="middle">
+              {angle}°
+            </text>
+          )}
+        </svg>
+        <div style={{ 
+            position: 'absolute', 
+            bottom: '50%', 
+            left: '50%',
+            width: '6px',
+            height: '70%',
+            marginLeft: '-2px',
+            borderRadius: '2px',
+            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+            transformOrigin: 'bottom',
+            transition: 'none',
+            backgroundColor: '#2193b0',
+            top: '50%', 
+            transform: 'translate(-50%, -100%)'
+          }}
+        ></div>
+        <div
+          style={{
+            position: 'absolute', 
+            bottom: '50%', 
+            left: '50%',
+            width: '6px',
+            height: '70%',
+            marginLeft: '-2px',
+            borderRadius: '2px',
+            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
+            transformOrigin: 'bottom',
+            transition: 'none',
+            backgroundColor: '#2193b0',
+            top: '50%',
+            transform: `translate(-50%, -100%) rotate(${angle}deg)`
+          }}
+        ></div>
+      </div>
+      <br />
+      <Card>
+        <StyledText style={{ color: messageColor }}>{message}</StyledText>
+      </Card>
+      <div style={{ width: '80%', marginTop: '20px' }}>
+        <StyledText>Angle actuel: {angle}°</StyledText>
+        <Slider
+          value={angle}
+          min={0}
+          max={180}
+          onChange={handleSliderChange}
+          onMouseDown={handleSliderStart}
+          onMouseUp={handleSliderEnd}
+          onTouchStart={handleSliderStart}
+          onTouchEnd={handleSliderEnd}
+        />
+      </div>
+      <br />
+      <ButtonContainer>
+        <Button variant="contained" color="primary" onClick={verifyAngle} disabled={isLastQuestion}>
+          Répondre
+        </Button>
+       
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFinalSubmit}
+          style={{ marginLeft: "20px" }}
+          disabled={!isLastQuestion}
+        >
+          Terminer
+        </Button>
+      </ButtonContainer>
+    </ActivityWrapper>
+  );
+};
+
+export default AngleActivity;

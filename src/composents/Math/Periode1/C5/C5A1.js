@@ -1,274 +1,153 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Typography, Card, CardContent } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-// import Branche from "./imagesC5/branches.png";
-// import Fteacher from "../Images/teacher.png";
-// import Eggs from "./imagesC5/Eggs.png";
-import styled from "styled-components";
-const useStyles = makeStyles({
-  card: {
-    marginTop: '20px',
-    marginBottom: '20px',
-  },
-  buttons: {
-    marginTop: '10px',
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  button: {
-    borderRadius: '50%',
-    width: '40px',
-    height: '40px',
-    minWidth: '40px',
-  },
-});
-
-
-
-const StyledText = styled.p`
-  padding: 0px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1em;
-  font-family: "Comic Sans MS", sans-serif;
-  &:hover {
-    transform: scale(1.05);
-  }`;
-
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../../../Sign_in/v2/firebase';
+import ActivityWrapper from '../../Reusable Components/Slides Content/ActivityWrapper';
+import useSound from 'use-sound';
+import correctSound from '../../../sounds/correct.mp3';
+import incorrectSound from '../../../sounds/incorrect.mp3';
 
 function C5A1() {
-  const classes = useStyles();
+  const { currentUser } = useAuth();
   const [branches, setBranches] = useState([5, 3, 2, 4]);
-  const [completeTrays, setCompleteTrays] = useState(4);
-  const [randomNumbers, setRandomNumbers] = useState([]);
-  const [targetNumber, setTargetNumber] = useState(0);
-  const [userAnswers, setUserAnswers] = useState(["", "", ""]);
-  const [areCorrect, setAreCorrect] = useState([null, null, null]);
-
-  const generateNumbers = () => {
-    let numbers = [];
-    for (let i = 0; i < 5; i++) {
-      numbers.push(Math.floor(Math.random() * 10) + 1);
-    }
-    setRandomNumbers(numbers);
-    setTargetNumber(Math.floor(Math.random() * 100) + 50);
-    setUserAnswers(["", "", ""]);
-    setAreCorrect([null, null, null]);
-    setBranches(branches.map(() => Math.floor(Math.random() * 10) + 1));
-    setCompleteTrays(Math.floor(Math.random() * 10) + 1);
-  }
+  const [userAnswers, setUserAnswers] = useState("");
+  const [areCorrect, setAreCorrect] = useState(null);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [entryTime, setEntryTime] = useState(null);
+  const [playCorrect] = useSound(correctSound);
+  const [playIncorrect] = useSound(incorrectSound);
 
   useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
     generateNumbers();
   }, []);
 
+  const generateNumbers = () => {
+    setBranches(branches.map(() => Math.floor(Math.random() * 10) + 1));
+    setUserAnswers("");
+    setAreCorrect(null);
+  };
 
-  const checkAnswer = (index, correctAnswer) => {
-    try {
-      setAreCorrect(areCorrect.map((_, i) => i === index ? eval(userAnswers[i]) === correctAnswer : null));
-    } catch (error) {
-      setAreCorrect(areCorrect.map((_, i) => i === index ? false : null));
+  const checkAnswer = () => {
+    const correctAnswer = branches[0] * branches[1] * branches[2] * branches[3];
+    const isCorrect = parseInt(userAnswers) === correctAnswer;
+
+    if (isCorrect) {
+      playCorrect();
+      setTimeout(() => {
+        setAreCorrect(true);
+        setCorrectAnswers(prev => prev + 1);
+      }, 500); // Affiche le message après le son
+    } else {
+      playIncorrect();
+      setTimeout(() => {
+        setAreCorrect(false);
+        setIncorrectAnswers(prev => prev + 1);
+      }, 500); // Affiche le message après le son
     }
-  }
+
+    setQuestionsAnswered(prev => {
+      const next = prev + 1;
+      if (next >= 7) {
+        setIsLastQuestion(true);
+      } else {
+        setTimeout(generateNumbers, 3000); // Génère la nouvelle question après un petit délai
+      }
+      return next;
+    });
+  };
+
+  const handleReset = () => {
+    generateNumbers();
+    setQuestionsAnswered(0);
+    setCorrectAnswers(0);
+    setIncorrectAnswers(0);
+    setIsLastQuestion(false);
+  };
+
+  const sendActivityData = async () => {
+    if (!currentUser || !currentUser.uid) {
+      console.error('User is not logged in.');
+      return;
+    }
+
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "C5A1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questionsAnswered,
+      correctAnswers: correctAnswers,
+      incorrectAnswers: incorrectAnswers,
+      allAnswersCorrect: correctAnswers === questionsAnswered
+    };
+
+    try {
+      await addDoc(collection(db, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+  };
+
+  const handleFinish = () => {
+    sendActivityData();
+    handleReset();
+  };
 
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-    <strong style={{color:'orange'}}>Exercice 1 </strong>
-      <card>
-        <CardContent>
-        <img
-                src={"/images/Math/C/C5/arbre.gif"}
+    <ActivityWrapper
+      activityTitle={"C5A1 - Arbre"}
+      explanationVideoUrl={"/Videos/number_sorting.mp4"}
+      onSubmit={sendActivityData}
+      user={currentUser}
+      activityName="C5A1"
+    >
+      <Box sx={{ '& > :not(style)': { m: 1 } }}>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>Exercice 1</Typography>
+            <img src={"/images/Math/C/C5/arbre.png"} alt="Arbre"  style={{width:'60%'}}/>
+            <br></br>
+            <br></br>
+            <br></br>
 
-                // style={{
-                //   width: '100px',
-                //   marginBottom: '10px',
-                //   marginRight: '10px',
-                // }}
-              />
-          <Box my={2}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-           
-              <Card
-                style={{
-                  borderRadius: '20px',
-                  backgroundColor: '#1877f2',
-                  padding: '10px',
-                }}
-              >
-                <CardContent>
-
-                  <Typography variant="body1" style={{ color: '#ffffff' }}>
-                    J'ai {branches[0]} branches portant chacune {branches[1]} branches qui portent chacune elles-mêmes {branches[2]} branches munies chacune de {branches[3]} feuilles. Combien de feuilles ai-je en tout ?
-                  </Typography>
-
-
-
-                </CardContent>
-              </Card>
-            </div>
-          </Box>
-
-          <Box my={2}>
-            <form >
-              <TextField
-                variant="outlined"
-                type="number"
-                value={userAnswers[0]}
-                onChange={e => setUserAnswers([parseInt(e.target.value), ...userAnswers.slice(1)])}
-                label="Votre réponse"
-
-
-                fullWidth
-              />
-              <h1></h1>
-              <div className={classes.buttons}>
-                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(0, branches[0] * branches[1] * branches[2] * branches[3])}>OK</Button>
-                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-              </div>
-              {areCorrect[0] !== null && (
-                <Typography color={areCorrect[0] ? 'success.main' : 'error.main'}>
-                  {areCorrect[0] ? 'Correct!' : 'Incorrect.'}
-                </Typography>
-              )}
-            </form>
-          </Box>
-
-        </CardContent>
-      </card>
-
-
-<br></br><br></br>
-      <card>
-    <strong style={{color:'orange'}}>Exercice 2 </strong>
-        <CardContent>
-
-        <img
-                src={"/images/Math/C/C5/egggs.gif"}
-
-                // style={{
-                //   width: '100px',
-                //   marginBottom: '10px',
-                //   marginRight: '10px',
-               // }}
-              />
-          <Box my={2}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-            
-              <Card
-                style={{
-                  borderRadius: '20px',
-                  backgroundColor: '#1877f2',
-                  padding: '10px',
-                }}
-              >
-                <CardContent>
-
-                  <Typography variant="body1" style={{ color: '#ffffff' }}>
-                    Il reste sur le comptoir de la boutique {completeTrays} plateaux d'œufs complets. Combien d'œufs reste-t-il ?
-                  </Typography>
-
-
-                </CardContent>
-              </Card>
-            </div>
-          </Box>
-
-          <Box my={2}>
-            <form >
-              <TextField
-                variant="outlined"
-                type="number"
-                value={userAnswers[1]}
-                onChange={e => setUserAnswers([userAnswers[0], parseInt(e.target.value), userAnswers[2]])}
-                label="Votre réponse"
-
-
-                fullWidth
-              />
-              <h1></h1>
-              <div className={classes.buttons}>
-                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(1, completeTrays * 12)}>OK</Button>
-                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-              </div>
-              {areCorrect[1] !== null && (
-                <Typography color={areCorrect[1] ? 'success.main' : 'error.main'}>
-                  {areCorrect[1] ? 'Correct!' : 'Incorrect.'}
-                </Typography>
-              )}
-            </form>
-          </Box>
-
-        </CardContent>
-      </card>
-
-
-<br></br><br></br>
-      <card>
-         <strong style={{color:'orange'}}>Exercice 3 </strong>
-        <CardContent>
-
-        <img
-                src={"images/math/teacher.png"}
-
-                style={{
-                  width: '220px',
-                  marginBottom: '10px',
-                  
-                }}
-              />
-          <Box my={2}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-            
-              <Card
-                style={{
-                  borderRadius: '20px',
-                  backgroundColor: '#1877f2',
-                  padding: '10px',
-                }}
-              >
-                <CardContent>
-
-                  <Typography variant="body1" style={{ color: '#ffffff' }}>
-                    Voici les nombres : {randomNumbers.join(", ")}. Essayez d'atteindre le nombre : {targetNumber}.
-                    utiliser chaque nombre une seule fois.
-                  </Typography>
-
-
-                </CardContent>
-              </Card>
-            </div>
-          </Box>
-
-          <Box my={2}>
-            <form >
-              <TextField
-                variant="outlined"
-                type="text"
-                value={userAnswers[2]}
-                onChange={e => setUserAnswers(userAnswers.slice(0, 2).concat(e.target.value))}
-                label="Votre formule"
-
-                fullWidth
-              />
-              <h1></h1>
-              <div className={classes.buttons}>
-                <Button className={classes.button} variant="contained" color="primary" onClick={() => checkAnswer(2, targetNumber)}>OK</Button>
-                <Button className={classes.button} variant="contained" color="error" onClick={generateNumbers}>&#x21bb;</Button>
-              </div>
-              {areCorrect[2] !== null && (
-                <Typography color={areCorrect[2] ? 'success.main' : 'error.main'}>
-                  {areCorrect[2] ? 'Correct!' : 'Incorrect.'}
-                </Typography>
-              )}
-            </form>
-          </Box>
-
-        </CardContent>
-      </card>
-    </Box>
+            <Typography variant="body1" gutterBottom>
+              J'ai {branches[0]} branches portant chacune {branches[1]} branches qui portent chacune elles-mêmes {branches[2]} branches munies chacune de {branches[3]} feuilles. Combien de feuilles ai-je en tout ?
+            </Typography>
+            <TextField
+              variant="outlined"
+              type="number"
+              value={userAnswers}
+              onChange={e => setUserAnswers(e.target.value)}
+              label="Votre réponse"
+              fullWidth
+            />
+            <Box mt={2}>
+              <Button variant="contained" color="primary" onClick={checkAnswer} disabled={isLastQuestion}>
+                Répondre
+              </Button>
+              <Button variant="contained" color="primary" onClick={handleFinish} disabled={!isLastQuestion}>
+                Terminer
+              </Button>
+            </Box>
+            {areCorrect !== null && (
+              <Typography color={areCorrect ? 'success.main' : 'error.main'}>
+                {areCorrect ? 'Bravo, c\'est correct!' : 'Désolé, ce n\'est pas correct.'}
+              </Typography>
+            )}
+          </CardContent>
+        </Card>
+      </Box>
+    </ActivityWrapper>
   );
 }
 
 export default C5A1;
-

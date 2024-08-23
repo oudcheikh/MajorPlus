@@ -68,9 +68,9 @@ const ButtonContainer = styled(Box)({
   marginTop: '20px',
 });
 
-const C2A1 = () => {
+const C2_Exercice1= () => {
   const [signs] = useState(['>', '=', '<']);
-  const [selectedSymbol, setSelectedSymbol] = useState(">");
+  const [selectedSymbol, setSelectedSymbol] = useState("?");
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [showX, setShowX] = useState(false);
   const [currentAttempt, setCurrentAttempt] = useState(1);
@@ -182,7 +182,7 @@ const C2A1 = () => {
     <ActivityWrapper
       activityTitle={"Comaraison des nombres"}
       explanationVideoUrl={"/Videos/number_sorting.mp4"}
-      onSubmit={null}
+      onSubmit={checkAnswer} 
       user={currentUser}
       activityName="C2A1"
     >
@@ -254,4 +254,4 @@ const C2A1 = () => {
   );
 };
 
-export default C2A1;
+export default C2_Exercice1;
