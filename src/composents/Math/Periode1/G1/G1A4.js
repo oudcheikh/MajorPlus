@@ -8,31 +8,12 @@ import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
 import styled from 'styled-components';
-import { Container, Card, StyledText, ContinueButton } from '../../../Styles/MajorStyles';
+import { Container, Card,Canvas, StyledText, ContinueButton } from '../../../Styles/MajorStyles';
 import Grid from './Gride';
 
 const TOTAL_QUESTIONS = 7;
 
-const Canvas = styled.div`
-  height: 40vh;
-  width: 40vh;
-  background-color: ${(props) => (props.isActive ? '#FFC107' : '#E1F5FE')};
-  border: 1px solid #B0BEC5;
-  position: relative;
-  cursor: pointer;
 
-  svg {
-      pointer-events: none;
-  }
-
-  &:hover {
-      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
-  }
-
-  @media (max-width: 768px) {
-      height: 60vh;
-  }
-`;
 
 function Geo1() {
     const [lines, setLines] = useState(null);

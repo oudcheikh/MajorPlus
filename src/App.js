@@ -13,15 +13,28 @@ import Math from "./composents/Math/Math.js";
 import C6 from "./composents/Math/Periode1/C6/C6.js";
 import M2 from "./composents/Math/Periode1/M2/M2.js";
 import G1 from "./composents/Math/Periode1/G1/G1.js";
-import P2A1A from "./composents/Math/Periode2/C09/P2A1A.js";
-import P2A1B from "./composents/Math/Periode2/C12/P2A1B.js";
-import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
+
 import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
 
 import C1_new from './composents/Math/Periode1/C1/v2/C1_new.js';
 import C2_new from './composents/Math/Periode1/C2/v2/C2_new.js';
 import C3_new from './composents/Math/Periode1/C3/V2/C3_new.js';
 import C4 from './composents/Math/Periode1/C4/C4.js';
+import C5 from './composents/Math/Periode1/C5/C5.js';
+
+import G3 from './composents/Math/Periode1/G3/G3.js';
+import G2 from './composents/Math/Periode1/G2/G2.js';
+
+import G3A2 from './composents/Math/Periode1/G3/G3A2.js';
+import G1A3 from './composents/Math/Periode1/G1/G1A3.js';
+import G1A4 from './composents/Math/Periode1/G1/G1A4.js';
+
+import P2A1A from "./composents/Math/Periode2/C09/P2A1A.js";
+import P2A1B from "./composents/Math/Periode2/C12/P2A1B.js";
+import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
+
+
+
 
 import SecondComponent from './composents/ProgressTracker/SecondComponent';
 
@@ -64,6 +77,7 @@ function App() {
                         <Route path="/" element={<Acceuil />} />
                         <Route path="/Math" element={<Math />} />
 
+
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/signout" element={<SignOut />} />
@@ -77,9 +91,13 @@ function App() {
                         <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
                         <Route path="/C3_new" element={<C3_new onFinish={() => handleFinish(2)} />} />
                        
+                        <Route path="/C5" element={<C5 onFinish={() => handleFinish(3)} />} />
 
                         <Route path="/C6" element={<C6 onFinish={() => handleFinish(3)} />} />
                         <Route path="/G1" element={<G1 onFinish={() => handleFinish(4)} />} />
+                        <Route path="/G2" element={<G2 onFinish={() => handleFinish(4)} />} />
+                        <Route path="/G3" element={<G3 onFinish={() => handleFinish(4)} />} />
+
                         <Route path="/M2" element={<M2 onFinish={() => handleFinish(5)} />} />
                        
                         {/* Periode2 */}
@@ -88,6 +106,18 @@ function App() {
                         <Route path="/P3A3" element={<P3A3 onFinish={() => handleFinish(0)} />} />
 
                         <Route path="/Buuton3D" element={<Buuton3D />} />
+
+
+                        {/* Noscroll */}
+
+                        <Route path="/G3A2" element={<G3A2 />} />
+                        <Route path="/G1A3" element={<G1A3 />} />
+                        <Route path="/G1A4" element={<G1A4 />} />
+
+
+
+
+
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>

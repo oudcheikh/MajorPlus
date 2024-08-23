@@ -1,122 +1,155 @@
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Typography, Card, CardContent } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import ReplyIcon from '@mui/icons-material/Reply';
-// import enfant from './imagesC4/enfant1.png'
+import { Box, TextField, Button, Typography, Card } from '@mui/material';
+import styled from 'styled-components';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import { FormulaText, StyledBox } from "../../../Styles/MajorStyles";
 
-const useStyles = makeStyles({
-  card: {
-    marginTop: '20px',
-    marginBottom: '20px',
-  },
-  buttons: {
-    marginTop: '10px',
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
+const ButtonContainer = styled.div`
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-function C4A1() {
-  const classes = useStyles();
+const ImageContainer = styled.img`
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+`;
+
+const CardContainer = styled(Card)`
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  border-radius: 40px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E1F5FE;
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+`;
+
+const Exercice1 = () => {
   const [addValue, setAddValue] = useState(0);
-  const [subValue, setSubValue] = useState(0);
   const [addResult, setAddResult] = useState(0);
-  const [subResult, setSubResult] = useState(0);
   const [userAddAnswer, setUserAddAnswer] = useState(0);
-  const [userSubAnswer, setUserSubAnswer] = useState(0);
   const [isAddCorrect, setIsAddCorrect] = useState(null);
-  const [isSubCorrect, setIsSubCorrect] = useState(null);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     generateNewValues();
+    const now = new Date();
+    setEntryTime(now);
   }, []);
 
   const generateNewValues = () => {
     const add = Math.floor(Math.random() * 50) + 1;
-    const sub = Math.floor(Math.random() * 50) + 1;
     const addResult = Math.floor(Math.random() * 100) + 50;
-    const subResult = Math.floor(Math.random() * 50) + 50;
     setAddValue(add);
-    setSubValue(sub);
     setAddResult(addResult);
-    setSubResult(subResult);
     setUserAddAnswer(0);
-    setUserSubAnswer(0);
     setIsAddCorrect(null);
-    setIsSubCorrect(null);
   };
 
+  const verifyAnswer = () => {
+    const isCorrect = userAddAnswer === addResult - addValue;
+    setIsAddCorrect(isCorrect);
+    if (isCorrect) {
+      setCorrectAnswers(correctAnswers + 1);
+    } else {
+      setIncorrectAnswers(incorrectAnswers + 1);
+    }
+    setQuestionsAnswered(questionsAnswered + 1);
+    if (questionsAnswered + 1 >= 7) {
+      setIsLastQuestion(true);
+    } else {
+      setTimeout(generateNewValues, 3000);
+    }
+  };
+
+  const handleFinalSubmit = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "Exercice1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: 7,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect: correctAnswers === 7,
+    };
+
+    try {
+      await addDoc(collection(db, "activities"), activityData);
+      console.log("Activity data sent:", activityData);
+    } catch (e) {
+      console.error("Error sending activity data:", e);
+    }
+
+    generateNewValues();
+  };
 
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <Card className={classes.card}>
-        <CardContent>
-        {/* <img src={"/images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} /> */}
-      <strong>  Exercice1: </strong><br></br>
+    <ActivityWrapper
+      activityTitle={"Exercice1"}
+      explanationVideoUrl={"/Videos/exercice1.mp4"}
+      onSubmit={handleFinalSubmit}
+      user={currentUser}
+      activityName="Exercice1"
+    >
+      <Box display="flex" alignItems="center">
+        <ImageContainer src="/images/Math/C/C1/pro2.png" alt="Activity" />
+        <CardContainer>
           <Typography variant="h6">
             Je pense à un nombre. Je lui ajoute {addValue}, je trouve {addResult}. Quel est ce nombre ?
           </Typography>
-          <br/>
-          <br/>
-          <TextField
-            variant="outlined"
-            type="number"
-            value={userAddAnswer}
-            onChange={e => setUserAddAnswer(parseInt(e.target.value))}
-            label="Votre réponse"
-          />
-          {isAddCorrect !== null && (
-            <Typography color={isAddCorrect ? 'success.main' : 'error.main'}>
-              {isAddCorrect ? 'Correct!' : 'Incorrect.'}
-            </Typography>
-          )}
-          <div className={classes.buttons}>
-            <Button variant="contained" color="primary" onClick={() => setIsAddCorrect(userAddAnswer === addResult - addValue)} style={{borderRadius: '50%'}}>
-              OK
-            </Button>
-            <Button variant="contained" color="primary" onClick={generateNewValues} style={{borderRadius: '50%'}}>
-              <ReplyIcon/>
-
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-      <Card className={classes.card}>
-        <CardContent>
-        {/* <img src={"/images/Math/C/imagesC4/enfant1.png"} alt="Etudiant" style={{ width: '70%' }} /> */}
-
-       <strong> Exercice2:</strong><br></br>
-          <Typography variant="h6">
-            Je pense à un nombre. Je lui retranche {subValue}, je trouve {subResult}. Quel est ce nombre ?
+        </CardContainer>
+      </Box>
+      <br />
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <TextField
+          variant="outlined"
+          type="number"
+          value={userAddAnswer}
+          onChange={(e) => setUserAddAnswer(parseInt(e.target.value))}
+          label="Votre réponse"
+          style={{ marginTop: "20px", width: "70%" }}
+        />
+        {isAddCorrect !== null && (
+          <Typography color={isAddCorrect ? 'success.main' : 'error.main'}>
+            {isAddCorrect ? 'Correct!' : 'Incorrect.'}
           </Typography>
-          <br/>
-          <br/>
-          <TextField
-            variant="outlined"
-            type="number"
-            value={userSubAnswer}
-            onChange={e => setUserSubAnswer(parseInt(e.target.value))}
-            label="Votre réponse"
-          />
-          {isSubCorrect !== null && (
-            <Typography color={isSubCorrect ? 'success.main' : 'error.main'}>
-              {isSubCorrect ? 'Correct!' : 'Incorrect.'}
-            </Typography>
-          )}
-          <div className={classes.buttons}>
-            <Button variant="contained" color="primary" onClick={() => setIsSubCorrect(userSubAnswer === subResult + subValue)} style={{borderRadius: '50%'}}>
-              OK
-            </Button>
-            <Button variant="contained" color="primary" onClick={generateNewValues} style={{borderRadius: '50%'}}>
-              <ReplyIcon/>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </Box>
+        )}
+      </Box>
+      <ButtonContainer>
+        <Button variant="contained" color="primary" onClick={verifyAnswer}>
+          Répondre
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFinalSubmit}
+          style={{ marginLeft: "20px" }}
+          disabled={!isLastQuestion}
+        >
+          Terminer
+        </Button>
+      </ButtonContainer>
+    </ActivityWrapper>
   );
-}
+};
 
-export default C4A1;
-
-
+export default Exercice1;

@@ -1,15 +1,13 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormulaText } from '../../../Styles/MajorStyles';
-import Modal from '../../../Modals/Modal2'
-import './Style.css';
+import Modal from '../../../Modals/Modal2';
+import './tabStyle.css';
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper"; 
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
-
 import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
-
+import { Box, Button } from '@mui/material';
 
 const imageStyle = {
     width: "80%",
@@ -19,6 +17,7 @@ const imageStyle = {
     marginLeft: "auto",
     marginRight: "auto",
 };
+
 export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
     boxSizing: "border-box",
     width: "80%",
@@ -38,16 +37,23 @@ export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
         transform: "scale(1.05)",
     },
 }));
-function Table_mesure() {
+
+const ButtonContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+});
+
+function Exercice2() {
     const [réponse, setReponse] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [modalImg, setModalImg] = useState("");
-    const [modalAlt, setModalAlt] = useState("");
     const { currentUser } = useAuth();
     const [score, setScore] = useState(0);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const [entryTime, setEntryTime] = useState(null);
-
-
+    const [terminer, setTerminer] = useState(true);
 
     useEffect(() => {
         const now = new Date();
@@ -95,105 +101,104 @@ function Table_mesure() {
         setTableData(updatedData);
     };
 
-    const handleSubmit = () => {
+    const checkAnswer = () => {
+        setTerminer(false);
+        let correct = 0;
+        let incorrect = 0;
+
         const userResponses = tableData.map(row => ({ dm: parseFloat(row.dm), cm: parseFloat(row.cm) }));
-        const isValid = userResponses.every(response => !isNaN(response.dm) && !isNaN(response.cm) && response.dm >= 0 && response.cm >= 0);
+        const isValid = userResponses.every(response =>
+            !isNaN(response.dm) && !isNaN(response.cm) && response.dm >= 0 && response.cm >= 0
+        );
 
         if (isValid) {
-            const bonnesReponsesDm = bonnesReponses.map(br => br.dm);
-            const bonnesReponsesCm = bonnesReponses.map(br => br.cm);
-            const userResponsesDm = userResponses.map(ur => ur.dm);
-            const userResponsesCm = userResponses.map(ur => ur.cm);
+            bonnesReponses.forEach((br, index) => {
+                if (userResponses[index].dm === br.dm && userResponses[index].cm === br.cm) {
+                    correct += 1;
+                } else {
+                    incorrect += 1;
+                }
+            });
 
-            if (JSON.stringify(userResponsesDm) === JSON.stringify(bonnesReponsesDm) &&
-                JSON.stringify(userResponsesCm) === JSON.stringify(bonnesReponsesCm)) {
-                setReponse("Bravo! Les données sont correctes.");
-                // setModalImg('/images/Modals/Congrats.gif');
-                // setModalAlt("Bravo! Les données sont correctes.");
-                // console.log("Bravo! Les données sont correctes.");
-                setScore(100)
+            if (correct === bonnesReponses.length) {
+                setReponse("Bravo! Toutes les réponses sont correctes.");
+                setScore(100);
             } else {
-                setReponse("Désolé, les données ne sont pas correctes.");
-                setScore(0)
-                // setModalImg('/images/Modals/triste.gif');
-                // setModalAlt("Désolé, les données ne sont pas correctes.");
-                
+                setReponse(`Désolé, certaines réponses sont incorrectes. ${correct} correct, ${incorrect} incorrect.`);
+                setScore(0);
             }
+
+            setCorrectAnswers(correct);
+            setIncorrectAnswers(incorrect);
             setShowModal(true);
         } else {
             setReponse("Veuillez entrer des valeurs numériques valides pour les colonnes dm et cm.");
-            setModalImg('/images/Modals/triste.gif');
-            setModalAlt("Veuillez entrer des valeurs numériques valides");
-            setShowModal(true);
-           
+            incorrect = bonnesReponses.length; // Considérer toutes les réponses comme incorrectes
         }
+
+        return {
+            allAnswersCorrect: correct === bonnesReponses.length,
+            totalQuestions: bonnesReponses.length,
+            correctAnswers: correct,
+            incorrectAnswers: incorrect,
+            score
+        };
+    };
+
+    
+
+    const handleFinish = () => {
+        sendActivityData();
+        handleReset();
+    };
+
+    const handleReset = () => {
+        setTableData([
+            { carreaux: '20', dm: '', cm: '' },
+            { carreaux: '7', dm: '', cm: '' },
+            { carreaux: '33', dm: '', cm: '' },
+        ]);
+        setReponse('');
+        setShowModal(false);
+        setScore(0);
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setTerminer(true);
     };
 
     const voir_bonne_reponce = () => {
-        setReponse('');
         const updatedData = tableData.map((row, index) => ({
             ...row,
             dm: bonnesReponses[index].dm.toString(),
             cm: bonnesReponses[index].cm.toString()
         }));
         setTableData(updatedData);
-    };
-
-    const handleReset = () => {
-        const initialData = [
-            { carreaux: '50', dm: '', cm: '' },
-            { carreaux: '410', dm: '', cm: '' },
-            { carreaux: '30', dm: '', cm: '' },
-        ];
-        setTableData(initialData);
         setReponse('');
-        setShowModal(false);
-        setScore(0)
     };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
-
-    const  checkAnswer =()=>{
-    }
-
-const verifier =()=>{
-    handleSubmit()
-    sendActivityData()
-
-}
-
 
     return (
         <div>
+            <ActivityWrapper
+                activityTitle={"Exercice 2"}
+                explanationVideoUrl={"/Videos/number_sorting.mp4"}
+                onSubmit={checkAnswer}
+                user={currentUser}
+                activityName="C3_Exercice2"
+            >
+             
 
-<ActivityWrapper
-      activityTitle={"Exercice 2"}
-      explanationVideoUrl={"/Videos/number_sorting.mp4"}
-      onSubmit={checkAnswer}
-      user={currentUser}
-      activityName="C3_Exercice2"
-    >
+                <FormulaText>
+                    <strong><span>Passer du Km et du hm vers le mètre :</span></strong>
+                    <br />
 
+                    <ButtonContainer style={{ position: "relative", left: "100px" }}>
+                        <Button variant="contained" onClick={voir_bonne_reponce}>
+                            Voir la Correction
+                        </Button>
+                    </ButtonContainer>
 
-
-
-<img  src={"/images/Math/C/C3/regleetmatre.png"} alt="mesure" style={imageStyle} />
-            <br></br>
-{/* <beige_NumberDisplay>                <strong>N.B<br />
-                    Pour passer du mètre au centimètre, multiplie par 100.Pour faire l'inverse, on divise par 100.</strong>
-            </beige_NumberDisplay> */}
-
-<Orange_NumberDisplay>
-<strong>Pour passer du centimètre au  mètre et dicametre on divise par 10 et 100 .</strong>
-</Orange_NumberDisplay>
-
-            <FormulaText>
-                <strong><span style={{ color: '#FF7F50' }}>passer du Km et le hm vers le mètre :</span></strong>
-                <br />
-                <div className="table-container">
-                    <table>
+                    <br />
+                    <table className="conversion-table">
                         <thead>
                             <tr>
                                 <th>cm</th>
@@ -225,30 +230,38 @@ const verifier =()=>{
                             ))}
                         </tbody>
                     </table>
-                </div>
-                <div>
-                    <strong style={{ color: 'blue' }}>
-                        <span>{réponse}</span>
-                    </strong>
-                </div>
-                <div>
-                    <button onClick={verifier}>Vérifier</button>&nbsp;
-                    <button onClick={handleReset}>Recommencer</button>&nbsp;
-                    <button className='bonn-rep' onClick={voir_bonne_reponce}>Voir correction</button>
-                </div>
-                <br />
-                <br />
-            </FormulaText>
-            <Modal
-                show={showModal}
-                handleClose={handleCloseModal}
-                imgSrc={modalImg}
-                altText={modalAlt}
-            />
 
+                    <div>
+                        <strong style={{ color: 'blue' }}>
+                            <span>{réponse}</span>
+                        </strong>
+                    </div>
+
+                    <ButtonContainer>
+                        <Button
+                            variant="contained"
+                            style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }}
+                            onClick={checkAnswer}
+                            disabled={!terminer}
+                        >
+                            Répondre
+                        </Button>
+
+                        <Button
+                            variant="contained"
+                            onClick={handleFinish}
+                            disabled={terminer}
+                        >
+                            Terminer
+                        </Button>
+                    </ButtonContainer>
+
+                    <br />
+                    <br />
+                </FormulaText>
             </ActivityWrapper>
         </div>
     );
 }
 
-export default Table_mesure;
+export default Exercice2;

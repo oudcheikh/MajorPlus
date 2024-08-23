@@ -1,0 +1,66 @@
+.container {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    color: #007acc;
+    margin-bottom: 20px;
+}
+
+.conversion-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures equal column width */
+}
+
+.conversion-table th, .conversion-table td {
+    padding: 15px;
+    border: 2px solid #007acc;
+    text-align: center;
+    font-size: 1.2em;
+    width: 33.33%; /* Ensures each column takes up 1/3 of the table width */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.conversion-table th {
+    background-color: #cce7ff;
+    color: #005b99;
+    font-size: 1.4em;
+}
+
+.conversion-table tr:nth-child(even) {
+    background-color: #b3daff;
+}
+
+.conversion-table tr:nth-child(odd) {
+    background-color: #e6f2ff;
+}
+
+.conversion-table td.m, .conversion-table td.cm, .conversion-table td.dm {
+    font-weight: bold;
+    color: #005b99;
+}
+
+.conversion-table tr:hover td {
+    background-color: #99ccff;
+    color: #005b99;
+}
+
+.conversion-table td input {
+    width: 80%;
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #007acc;
+}
+
+.conversion-table td input:focus {
+    border-color: #005b99;
+    outline: none;
+}

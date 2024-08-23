@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Typography, Box } from '@mui/material';
 import { Howl } from 'howler';
 import correctSoundFile from '../../../sounds/correct.mp3';
@@ -25,6 +25,7 @@ function Geo1() {
     const [entryTime, setEntryTime] = useState(null);
     const [currentColor, setCurrentColor] = useState(0);
     const colors = ['#FF1744', '#00E676', '#651FFF', '#FF9100', '#E1F5FE'];
+    const canvasRef = useRef(null);
     const { currentUser } = useAuth();
 
     const correctSound = new Howl({
@@ -39,17 +40,31 @@ function Geo1() {
         const now = new Date();
         setEntryTime(now);
         newCoordinates();
+
+        // Disable scrolling when component mounts
+        disableScrolling();
+
+        // Re-enable scrolling when component unmounts
+        return () => {
+            enableScrolling();
+        };
     }, []);
 
     const disableScrolling = () => {
-        document.body.style.overflow = 'hidden';
+        window.addEventListener('scroll', preventScroll, { passive: false });
+        window.addEventListener('touchmove', preventScroll, { passive: false });
     };
 
     const enableScrolling = () => {
-        document.body.style.overflow = '';
+        window.removeEventListener('scroll', preventScroll);
+        window.removeEventListener('touchmove', preventScroll);
     };
 
-    const getRelativeCoordinates = (e) => {
+    const preventScroll = (e) => {
+        e.preventDefault();
+    };
+
+    const getRelativeCoordinates = (canvas, e) => {
         let clientX, clientY;
         if (e.touches) {
             clientX = e.touches[0].clientX;
@@ -58,99 +73,95 @@ function Geo1() {
             clientX = e.clientX;
             clientY = e.clientY;
         }
-        const rect = e.currentTarget.getBoundingClientRect();
+        const rect = canvas.getBoundingClientRect();
         return { x: clientX - rect.left, y: clientY - rect.top };
     };
 
-    const calculateDistance = (start, end) => {
-        return Math.sqrt(
-            (end[0] - start[0]) ** 2 + (end[1] - start[1]) ** 2
-        );
-    };
-
     const startLine = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        disableScrolling();
+        if (e.type === "touchstart") {
+            e = e.touches[0];
+        }
         if (e.target.tagName === "BUTTON") return;
 
-        const coords = getRelativeCoordinates(e);
+        const coords = getRelativeCoordinates(canvasRef.current, e);
         setLines({ start: [coords.x, coords.y], end: [coords.x, coords.y] });
         setDrawing(true);
     };
 
     const moveLine = (e) => {
-        disableScrolling();
-        e.preventDefault();
-        e.stopPropagation();
         if (!drawing || !lines) return;
 
-        const coords = getRelativeCoordinates(e);
+        const coords = getRelativeCoordinates(canvasRef.current, e);
         setLines((prevLine) => ({ start: prevLine.start, end: [coords.x, coords.y] }));
     };
 
     const endLine = (e) => {
         e.preventDefault();
-        e.stopPropagation();
-        enableScrolling();
-
         if (!drawing || !lines) return;
 
-        const distance = calculateDistance(lines.start, lines.end);
-        if (distance < 30) {
-            setMessage('La ligne est trop courte. Essayez à nouveau.');
+        const lineLength = calculateDistance(
+            lines.start[0], lines.start[1], 
+            lines.end[0], lines.end[1]
+        );
+
+        if (lineLength < 30) {
             setLines(null);
+            setMessage('La ligne est trop courte. Essayez à nouveau.');
+            setDrawing(false);
+            return;
+        }
+
+        if (areParallel()) {
+            setMessage(<span style={{ color: 'green' }}>Correct! Répétez.</span>);
+            correctSound.play();
+            setCorrectAnswers(correctAnswers + 1);
         } else {
-            if (areParallel()) {
-                setMessage(<span style={{ color: 'green' }}>Correct! Repeat.</span>);
-                correctSound.play();
-                setCorrectAnswers(correctAnswers + 1);
-            } else {
-                setMessage(<span style={{ color: 'red' }}>Incorrect! The line is not parallel. Repeat.</span>);
-                incorrectSound.play();
-                setIncorrectAnswers(incorrectAnswers + 1);
-            }
+            setMessage(<span style={{ color: 'red' }}>Incorrect! La ligne n'est pas parallèle. Répétez.</span>);
+            incorrectSound.play();
+            setIncorrectAnswers(incorrectAnswers + 1);
+        }
 
-            setQuestionsAnswered(questionsAnswered + 1);
-            if (questionsAnswered + 1 >= TOTAL_QUESTIONS) {
-                setIsLastQuestion(true);
-            } else {
-                setTimeout(() => {
-                    newCoordinates();
-                }, 2000);
-            }
-
+        setQuestionsAnswered(questionsAnswered + 1);
+        if (questionsAnswered + 1 >= TOTAL_QUESTIONS) {
+            setIsLastQuestion(true);
+        } else {
             setTimeout(() => {
-                setMessage('Tracez deux lignes parallèles');
-                setLines(null);
+                newCoordinates();
             }, 2000);
         }
+
+        setTimeout(() => {
+            setMessage('Tracez deux lignes parallèles');
+            setLines(null);
+        }, 2000);
 
         setDrawing(false);
     };
 
+    const calculateDistance = (x1, y1, x2, y2) => {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    };
+
     const THRESHOLD = 0.3;
+    const MARGIN = 5;
 
     const newCoordinates = () => {
-        const newQuestions = [generateNewCoordinates()];
-        setQuestions(newQuestions);
+        setQuestions([generateNewCoordinates()]);
     };
 
     const generateNewCoordinates = () => {
-        const X1 = Math.floor(Math.random() * 100) + 1;
-        const Y1 = Math.floor(Math.random() * 100) + 1;
-        const X2 = Math.floor(Math.random() * 1000) + 1;
-        const Y2 = Math.floor(Math.random() * 1000) + 1;
-        return { X1, X2, Y1, Y2 };
+        return {
+            X1: Math.floor(Math.random() * 100) + 1,
+            Y1: Math.floor(Math.random() * 100) + 1,
+            X2: Math.floor(Math.random() * 1000) + 1,
+            Y2: Math.floor(Math.random() * 1000) + 1
+        };
     };
 
     const areParallel = () => {
-        const X1 = questions.reduce((sum, q) => sum + Math.floor(q.X1), 0);
-        const Y1 = questions.reduce((sum, q) => sum + Math.floor(q.Y1), 0);
-        const X2 = questions.reduce((sum, q) => sum + Math.floor(q.X2), 0);
-        const Y2 = questions.reduce((sum, q) => sum + Math.floor(q.Y2), 0);
+        if (!lines || questions.length === 0) return false;
 
-        if (!lines) return false;
+        const { X1, Y1, X2, Y2 } = questions[0];
 
         const referenceLine = { start: [X1, Y1], end: [X2, Y2] };
 
@@ -160,8 +171,6 @@ function Geo1() {
         const deltaY2 = referenceLine.end[1] - referenceLine.start[1];
         const deltaX2 = referenceLine.end[0] - referenceLine.start[0];
 
-        const MARGIN = 5;
-
         if (Math.abs(deltaX1) < MARGIN && Math.abs(deltaX2) < MARGIN) {
             return true;
         }
@@ -170,7 +179,8 @@ function Geo1() {
             return true;
         }
 
-        if ((Math.abs(deltaX1) < MARGIN || Math.abs(deltaX2) < MARGIN) || (Math.abs(deltaY1) < MARGIN || Math.abs(deltaY2) < MARGIN)) {
+        if ((Math.abs(deltaX1) < MARGIN || Math.abs(deltaX2) < MARGIN) || 
+            (Math.abs(deltaY1) < MARGIN || Math.abs(deltaY2) < MARGIN)) {
             return false;
         }
 
@@ -234,9 +244,7 @@ function Geo1() {
             activityName="Geo1"
         >
             <Box m={2}>
-
-                <br />
-                <div className="messageContainer" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div className="messageContainer" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <Card>
                         <StyledText>{message}</StyledText>
                     </Card>
@@ -245,6 +253,7 @@ function Geo1() {
                 <br />
                 <br />
                 <Canvas
+                    ref={canvasRef}
                     onMouseDown={startLine}
                     onMouseMove={moveLine}
                     onMouseUp={endLine}

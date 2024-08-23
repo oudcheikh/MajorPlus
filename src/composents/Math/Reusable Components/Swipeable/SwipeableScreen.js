@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SwipeableViews from "react-swipeable-views";
 import Pagination from "./Pagination";
 import { IconButton } from "@mui/material";
@@ -9,6 +9,23 @@ import { Fingerprint, ArrowForward, ArrowBack } from "@mui/icons-material";
 const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = "/" }) => {
     const [index, setIndex] = useState(currentSegmentIndex);
     const navigate = useNavigate();
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+
+        // Désactiver le défilement horizontal par glissement
+        const handleTouchMove = (event) => {
+            event.preventDefault();
+        };
+
+        container.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+        // Nettoyage lors du démontage du composant
+        return () => {
+            container.removeEventListener("touchmove", handleTouchMove);
+        };
+    }, []);
 
     const handleChangeIndex = (newIndex) => {
         setIndex(newIndex);
@@ -27,38 +44,34 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
     };
 
     return (
-
-
-        <div style={{ position: "relative", height: "100vh" }}>
+        <div
+            ref={containerRef}
+            style={{ position: "relative", height: "100vh" }}
+        >
             <div className="pagination">
                 <IconButton onClick={handleBackButton}>
-
                     <Fingerprint />
-
                 </IconButton>
                 <Pagination dots={slides.length} index={index} onChangeIndex={handleChangeIndex} />
             </div>
 
-            <SwipeableViews index={index} onChangeIndex={handleChangeIndex} style={{ height: "100%" }}>              
+            <SwipeableViews index={index} onChangeIndex={handleChangeIndex} style={{ height: "100%" }}>
                 {slides.map((SlideComponent, idx) => (
                     <div key={idx} style={{ minHeight: "100%" }}>
-                      <SlideComponent />
+                        <SlideComponent />
                     </div>
                 ))}
-
             </SwipeableViews>
 
             <div style={{ position: "absolute", bottom: "20px", width: "100%", display: "flex", justifyContent: "center", gap: "10px" }}>
-                  <IconButton
+                <IconButton
                     onClick={handlePrevSlide}
                     disabled={index === 0}
                     style={{
                         zIndex: 10,
                     }}
-                     >
-
+                >
                     <ArrowBack />
-
                 </IconButton>
 
                 <IconButton
@@ -67,9 +80,7 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
                     style={{
                         zIndex: 10,
                     }}
-                  >
- 
-
+                >
                     <ArrowForward />
                 </IconButton>
             </div>

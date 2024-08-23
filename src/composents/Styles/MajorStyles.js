@@ -230,7 +230,7 @@ export const StyledText = styled.p`
 `;
 
 export const Canvas = styled.div`
-    height: 50vh;
+    height: 30vh;
     width: 40vh;
     background-color: ${(props) => (props.isActive ? "#FFC107" : "#E1F5FE")}; // Jaune pour actif, bleu clair sinon
     border: 1px solid #b0bec5; // Ajout d'une bordure gris bleuâtre
@@ -242,7 +242,7 @@ export const Canvas = styled.div`
     }
 
     @media (max-width: 768px) {
-        height: 60vh;
+        height: 40vh;
     }
 `;
 
