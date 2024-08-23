@@ -90,7 +90,7 @@ const NumberTable = () => {
         };
 
         try {
-            await addDoc(collection(db, 'activities'), activityData);
+            await addDoc(collection(db, 'users',currentUser.uid, 'activities'), activityData);
             console.log('Activity data sent:', activityData);
         } catch (e) {
             console.error('Error sending activity data:', e);
