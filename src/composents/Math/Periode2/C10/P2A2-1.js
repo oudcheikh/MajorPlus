@@ -7,10 +7,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-// import carImg from "./imagesC10/car.png";
 import useSound from "use-sound";
 import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../../../Sign_in/v2/firebase";
 
 function P2A2_1() {
   const [questions, setQuestions] = useState([]);
@@ -19,66 +22,55 @@ function P2A2_1() {
   const [answer1, setAnswer1] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
   const [play] = useSound(correctSound);
   const [play1] = useSound(incorrectSound);
 
-  const generateQuestion = () => {
+  const generateQuestions = () => {
     const newQuestions = [
       {
         question:
-          "Brahim vient d'acheter une voiture d'occasion à un ami à 785 000 UM.Pour la peinture et la tôlerie, Diallo a dépense 45 000 UM, quelque temps après il la revend 1 020 000 UM. Quelle est le prix de revient et le benefice de brahim?",
+          "Brahim vient d'acheter une voiture d'occasion à un ami à 785 000 UM. Pour la peinture et la tôlerie, Diallo a dépensé 45 000 UM. Quel est le prix de revient et le bénéfice de Brahim s'il la revend à 1 020 000 UM ?",
         answer: 785000 + 45000,
         answer1: 1020000 - (785000 + 45000),
-        hasTwo: true ,
-        answerLabel:"Le prix de revient",
-        answer1Label: "le bénéfice",
+        hasTwo: true,
+        answerLabel: "Le prix de revient",
+        answer1Label: "Le bénéfice",
       },
       {
         question:
-        "Emma a acquis un ordinateur portable de seconde main à 350 $, avec 75 $ de réparations. Plus tard, elle le vend à 1550 $. Quel est son bénéfice et le coût initial ?",
+          "Emma a acheté un ordinateur portable d'occasion pour 350 $, et elle a dépensé 75 $ en réparations. Elle l'a ensuite vendu pour 550 $. Quel est le prix de revient et le bénéfice ?",
         answer: 350 + 75,
-        answer1: 1550 - (350 + 75),
-        hasTwo: true ,
-        answerLabel:"Le prix de revient",
-        answer1Label: "le bénéfice",
+        answer1: 550 - (350 + 75),
+        hasTwo: true,
+        answerLabel: "Le prix de revient",
+        answer1Label: "Le bénéfice",
       },
       {
         question:
-        "Alex a acheté un vélo usagé à son voisin pour 250 €. Après 30 € de réparations, il le revend à 380 €. Calculez le bénéfice réalisé et le coût total pour Alex.",
-        answer: 250 + 30,
-        answer1: 380 - (250 + 30),
-        hasTwo: true ,
-        answerLabel:"Le prix de revient",
-        answer1Label: "le bénéfice",
-      },
-      {
-        question:
-        "Sophie achète un téléphone d'occasion à 200 £. Elle dépense 40 £ pour les réparations avant de le revendre à 320 £. Déterminez son bénéfice et le prix initial.",
-        answer: 200 + 40,
-        answer1: 320 - ( 200 + 40),
-        hasTwo: true ,
-        answerLabel:"Le prix de revient",
-        answer1Label: "le bénéfice",
-      },
-      {
-        question:
-        "Arnold achète une télévision d'occasion pour 60000 dollars. Après avoir dépensé 450 dollars pour les réparations, il la vend 650 000 dollars. Quel est son bénéfice et le coût initial ?",
-        answer: 60000 + 45000,
-        answer1: 650000 - (6000 + 45000),
-        hasTwo: true ,
-        answerLabel:"Le prix de revient",
-        answer1Label: "le bénéfice",
+          "Alex a acheté une bicyclette usagée pour 100 €. Il a dépensé 25 € pour des réparations, puis l'a revendue pour 200 €. Quel est le prix de revient et le bénéfice ?",
+        answer: 100 + 25,
+        answer1: 200 - (100 + 25),
+        hasTwo: true,
+        answerLabel: "Le prix de revient",
+        answer1Label: "Le bénéfice",
       },
     ];
     setQuestions(newQuestions);
-    setShowMessage(false);
-    setShowCongratulations(false);
-    setAnswer("");
   };
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+    generateQuestions();
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowMessage(true);
+
     if (
       parseInt(answer) === questions[currentIndex].answer &&
       parseInt(answer1) === questions[currentIndex].answer1
@@ -89,125 +81,162 @@ function P2A2_1() {
       setShowCongratulations(false);
       play1();
     }
+
+    setTimeout(() => {
+      if (currentIndex < questions.length - 1) {
+        nextQuestion();
+      } else {
+        setIsLastQuestion(true);
+      }
+    }, 2000);
   };
 
-  const handleNewQuestion = () => {
-    setCurrentIndex((currentIndex + 1) % questions.length);
+  const nextQuestion = () => {
+    setCurrentIndex((prevIndex) => prevIndex + 1);
     setShowMessage(false);
     setShowCongratulations(false);
     setAnswer("");
     setAnswer1("");
   };
 
-  useEffect(() => {
-    generateQuestion();
-  }, []);
+  const reset = () => {
+    setCurrentIndex(0);
+    setIsLastQuestion(false);
+    setShowMessage(false);
+    setShowCongratulations(false);
+    setAnswer("");
+    setAnswer1("");
+  };
+
+  const submitActivity = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "P2A2_1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questions.length,
+      correctAnswers: showCongratulations ? 1 : 0,
+      incorrectAnswers: !showCongratulations ? 1 : 0,
+      allAnswersCorrect: showCongratulations && currentIndex === questions.length - 1,
+    };
+
+    try {
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+
+    reset();
+  };
 
   return (
-    <Card style={{ minHeight: "400px" }}>
-      <CardContent>
-        <Box my={2}>
-        <br></br><br></br>
-        <br></br><br></br>
-          <br></br>
-          <div style={{ position: "relative" }}>
-            <img
-              src={"images/Math/C/imagesC10/car.png"}
-              alt="car"
-              style={{
-                width: "60%",
-                height: "160px",
-                marginLeft: "50%",
-                marginTop: "155px",
-              }}
-            />
-            
-            <Card
-              style={{
-                position: "absolute",
-                bottom: "-12%",
-                left: "30%",
-                transform: "translate(-50%, -50%)",
-                borderRadius: "10px",
-                backgroundColor: "#1877f2",
-                padding: "0px",
-                color: "#ffffff",
-              }}
-            >
-              <CardContent>
-                {!showMessage && questions[currentIndex] && (
-                  <Typography variant="body1" style={{ color: "#ffffff" }}>
-                    {questions[currentIndex].question}
-                  </Typography>
-                )}
-
-                {showCongratulations && (
-                  <Typography variant="body1" style={{ color: "#ffffff" }}>
-                    Félicitations! Vous avez donné la bonne réponse!
-                  </Typography>
-                )}
-                {showMessage && !showCongratulations && (
-                  <Typography variant="body1" style={{ color: "#ffffff" }}>
-                    Réponse incorrecte. Essayez encore!
-                  </Typography>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </Box>
-        {!showMessage &&  currentIndex >= 0 && currentIndex < questions.length && (
+    <ActivityWrapper
+      activityTitle={"P2A2_1"}
+      explanationVideoUrl={"/Videos/your_video_url.mp4"}
+      onSubmit={handleSubmit}
+      user={currentUser}
+      activityName="P2A2_1"
+    >
+      <Card style={{ minHeight: "400px" }}>
+        <CardContent>
           <Box my={2}>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                label={questions[currentIndex].answerLabel}
-                type="number"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                fullWidth
-                required
+            <div style={{ position: "relative" }}>
+              <img
+                src={"images/Math/C/imagesC10/car.png"}
+                alt="car"
+                style={{
+                  width: "60%",
+                  height: "160px",
+                  marginLeft: "50%",
+                  marginTop: "155px",
+                }}
               />
-              {questions[currentIndex].hasTwo &&(
-                <>
-                  <h1></h1>
-                  <TextField
-                    label={questions[currentIndex].answer1Label}
-                    type="number"
-                    value={answer1}
-                    onChange={(e) => setAnswer1(e.target.value)}
-                    fullWidth
-                    required
-                  />
-                </>
-              )}
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ marginTop: "20px" }}
+              
+              <Card
+                style={{
+                  position: "absolute",
+                  bottom: "-12%",
+                  left: "30%",
+                  transform: "translate(-50%, -50%)",
+                  borderRadius: "10px",
+                  backgroundColor: "#1877f2",
+                  padding: "0px",
+                  color: "#ffffff",
+                }}
               >
-                Répondre
-              </Button>
-            </form>
+                <CardContent>
+                  {!showMessage && questions[currentIndex] && (
+                    <Typography variant="body1" style={{ color: "#ffffff" }}>
+                      {questions[currentIndex].question}
+                    </Typography>
+                  )}
+
+                  {showCongratulations && (
+                    <Typography variant="body1" style={{ color: "#ffffff" }}>
+                      Félicitations! Vous avez donné la bonne réponse!
+                    </Typography>
+                  )}
+                  {showMessage && !showCongratulations && (
+                    <Typography variant="body1" style={{ color: "#ffffff" }}>
+                      Réponse incorrecte. Essayez encore!
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </Box>
-        )}
-        {showMessage && (
-          <Box my={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleNewQuestion}
-              style={{ marginTop: "20px" }}
-            >
-              Générer une nouvelle question
-            </Button>
-          </Box>
-        )}
-      </CardContent>
-    </Card>
+          {!showMessage && currentIndex >= 0 && currentIndex < questions.length && (
+            <Box my={2}>
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  label={questions[currentIndex].answerLabel}
+                  type="number"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  fullWidth
+                  required
+                />
+                {questions[currentIndex].hasTwo && (
+                  <>
+                    <h1></h1>
+                    <TextField
+                      label={questions[currentIndex].answer1Label}
+                      type="number"
+                      value={answer1}
+                      onChange={(e) => setAnswer1(e.target.value)}
+                      fullWidth
+                      required
+                    />
+                  </>
+                )}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ marginTop: "20px" }}
+                >
+                  Répondre
+                </Button>
+              </form>
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={!isLastQuestion}
+        onClick={submitActivity}
+        style={{ marginTop: "20px" }}
+      >
+        Terminer
+      </Button>
+    </ActivityWrapper>
   );
 }
 
 export default P2A2_1;
-
-
-

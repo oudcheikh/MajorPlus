@@ -60,6 +60,29 @@ function Exercice2() {
         setEntryTime(now);
     }, []);
 
+ 
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000;
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "mesure",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            score: score
+          
+        };
+
+        try {
+            await addDoc(collection(db, 'users',currentUser.uid, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+    };
+
     const [tableData, setTableData] = useState([
         { carreaux: '20 ', dm: '', cm: '' },
         { carreaux: '7 ', dm: '', cm: '' },
@@ -122,31 +145,7 @@ function Exercice2() {
         };
     };
 
-    const sendActivityData = async () => {
-        const endTime = new Date();
-        const timeSpent = (endTime - entryTime) / 1000;
-
-        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers, score } = checkAnswer();
-
-        const activityData = {
-            userId: currentUser.uid,
-            activityName: "Exercice2_C2",
-            entryTime: entryTime.toISOString(),
-            timeSpent: timeSpent,
-            totalQuestions,
-            correctAnswers,
-            incorrectAnswers,
-            allAnswersCorrect,
-            score
-        };
-
-        try {
-            await addDoc(collection(db, 'activities'), activityData);
-            console.log('Activity data sent:', activityData);
-        } catch (e) {
-            console.error('Error sending activity data:', e);
-        }
-    };
+    
 
     const handleFinish = () => {
         sendActivityData();

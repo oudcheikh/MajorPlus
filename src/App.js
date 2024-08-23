@@ -13,7 +13,6 @@ import Math from "./composents/Math/Math.js";
 import C6 from "./composents/Math/Periode1/C6/C6.js";
 import M2 from "./composents/Math/Periode1/M2/M2.js";
 import G1 from "./composents/Math/Periode1/G1/G1.js";
-import G2 from "./composents/Math/Periode1/G2/G2.js";
 
 import ProgressTracker from './composents/ProgressTracker/ProgressTracker.js';
 
@@ -24,10 +23,15 @@ import C4 from './composents/Math/Periode1/C4/C4.js';
 import C5 from './composents/Math/Periode1/C5/C5.js';
 
 import G3 from './composents/Math/Periode1/G3/G3.js';
+import G2 from './composents/Math/Periode1/G2/G2.js';
+
 import G3A2 from './composents/Math/Periode1/G3/G3A2.js';
 import G1A3 from './composents/Math/Periode1/G1/G1A3.js';
 import G1A4 from './composents/Math/Periode1/G1/G1A4.js';
 
+import P2A1A from "./composents/Math/Periode2/C09/P2A1A.js";
+import P2A1B from "./composents/Math/Periode2/C12/P2A1B.js";
+import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
 
 
 
@@ -96,7 +100,10 @@ function App() {
 
                         <Route path="/M2" element={<M2 onFinish={() => handleFinish(5)} />} />
                        
-
+                        {/* Periode2 */}
+                        <Route path="/P2A1A" element={<P2A1A onFinish={() => handleFinish(0)} />} />
+                        <Route path="/P2A1B" element={<P2A1B onFinish={() => handleFinish(0)} />} />
+                        <Route path="/P3A3" element={<P3A3 onFinish={() => handleFinish(0)} />} />
 
                         <Route path="/Buuton3D" element={<Buuton3D />} />
 
