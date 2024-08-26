@@ -35,10 +35,6 @@ import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
 import MesureAires from './composents/Math/Periode2/M5/MesuresAires.js'
 
 
-
-import SecondComponent from './composents/ProgressTracker/SecondComponent';
-
-
 import Buuton3D from './composents/3DButton/Button.js';
 
 // Import routes
@@ -123,8 +119,6 @@ function App() {
   {/* Periode2 */}
   {/* <Route path="/CalculPrix" element={<CalculPrix onFinish={() => handleFinish(9)} />} /> */}
  <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} />
-
-
 
 
 

@@ -5,11 +5,15 @@
   margin: 0 auto;
 }
 
+
 .progress-item {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  position: absolute; /* Absolute positioning for exact placement */
+  position: absolute; 
+  /* background-image: url('/public/images/briaant.jpg'); */
+
+
 }
 
 .progress-item .icon-container {
@@ -17,8 +21,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  width: 70px; /* Set a fixed width for the container */
-  height: 70px; /* Set a fixed height for the container */
+  width: 70px;
+  height: 70px; 
   perspective: 200px; /* Adding perspective for 3D effect */
 }
 
@@ -30,15 +34,30 @@
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
+
+
 .bottom-cube {
-  width: 70px; /* Adjusted size for bottom cube */
-  height: 70px; /* Adjusted size for bottom cube */
-  background-color: #bc5d5d;
   position: relative;
-  transform: translateY(10px); /* Adjusted for better positioning */
-  transform: rotateX(45deg) rotateZ(45deg); /* Rotation for 3D effect */
+  width: 50px;
+  height: 50px;
+  background-color: #bdb6b6;
+  transform: translateY(10px) rotateX(4deg) rotateZ(45deg);
 }
 
+.bottom-cube.completed {
+  background-color: rgb(93, 183, 101);
+  box-shadow: 0px 0px 10px rgba(180, 180, 204, 0.5);
+}
+
+.front-face-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; 
+  height: 24px; 
+  z-index: 1; 
+}
 
 
 .bottom-cube::before, .bottom-cube::after {
@@ -48,14 +67,16 @@
 }
 
 .bottom-cube::before {
-  width: 100%; /* Width matches the bottom cube */
-  height: 10px; /* Increased height for the bottom side */
-  bottom: -10px; /* Position it below the bottom cube */
+  width: 100%; 
+  height: 10px; 
+  bottom: -10px;
   left: 0;
-  transform: skewX(45deg); /* Skew to form the bottom face */
+  transform: skewX(45deg);
   transform-origin: top;
-  background-color: #2e2e2e; /* Dark grey color for the 3D effect */
+  background-color: #777170; /* Nouvelle couleur pour la face inférieure (Tomate) */
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+
 }
 
 .bottom-cube::after {
@@ -65,18 +86,20 @@
   top: 0;
   transform: skewY(45deg); /* Skew to form the right face */
   transform-origin: left;
-  background-color: #2e2e2e; /* Dark grey color for the 3D effect */
+  background-color: #5c5392; /* Dark grey color for the 3D effect */
   box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
+
+
 }
 
 .top-cube {
-  width: 50px; /* Increased size for top cube */
-  height: 50px; /* Increased size for top cube */
-  background-color: #6e6e6e;
+  width: 30px; /* Increased size for top cube */
+  height: 30px; /* Increased size for top cube */
+  background-color: #d1cccc;
   position: absolute; /* Use absolute positioning */
-  top: 50%; /* Adjusted positioning to center */
-  left: 50%; /* Adjusted positioning to center */
-  transform: translate(-55%,-75%) rotateZ(45deg);
+  top: 30%; /* Adjusted positioning to center */
+  left: 45%; /* Adjusted positioning to center */
+  transform: translate(-45%,-25%) rotateZ(45deg);
   cursor: pointer; /* Make it clear the cube is clickable */
   border-radius: 4px; /* Reduced rounding for a flatter look */
   transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
@@ -128,14 +151,21 @@
 .progress-item.completed .bottom-cube,
 .progress-item.completed .bottom-cube::before,
 .progress-item.completed .bottom-cube::after {
-  background: #000080; /* Dark blue for the bottom cube */
-  box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Blue shadow */
+  /* background: #ababe6;  */
+  background: rgb(95, 95, 216);
+  box-shadow: 0px 0px 10px rgba(16, 16, 183, 0.5);
+
+
+
 }
+  
 
 .progress-item.completed .top-cube,
 .progress-item.completed .top-cube::before,
 .progress-item.completed .top-cube::after {
   display: none; /* Hide the small cube completely when completed */
+
+
 }
 
 .progress-item.current .bottom-cube,
@@ -144,7 +174,7 @@
 .progress-item.current .top-cube,
 .progress-item.current .top-cube::before,
 .progress-item.current .top-cube::after {
-  background: linear-gradient(145deg, #9e9e9e, #757575); /* Same color as locked */
+  background: linear-gradient(145deg, #eae7e7, #757575); /* Same color as locked */
   color: white;
 }
 
@@ -154,14 +184,14 @@
 .progress-item.locked .top-cube,
 .progress-item.locked .top-cube::before,
 .progress-item.locked .top-cube::after {
-  background: linear-gradient(145deg, #9e9e9e, #757575);
+  background: linear-gradient(145deg, #eae7e7, #757575);
   color: white;
 }
 
 .progress-item .current-indicator {
   width: 40px;
   height: 40px;
-  background-color: #0000FF; /* Blue color for current indicator */
+  background-color: #5555db; /* Blue color for current indicator */
   position: absolute;
   top: -40px; /* Adjust to position above the cube */
   left: 50%;
@@ -202,10 +232,16 @@
 .position-2 { top: 220px; left: 50px; }
 .position-3 { top: 350px; left: 190px; }
 .position-4 { top: 620px; left: 170px; }
-.position-5 { top: 750px; left: 170px; }
+
+.position-5 { top: 790px; left: 30px; }
 .position-6 { top: 890px; left: 170px; }
-.position-7 { top: 990px; left: 170px; }
-.position-8 { top: 1090px; left: 170px; }
+
+.position-7 { top: 1030px; left: 300px; }
+
+.position-8 { top: 1160px; left: 170px; }
+.position-9 { top: 1290px; left: 30px; }
+.position-10 { top: 1490px; left: 170px; }
+.position-11 { top: 1690px; left: 190px; }
 
 .lineP {
   position: absolute;

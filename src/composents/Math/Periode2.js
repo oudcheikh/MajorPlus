@@ -29,7 +29,7 @@ function Acceuil() {
         <CardButton title="Perimetres et Aires" navigateTo="/P3A8" />
         <CardButton title="Calcue des prix" navigateTo="/P2A1C" />
         <CardButton title="Mesures des angles" navigateTo="/Aire2" />
-        <CardButton title="Mesures des aires" navigateTo="/Fraction2" />
+        <CardButton title="Mesures des aires" navigateTo="/MesureAires" />
       </div>
     </div>
   );

@@ -17,6 +17,12 @@ import incorrectSound from '../../../sounds/incorrect.mp3';
 
 
 
+const ButtonContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+  }); 
 
 const StyledText = styled.p`
     padding: 1px;
@@ -38,7 +44,10 @@ function CalculateSquareArea() {
     const [isAnsweredCorrectly, setIsAnsweredCorrectly] = useState(false);
     const [isLastStep, setIsLastStep] = useState(false);
     const [step, setStep] = useState(1);
+    
+const [correctAnswers, setCorrectAnswers]=useState(0)
 
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
 
   
   
@@ -59,11 +68,16 @@ function CalculateSquareArea() {
     const [ShowCongrats, setShowCongrats] = useState(false);
     const [showX, setShowX] = useState(false);
     const [opVerify, setOpverify] = useState(false);
-
+    
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
     const containerStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -81,6 +95,7 @@ function CalculateSquareArea() {
     const verify=()=>{
         if (sideNumber == sideLength) {
             setShowCongrats(true);
+            setCorrectAnswers(correctAnswers+1)
         }else{
             setShowCongrats(false);
             setShowX(true);
@@ -91,21 +106,118 @@ function CalculateSquareArea() {
         }
         console.log(sideNumber);
 
+
+        
+    if (step < 3) {
+      setTimeout(() => {
+        setStep(prevStep => prevStep + 1);
+        reset()
+        
+      }, 3000);
+    } else {
+      setIsLastStep(true);
+
     }
+
+
+    }
+
+
     useEffect(() => {
         // Update originalCount and toAdd with new random values
         setsideNumber(generateNumber);
         setShowCongrats(false);
         
       }, []); 
+
+
       const reset = () => {
         setShowCongrats(false);
         setsideNumber(Math.floor(Math.random() * 11) + 2)// Hide the "X" element after 2 seconds
       };
 
-const checkAnswer=()=>{
 
-} 
+
+
+      const checkAnswer = () => {
+        const totalQuestions = 3;
+        const allAnswersCorrect = correctAnswers === totalQuestions;
+        const incorrectAnswers = totalQuestions - correctAnswers;
+        return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
+      };
+      
+
+
+//   const checkAnswer1 = (event) => {
+
+    
+//     // setShowMessage(true);
+
+//     // const isCorrect = parseInt(answer) === questions[currentIndex].answer &&
+//     //   parseInt(answer1) === questions[currentIndex].answer1
+
+//     if (
+//     //   parseInt(answer) === questions[currentIndex].answer &&
+//     //   parseInt(answer1) === questions[currentIndex].answer1
+//     ) {
+//       setIsAnsweredCorrectly(true);
+
+     
+//       play();
+//     } else {
+//       setIsAnsweredCorrectly(false);
+//       setShowCongratulations(false);
+//       play1();
+//     }
+
+
+//     if (step < 3) {
+//       setTimeout(() => {
+//         setStep(prevStep => prevStep + 1);
+//         // handleNewQuestion()
+        
+//       }, 3000);
+//     } else {
+//       setIsLastStep(true);
+
+//     }
+
+//     return { allAnswersCorrect: isCorrect, totalQuestions: step, correctAnswers: isCorrect ? 1 : 0, incorrectAnswers: isCorrect ? 0 : 1 };
+//   };
+
+
+const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "Mesures d'aires",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect
+    };
+
+    try {
+      await addDoc(collection(db, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+  };
+
+
+const terminer =()=>{
+
+sendActivityData()
+setIsLastStep(false)
+setShowCongrats(false);
+setStep(1)
+}
 
 
 
@@ -149,7 +261,7 @@ const checkAnswer=()=>{
                 >
                     <RemoveIcon />
                 </Button>
-                {!ShowCongrats && 
+                {/* {!ShowCongrats && 
                 <Button
                     variant="outlined"
                     color="primary"
@@ -158,8 +270,8 @@ const checkAnswer=()=>{
                     <CheckCircleIcon />
                 </Button>
                 
-}
-{ShowCongrats && 
+} */}
+{/* {ShowCongrats && 
                 <Button
                     variant="outlined"
                     color="primary"
@@ -167,33 +279,50 @@ const checkAnswer=()=>{
                 >
                     <RestartAltIcon />
                 </Button>
-
-}
-                <Button
+}    */}
+<Button
                     variant="outlined"
                     color="primary"
                     onClick={() => setSideLength(prev => Math.min(prev + 1, 12))}
                 >
                     <AddIcon />
-                </Button>
+                </Button>       
             </Box>
+
+
             <StyledText variant="body1" gutterBottom>
                 Côté = {sideLength} cm
-            </StyledText>
+            </StyledText> 
+
+
+          <ButtonContainer>
+        <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={verify} disabled={isLastStep}>
+          Répondre
+        </Button>
+        <Button variant="contained" disabled={!isLastStep} onClick={terminer}> Terminer </Button>
+      </ButtonContainer>
+          
             {ShowCongrats &&
-            <StyledText>
-                correct ✅
+            <StyledText style={{alignItems:"center", color :'green'}}>
+               Réponse  correcte ✅
                
 
                 <span style={{alignItems:"center"}}>{sideNumber}x{sideNumber}={sideNumber*sideNumber}</span>
             </StyledText>
 
             }
-             <div>{showX && <span>✖️</span>}
+             <div>{showX && <span style={{color:'red'}}>Réponse incorrecte</span>}
           </div>
            
            
+
+
+        
+
         </Box>
+
+
+
         </ActivityWrapper>
     );
 }
