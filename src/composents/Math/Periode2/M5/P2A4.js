@@ -9,7 +9,7 @@ const StyledBox = styled(Box)({
   justifyContent: 'center',
   height: '70vh',
   backgroundColor: '#f2f2f2',
-  color: '#333',
+  // color: 'white',
 });
 
 const Converter = () => {
@@ -45,7 +45,10 @@ const Converter = () => {
   };
 
   return (
+    
     <StyledBox>
+
+
       <Card style={{marginTop: '-100px'}}>
         <CardContent>
           <Typography variant="h5" align="center">Convertiseur d'unités d'aire</Typography>

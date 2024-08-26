@@ -733,3 +733,11 @@ export const imageStyle_grand = {
     marginLeft: "auto",
     marginRight: "auto",
 };
+
+
+export const ButtonContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+});

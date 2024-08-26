@@ -85,6 +85,8 @@ const C1A2 = () => {
     const correctSound = new Audio(correctSoundFile);
     const incorrectSound = new Audio(incorrectSoundFile);
 
+
+
     useEffect(() => {
         const now = new Date();
         setEntryTime(now);

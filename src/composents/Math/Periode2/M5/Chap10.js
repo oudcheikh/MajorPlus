@@ -3,8 +3,20 @@ import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import styled from 'styled-components';
+
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+
+import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
+import styled from "styled-components";
+import useSound from "use-sound";
+import correctSound from '../../../sounds/correct.mp3';
+import incorrectSound from '../../../sounds/incorrect.mp3';
+
+
+
 
 const StyledText = styled.p`
     padding: 1px;
@@ -19,6 +31,24 @@ const StyledText = styled.p`
 `;
 
 function CalculateSquareArea() {
+    const [play] = useSound(correctSound);
+    const [play1] = useSound(incorrectSound);
+  
+    const [entryTime, setEntryTime] = useState(null);
+    const [isAnsweredCorrectly, setIsAnsweredCorrectly] = useState(false);
+    const [isLastStep, setIsLastStep] = useState(false);
+    const [step, setStep] = useState(1);
+
+
+  
+  
+      const { currentUser } = useAuth();
+
+
+
+
+
+
     const [sideLength, setSideLength] = useState(10);
     const pixelsPerCm = 30;
     const sideLengthInPx = sideLength * pixelsPerCm;
@@ -44,8 +74,10 @@ function CalculateSquareArea() {
         fontFamily: "'Comic Sans MS', sans-serif",
         transition: 'all 0.5s ease',
         boxShadow: '4px 4px 15px rgba(0,0,0,0.2)',
-        
+
     };
+
+    
     const verify=()=>{
         if (sideNumber == sideLength) {
             setShowCongrats(true);
@@ -71,7 +103,21 @@ function CalculateSquareArea() {
         setsideNumber(Math.floor(Math.random() * 11) + 2)// Hide the "X" element after 2 seconds
       };
 
+const checkAnswer=()=>{
+
+} 
+
+
+
     return (
+
+
+        <ActivityWrapper
+        activityTitle={"Mesures d'aires"}
+        explanationVideoUrl={"/Videos/number_sorting.mp4"}
+        onSubmit={checkAnswer}
+        user={currentUser}
+        activityName="Mesures d'aires">
         <Box sx={containerStyle}>
             <StyledText variant="h6">Aire d'un carré</StyledText>
             <StyledText variant="body1" gutterBottom>
@@ -138,7 +184,7 @@ function CalculateSquareArea() {
             <StyledText>
                 correct ✅
                
-                
+
                 <span style={{alignItems:"center"}}>{sideNumber}x{sideNumber}={sideNumber*sideNumber}</span>
             </StyledText>
 
@@ -148,6 +194,7 @@ function CalculateSquareArea() {
            
            
         </Box>
+        </ActivityWrapper>
     );
 }
 

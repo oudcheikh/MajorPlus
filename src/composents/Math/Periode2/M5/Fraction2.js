@@ -78,6 +78,8 @@ const MesurAire = () => {
     setSectionsViewed(currentSection + 1);
     setProgress(currentSection + 1)
   };
+
+  
   const targetZones = [
     { id: 1, x: 10, width: 50 },
     { id: 2, x: 70, width: 55 },

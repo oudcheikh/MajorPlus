@@ -29,6 +29,21 @@ const ProgressTracker = ({ progress, onFinish }) => {
       else if (index === 5) {
         navigate('/M2');
       }
+      else if (index === 6) {
+        navigate('/C7');
+      }
+      else if (index === 7) {
+        navigate('/Chap13');
+      }
+      else if (index === 8) {
+        navigate('/P3A5');
+      }
+      else if (index === 9) {
+        navigate('/CalculPrix');
+      }
+      else if (index === 10) {
+        navigate('/MesureAires');
+      }
       
       
     }
