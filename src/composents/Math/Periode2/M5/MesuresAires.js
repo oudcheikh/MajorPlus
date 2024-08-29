@@ -9,16 +9,16 @@ import P2A4 from './P2A4'
 import Exercice1 from'./Exercice1'
 
 export default function MesuresAires({ onFinish }) {
-    const question = "Que signifie 1 000 000 ?";
-    const options = ["cent", "mille", "million", "milliard"];
-    const correctAnswer = "million";
-    const explanation = "1 000 000 est appelé un million.";
+    const question = "Les mesures d'aire sont utilisées pour déterminer la superficie d'une surface ou d'une forme";
+    const options = ["vrai", "faux"];
+    const correctAnswer = "vrai";
+    const explanation = "Les mesures d'aire sont utilisées pour déterminer la superficie d'une surface ou d'une forme";
 
 
     const introProps = {
         title: "Les Mesures d'Aires :",
         imagePath: "/images/Math/C/C1/Po.png",
-        content: ['1 00 = <span style={{ color: "#FF7F50" }}>"cent"</span>', '1 000 = <span style={{ color: "#FF7F50" }}>"mille"</span>', '1 000 000 = <span style={{ color: "#FF7F50" }}>"million"</span>', '1 000 000 000 = <span style={{ color: "#FF7F50" }}>"milliard"</span>'],
+        content: ['Centimètre carré (cm²) : Utilisé pour des surfaces plus petites', 'Kilomètre carré (km²) : Utilisé pour mesurer des surfaces très grandes, comme des régions géographiques.', 'Hectare (ha) : 1 hectare = 10 000 m². Utilisé pour mesurer des terres agricoles.'],
    
     };
 
