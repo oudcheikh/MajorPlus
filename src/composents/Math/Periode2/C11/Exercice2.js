@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Beige_NumberDisplay, FormulaText, Orange_NumberDisplay, Violet_NumberDisplay } from '../../../Styles/MajorStyles';
 import Modal2 from '../../../Modals/Modal2';
 import './Style.css';
+import '../../Periode1/C3/tabStyle.css'
 
 function Table_mesure() {
     const [réponse, setReponse] = useState("");
@@ -72,15 +73,14 @@ function Table_mesure() {
         <div className="avv">
             <FormulaText>
 
-
-            <img src={'/images/Math/C/C11/deux.png'} alt="division" />
-       <strong> <Orange_NumberDisplay>Un entier est dit divisible par deux si:
-            <span>Son chiffres des unitès et l'un des multiples de 2</span>
-        </Orange_NumberDisplay></strong>
+                <img src={'/images/Math/C/C11/deux.png'} alt="division" />
+                <strong> <Orange_NumberDisplay>Un entier est dit divisible par deux si:
+                    <span>Son chiffres des unitès et l'un des multiples de 2</span>
+                </Orange_NumberDisplay></strong>
                 <strong style={{ color: 'blue' }}>Exemple: </strong><br></br><br></br>
 
                 <strong> 234 est divisible par 2, car 4 est pair </strong>
-<br></br><br></br>
+                <br></br><br></br>
 
                 <strong><span className="x">Répondre par vrai ou Faux :</span></strong>
                 <br />

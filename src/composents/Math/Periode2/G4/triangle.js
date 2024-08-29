@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "./TriangleActivity.css"; // You can create a CSS file for styling
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+
+
+
+
 const TriangleContainer = styled.div`
   display: block;
   align-items: center;
@@ -61,6 +69,16 @@ function TriangleActivity() {
   const [step, setStep] = useState(0);
   const [points, setPoints] = useState({ A: null, B: null, C: null });
   const [triangleType, setTriangleType] = useState(null);
+  const { currentUser } = useAuth();
+  const[correctAnswers,setCorrectAnswers]=useState(0)
+
+  const checkAnswer = () => {
+    const totalQuestions = 1;
+    const allAnswersCorrect = correctAnswers === totalQuestions;
+    const incorrectAnswers = totalQuestions - correctAnswers;
+    return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
+  };
+
   const MEDIATRICE_X =
     points.A && points.B ? (points.A.x + points.B.x) / 2 : null;
 
@@ -227,6 +245,15 @@ function TriangleActivity() {
   };
   
   return (
+
+    <ActivityWrapper 
+    activityTitle={"Construction des triangles"} 
+    explanationVideoUrl={"/Videos/video.mp4"} 
+    onSubmit={checkAnswer} 
+    user={currentUser} // Passe l'utilisateur actuel comme prop
+    activityName="Triangles">
+
+
     <TriangleContainer style={{ display: "flex", alignItems: "center" }}>
       <div
         style={{
@@ -336,9 +363,21 @@ function TriangleActivity() {
           <StyledText>Suivre le mediatrice pour construir des triangles particuliers </StyledText>
           }
 
+
         </div>
+
+
+        {/* <ButtonContainer>
+        <Button variant="contained" style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} disabled={isLastStep}>
+          Répondre
+        </Button>
+        <Button variant="contained" disabled={!isLastStep} > Terminer </Button>
+      </ButtonContainer> */}
+          
       </div>
     </TriangleContainer>
+
+    </ActivityWrapper>
   );
 }
 

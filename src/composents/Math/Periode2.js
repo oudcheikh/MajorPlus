@@ -24,7 +24,7 @@ function Acceuil() {
         <CardButton title="Les Fractions" navigateTo="/P3A4" />
         <CardButton title="Fractions équivalents" navigateTo="/Chap13" />
         <CardButton title="Comparaison des fraction" navigateTo="/P3A5" />
-        <CardButton title="Construction des triangles" navigateTo="/P3A6" />
+        <CardButton title="Construction des triangles" navigateTo="/Triangle" />
         <CardButton title="Droites remerquable" navigateTo="/P3A7" />
         <CardButton title="Perimetres et Aires" navigateTo="/P3A8" />
         <CardButton title="Calcue des prix" navigateTo="/P2A1C" />

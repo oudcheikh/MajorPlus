@@ -5,6 +5,15 @@ import useSound from "use-sound";
 import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+
+
+
+
+
 const TriangleContainer = styled.div`
   display: block;
   align-items: center;
@@ -81,6 +90,20 @@ function TriangleActivity1() {
   const [step, setStep] = useState(0);
   const [points, setPoints] = useState({ A: 0, B: 0, C: 0 });
   const [showX, setShowX] = useState(false);
+
+
+  const { currentUser } = useAuth();
+  const[correctAnswers,setCorrectAnswers]=useState(0)
+
+  const checkAnswer = () => {
+    const totalQuestions = 1;
+    const allAnswersCorrect = correctAnswers === totalQuestions;
+    const incorrectAnswers = totalQuestions - correctAnswers;
+    return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
+  };
+
+
+
 
   const [showCongratulations, setShowCongratulations] = useState(false);
   const MEDIATRICE_X =
@@ -277,7 +300,17 @@ function TriangleActivity1() {
   };
 
   return (
+
+    <ActivityWrapper 
+    activityTitle={"Construction des triangles"} 
+    explanationVideoUrl={"/Videos/video.mp4"} 
+    onSubmit={checkAnswer} 
+    user={currentUser} // Passe l'utilisateur actuel comme prop
+    activityName="Triangles">
+
     <TriangleContainer style={{ display: "flex", alignItems: "center" }}>
+
+
       <div
         style={{
           display: "flex",
@@ -285,6 +318,10 @@ function TriangleActivity1() {
           alignItems: "center",
         }}
       >
+
+
+<img src="/images/Math/C/imgC19/Activity.png" alt="Activity" style={{ width: "50%", height: "auto", maxWidth: "70%", display: "block", marginLeft: "auto", marginRight: "auto" }} />
+
         <div>
           <BandeBox>
             <div className="triangle-activity">
@@ -409,7 +446,11 @@ function TriangleActivity1() {
           ))}
         </div>
       </div>
+
+
     </TriangleContainer>
+
+    </ActivityWrapper>
   );
 }
 

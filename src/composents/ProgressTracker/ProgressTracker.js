@@ -44,6 +44,10 @@ const ProgressTracker = ({ progress, onFinish }) => {
       else if (index === 10) {
         navigate('/MesureAires');
       }
+
+      else if (index === 11) {
+        navigate('/Triangle');
+      }
       
       
     }
