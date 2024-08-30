@@ -85,6 +85,7 @@ function App() {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/signout" element={<SignOut />} />
 
+
                        
 
                         <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
