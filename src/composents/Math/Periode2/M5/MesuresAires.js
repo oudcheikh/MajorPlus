@@ -25,7 +25,9 @@ export default function MesuresAires({ onFinish }) {
    const slides = [() => <SwipeSection introProps={introProps} question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />,
 
 
-        P2A4,Exercice1,Chap10,
+        P2A4
+        //, Exercice1
+        ,Chap10,
        
 
         // , () => <StepFinale onFinish={onFinish} />  
