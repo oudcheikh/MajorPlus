@@ -32,7 +32,7 @@ import G1A4 from './composents/Math/Periode1/G1/G1A4.js';
 import P2A1A from "./composents/Math/Periode2/C09/P2A1A.js";
 import P2A1B from "./composents/Math/Periode2/C12/P2A1B.js";
 import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
-import MesureAires from './composents/Math/Periode2/M5/MesuresAires.js'
+// import MesureAires from './composents/Math/Periode2/M5/MesuresAires.js'
 import Triangle from './composents/Math/Periode2/G4/Triangles.js'
 
 
@@ -119,6 +119,9 @@ function App() {
 
   {/* Periode2 */}
   {/* <Route path="/CalculPrix" element={<CalculPrix onFinish={() => handleFinish(9)} />} /> */}
+ {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} /> */}
+ {/* <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}
+ {/* Periode2 */}
  {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} />
  <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}
 
