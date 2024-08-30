@@ -9,23 +9,9 @@ import { Fingerprint, ArrowForward, ArrowBack } from "@mui/icons-material";
 const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = "/" }) => {
     const [index, setIndex] = useState(currentSegmentIndex);
     const navigate = useNavigate();
-    const containerRef = useRef(null);
+  
 
-    useEffect(() => {
-        const container = containerRef.current;
-
-        // Désactiver le défilement horizontal par glissement
-        const handleTouchMove = (event) => {
-            event.preventDefault();
-        };
-
-        container.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-        // Nettoyage lors du démontage du composant
-        return () => {
-            container.removeEventListener("touchmove", handleTouchMove);
-        };
-    }, []);
+    
 
     const handleChangeIndex = (newIndex) => {
         setIndex(newIndex);
@@ -45,7 +31,7 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
 
     return (
         <div
-            ref={containerRef}
+            
             style={{ position: "relative", height: "100vh" }}
         >
             <div className="pagination">
