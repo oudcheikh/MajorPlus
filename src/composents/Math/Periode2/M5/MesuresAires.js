@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import SwipeableScreens from "../../Reusable Components/Swipeable/SwipeableScreen";
 import SwipeSection from "../../Reusable Components/introduction/SwipeSection";
 
@@ -33,4 +33,4 @@ export default function MesuresAires({ onFinish }) {
         ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
-}
+} */
