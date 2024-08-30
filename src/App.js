@@ -122,6 +122,10 @@ function App() {
  {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} /> */}
  {/* <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}
  {/* Periode2 */}
+ {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} />
+ <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}
+
+
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>

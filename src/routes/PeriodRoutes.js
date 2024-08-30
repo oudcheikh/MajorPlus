@@ -14,7 +14,7 @@ import P3A7 from "../composents/Math/Periode2/G5/P3A7";
 import P3A8 from "../composents/Math/Periode2/M4/P3A8";
 import Aire2 from "../composents/Math/Periode2/M3/Aire2";
 import Chap13 from "../composents/Math/Periode2/C16/Chap13";
-import Fraction2 from "../composents/Math/Periode2/M5/Fraction2";
+// import Fraction2 from "../composents/Math/Periode2/M5/Fraction2";
 import PatageInegaux from "../composents/Math/Periode3/C19/PatageInegaux";
 import NomberDecimaux from "../composents/C18/NomberDecimaux";
 import Periode4 from "../composents/Math/Periode4/periode4";
@@ -31,16 +31,16 @@ const PeriodRoutes = (
         <Route path="/Period3" element={<Period3 />} />
         <Route path="/P2A1A" element={<P2A1A />} />
         <Route path="/P2A1C" element={<P2A1C />} />
-        <Route path="/P2A1B" element={<P2A1B />} />
+        {/* <Route path="/P2A1B" element={<P2A1B />} />
         <Route path="/P3A3" element={<P3A3 />} />
         <Route path="/P3A4" element={<P3A4 />} />
         <Route path="/P3A5" element={<P3A5 />} />
         <Route path="/P3A6" element={<P3A6 />} />
         <Route path="/P3A7" element={<P3A7 />} />
         <Route path="/P3A8" element={<P3A8 />} />
-        <Route path="/Chap13" element={<Chap13 />} />
-        <Route path="/Aire2" element={<Aire2 />} />
-        <Route path="/Fraction2" element={<Fraction2 />} />
+        <Route path="/Chap13" element={<Chap13 />} /> */}
+        {/* <Route path="/Aire2" element={<Aire2 />} /> */}
+        {/* <Route path="/Fraction2" element={<Fraction2 />} />
         <Route path="/PatageInegaux" element={<PatageInegaux />} />
         <Route path="/NomberDecimaux" element={<NomberDecimaux />} />
         <Route path="/Periode4" element={<Periode4 />} />
@@ -48,7 +48,7 @@ const PeriodRoutes = (
         <Route path="/Les_solides" element={<Les_solides />} />
         <Route path="/Les_mesures_Agrairs" element={<Les_mesures_Agrairs />} />
         <Route path="/Division" element={<Division />} />
-        <Route path="/M3" element={<M3 />} />
+        <Route path="/M3" element={<M3 />} /> */}
     </>
 );
 
