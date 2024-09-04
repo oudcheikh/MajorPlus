@@ -120,7 +120,7 @@ function App() {
   {/* Periode2 */}
   {/* <Route path="/CalculPrix" element={<CalculPrix onFinish={() => handleFinish(9)} />} /> */}
  {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} /> */}
- {/* <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}
+ <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} />
  {/* Periode2 */}
  {/* <Route path="/MesureAires" element={<MesureAires onFinish={() => handleFinish(10)} />} />
  <Route path="/Triangle" element={<Triangle onFinish={() => handleFinish(11)} />} /> */}

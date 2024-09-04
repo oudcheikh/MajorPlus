@@ -21,15 +21,15 @@ function Acceuil() {
         <CardButton title="Division des nombres entiers" navigateTo="/P2A1A" />
         <CardButton title="les multiples et les diviseurs" navigateTo="/P2A1B" />
         <CardButton title="Caractères de divisibilité" navigateTo="/P3A3" />
-        {/* <CardButton title="Les Fractions" navigateTo="/P3A4" />
+        <CardButton title="Les Fractions" navigateTo="/P3A4" />
         <CardButton title="Fractions équivalents" navigateTo="/Chap13" />
         <CardButton title="Comparaison des fraction" navigateTo="/P3A5" />
         <CardButton title="Construction des triangles" navigateTo="/Triangle" />
         <CardButton title="Droites remerquable" navigateTo="/P3A7" />
         <CardButton title="Perimetres et Aires" navigateTo="/P3A8" />
         <CardButton title="Calcue des prix" navigateTo="/P2A1C" />
-        <CardButton title="Mesures des angles" navigateTo="/Aire2" /> */}
-        {/* <CardButton title="Mesures des aires" navigateTo="/MesureAires" /> */}
+        <CardButton title="Mesures des angles" navigateTo="/Aire2" />
+        <CardButton title="Mesures des aires" navigateTo="/MesureAires" />
       </div>
     </div>
   );
