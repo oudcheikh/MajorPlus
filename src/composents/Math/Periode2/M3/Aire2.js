@@ -1,4 +1,4 @@
-import Aire1 from './Aire1';
+/* import Aire1 from './Aire1';
 import M3 from './M3';
 import React from "react";
 import SwipeableScreens from '../../Reusable Components/Swipeable/SwipeableScreen';
@@ -23,4 +23,4 @@ export default function C1_new({ onFinish }) {
         ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
-}
+} */
