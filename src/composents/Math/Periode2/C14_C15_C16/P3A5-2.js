@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+import correctSound from '../../../sounds/correct.mp3';
+import incorrectSound from '../../../sounds/incorrect.mp3';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+
+
 
 const Container = styled.div`
     display: flex;
@@ -88,6 +97,22 @@ function FractionalFigure() {
   const [userSelected, setUserSelected] = useState([]);
   const [message, setMessage] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
+
+
+  const totalQuestions = 3;
+
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+    
+  }, []);
 
   useEffect(() => {
     setSelectedFractionCount(Math.floor(Math.random() * numFractions) + 1);
@@ -100,6 +125,39 @@ function FractionalFigure() {
       setUserSelected(prev => [...prev, index]);
     }
   };
+
+
+  const checkAnswer = () => {
+    const allAnswersCorrect = correctAnswers === questionsAnswered;
+    return { allAnswersCorrect, totalQuestions: questionsAnswered, correctAnswers, incorrectAnswers };
+  };
+
+  const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    const { allAnswersCorrect } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "P2A1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questionsAnswered,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect
+    };
+
+    try {
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+
+  };
+
+
 
   const verifyAnswer = () => {
     if (userSelected.length === selectedFractionCount) {
@@ -121,7 +179,25 @@ function FractionalFigure() {
 
     
   return (
-    <Card style={{ width: '90%', margin: '2rem auto', padding: '1rem' }}>
+    <ActivityWrapper
+    activityTitle={"FractionActivity"}
+    explanationVideoUrl={"/Videos/your_video_url.mp4"}
+    onSubmit={checkAnswer}
+    user={currentUser}
+    activityName="FractionActivity"
+>
+
+    <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+    <Card style={{ width: '90%', margin: '2rem auto', padding: '1rem'}}>
+
+       <img
+                src={"images/Images/fteacherr1.png"}
+                style={{
+                  width: '100px',
+                  marginBottom: '10px',
+                  marginRight: '10px',
+                }}
+              />
         <CardContent>
             <Container>
                 <Instruction>Cocher {selectedFractionCount}/{numFractions} fractions </Instruction>
@@ -135,6 +211,7 @@ function FractionalFigure() {
                         ></Fraction>
                     ))}
                 </FractionContainer>
+                
                 <ButtonContainer>
                     <VerifyButton onClick={verifyAnswer}>&#10004;</VerifyButton>
                     <GenerateButton onClick={randomizeFractions}>↺</GenerateButton>
@@ -143,6 +220,7 @@ function FractionalFigure() {
             </Container>
         </CardContent>
     </Card>
+    </ActivityWrapper>
 );
 }
 

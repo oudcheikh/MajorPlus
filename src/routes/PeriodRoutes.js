@@ -23,6 +23,7 @@ import Les_solides from "../composents/Math/Periode4/les solides/les_solides";
 import Les_mesures_Agrairs from "../composents/Math/Periode4/MesureAgraires/MesureAgraire";
 import Division from "../composents/Math/Periode2/C09/P2A1A";
 import M3 from "../composents/Math/Periode2/M3/M3";
+import C9 from '../composents/Math/Periode2/C09/C09'
 
 const PeriodRoutes = (
     <>
@@ -49,6 +50,8 @@ const PeriodRoutes = (
         <Route path="/Les_mesures_Agrairs" element={<Les_mesures_Agrairs />} />
         <Route path="/Division" element={<Division />} />
         <Route path="/M3" element={<M3 />} />
+
+        <Route path="/C9" element={<C9 />} />
     </>
 );
 

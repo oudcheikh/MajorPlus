@@ -5,8 +5,9 @@ import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
 
 function P3A4_1() {
   const [questions, setQuestions] = useState([]);
@@ -21,6 +22,7 @@ function P3A4_1() {
   const { currentUser } = useAuth();
   const [play] = useSound(correctSound);
   const [play1] = useSound(incorrectSound);
+  const totalQuestions = 5;
 
   useEffect(() => {
     const now = new Date();
@@ -98,7 +100,7 @@ function P3A4_1() {
     };
 
     try {
-      await addDoc(collection(db, 'users',currentUser.uid, 'activities'), activityData);
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
       console.log('Activity data sent:', activityData);
     } catch (e) {
       console.error('Error sending activity data:', e);
@@ -126,6 +128,8 @@ function P3A4_1() {
       user={currentUser}
       activityName="P3A4_1"
     >
+            <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+
       <Card style={{ minHeight: "400px" }}>
         <CardContent>
           <Box my={2}>
@@ -179,17 +183,27 @@ function P3A4_1() {
                 onChange={(e) => handleInputChange(e, setAnswer1)}
                 fullWidth
               />
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 type="submit"
                 style={{ marginTop: "10px" }}
               >
                 Répondre
-              </Button>
+              </Button> */}
+
+
+              <Box display="flex" justifyContent="center" mt={2}>
+                <Button variant="contained" color="primary" type="submit" style={{ marginRight: '10px' }} disabled={isLastQuestion}>
+                  Répondre
+                </Button>
+                <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} >
+                  Terminer
+                </Button>
+              </Box>
             </form>
           </Box>
-          <Box my={2}>
+          {/* <Box my={2}>
             <Button
               variant="contained"
               color="primary"
@@ -199,7 +213,7 @@ function P3A4_1() {
             >
               Terminer
             </Button>
-          </Box>
+          </Box> */}
           {isValid !== null && (
             <Box mt={2}>
               <Typography variant="body1" style={{ color: isValid ? '#28a745' : '#ff0000', textAlign: 'center' }}>
@@ -207,6 +221,10 @@ function P3A4_1() {
               </Typography>
             </Box>
           )}
+
+
+
+
         </CardContent>
       </Card>
     </ActivityWrapper>

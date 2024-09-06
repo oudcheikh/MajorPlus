@@ -7,6 +7,10 @@ import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWr
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+
+
+
 
 const MainContainer = styled.div`
     display: flex;
@@ -115,6 +119,7 @@ const FractionActivity = () => {
     const [isLastQuestion, setIsLastQuestion] = useState(false);
     const [entryTime, setEntryTime] = useState(null);
     const { currentUser } = useAuth();
+    const totalQuestions = 3;
 
     useEffect(() => {
         const now = new Date();
@@ -126,7 +131,6 @@ const FractionActivity = () => {
         updatedActiveFractions[index] = !updatedActiveFractions[index];
         setActiveFractions(updatedActiveFractions);
     };
-
     const playSound = (src) => {
         const audio = new Audio(src);
         audio.play();
@@ -190,6 +194,7 @@ const FractionActivity = () => {
         setIsLastQuestion(false);
         setRequiredSelection(Math.ceil(Math.random() * TOTAL_FRACTIONS));
         setEntryTime(new Date());
+        setIsLastQuestion(false)
     };
 
     return (
@@ -200,6 +205,8 @@ const FractionActivity = () => {
             user={currentUser}
             activityName="FractionActivity"
         >
+<LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+
             <MainContainer>
                 <StyledText>
                     Question {currentQuestion}/3: Sélectionnez {requiredSelection} fractions parmi {TOTAL_FRACTIONS}
@@ -214,7 +221,7 @@ const FractionActivity = () => {
                     ))}
                 </Box>
                 <ButtonContainer>
-                    <ActionButton onClick={checkAnswer}>&#10004;</ActionButton> {/* Symbole OK */}
+                    <ActionButton onClick={checkAnswer}disabled={isLastQuestion}  >&#10004;</ActionButton> {/* Symbole OK */}
                     <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={submitActivity} style={{ marginLeft: '10px' }}>
                         Terminer
                     </Button>

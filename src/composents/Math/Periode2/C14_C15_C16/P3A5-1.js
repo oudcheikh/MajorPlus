@@ -8,8 +8,15 @@ import {
   Typography,
 } from "@mui/material";
 import useSound from "use-sound";
+
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
 import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+
 
 function P3A5_1() {
   
@@ -21,7 +28,54 @@ function P3A5_1() {
   const [showCongratulations, setShowCongratulations] = useState(false);
   const [play] = useSound(correctSound)
   const [play1] = useSound(incorrectSound)
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [entryTime, setEntryTime] = useState(null);
+  const { currentUser } = useAuth();
 
+
+  const totalQuestions = 3;
+
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+    
+  }, []);
+
+
+
+  const checkAnswer = () => {
+    const allAnswersCorrect = correctAnswers === questionsAnswered;
+    return { allAnswersCorrect, totalQuestions: questionsAnswered, correctAnswers, incorrectAnswers };
+  };
+
+  const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    const { allAnswersCorrect } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "P2A1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questionsAnswered,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect
+    };
+
+    try {
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+
+  };
   const generateQuestion = () => {
     const newQuestions = [
       generateSingleQuestion(),
@@ -46,6 +100,7 @@ function P3A5_1() {
     setShowMessage(true);
     if (parseInt(answer) === longTour && parseInt(answer1) === rest) {
       setShowCongratulations(true);
+      setQuestionsAnswered(questionsAnswered+1)
       play();
     } else {
       setShowCongratulations(false);
@@ -73,6 +128,14 @@ function P3A5_1() {
 
 
   return (
+    <ActivityWrapper
+    activityTitle={"FractionActivity"}
+    explanationVideoUrl={"/Videos/your_video_url.mp4"}
+    onSubmit={checkAnswer}
+    user={currentUser}
+    activityName="FractionActivity">
+
+<LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
     <Card style={{ minHeight: '400px' }}>
       <CardContent>
         <Box my={2}>
@@ -146,6 +209,7 @@ function P3A5_1() {
         )}
       </CardContent>
     </Card>
+    </ActivityWrapper>
   );
 
 };

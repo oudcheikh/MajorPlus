@@ -18,7 +18,7 @@ function Acceuil() {
   return (
     <div className="app-container">
       <div className="card-grid">
-        <CardButton title="Division des nombres entiers" navigateTo="/P2A1A" />
+        <CardButton title="Division des nombres entiers" navigateTo="/C9" />
         <CardButton title="les multiples et les diviseurs" navigateTo="/P2A1B" />
         <CardButton title="Caractères de divisibilité" navigateTo="/P3A3" />
         <CardButton title="Les Fractions" navigateTo="/P3A4" />

@@ -12,10 +12,13 @@ import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
 import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
 import ScoreComponent from "../../Reusable Components/Animation"; // Assurez-vous que le chemin est correct
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import IntegrationNotistack from "../../Reusable Components/Snackbar";
+
 
 function P3A4_1() {
   const [questions, setQuestions] = useState([]);
@@ -92,7 +95,7 @@ function P3A4_1() {
 
   const sendActivityData = async () => {
     const endTime = new Date();
-    const timeSpent = (endTime - entryTime) / 1000; 
+    const timeSpent = (endTime - entryTime) / 1000;
     const { allAnswersCorrect } = checkAnswer();
 
     const activityData = {
@@ -138,6 +141,7 @@ function P3A4_1() {
       user={currentUser}
       activityName="P2A1"
     >
+
       <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
       <Card style={{ minHeight: '400px' }}>
         <CardContent>
@@ -185,15 +189,27 @@ function P3A4_1() {
                 onChange={(e) => handleInputChange(e, setAnswer1)}
                 fullWidth
               />
-              <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px' }}>
+              {/* <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px' }}>
                 Répondre
-              </Button>
+              </Button> */}
+
+
+
+
+              <Box display="flex" justifyContent="center" mt={2}>
+                <Button variant="contained" color="primary" type="submit" style={{ marginRight: '10px' }}   disabled={isLastQuestion}>
+                  Répondre
+                </Button>
+                <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} >
+                  Terminer
+                </Button>
+              </Box>
             </form>
           </Box>
           <Box my={2}>
-            <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} style={{ marginTop: '10px' }}>
+            {/* <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={handleClickOpen} style={{ marginTop: '10px' }}>
               Terminer
-            </Button>
+            </Button> */}
           </Box>
           {isValid !== null && (
             <Box mt={2}>
@@ -204,6 +220,10 @@ function P3A4_1() {
           )}
           {showScoreComponent && <ScoreComponent />} {/* Display ScoreComponent */}
         </CardContent>
+
+
+
+
       </Card>
     </ActivityWrapper>
   );

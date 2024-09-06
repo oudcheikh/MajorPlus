@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Beige_NumberDisplay, FormulaText, Orange_NumberDisplay, Violet_NumberDisplay } from '../../../Styles/MajorStyles';
 import Modal2 from '../../../Modals/Modal2';
 import './Style.css';
 
+import { Box, Button } from '@mui/material';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+import '../../Periode1/C3/tabStyle.css'
+
+
+export const imageStyle = {
+    width: "40%",
+    height: "50%",
+    maxWidth: "90%",
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+};
 function Table_mesure() {
     const [réponse, setReponse] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [modalImg, setModalImg] = useState("");
     const [modalAlt, setModalAlt] = useState("");
+
+    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false);
+
+    const [entryTime, setEntryTime] = useState(null);
+
+    const { currentUser } = useAuth();
+
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+    }, []);
+
 
     const [tableData, setTableData] = useState([
         { carreaux: '102', Réponse: '' },
@@ -16,7 +49,7 @@ function Table_mesure() {
     ]);
 
     const bonnesReponses = [
-        { Réponse: 'vrai' },
+        { Réponse: 'faux' },
         { Réponse: 'vrai' },
         { Réponse: 'faux' }
     ];
@@ -26,6 +59,8 @@ function Table_mesure() {
         updatedData[index][key] = value;
         setTableData(updatedData);
     };
+
+
 
     const handleSubmit = () => {
         const userResponses = tableData.map(row => ({ Réponse: row.Réponse }));
@@ -41,7 +76,8 @@ function Table_mesure() {
             setModalImg('/images/Modals/triste.gif');
             setModalAlt("Désolé, les données ne sont pas correctes.");
         }
-        setShowModal(true);
+        // setShowModal(true);
+        setIsLastQuestion(true)
     };
 
     const voir_bonne_reponce = () => {
@@ -62,32 +98,81 @@ function Table_mesure() {
         setTableData(initialData);
         setReponse('');
         setShowModal(false);
+        setIsLastQuestion(false)
+
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
     };
 
+
+
+    const checkAnswer = () => {
+        const allAnswersCorrect = correctAnswers === questionsAnswered;
+        return { allAnswersCorrect, totalQuestions: questionsAnswered, correctAnswers, incorrectAnswers };
+    };
+
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000;
+        const { allAnswersCorrect } = checkAnswer();
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "Division par 5",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
+            totalQuestions: 1,
+            correctAnswers,
+            incorrectAnswers,
+            allAnswersCorrect
+        };
+
+        try {
+            await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
+
+        // setShowScoreComponent(true); // Show the ScoreComponent when "Terminer" is clicked
+    };
+
+
+    const finish = () => {
+        sendActivityData()
+        handleReset()
+
+    }
     return (
-        <div className="avv">
-            <FormulaText>
+        <ActivityWrapper
+            activityTitle={"division par2"}
+            explanationVideoUrl={"/Videos/your_video_url.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="division par2 ">
 
-                <img src={'/images/Math/C/C11/troiss.png'} alt="division" />
+            <Box>
+
+                <FormulaText>
+
+                    <img src={'/images/Math/C/C11/troiss.png'} alt="division" style={imageStyle} />
 
 
 
-                <strong> <Orange_NumberDisplay>Un entier est dit divisible par Trois  si:
-                    <span>la somme de ses chiffres est un multiple de 3</span>
-                </Orange_NumberDisplay></strong>
-                <strong style={{ color: 'blue' }}>Exemple: </strong><br></br><br></br>
+                    <strong> <Orange_NumberDisplay>Un entier est dit divisible par Trois  si:
+                        <span>la somme de ses chiffres est un multiple de 3</span>
+                    </Orange_NumberDisplay></strong>
+                    <strong style={{ color: 'blue' }}>Exemple: </strong><br></br><br></br>
 
-                <strong> 321 est divisible par 3 car 3+2+1=6 et 6 est parmi les multiples de 3 </strong>
-                <br></br><br></br>
+                    <strong> 321 est divisible par 3 car 3+2+1=6 et 6 est parmi les multiples de 3 </strong>
+                    <br></br><br></br>
 
-                <strong><span className="x">Répondre par vrai ou Faux :</span></strong>
-                <br />
-                <div className="table-container">
-                    <table>
+                    <strong><span className="x">Répondre par vrai ou Faux :</span></strong>
+                    <br />
+
+                    {/* <table>
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -110,28 +195,67 @@ function Table_mesure() {
                                 </tr>
                             ))}
                         </tbody>
+                    </table> */}
+
+                    <table className="conversion-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre </th>
+                                <th>réponse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableData.map((row, index) => (
+                                <tr key={index}>
+                                    <td>{row.carreaux}</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            className="small-input"
+                                            value={row.Réponse}
+                                            placeholder='---'
+                                            onChange={(e) => handleInputChange(index, 'Réponse', e.target.value)}
+                                        />
+                                    </td>
+
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
-                </div>
-                <div>
-                    <strong style={{ color: 'blue' }}>
-                        <span>{réponse}</span>
-                    </strong>
-                </div>
-                <div>
+
+                    <div>
+                        <strong style={{ color: 'blue' }}>
+                            <span>{réponse}</span>
+                        </strong>
+                    </div>
+                    {/* <div>
                     <button onClick={handleSubmit}>Vérifier</button>&nbsp;
                     <button onClick={handleReset}>Recommencer</button>&nbsp;
                     <button className='bonn-rep' onClick={voir_bonne_reponce}>Voir correction</button>
-                </div>
-                <br />
-                <br />
-            </FormulaText>
-            <Modal2
-                show={showModal}
-                handleClose={handleCloseModal}
-                imgSrc={modalImg}
-                altText={modalAlt}
-            />
-        </div>
+                </div> */}
+
+                    <Box display="flex" justifyContent="center" mt={2}>
+                        <Button variant="contained" color="primary" onClick={handleSubmit} style={{ marginRight: '10px' }} disabled={isLastQuestion}>
+                            Répondre
+                        </Button>
+                        <Button variant="contained" color="primary" disabled={!isLastQuestion}
+                            onClick={finish}
+                        >
+                            Terminer
+                        </Button>
+                    </Box>
+                    <br />
+                    <br />
+                </FormulaText>
+                <Modal2
+                    show={showModal}
+                    handleClose={handleCloseModal}
+                    imgSrc={modalImg}
+                    altText={modalAlt}
+                />
+            </Box>
+
+        </ActivityWrapper>
     );
 }
 

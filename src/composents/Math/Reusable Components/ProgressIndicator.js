@@ -14,7 +14,7 @@ function LinearProgressBar({ currentStep, totalSteps }) {
       <Box minWidth={35}>
         <Typography variant="body2" color="textSecondary">{`${Math.round(
           calculateProgress()
-        )}%`}</Typography>
+        )}`}</Typography>
       </Box>
     </Box>
   );
