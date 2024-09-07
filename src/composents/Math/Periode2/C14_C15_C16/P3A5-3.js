@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { Button,Box, Typography } from "@mui/material";
 import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+
+
 
 const MainContainer = styled.div`
   display: flex;
@@ -106,6 +109,12 @@ const P3A53 = () => {
   const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [entryTime, setEntryTime] = useState(null);
   const { currentUser } = useAuth();
+  const [questionsAnswered,setQuestionsAnswered]=useState(0)
+const totalQuestions=3
+
+
+
+
 
   useEffect(() => {
     const now = new Date();
@@ -123,6 +132,9 @@ const P3A53 = () => {
         : questions[0].first < questions[0].last
         ? "<"
         : "=";
+
+
+
 
     if (selectedSymbol === correctSymbol) {
       setShowCongratulations(true);
@@ -145,7 +157,10 @@ const P3A53 = () => {
         }
       }, 2000);
     }
+
+    setQuestionsAnswered(questionsAnswered+1)
   };
+
 
   const nextQuestion = () => {
     setCurrentQuestion(prev => prev + 1);
@@ -162,6 +177,8 @@ const P3A53 = () => {
     setQuestions([{ first: 5, last: 7 }]);
     setCurrentQuestion(1);
     setIsLastQuestion(false);
+    setQuestionsAnswered(0)
+    
   };
 
   const submitActivity = async () => {
@@ -197,6 +214,9 @@ const P3A53 = () => {
       user={currentUser}
       activityName="P3A5-3"
     >
+
+<LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+
       <MainContainer>
         <FormulaBox2>
           <SectionContainer>
@@ -206,11 +226,11 @@ const P3A53 = () => {
               <FormulaBox onClick={() => handleSymbolClick("=")}>&#61;</FormulaBox>
             </SymbContainers>
 
-            <DescContainers>
+            {/* <DescContainers>
               <Typography>sup</Typography>
               <Typography>Inf</Typography>
               <Typography>Egale</Typography>
-            </DescContainers>
+            </DescContainers> */}
           </SectionContainer>
 
           <div
@@ -240,14 +260,14 @@ const P3A53 = () => {
               </FormulaBox>
             </div>
 
-            <div style={{ marginTop: "20px" }}>
-              <ResetButton variant="contained" type="submit" onClick={verify} style={{ marginRight: "25px" }}>
-                Verifier
-              </ResetButton>
+            {/* <div style={{ marginTop: "20px" }}>
+              * <ResetButton variant="contained" type="submit" onClick={verify} style={{ marginRight: "25px" }}>
+              //   Verifier
+              // </ResetButton> 
               <VerifieButton style={{ marginLeft: "25px" }} onClick={reset}>
                 Reset
               </VerifieButton>
-            </div>
+            </div> */}
 
             {(showCongratulations || showX) && (
               <Message isCorrect={showCongratulations}>
@@ -256,9 +276,32 @@ const P3A53 = () => {
             )}
           </div>
         </FormulaBox2>
-        <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={submitActivity} style={{ marginTop: "20px" }}>
+        {/* <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={submitActivity} style={{ marginTop: "20px" }}>
           Terminer
-        </Button>
+        </Button> */}
+
+
+        <Box display="flex" justifyContent="center" mt={2}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    onClick={verify}
+                    style={{ marginRight: '10px' }}
+                    disabled={isLastQuestion}
+                  >
+                    Répondre
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disabled={!isLastQuestion}
+                    onClick={submitActivity}
+                  >
+                    Terminer
+                  </Button>
+
+                </Box>
       </MainContainer>
     </ActivityWrapper>
   );

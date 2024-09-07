@@ -66,12 +66,16 @@ function C5A5() {
     }
   };
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     calculateAnswer();
   };
 
-  const handleNewQuestion = () => {
+
+
+const handleNewQuestion = () => {
     setCurrentIndex((currentIndex + 1) % questions.length);
     setShowMessage(false);
     setShowCongratulations(false);
@@ -79,7 +83,7 @@ function C5A5() {
   };
 
   const handleReset = () => {
-    setCurrentIndex(0);
+ setCurrentIndex(0);
     setCorrectAnswers(0);
     setIncorrectAnswers(0);
     setQuestionsAnswered(0);

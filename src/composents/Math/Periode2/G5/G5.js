@@ -1,8 +1,11 @@
-import P2A2_1 from './P2A2-1';
-import P2A2_2 from './P2A2-2';
+
+import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
 import React from "react";
 import SwipeableScreens from "../../Reusable Components/Swipeable/SwipeableScreen";
 import SwipeSection from "../../Reusable Components/introduction/SwipeSection";
+import P3A7 from './P3A7';
+import Droits from './Droit';
 
 
 export default function C1_new({ onFinish }) {
@@ -13,7 +16,7 @@ export default function C1_new({ onFinish }) {
 
 
     const introProps = {
-        title: "Calcul des prix",
+        title: "Multiplier des nombres entiers:",
         imagePath: "/images/Math/C/C1/Po.png",
         content: [
             'La multiplication est une addition répétée.',
@@ -25,8 +28,8 @@ export default function C1_new({ onFinish }) {
 
     const slides = [
         () => <SwipeSection introProps={introProps} question={question1} options={options1} correctAnswer={correctAnswer1} explanation={explanation1} />, 
-        P2A2_1
+        Droits
     ];
 
     return <SwipeableScreens slides={slides} currentSegment={0} onFinish={onFinish}></SwipeableScreens>;
-}
+  }

@@ -19,8 +19,8 @@ import { db } from "../../../Sign_in/v2/firebase";
 
 
 function P3A5_1() {
-  
-  
+
+
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState('');
   const [answer1, setAnswer1] = useState('');
@@ -34,7 +34,9 @@ function P3A5_1() {
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [entryTime, setEntryTime] = useState(null);
   const { currentUser } = useAuth();
-
+  const [step, setStep] = useState(0)
+const [result,setResult]=useState('')
+const [attempts, setAttempts] = useState(0);
 
   const totalQuestions = 3;
 
@@ -42,7 +44,7 @@ function P3A5_1() {
   useEffect(() => {
     const now = new Date();
     setEntryTime(now);
-    
+
   }, []);
 
 
@@ -95,120 +97,183 @@ function P3A5_1() {
   };
 
   const calculateTotalDistance = () => {
-    const longTour = questions.reduce((sum, q) => sum + Math.floor(q.numpieces), 0 );
-    const rest = questions.reduce((sum, q) => sum + (q.nomTour), 0); 
+
+    setAttempts((prevAttempts) => prevAttempts + 1);
+
+    const longTour = questions.reduce((sum, q) => sum + Math.floor(q.numpieces), 0);
+    const rest = questions.reduce((sum, q) => sum + (q.nomTour), 0);
     setShowMessage(true);
     if (parseInt(answer) === longTour && parseInt(answer1) === rest) {
       setShowCongratulations(true);
-      setQuestionsAnswered(questionsAnswered+1)
+      setResult("bonne réponse")
+
       play();
     } else {
       setShowCongratulations(false);
+      setResult("mouvaise réponse")
       play1();
     }
+    setQuestionsAnswered(questionsAnswered + 1)
+    handleNewQuestion()
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    calculateTotalDistance();
-    
-   
+    if (attempts + 1 >= 3) {
+      setIsLastQuestion(true);
+    }
+    if (step < 3) {
+      calculateTotalDistance();
+      setStep(step + 1)
+      console.log(step)
+    }
+    else {
+      setIsLastQuestion(true)
+      setAnswer('');
+      setAnswer1('');
+    }
+
+
   };
-  
+
 
   const handleNewQuestion = () => {
     generateQuestion();
   };
-  
+
   useEffect(() => {
     generateQuestion(); // Call the function when the component mounts
   }, []);
 
-  
 
+const reset =()=>{
+  generateQuestion()
+  setStep(0)
+  setIsLastQuestion(false)
+}
+
+  const Terminer = () => {
+    reset()
+    sendActivityData()
+  }
+  const repondre = () => {
+
+  }
 
   return (
     <ActivityWrapper
-    activityTitle={"FractionActivity"}
-    explanationVideoUrl={"/Videos/your_video_url.mp4"}
-    onSubmit={checkAnswer}
-    user={currentUser}
-    activityName="FractionActivity">
+      activityTitle={"FractionActivity"}
+      explanationVideoUrl={"/Videos/your_video_url.mp4"}
+      onSubmit={checkAnswer}
+      user={currentUser}
+      activityName="FractionActivity">
 
-<LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
-    <Card style={{ minHeight: '400px' }}>
-      <CardContent>
-        <Box my={2}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
-              src={"/images/Math/periode2/compte.gif"}
-              
-              style={{
-                width: '100px',
-                marginBottom: '10px',
-                marginRight: '10px',
-              }}
-            />
-            <Card
-              style={{
-                borderRadius: '20px',
-                backgroundColor: '#1877f2',
-                padding: '10px',
-              }}
-            >
-              <CardContent>
-                {!showMessage  && questions.map((q, index) => (
-                  <Typography key={index} variant="body1" style={{ color: '#ffffff' }}>
-                    Sidi a pris {q.numpieces} pieces d une gateau qui contient {q.nomTour} pieces,idenifier le numerateur et le denomnateur.
-                  </Typography>
-                ))}
-                {showCongratulations && (
-                  <Typography variant="body1" style={{ color: '#ffffff' }}>
-                    Félicitations! Vous avez donné la bonne réponse!
-                  </Typography>
-                )}
-                {showMessage && !showCongratulations && (
-                  <Typography variant="body1" style={{ color: '#ffffff' }}>
-                    Réponse incorrecte. Essayez encore!
-                  </Typography>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </Box>
-        {!showMessage && (
+      <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+      <Card style={{ minHeight: '400px' }}>
+        <CardContent>
           <Box my={2}>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                label="Numerateur"
-                type="number"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                fullWidth
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src={"/images/Math/periode2/compte.gif"}
+
+                style={{
+                  width: '100px',
+                  marginBottom: '10px',
+                  marginRight: '10px',
+                }}
               />
-              <h1></h1>
-                  <TextField
-                    label="Denoimanteur"
-                    type="number"
-                    value={answer1}
-                    onChange={(e) => setAnswer1(e.target.value)}
-                    fullWidth
-                  />
-              <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px' }}>
-                Répondre
+              <Card
+                style={{
+                  borderRadius: '20px',
+                  backgroundColor: '#1877f2',
+                  padding: '10px',
+                }}
+              >
+                <CardContent>
+                  {!showMessage && questions.map((q, index) => (
+                    <Typography key={index} variant="body1" style={{ color: '#ffffff' }}>
+                      Sidi a pris {q.numpieces} pieces d une gateau qui contient {q.nomTour} pieces,idenifier le numerateur et le denomnateur.
+                    </Typography>
+                  ))}
+                  {showCongratulations && (
+                    <Typography variant="body1" style={{ color: '#ffffff' }}>
+                      Félicitations! Vous avez donné la bonne réponse!
+                    </Typography>
+                  )}
+                  {showMessage && !showCongratulations && (
+                    <Typography variant="body1" style={{ color: '#ffffff' }}>
+                      Réponse incorrecte. Essayez encore!
+                    </Typography>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </Box>
+          {!showMessage && (
+            <Box my={2}>
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  label="Numerateur"
+                  type="number"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  fullWidth
+                />
+                <h1></h1>
+
+
+                <TextField
+                  label="Denoimanteur"
+                  type="number"
+                  value={answer1}
+                  onChange={(e) => setAnswer1(e.target.value)}
+                  fullWidth
+                />
+<br>
+</br>
+                {result}
+                {/* <Button variant="contained" color="primary" type="submit" style={{ marginTop: '10px' }}>
+                  Répondre
+                </Button> */}
+
+
+
+
+                <Box display="flex" justifyContent="center" mt={2}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    // onClick={repondre}
+                    style={{ marginRight: '10px' }}
+                    disabled={isLastQuestion}
+                  >
+                    Répondre
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disabled={!isLastQuestion}
+                    onClick={Terminer}
+                  >
+                    Terminer
+                  </Button>
+
+                </Box>
+              </form>
+            </Box>
+          )}
+
+
+          {/* {showMessage && (
+            <Box my={2}>
+              <Button variant="contained" color="primary" onClick={handleNewQuestion} style={{ marginTop: '10px' }}>
+                Générer une nouvelle question
               </Button>
-            </form>
-          </Box>
-        )}
-        {showMessage && (
-          <Box my={2}>
-            <Button variant="contained" color="primary" onClick={handleNewQuestion} style={{ marginTop: '10px' }}>
-              Générer une nouvelle question
-            </Button>
-          </Box>
-        )}
-      </CardContent>
-    </Card>
+            </Box>
+          )} */}
+        </CardContent>
+      </Card>
     </ActivityWrapper>
   );
 

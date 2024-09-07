@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, Select, MenuItem, Typography, Box } from '@mui/material';
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
 
 function PerimeterActivity() {
     const [shape, setShape] = useState('');
@@ -15,6 +16,8 @@ function PerimeterActivity() {
     const [entryTime, setEntryTime] = useState(null);
     const [isDisabled, setIsDisabled] = useState(false);
     const { currentUser } = useAuth();
+    const [questionsAnswered, setQuestionsAnswered] = useState(0)
+    const totalQuestions = 3
 
     const shapes = [
         { name: 'carre', path: 'M75 50 H275 V250 H75 V50' },
@@ -29,6 +32,8 @@ function PerimeterActivity() {
         setEntryTime(now);
         generateNewShape();
     }, []);
+
+
 
     const generateNewShape = () => {
         const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
@@ -45,9 +50,8 @@ function PerimeterActivity() {
         } else {
             setFeedbackMessage(`Mauvaise réponse. C'est un ${correctShape}.`);
         }
-
         setIsDisabled(true); // Désactive la sélection après la vérification
-
+        setQuestionsAnswered(questionsAnswered + 1)
         setTimeout(() => {
             if (currentQuestion < 3) {
                 nextQuestion();
@@ -67,6 +71,8 @@ function PerimeterActivity() {
         setIsLastQuestion(false);
         generateNewShape();
         setFeedbackMessage('');
+        setQuestionsAnswered(0)
+        
     };
 
     const submitActivity = async () => {
@@ -100,9 +106,11 @@ function PerimeterActivity() {
             explanationVideoUrl={"/Videos/your_video_url.mp4"}
             onSubmit={handleShapeSelection}
             user={currentUser}
-            activityName="PerimeterActivity"
-        >
-            <Container maxWidth="md" style={{padding: '20px', borderRadius: '15px' }}>
+            activityName="PerimeterActivity">
+
+            <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+
+            <Container maxWidth="md" style={{ padding: '20px', borderRadius: '15px' }}>
                 <Box margin="20px 0">
                     <svg width="350" height="300">
                         <path d={shape} fill="none" stroke="black" strokeWidth="2"></path>
@@ -110,8 +118,8 @@ function PerimeterActivity() {
                 </Box>
                 <Box marginBottom="15px">
                     <Typography variant="body2">Sélectionnez la forme :</Typography>
-                    <Select 
-                        value={selectedShape} 
+                    <Select
+                        value={selectedShape}
                         style={{ width: '70%', textAlign: 'center' }}
                         onChange={(e) => setSelectedShape(e.target.value)}
                         disabled={isDisabled} // Désactive la sélection si isDisabled est true
@@ -123,17 +131,46 @@ function PerimeterActivity() {
                         <MenuItem value="quadrilateral">Quadrilatéral</MenuItem>
                     </Select>
                 </Box>
-                <Button variant="contained" color="primary" onClick={handleShapeSelection} disabled={isDisabled}>
-                    Vérifier
-                </Button>
+
+
+
+
+
                 {feedbackMessage && (
                     <Typography variant="h6" style={{ marginTop: '20px', color: feedbackMessage.includes('Bravo') ? 'green' : 'red' }}>
                         {feedbackMessage}
                     </Typography>
                 )}
-                <Button variant="contained" color="primary" disabled={!isLastQuestion} onClick={submitActivity} style={{ marginTop: '20px' }}>
-                    Terminer
-                </Button>
+
+
+
+
+
+                <div>
+                    {" "}
+                    <Box display="flex" justifyContent="center" mt={2}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            onClick={handleShapeSelection}
+                            style={{ marginRight: '10px' }}
+                            disabled={isLastQuestion} >
+
+                            Répondre
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            disabled={!isLastQuestion}
+                            onClick={submitActivity}
+                        >
+                            Terminer
+                        </Button>
+
+                    </Box>
+
+                </div>
             </Container>
         </ActivityWrapper>
     );

@@ -10,7 +10,7 @@ import P3A3 from "../composents/Math/Periode2/C11/P3A3";
 import P3A4 from "../composents/Math/Periode2/C13/P3A4";
 import P3A5 from "../composents/Math/Periode2/C14_C15_C16/P3A5";
 import P3A6 from "../composents/Math/Periode2/G4/P3A6";
-import P3A7 from "../composents/Math/Periode2/G5/P3A7";
+import P3A7 from "../composents/Math/Periode2/G5/G5";
 import P3A8 from "../composents/Math/Periode2/M4/P3A8";
 import Aire2 from "../composents/Math/Periode2/M3/Aire2";
 import Chap13 from "../composents/Math/Periode2/C16/Chap13";

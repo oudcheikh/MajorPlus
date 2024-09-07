@@ -211,7 +211,7 @@ function FractionalFigure() {
                         ></Fraction>
                     ))}
                 </FractionContainer>
-                
+
                 <ButtonContainer>
                     <VerifyButton onClick={verifyAnswer}>&#10004;</VerifyButton>
                     <GenerateButton onClick={randomizeFractions}>↺</GenerateButton>

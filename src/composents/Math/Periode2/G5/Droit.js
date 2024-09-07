@@ -5,6 +5,15 @@ import useSound from "use-sound";
 import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../Sign_in/v2/firebase";
+import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
+import { Box, Button } from "@mui/material";
+
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
+
+
 const TriangleContainer = styled.div`
   display: block;
   align-items: center;
@@ -89,6 +98,35 @@ function Droits() {
     D: null,
     E: null,
   });
+
+  const [etape, setEtape] = useState(0)
+  const [attempts, setAttempts] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0)
+  const { currentUser } = useAuth();
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [entryTime, setEntryTime] = useState(null);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0)
+  const totalQuestions = 3
+
+
+
+  useEffect(() => {
+    const now = new Date();
+    setEntryTime(now);
+
+  }, []);
+
+
+  const checkAnswer = () => {
+    const allAnswersCorrect = correctAnswers === totalQuestions;
+    const incorrectAnswers = totalQuestions - correctAnswers;
+    return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
+  };
+
+
+
   const generateQuestion = () => {
     const newQuestions = [generateneworder()];
     setQuestions(newQuestions);
@@ -103,38 +141,52 @@ function Droits() {
       "Placer le point C sur le circle de centre B pour obtenir un triangle rectangle en B"
     ];
     const randomIndex = Math.floor(Math.random() * questions.length);
-    const Q =questions[randomIndex];
+    const Q = questions[randomIndex];
     const Q1 = questions[0];
     const Q2 = questions[1];
     const Q3 = questions[2];
-    return {Q,Q1,Q2,Q3}
+    return { Q, Q1, Q2, Q3 }
 
   }
 
-  const VerifyOrder =() =>{
-    const A = questions.reduce((sum, q) => sum + (q.Q),"");
-    const A1 =questions.reduce((sum, q) => sum + (q.Q1),"");
-    const A2 =questions.reduce((sum, q) => sum + (q.Q2),"");
-    const A3 =questions.reduce((sum, q) => sum + (q.Q3),"");
-    if(points.A && points.B && points.C && points.D){
+  const VerifyOrder = () => {
 
-    
-    if (A === A1 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.A, points.C) / 37.8).toFixed(1)) || A === A2 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.D, points.C) / 37.8).toFixed(1)) || A === A3 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.D, points.C) / 37.8).toFixed(1)) ){
-      setShowCongratulations(true);
-      play();
-      setOpverify(true);
-    }else{
-      setShowCongratulations(false);
-      setOpverify(false);
-      setShowX(true);
-      play1()
-      setTimeout(() => {
-        setShowX(false); // Hide the "X" element after 2 seconds
-      }, 2000);
-      console.log(A1)
-      console.log(A2)
-      console.log(A3)
+    setAttempts((prevAttempts) => prevAttempts + 1);
+
+    const A = questions.reduce((sum, q) => sum + (q.Q), "");
+    const A1 = questions.reduce((sum, q) => sum + (q.Q1), "");
+    const A2 = questions.reduce((sum, q) => sum + (q.Q2), "");
+    const A3 = questions.reduce((sum, q) => sum + (q.Q3), "");
+    if (points.A && points.B && points.C && points.D) {
+
+
+      if (A === A1 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.A, points.C) / 37.8).toFixed(1)) || A === A2 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.D, points.C) / 37.8).toFixed(1)) || A === A3 && ((calculateDistance(points.A, points.D) / 37.8).toFixed(1) === (calculateDistance(points.D, points.C) / 37.8).toFixed(1))) {
+        setShowCongratulations(true);
+        setCorrectAnswers(correctAnswers+1)
+        play();
+        setOpverify(true);
+      } else {
+        setShowCongratulations(false);
+        setOpverify(false);
+        setShowX(true);
+        play1()
+        setTimeout(() => {
+          setShowX(false); // Hide the "X" element after 2 seconds
+        }, 2000);
+        console.log(A1)
+        console.log(A2)
+        console.log(A3)
+      }
     }
+    setQuestionsAnswered(questionsAnswered+1)
+
+    if (attempts + 1 >= 3) {
+      setIsLastQuestion(true);
+    }
+
+    if (etape < 3) {
+      setEtape(etape + 1)
+      reset()
     }
   };
   const verify = () => {
@@ -267,21 +319,23 @@ function Droits() {
     // This effect will run whenever the 'points' state changes.
     generateQuestion();
   }, []);
+
+
   const reset = () => {
-    if (opverify) {
-      generateQuestion();
-    }
+    // if (opverify) {
+    //   generateQuestion();
+    // }
     setShowCongratulations(false);
     setOpverify(false); // Reset the verification status
     setStep(0);
-    setPoints({ A: null, B: null, C: null, D:null, E:null });
+    setPoints({ A: null, B: null, C: null, D: null, E: null });
   };
   const retourner = () => {
-    if (step > 0 && step <4) {
+    if (step > 0 && step < 4) {
       setStep(step - 1);
       switch (step) {
         case 3:
-          setPoints({ ...points, C: 0,D:0,E:0 });
+          setPoints({ ...points, C: 0, D: 0, E: 0 });
           break;
         case 2:
           setPoints({ ...points, B: null });
@@ -292,248 +346,328 @@ function Droits() {
         default:
           break;
       }
-    } else if(step==0){
+    } else if (step == 0) {
       setPoints({ A: null, null: null, C: null });
-    }else {
+    } else {
       setPoints({ ...points, C: null });
       setStep(2)
     }
   };
+  const sendActivityData = async () => {
+    const endTime = new Date();
+    const timeSpent = (endTime - entryTime) / 1000;
+    const { allAnswersCorrect } = checkAnswer();
+
+    const activityData = {
+      userId: currentUser.uid,
+      activityName: "P2A1",
+      entryTime: entryTime.toISOString(),
+      timeSpent: timeSpent,
+      totalQuestions: questionsAnswered,
+      correctAnswers,
+      incorrectAnswers,
+      allAnswersCorrect
+    };
+
+    try {
+      await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+      console.log('Activity data sent:', activityData);
+    } catch (e) {
+      console.error('Error sending activity data:', e);
+    }
+
+  };
+
+  const Terminer = () => {
+
+    sendActivityData()
+    reset()
+
+    setIsLastQuestion(false)
+    setEtape(0)
+    setAttempts(0)
+    setQuestionsAnswered(0)
+  }
   return (
-    <TriangleContainer style={{ display: "flex", alignItems: "center" }}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <BandeBox>
-            <div className="triangle-activity">
-              <svg
-                width="500"
-                height="500"
-                onClick={handlePointClick}
-                className={`step-${step}`}
-              >
-                {points.A && points.B && drawLine(points.A, points.B)}
-                {points.A && step >= 1 && drawCircle(points.A, 2)}
-                {points.B &&
-                  step >= 2 &&
-                  drawCircle(
-                    points.B,
-                    calculateDistance(points.A, points.B) / 1.7
-                  )}
-                                  {points.B &&
-                  step >= 2 &&
-                  drawCircle(points.B, 2)}
-                {points.B &&
-                  step >= 2 &&
-                  drawCircle(
-                    points.A,
-                    calculateDistance(points.A, points.B) / 1.7
-                  )}
+    <ActivityWrapper
+      activityTitle={"Construction des triangles"}
+      explanationVideoUrl={"/Videos/video.mp4"}
+      onSubmit={checkAnswer}
+      user={currentUser} // Passe l'utilisateur actuel comme prop
+      activityName="Triangles">
 
-                {points.C && step >= 2 && drawCircle(points.C, 3)}
-                {points.C && drawLine(points.A, points.C)}
-                {points.C && drawLine(points.B, points.C)}
+      <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
 
-                {points.A && points.B && step >= 2 && (
-                  <>
-                    <line
-                      x1={points.A.x}
-                      y1={points.A.y}
-                      x2={points.B.x}
-                      y2={points.B.y}
-                      stroke="gray"
-                      strokeDasharray="5"
-                    />
 
-                    {MEDIATRICE_X && (
-                      <>
-                        <circle
-                          cx={MEDIATRICE_X}
-                          cy={(points.A.y + points.B.y) / 2}
-                          r="5"
-                          fill="gray"
-                        />
-                      </>
+
+
+      <TriangleContainer style={{ display: "flex", alignItems: "center" }}>
+
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <BandeBox>
+              <div className="triangle-activity">
+                <svg
+                  width="500"
+                  height="500"
+                  onClick={handlePointClick}
+                  className={`step-${step}`}
+                >
+                  {points.A && points.B && drawLine(points.A, points.B)}
+                  {points.A && step >= 1 && drawCircle(points.A, 2)}
+                  {points.B &&
+                    step >= 2 &&
+                    drawCircle(
+                      points.B,
+                      calculateDistance(points.A, points.B) / 1.7
                     )}
-                  </>
-                )}
-                {points.D && points.A && points.B && step>=3 &&
-                <>
-                <line
-                      x1={points.A.x}
-                      y1={points.A.y}
-                      x2={points.D.x}
-                      y2={points.D.y}
-                      stroke="gray"
-                      strokeDasharray="5"
-                    />
-                <line
-                      x1={points.B.x}
-                      y1={points.B.y}
-                      x2={points.D.x}
-                      y2={points.D.y}
-                      stroke="gray"
-                      strokeDasharray="5"
-                    />
-                </>
+                  {points.B &&
+                    step >= 2 &&
+                    drawCircle(points.B, 2)}
+                  {points.B &&
+                    step >= 2 &&
+                    drawCircle(
+                      points.A,
+                      calculateDistance(points.A, points.B) / 1.7
+                    )}
 
-                }
-                {calculatePerpendicularLine()}
-                {points.A && step >= 1 && (
-                  <text x={points.A.x} y={points.A.y - 10} textAnchor="middle">
-                    A
-                  </text>
-                )}
+                  {points.C && step >= 2 && drawCircle(points.C, 3)}
+                  {points.C && drawLine(points.A, points.C)}
+                  {points.C && drawLine(points.B, points.C)}
 
-                {points.B && step >= 2 && (
-                  <text x={points.B.x} y={points.B.y - 10} textAnchor="middle">
-                    B
-                  </text>
-                )}
-                {points.C && step >= 2 && (
-                  <text x={points.C.x} y={points.C.y - 10} textAnchor="middle">
-                    C
-                  </text>
-                )}
-                {points.D && step >= 3 && (
-                  <circle cx={points.D.x} cy={points.D.y} r={2} fill="red" />
-                )}
-                {points.D && step >= 3 && (
-                  <text x={points.D.x} y={points.D.y - 10} textAnchor="middle">
-                    D
-                  </text>
-                )}
-                {points.E && step >= 3 && (
-                  <circle cx={points.E.x} cy={points.E.y} r={2} fill="red" />
-                )}
-                {points.E && step >= 3 && (
-                  <text x={points.E.x} y={points.E.y - 10} textAnchor="middle">
-                    E
-                  </text>
-                )}
-              </svg>
-            </div>
-          </BandeBox>
-        </div>
-        <div>
-          {" "}
-          <ResetButton
-            variant="contained"
-            type="submit"
-            onClick={verify}
-            style={{ marginRight: "10px" }}
-          >
-            Verifier
-          </ResetButton>
-          <VerifieButton style={{ marginRight: "10px" }} onClick={retourner}>
-            Retourner
-          </VerifieButton>
-          <VerifieButton onClick={reset}>Reset</VerifieButton>
-        </div>
-        <div>{showX && <span>✖️</span>}
-          {showCongratulations && <span>✅</span>}</div>
+                  {points.A && points.B && step >= 2 && (
+                    <>
+                      <line
+                        x1={points.A.x}
+                        y1={points.A.y}
+                        x2={points.B.x}
+                        y2={points.B.y}
+                        stroke="gray"
+                        strokeDasharray="5"
+                      />
+
+                      {MEDIATRICE_X && (
+                        <>
+                          <circle
+                            cx={MEDIATRICE_X}
+                            cy={(points.A.y + points.B.y) / 2}
+                            r="5"
+                            fill="gray"
+                          />
+                        </>
+                      )}
+                    </>
+                  )}
+                  {points.D && points.A && points.B && step >= 3 &&
+                    <>
+                      <line
+                        x1={points.A.x}
+                        y1={points.A.y}
+                        x2={points.D.x}
+                        y2={points.D.y}
+                        stroke="gray"
+                        strokeDasharray="5"
+                      />
+                      <line
+                        x1={points.B.x}
+                        y1={points.B.y}
+                        x2={points.D.x}
+                        y2={points.D.y}
+                        stroke="gray"
+                        strokeDasharray="5"
+                      />
+                    </>
+
+                  }
+                  {calculatePerpendicularLine()}
+                  {points.A && step >= 1 && (
+                    <text x={points.A.x} y={points.A.y - 10} textAnchor="middle">
+                      A
+                    </text>
+                  )}
+
+                  {points.B && step >= 2 && (
+                    <text x={points.B.x} y={points.B.y - 10} textAnchor="middle">
+                      B
+                    </text>
+                  )}
+                  {points.C && step >= 2 && (
+                    <text x={points.C.x} y={points.C.y - 10} textAnchor="middle">
+                      C
+                    </text>
+                  )}
+                  {points.D && step >= 3 && (
+                    <circle cx={points.D.x} cy={points.D.y} r={2} fill="red" />
+                  )}
+                  {points.D && step >= 3 && (
+                    <text x={points.D.x} y={points.D.y - 10} textAnchor="middle">
+                      D
+                    </text>
+                  )}
+                  {points.E && step >= 3 && (
+                    <circle cx={points.E.x} cy={points.E.y} r={2} fill="red" />
+                  )}
+                  {points.E && step >= 3 && (
+                    <text x={points.E.x} y={points.E.y - 10} textAnchor="middle">
+                      E
+                    </text>
+                  )}
+                </svg>
+              </div>
+            </BandeBox>
+          </div>
+          <div>
+            {" "}
+            {/* <ResetButton
+              variant="contained"
+              type="submit"
+              onClick={verify}
+              style={{ marginRight: "10px" }}
+            >
+              Verifier
+            </ResetButton> */}
+            
+            <VerifieButton style={{ marginRight: "10px" }} onClick={retourner}>
+              Retourner
+            </VerifieButton>
+
+            {/* <VerifieButton onClick={reset}>Reset</VerifieButton> */}
+          </div>
+
+
+          <div>
+            {" "}
+            <Box display="flex" justifyContent="center" mt={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                onClick={verify}
+                style={{ marginRight: '10px' }}
+                disabled={isLastQuestion} >
+
+                Répondre
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={!isLastQuestion}
+                onClick={Terminer}
+              >
+                Terminer
+              </Button>
+
+            </Box>
+
+          </div>
+          <div>{showX && <span>✖️</span>}
+            {showCongratulations && <span>✅</span>}</div>
           {points.A && points.B &&
+            <div>
+              <div>
+
+                <StyledText1>
+                  <span style={{ marginRight: "10px" }}>
+                    AB = {!points.A && 0}
+                    {points.A && points.B &&
+                      (calculateDistance(points.A, points.B) / 37.8).toFixed(1)}cm
+                  </span>
+                  <span style={{ marginRight: "10px" }}>
+                    AC = {!points.C && 0}
+                    {points.A && points.C &&
+                      (calculateDistance(points.A, points.C) / 37.8).toFixed(1)}cm
+                  </span>
+                  <span>
+                    BC = {!points.C && 0}
+                    {points.B && points.C &&
+                      (calculateDistance(points.B, points.C) / 37.8).toFixed(1)}cm
+                  </span>
+                </StyledText1>
+              </div>
+              <div>
+                <StyledText1>
+                  <span style={{ marginRight: "10px" }}>
+                    BD = {!points.D && 0}
+                    {points.B && points.D &&
+                      (calculateDistance(points.B, points.D) / 37.8).toFixed(1)}cm
+                  </span>
+                  <span style={{ marginRight: "10px" }}>
+                    AE = {!points.E && 0}
+                    {points.A && points.E &&
+                      (calculateDistance(points.A, points.E) / 37.8).toFixed(1)}cm
+                  </span>
+                  <span style={{ marginRight: "10px" }}>
+                    AD = {!points.D && 0}
+                    {points.A && points.D &&
+                      (calculateDistance(points.A, points.D) / 37.8).toFixed(1)}cm
+                  </span>
+                </StyledText1>
+
+              </div>
+            </div>
+          }
+
           <div>
-          <div>
-            
-            <StyledText1>
-            <span style={{ marginRight: "10px" }}>
-              AB = {!points.A && 0}
-              {points.A && points.B &&
-              (calculateDistance(points.A, points.B) / 37.8).toFixed(1)}cm
-            </span>
-            <span style={{ marginRight: "10px" }}>
-            AC = {!points.C && 0}
-              {points.A && points.C &&
-              (calculateDistance(points.A, points.C) / 37.8).toFixed(1)}cm
-            </span>
-            <span>
-            BC = {!points.C && 0}
-              {points.B && points.C &&
-              (calculateDistance(points.B, points.C) / 37.8).toFixed(1)}cm
-            </span>
-            </StyledText1>
+
+
+
+            {!showCongratulations && !points.A && (
+              <div>
+                <StyledText>
+                  Cliquer pour construire le sommet A.
+                </StyledText>
+              </div>
+            )}
+            {!showCongratulations && points.A && !points.D && (
+              <div>
+                <StyledText>
+                  Cliquer pour construire votre segment AB
+                </StyledText>
+              </div>
+            )}
+
+            {!showCongratulations && points.A && points.B && !points.D && (
+              <div>
+                <StyledText>
+                  cliquer pour visualiser les points D et E
+                </StyledText>
+              </div>
+            )}
+            {questions.map((q) => (
+              <StyledText>
+                {!showCongratulations && points.A && points.B && points.D && <span>{q.Q}</span>}
+              </StyledText>
+
+            ))}
+            {!showCongratulations && points.A && points.B && points.D && (
+              <div>
+                <StyledText>
+                  Utiliser les distances pour vous aider.
+                </StyledText>
+              </div>
+            )}
+
+            {showCongratulations && (
+              <div>
+                <StyledText>
+                  Parfait !.
+                </StyledText>
+              </div>
+            )}
+
+
           </div>
-          <div>
-          <StyledText1>
-          <span style={{ marginRight: "10px" }}>
-            BD = {!points.D && 0}
-              {points.B && points.D&&
-              (calculateDistance(points.B, points.D) / 37.8).toFixed(1)}cm
-            </span>
-            <span style={{ marginRight: "10px" }}>
-            AE = {!points.E && 0}
-              {points.A && points.E &&
-              (calculateDistance(points.A, points.E) / 37.8).toFixed(1)}cm
-            </span>
-            <span style={{ marginRight: "10px" }}>
-            AD = {!points.D && 0}
-              {points.A && points.D &&
-              (calculateDistance(points.A, points.D) / 37.8).toFixed(1)}cm
-            </span>
-          </StyledText1>
-        
-          </div>
-          </div>
-              }
-        
-        <div>
-
-
-      
-      {!showCongratulations && !points.A &&  (
-            <div>
-              <StyledText>
-                Cliquer pour construire le sommet A.
-              </StyledText>
-            </div>
-          )}
-      {!showCongratulations && points.A && !points.D && (
-            <div>
-              <StyledText>
-                Cliquer pour construire votre segment AB
-              </StyledText>
-            </div>
-          )}
-
-      {!showCongratulations && points.A && points.B && !points.D && (
-            <div>
-              <StyledText>
-                cliquer pour visualiser les points D et E
-              </StyledText>
-            </div>
-          )}
-      {questions.map((q) => (  
-            <StyledText>
-              {!showCongratulations && points.A && points.B && points.D && <span>{q.Q}</span>}
-            </StyledText>
-            
-          ))}
-                {!showCongratulations && points.A && points.B && points.D && (
-            <div>
-              <StyledText>
-                Utiliser les distances pour vous aider. 
-              </StyledText>
-            </div>
-          )}
-
-{showCongratulations &&  (
-            <div>
-              <StyledText>
-                Parfait !. 
-              </StyledText>
-            </div>
-          )}
-          
-          
         </div>
-      </div>
-    </TriangleContainer>
+      </TriangleContainer>
+
+    </ActivityWrapper>
   );
 }
 

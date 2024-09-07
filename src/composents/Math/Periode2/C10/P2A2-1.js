@@ -12,8 +12,9 @@ import correctSound from '../../../sounds/correct.mp3';
 import incorrectSound from '../../../sounds/incorrect.mp3';
 import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../Sign_in/v2/context/AuthContext";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
+import LinearProgressBar from "../../Reusable Components/ProgressIndicator";
 
 function P2A2_1() {
   const [questions, setQuestions] = useState([]);
@@ -27,9 +28,12 @@ function P2A2_1() {
   const { currentUser } = useAuth();
   const [play] = useSound(correctSound);
   const [play1] = useSound(incorrectSound);
+  const totalQuestions = 3
+  const [questionsAnswered, setQuestionsAnswered] = useState(0)
 
   const generateQuestions = () => {
     const newQuestions = [
+
       {
         question:
           "Brahim vient d'acheter une voiture d'occasion à un ami à 785 000 UM. Pour la peinture et la tôlerie, Diallo a dépensé 45 000 UM. Quel est le prix de revient et le bénéfice de Brahim s'il la revend à 1 020 000 UM ?",
@@ -61,6 +65,7 @@ function P2A2_1() {
     setQuestions(newQuestions);
   };
 
+
   useEffect(() => {
     const now = new Date();
     setEntryTime(now);
@@ -76,17 +81,21 @@ function P2A2_1() {
       parseInt(answer1) === questions[currentIndex].answer1
     ) {
       setShowCongratulations(true);
+
       play();
     } else {
       setShowCongratulations(false);
       play1();
     }
+    setQuestionsAnswered(questionsAnswered + 1)
 
     setTimeout(() => {
       if (currentIndex < questions.length - 1) {
         nextQuestion();
+        console.log(currentIndex)
       } else {
         setIsLastQuestion(true);
+        console.log("is the last ques")
       }
     }, 2000);
   };
@@ -106,6 +115,7 @@ function P2A2_1() {
     setShowCongratulations(false);
     setAnswer("");
     setAnswer1("");
+    setQuestionsAnswered(0)
   };
 
   const submitActivity = async () => {
@@ -141,100 +151,123 @@ function P2A2_1() {
       user={currentUser}
       activityName="P2A2_1"
     >
-      <Card style={{ minHeight: "400px" }}>
-        <CardContent>
-          <Box my={2}>
-            <div style={{ position: "relative" }}>
-              <img
-                src={"images/Math/C/imagesC10/car.png"}
-                alt="car"
-                style={{
-                  width: "60%",
-                  height: "160px",
-                  marginLeft: "50%",
-                  marginTop: "155px",
-                }}
-              />
-              
-              <Card
-                style={{
-                  position: "absolute",
-                  bottom: "-12%",
-                  left: "30%",
-                  transform: "translate(-50%, -50%)",
-                  borderRadius: "10px",
-                  backgroundColor: "#1877f2",
-                  padding: "0px",
-                  color: "#ffffff",
-                }}
-              >
-                <CardContent>
-                  {!showMessage && questions[currentIndex] && (
-                    <Typography variant="body1" style={{ color: "#ffffff" }}>
-                      {questions[currentIndex].question}
-                    </Typography>
-                  )}
 
-                  {showCongratulations && (
-                    <Typography variant="body1" style={{ color: "#ffffff" }}>
-                      Félicitations! Vous avez donné la bonne réponse!
-                    </Typography>
-                  )}
-                  {showMessage && !showCongratulations && (
-                    <Typography variant="body1" style={{ color: "#ffffff" }}>
-                      Réponse incorrecte. Essayez encore!
-                    </Typography>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </Box>
-          {!showMessage && currentIndex >= 0 && currentIndex < questions.length && (
-            <Box my={2}>
-              <form onSubmit={handleSubmit}>
+
+      <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+
+      <CardContent>
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+
+        <div style={{ position: "relative" }}>
+          <img
+            src={"images/Math/C/imagesC10/car.png"}
+            alt="car"
+            style={{
+              width: "60%",
+              height: "160px",
+              marginLeft: "50%",
+              marginTop: "155px",
+            }}
+          />
+
+          <Card
+            style={{
+              position: "absolute",
+              bottom: "40%",
+              left: "30%",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "10px",
+              backgroundColor: "#2196f3",
+              padding: "0px",
+              color: "#ffffff",
+              width: "250px"
+            }}
+          >
+            <CardContent>
+              {!showMessage && questions[currentIndex] && (
+                <Typography variant="body1" style={{ color: "#ffffff" }}>
+                  {questions[currentIndex].question}
+                </Typography>
+              )}
+
+              {showCongratulations && (
+                <Typography variant="body1" style={{ color: "#ffffff" }}>
+                  Félicitations! Vous avez donné la bonne réponse!
+                </Typography>
+              )}
+              {showMessage && !showCongratulations && (
+                <Typography variant="body1" style={{ color: "#ffffff" }}>
+                  Réponse incorrecte. Essayez encore!
+                </Typography>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+
+        <Box my={2}>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label={questions[currentIndex].answerLabel}
+              type="number"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              fullWidth
+              required
+            />
+            {questions[currentIndex].hasTwo && (
+              <>
+                <h1></h1>
                 <TextField
-                  label={questions[currentIndex].answerLabel}
+                  label={questions[currentIndex].answer1Label}
                   type="number"
-                  value={answer}
-                  onChange={(e) => setAnswer(e.target.value)}
+                  value={answer1}
+                  onChange={(e) => setAnswer1(e.target.value)}
                   fullWidth
                   required
                 />
-                {questions[currentIndex].hasTwo && (
-                  <>
-                    <h1></h1>
-                    <TextField
-                      label={questions[currentIndex].answer1Label}
-                      type="number"
-                      value={answer1}
-                      onChange={(e) => setAnswer1(e.target.value)}
-                      fullWidth
-                      required
-                    />
-                  </>
-                )}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  style={{ marginTop: "20px" }}
-                >
-                  Répondre
-                </Button>
-              </form>
+              </>
+            )}
+              
+            <Box display="flex" justifyContent="center" mt={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: '10px' }}
+                type="submit"
+                disabled={isLastQuestion}
+              >
+                Répondre
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                disabled={!isLastQuestion}
+                onClick={submitActivity}
+              >
+                Terminer
+              </Button>
+
             </Box>
-          )}
-        </CardContent>
-      </Card>
-      <Button
-        variant="contained"
-        color="primary"
-        disabled={!isLastQuestion}
-        onClick={submitActivity}
-        style={{ marginTop: "20px" }}
-      >
-        Terminer
-      </Button>
+          </form>
+        </Box>
+
+      </CardContent>
+
+
+
+
+
+
     </ActivityWrapper>
   );
 }
