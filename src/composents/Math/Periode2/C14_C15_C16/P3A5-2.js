@@ -187,7 +187,7 @@ function FractionalFigure() {
     activityName="FractionActivity"
 >
 
-    <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} />
+    {/* <LinearProgressBar currentStep={questionsAnswered} totalSteps={totalQuestions} /> */}
     <Card style={{ width: '90%', margin: '2rem auto', padding: '1rem'}}>
 
        <img

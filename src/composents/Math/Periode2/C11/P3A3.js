@@ -15,12 +15,12 @@ export default function C1_new({ onFinish }) {
 
 
     const introProps = {
-        title: "Multiplier des nombres entiers:",
-        imagePath: "/images/Math/C/C1/Po.png",
+        title: "Caractéres de divisibilités ",
+        imagePath: "/images/Math/C/C11/serveau.png",
         content: [
-            'La multiplication est une addition répétée.',
-            'Elle nous permet de combiner plusieurs groupes de la même taille.',
-            'Exemple : 3 × 4 = 12',
+            'Un entier est dit divisible par deux si :Son chiffres des unitès et l un des multiples de 2.',
+            'Un entier est dit divisible par Trois  si:la somme de ses chiffres est un multiple de 3',
+            'Un entier est dit divisible par cinq si:Son chiffres des unitès est un 0 ou 5',
             'Même avec de grands nombres : 123 × 456.'
         ],
     };

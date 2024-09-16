@@ -155,11 +155,7 @@ function Table_mesure() {
                     <img src={'/images/Math/C/C11/cinq.png'} alt="division" style={imageStyle} />
 
                     
-                    <strong> <Orange_NumberDisplay>Un entier est dit divisible par cinq si:
-                        <span>Son chiffres des unitès est un 0 ou 5</span>
-                    </Orange_NumberDisplay></strong>
-                    <strong style={{ color: 'blue' }}>Exemple: </strong><br></br><br></br>
-
+                   
                     <strong>
                         <li>450 est divisible par 5, car chiffre des unities est 0</li> <br />
                         <li> 455 est divisible par 5, car chiffre des unities est 5</li><br />
