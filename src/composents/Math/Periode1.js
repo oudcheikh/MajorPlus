@@ -16,7 +16,7 @@ function Accueil() {
   );
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ direction: "ltr" }}>
       <div className="card-grid">
         <CardButton title="C1" navigateTo="/C1_new" />
         <CardButton title="C2" navigateTo="/C2_new" />

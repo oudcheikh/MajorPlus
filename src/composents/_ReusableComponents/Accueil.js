@@ -1,14 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import logo from './Major.png'; // Ensure logo.png is in the same directory as Acceuil.js
 import { useNavigate } from 'react-router-dom';
+import { auth } from "../Sign_in/v2/firebase"
+import { onAuthStateChanged } from "firebase/auth";
+
+
+
+
+const Card = ({ title, content, icon, full, navigateTo }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (navigateTo) {
+      navigate(navigateTo);
+    }
+  };
+
+  return (
+    <div className={`card ${full ? 'full-card' : ''}`} onClick={handleClick}>
+      {icon && <img src={icon} alt={title} className="card-icon" />}
+      <div className="card-content">
+        <h2>{title}</h2>
+        <p>{content}</p>
+      </div>
+    </div>
+  );
+};
 
 
 
 const Acceuil = () => {
 
 const navigate = useNavigate();
+const [user, setUser] = useState(null);
+
+const CardButton = ({ title, navigateTo }) => (
+  <div className="card full-card" onClick={() => navigate(navigateTo)}>
+    <img src={"images/Icones/calculator-simple.png"} alt={title} className="card-icon" />
+    <div className="card-content">
+      <h2>{title}</h2>
+    </div>
+  </div>
+);
+
+useEffect(() => {
+  // Vérifie si un utilisateur est connecté ou déconnecté
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      // Utilisateur connecté
+      setUser(currentUser);
+    } else {
+      // Aucun utilisateur connecté
+      setUser(null);
+    }
+  });
+
+  // Nettoyage lors du démontage du composant
+  return () => unsubscribe();
+}, []);
 
   return (
+    
+    
+  
+
+  <div>
+  {user ? (
+
+    <div className="app-container">
+      
+
+  
+      <div className="full-width-container">
+
+      <CardButton title="Math" navigateTo="/Math" />
+      {/* <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />
+        <Card title="Science" content="" icon={flask} full navigateTo="/Science" />
+        <Card title="Français" content="" icon={Fraçais} full navigateTo="/Français" /> */}
+        {/* <Card title="Concours" content="" icon={Fraçais} full navigateTo="/Concours" /> */}
+      </div>
+
+    </div>
+
+  ) : (
     <div style={styles.acceuilContainer}>
       <div style={styles.logoContainer}>
         <img src={logo} alt="Logo" style={styles.logo} />
@@ -20,13 +94,13 @@ const navigate = useNavigate();
       <button style={styles.btnSignup} onClick={() => navigate('/signup')}>S'inscrir</button>
 
       {/* <button style={styles.btnSignup} onClick={() => navigate('/Buuton3D')}>button</button> */}
-
-
-
-
       </div>
     </div>
-  );
+  )}
+</div>
+
+
+);
 };
 
 const styles = {

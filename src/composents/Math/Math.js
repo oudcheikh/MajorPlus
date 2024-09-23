@@ -16,7 +16,7 @@ function Accueil() {
   );
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ direction: "ltr" }} >
       <div className="card-grid">
         {/* ProgressTracker */}
         <CardButton title="Periode1" navigateTo="/Periode1" />

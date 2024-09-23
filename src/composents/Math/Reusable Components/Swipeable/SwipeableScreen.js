@@ -32,7 +32,8 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
     return (
         <div
             
-            style={{ position: "relative", height: "100vh" }}
+            style={{ position: "relative", height: "100vh",direction: "ltr"  }}
+            
         >
             <div className="pagination">
                 <IconButton onClick={handleBackButton}>
