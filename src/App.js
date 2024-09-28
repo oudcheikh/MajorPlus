@@ -35,6 +35,7 @@ import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
 import MesureAires from './composents/Math/Periode2/M5/MesuresAires.js'
 import Triangle from './composents/Math/Periode2/G4/Triangles.js'
 
+import ScoreBoard from './composents/Scorbord.js'
 
 import Buuton3D from './composents/3DButton/Button.js';
 
@@ -134,6 +135,9 @@ function App() {
                         <Route path="/G3A2" element={<G3A2 />} />
                         <Route path="/G1A3" element={<G1A3 />} />
                         <Route path="/G1A4" element={<G1A4 />} />
+
+
+                        <Route path="/scoreboard" element={<ScoreBoard />} />
 
   {/* Periode2 */}
   {/* <Route path="/CalculPrix" element={<CalculPrix onFinish={() => handleFinish(9)} />} /> */}

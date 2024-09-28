@@ -13,46 +13,29 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
+import { auth } from "./composents/Sign_in/v2/firebase"
+import { onAuthStateChanged } from "firebase/auth";
 
 //import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-function TopBarWithDrawer({  toggleLanguage, t }) {
 
-
-
-  const [, setTotalScore] = useState(0);
-  //const scoreTotal = useSelector((state) => state.counter.value);
+function TopBarWithDrawer({ toggleLanguage, t }) {
+  const [user, setUser] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event.key === 'scores') {
-        const scoresString = event.newValue;
-        const scoresArray = JSON.parse(scoresString);
-        const newTotalScore = calculateTotalScore(scoresArray);
-        setTotalScore(newTotalScore);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
       }
-    };
+    });
 
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
+    return () => unsubscribe();
   }, []);
-
-  const calculateTotalScore = (scoresArray) => {
-    let total = 0;
-    if (scoresArray) {
-      scoresArray.forEach(score => {
-        total += score.score || 0;
-      });
-    }
-    return total;
-  };
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -63,19 +46,17 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
 
   const goToHomePage = () => {
     navigate('/');
-    setDrawerOpen(false); 
+    setDrawerOpen(false);
   };
 
   const goToScoreboard = () => {
     navigate('/scoreboard');
-    setDrawerOpen(false); 
+    setDrawerOpen(false);
   };
 
   const handleChangeLanguage = (event) => {
-    console.log("_____________________________ : ", event.target.value)
     toggleLanguage(event.target.value);
   };
-
 
   const bookIcon = (
     <svg
@@ -114,15 +95,17 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
   );
 
   return (
-   
     <div className="top-bar" style={{ direction: "ltr" }}>
       <div className="menu-button" onClick={() => setDrawerOpen(true)}>
         ☰
       </div>
 
-      <div className="score" onClick={goToScoreboard}>
-        {Math.ceil(17)} 🥇
-      </div>
+      {/* Afficher le score uniquement si l'utilisateur est connecté */}
+      {user && (
+        <div className="score" onClick={goToScoreboard}>
+          {Math.ceil(17)} 🥇
+        </div>
+      )}
 
       <div className="language-select">
         <select onChange={handleChangeLanguage} aria-label="Select language">
@@ -130,7 +113,6 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
           <option value="fr">FR</option>
         </select>
       </div>
-
 
       <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
         <List>
@@ -144,10 +126,6 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
           </ListItem>
         </List>
       </Drawer>
-
-
-      
-
     </div>
   );
 }

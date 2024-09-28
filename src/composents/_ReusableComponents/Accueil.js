@@ -68,11 +68,7 @@ useEffect(() => {
   {user ? (
 
     <div className="app-container">
-      
-
-  
       <div className="full-width-container">
-
       <CardButton title="Math" navigateTo="/Math" />
       {/* <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />
         <Card title="Science" content="" icon={flask} full navigateTo="/Science" />
