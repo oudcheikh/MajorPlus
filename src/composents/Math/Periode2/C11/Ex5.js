@@ -55,7 +55,7 @@ function Ligne({ chiffre, onReponseChange, animationClass }) {
 }
 
 function Exercice() {
-  const [tableData] = useState(["50", "410", "30"]); 
+  const [tableData] = useState(["22346", "41077870", "2139835"]); 
   const [currentRowIndex, setCurrentRowIndex] = useState(0); 
   const [reponse, setReponse] = useState(""); 
   const [feedback, setFeedback] = useState(""); 
@@ -88,7 +88,7 @@ function Exercice() {
     }
 
     const number = parseInt(tableData[currentRowIndex], 10); 
-    const isDivisibleBy2 = number % 2 === 0; 
+    const isDivisibleBy2 = number % 5 === 0; 
     let message;
 
     if (
@@ -184,11 +184,11 @@ function Exercice() {
 
       <div>
         <img
-          src={"/images/Math/C/C11/serveau.png"}
+          src={"images/PetiTeacher.png"}
           alt="division"
           style={imageStyle}
         />
-        <h2>Exercice: Divisibilité par 2</h2>
+        <h2>Exercice: Divisibilité par 5</h2>
 
        
         <Ligne
@@ -210,6 +210,7 @@ function Exercice() {
             style={{ marginRight: "10px" }}
           >
             Répondre
+
           </Button>
           <Button
             variant="contained"

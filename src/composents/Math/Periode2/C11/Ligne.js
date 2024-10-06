@@ -1,37 +1,34 @@
-import React from "react";
-
-function Ligne({ chiffre, onReponseChange }) {
-  
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    onReponseChange(value);  // Pass the value back to the parent component
-  };
-
+function Ligne({ chiffre, onReponseChange, animationClass }) {
   return (
-    <div>
-      <table className="conversion-table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Réponse</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{chiffre}</td>
-            <td>
-              <input
-                type="text"
-                className="small-input"
-                placeholder="---"
-                onChange={handleInputChange}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table className={`conversion-table ${animationClass}`}>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Réponse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{chiffre}</td>
+          <td>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onReponseChange("oui")}
+              style={{ marginRight: "10px" }}
+            >
+              jjjjjjjjj
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => onReponseChange("non")}
+            >
+              Non
+            </Button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
-
-export default Ligne;
