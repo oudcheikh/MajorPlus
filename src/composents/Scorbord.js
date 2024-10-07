@@ -2,10 +2,8 @@ import "./ScoreBoard.css";
 import React, { useEffect, useState } from "react";
 import { auth, db } from "./Sign_in/v2/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import dayjs from "dayjs"; // Utiliser dayjs pour manipuler les dates facilement
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
-
+import dayjs from "dayjs";
+import AnimationComponent from './AnnimationSVG/Annimation'; // Assurez-vous d'importer correctement l'animation
 
 function ScoreBoard() {
   const [user, setUser] = useState(null);
@@ -14,6 +12,7 @@ function ScoreBoard() {
   const [xp, setXp] = useState(0);
   const [level, setLevel] = useState(1);
   const [isChampion, setIsChampion] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false); // État pour gérer le succès ou l'échec
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -48,12 +47,10 @@ function ScoreBoard() {
   }, []);
 
   const calculateStats = (activitiesList) => {
-    // Trier les activités par date
     const sortedActivities = activitiesList.sort(
       (a, b) => new Date(a.date) - new Date(b.date)
     );
 
-    // Calcul des jours de suite (streak)
     let streakDays = 0;
     let lastDate = null;
 
@@ -68,7 +65,7 @@ function ScoreBoard() {
         if (differenceInDays === 1) {
           streakDays++;
         } else if (differenceInDays > 1) {
-          streakDays = 1; // Réinitialiser la streak si un jour est manqué
+          streakDays = 1;
         }
       }
 
@@ -77,26 +74,22 @@ function ScoreBoard() {
 
     setStreak(streakDays);
 
-    // Calcul du total d'XP
     const totalXp = activitiesList.reduce((sum, activity) => {
-      return sum + (activity.xp || 0); // Assumer que chaque activité a un champ "xp"
+      return sum + (activity.xp || 0);
     }, 0);
 
     setXp(totalXp);
 
-    // Calcul du niveau
     const calculatedLevel = calculateLevel(totalXp);
     setLevel(calculatedLevel);
 
-    // Définir si l'utilisateur est un champion
-    if (calculatedLevel >= 10) { // Par exemple, niveau 10 pour être champion
+    if (calculatedLevel >= 10) {
       setIsChampion(true);
     } else {
       setIsChampion(false);
     }
   };
 
-  // Fonction de calcul du niveau basé sur l'XP
   const calculateLevel = (xp) => {
     if (xp < 100) return 1;
     if (xp < 300) return 2;
@@ -108,6 +101,10 @@ function ScoreBoard() {
     if (xp < 3600) return 8;
     if (xp < 4500) return 9;
     return 10;
+  };
+
+  const handleClick = () => {
+    setIsSuccess(!isSuccess); // Basculer entre succès et échec
   };
 
   return (
@@ -140,6 +137,15 @@ function ScoreBoard() {
             <span className="icon">🏆</span>
             <p>{isChampion ? "Champion" : "Pas encore Champion"}</p>
           </div>
+
+          {/* Bouton qui déclenche l'animation */}
+          <h1>{isSuccess ? 'Succès 🎉' : 'Échec 😔'}</h1>
+          <button onClick={handleClick} style={{ padding: '10px 20px', fontSize: '16px' }}>
+            {isSuccess ? 'Réessayer' : 'Essayer à nouveau'}
+          </button>
+
+          {/* Appel du composant AnimationComponent avec l'état isSuccess */}
+          <AnimationComponent isSuccess={isSuccess} />
         </div>
       </div>
 
