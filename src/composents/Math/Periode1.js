@@ -1,25 +1,32 @@
-import React from 'react';
+import React  from 'react';
+import { useParams } from "react-router-dom";
+
 import { useNavigate } from 'react-router-dom';
-//import calculatorIcon from '../../composents/home/Icones/calculator-simple.png'; // Assurez-vous d'avoir le bon chemin
-import '../../composents/home/Major.css'; // Importer les styles
+import '../../composents/home/Major.css'; 
 
 function Accueil() {
   const navigate = useNavigate();
+  const { periodeId } = useParams();
+  console.log("Période ID :", periodeId);
 
-  const CardButton = ({ title, navigateTo }) => (
-    <div className="card full-card" onClick={() => navigate(navigateTo)}>
-      <img src={"images/Icones/calculator-simple.png"} alt={title} className="card-icon" />
-      <div className="card-content">
-        <h2>{title}</h2>
+  const CardButton = ({ title, navigateTo }) => {
+    console.log("Rendering CardButton:", title); // Ajout de log pour le debug
+    return (
+      <div className="card full-card" onClick={() => navigate(navigateTo)}>
+        <img src={"/images/Icones/calculator-simple.png"} alt={title} className="card-icon" />
+        <div className="card-content">
+          <h2>{title}</h2>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="app-container" style={{ direction: "ltr" }}>
       <div className="card-grid">
-        <CardButton title="C1" navigateTo="/C1_new" />
-        <CardButton title="C2" navigateTo="/C2_new" />
+      <CardButton title="C1" navigateTo={`/C1_new/${periodeId}/1`} />
+
+      <CardButton title="C2" navigateTo="/C2_new" />
         <CardButton title="C3" navigateTo="/C3_new" />
         <CardButton title="C4" navigateTo="/C4" />
         <CardButton title="C5" navigateTo="/C5A1" />

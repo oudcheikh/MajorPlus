@@ -26,7 +26,7 @@ import M3 from "../composents/Math/Periode2/M3/M3";
 
 const PeriodRoutes = (
     <>
-        <Route path="/Periode1" element={<Periode1 />} />
+        <Route path="/Periode/:periodeId" element={<Periode1 />} />
         <Route path="/Periode2" element={<Periode2 />} />
         <Route path="/Period3" element={<Period3 />} />
         <Route path="/P2A1A" element={<P2A1A />} />

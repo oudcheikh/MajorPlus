@@ -1,4 +1,6 @@
 import React, { useState , useEffect} from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./composents/Sign_in/v2/context/AuthContext.js";
 import ProtectedRoute from "./composents/Sign_in/v2/components/ProtectedRoute.js";
@@ -107,7 +109,7 @@ function App() {
                        
 
                         <Route path="/ProgressTracker" element={<ProgressTracker progress={progress} onFinish={handleFinish} />} />
-                        <Route path="/C1_new" element={<C1_new onFinish={() => handleFinish(0)} />} />
+                        <Route path="/C1_new/:periodeId/:exerciseId" element={<C1_new onFinish={() => handleFinish(0)} />} />
                     
 
                         <Route path="/C2_new" element={<C2_new onFinish={() => handleFinish(1)} />} />
