@@ -42,19 +42,24 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
     return (
         <div style={{ position: "relative", height: "100vh", direction: "ltr" }} >
             <br></br>
-            <div className="pagination">
-                <IconButton onClick={goToPrevious}>
-                    <i className="fas fa-arrow-left" style={{ fontSize: "24px", color: "#339fff" }}></i>
-                </IconButton>
 
-                <div className="progress-bar">
-                    <Pagination dots={slides.length} index={index} onChangeIndex={handleChangeIndex} />
+            <div className="pagination-container">
+                <div className="icon-container">
+                    <IconButton onClick={handleBackButton} className="home-icon">
+                        <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}></i>
+                    </IconButton>
+                    
+                    <IconButton onClick={goToPrevious} className="arrow-icon">
+                        <i className="fas fa-arrow-left" style={{ fontSize: "24px", color: "#339fff" }}></i>
+                    </IconButton>
                 </div>
 
-                <IconButton onClick={handleBackButton}>
-                    <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}></i>
-                </IconButton>
+                <div className="pagination">
+                    <Pagination dots={slides.length} index={index} onChangeIndex={handleChangeIndex} />
+                </div>
             </div>
+
+
 
 
 

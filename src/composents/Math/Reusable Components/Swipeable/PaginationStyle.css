@@ -1,14 +1,22 @@
-.pagination {
+.pagination-container {
     display: flex;
-    align-items: center; /* Pour centrer verticalement les éléments */
-    justify-content: space-between; /* Pour écarter les éléments horizontalement */
-    padding: 0 20px; /* Espacement intérieur */
-    width: 100%; /* S'assure que la pagination occupe toute la largeur disponible */
-    box-sizing: border-box; /* Pour inclure le padding dans la largeur totale */
-  }
+    align-items: center; /* Aligne les éléments au centre verticalement */
+}
 
-.progress-bar {
-    flex-grow: 1; 
-    margin: 0 5px;   
-  } 
-  
+.icon-container {
+    display: flex;
+    flex-direction: column; /* Aligne les icônes verticalement */
+    align-items: flex-start; /* Aligne les icônes à gauche */
+    margin-right: 10px; /* Espace entre les icônes et la barre de progression */
+    margin-top: 20px;
+}
+
+.home-icon {
+    margin-bottom: 5px; /* Espace entre l'icône Home et l'icône flèche */
+}
+
+.pagination {
+    flex-grow: 1; /* Permet à la barre de progression de prendre toute la largeur disponible */
+    position: relative; /* Pour un positionnement absolu si besoin */
+    background: transparent; /* Assurez-vous que l'arrière-plan est transparent */
+}
