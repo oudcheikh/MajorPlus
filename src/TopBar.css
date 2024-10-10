@@ -1,0 +1,100 @@
+/* Exemple pour un conteneur parent hypothétique */
+.container {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar img, .top-bar svg {
+  width: 30px;  /* Augmentez selon vos besoins */
+  height: 30px; /* Maintenez les mêmes valeurs pour conserver l'aspect ratio */
+}
+.top-bar {
+  font-size: 22px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    padding: 10px 20px;
+    margin: 0;
+    width: 100%; 
+    height: 60px;
+    box-sizing: border-box; 
+  }
+  
+  .menu-button,
+  .language-select {
+    /* Assurez-vous que ces éléments ne grandissent pas ou ne rétrécissent pas, leur taille restera basée sur leur contenu */
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  
+  .score {
+    /* Le score va grandir pour prendre tout l'espace disponible, mais étant donné qu'il y a un espace égal des deux côtés, il reste centré */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Centrer le score horizontalement */
+    align-items: center; /* Centrer le score verticalement */
+    cursor: pointer;
+  }
+  
+  .language-select select {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #1976d2;
+    color: white;
+  }
+  
+  /* Style for the drawer when it's open */
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: white;
+    color: black;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000; /* s'assurer que le tiroir est au-dessus du contenu */
+    transition: transform 0.3s ease; /* Utilisez transform pour une meilleure performance */
+  }
+  
+  .drawer.open {
+    transform: translateX(0px); /* Utilisez translateX au lieu de left pour une meilleure performance */
+  }
+  
+  /* Cachez le drawer par défaut et faites-le glisser lorsque le menu est ouvert */
+  .drawer {
+    transform: translateX(-250px);
+  }
+  
+  @media (max-width: 768px) {
+    .menu-button,
+    .score,
+    .language-select {
+      flex-basis: auto; /* Leur permettre de grandir et de rétrécir selon le contenu */
+    }
+  
+    .top-bar {
+      justify-content: center; /* Centrer tous les éléments dans la barre */
+    }
+  
+    .score {
+      order: 2; /* Le score vient en second après le menu, même s'il est centralisé */
+      padding: 0 20px; /* Ajouter un padding pour s'assurer qu'il ne touche pas les autres éléments */
+    }
+  
+    .menu-button {
+      order: 1; /* Le menu vient en premier */
+    }
+  
+    .language-select {
+      order: 3; /* La sélection de la langue vient en dernier */
+    }
+  }
+  

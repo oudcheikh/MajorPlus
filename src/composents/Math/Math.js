@@ -16,10 +16,10 @@ function Accueil() {
   );
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ direction: "ltr" }} >
       <div className="card-grid">
         {/* ProgressTracker */}
-        <CardButton title="Periode1" navigateTo="/Periode1" />
+        <CardButton title="Periode1" navigateTo="/Periode/1" />
         <CardButton title="Periode2" navigateTo="/Periode2" />
         <CardButton title="Periode3" navigateTo="/Period3" />
         <CardButton title="Periode4" navigateTo="/Periode4" />

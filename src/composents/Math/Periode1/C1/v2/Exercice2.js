@@ -15,7 +15,7 @@ const NumberTable = () => {
     const [entryTime, setEntryTime] = useState(null);
     const { currentUser } = useAuth();
     const [isAnsweredCorrectly, setIsAnsweredCorrectly] = useState(false);
-    const [isLastStep, setIsLastStep] = useState(false); // Pour contrôler l'état du bouton "Terminer"
+    const [isLastStep, setIsLastStep] = useState(false);
 
     const correctSound = new Audio(correctSoundFile);
     const incorrectSound = new Audio(incorrectSoundFile);
@@ -28,16 +28,15 @@ const NumberTable = () => {
     function generateRandomNumber(step) {
         switch (step) {
             case 1:
-                return Math.floor(Math.random() * 1000).toString();
+                return Math.floor(1_000_000 + Math.random() * 9_000_000).toString(); // Nombres de 1 à 9 millions
             case 2:
-                return Math.floor(1000 + Math.random() * 9000).toString();
+                return Math.floor(10_000_000 + Math.random() * 90_000_000).toString(); // Nombres de 10 à 99 millions
             case 3:
-                return Math.floor(10000 + Math.random() * 90000).toString();
+                return Math.floor(100_000_000 + Math.random() * 900_000_000).toString(); // Nombres de 100 millions à 999 millions
             default:
                 return "";
         }
     }
-
     const handleChange = (index, value) => {
         if (/^\d?$/.test(value)) {
             const newInputs = [...userInputs];

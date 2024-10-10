@@ -27,7 +27,7 @@ import C9 from '../composents/Math/Periode2/C09/C09'
 
 const PeriodRoutes = (
     <>
-        <Route path="/Periode1" element={<Periode1 />} />
+        <Route path="/Periode/:periodeId" element={<Periode1 />} />
         <Route path="/Periode2" element={<Periode2 />} />
         <Route path="/Period3" element={<Period3 />} />
         <Route path="/P2A1A" element={<P2A1A />} />
