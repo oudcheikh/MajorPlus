@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Button, Typography, TextField, Card, CardContent } from "@mui/material";
 import { styled } from "@mui/system";
 import writtenNumber from "written-number";
@@ -66,9 +66,8 @@ const imageStyle = {
     marginRight: "auto",
 };
 
-
-
-const C1A2 = () => {
+const 
+C1A2 = () => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
@@ -78,14 +77,11 @@ const C1A2 = () => {
     const { currentUser } = useAuth();
     const [sucessDialogOpen, setSucessDialogOpen] = useState(false);
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
-    const [isLastQuestion, setIsLastQuestion] = useState(false); // État pour contrôler l'activation du bouton "Terminer"
+    const [isLastQuestion, setIsLastQuestion] = useState(false);
     const [entryTime, setEntryTime] = useState(null);
 
-
-    const correctSound = new Audio(correctSoundFile);
-    const incorrectSound = new Audio(incorrectSoundFile);
-
-
+    const correctSound = useRef(new Audio(correctSoundFile));
+    const incorrectSound = useRef(new Audio(incorrectSoundFile));
 
     useEffect(() => {
         const now = new Date();
@@ -101,16 +97,15 @@ const C1A2 = () => {
         setIsValid(validation);
         if (!validation) {
             setIncorrectAnswers(incorrectAnswers + 1);
-            incorrectSound.play();
+            incorrectSound.current.play();
         } else {
             setCorrectAnswers(correctAnswers + 1);
-            correctSound.play();
+            correctSound.current.play();
         }
 
         setQuestionsAnswered(prev => prev + 1);
 
         if (progress + 1 < ranges.length) {
-            // Si ce n'est pas la dernière question, on passe à la suivante après 3 secondes
             setTimeout(() => {
                 setProgress(prevProgress => {
                     const newProgress = prevProgress + 1;
@@ -120,7 +115,6 @@ const C1A2 = () => {
                 setUserInput("");
             }, 3000);
         } else {
-            // Si c'est la dernière question, activer le bouton "Terminer"
             setIsLastQuestion(true);
         }
     };
@@ -145,8 +139,6 @@ const C1A2 = () => {
     const handleClickOpen = () => {
         sendActivityData();
         setSucessDialogOpen(true);
-
-        // Réinitialiser l'activité après l'envoi des données
         handleReset();
     };
 
@@ -154,10 +146,9 @@ const C1A2 = () => {
         setSucessDialogOpen(false);
     };
 
-    
     const sendActivityData = async () => {
         const endTime = new Date();
-        const timeSpent = (endTime - entryTime) / 1000; // Temps passé en secondes
+        const timeSpent = (endTime - entryTime) / 1000;
         const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
 
         const activityData = {
@@ -172,13 +163,12 @@ const C1A2 = () => {
         };
 
         try {
-            await addDoc(collection(db, 'users',currentUser.uid, 'activities'), activityData);
+            await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
             console.log('Activity data sent:', activityData);
         } catch (e) {
             console.error('Error sending activity data:', e);
         }
     };
-
 
     const handleReset = () => {
         setProgress(0);
@@ -188,49 +178,72 @@ const C1A2 = () => {
         setCorrectAnswers(0);
         setIncorrectAnswers(0);
         setQuestionsAnswered(0);
-        setIsLastQuestion(false); // Désactiver à nouveau le bouton "Terminer"
+        setIsLastQuestion(false);
         getRandomNumber(0);
     };
 
-    return (
-        <ActivityWrapper
-            activityTitle={"C1A2"}
-            explanationVideoUrl={"/Videos/number_sorting.mp4"}
-            onSubmit={checkAnswer}
-            user={currentUser}
-            activityName="C1A2"
-        >
-            <StyledBox>
-                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
-                <MessageCard>
-                    <CardContent>
-                        <Typography>
-                            Ecrire ce nombre en chiffres : <br></br>
-                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
-                                {writtenNumber(randomNumber, { lang: "fr" })}
-                            </span>
-                        </Typography>
-                    </CardContent>
-                </MessageCard>
-            </StyledBox>
-            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField  label="Entrez le chiffre"  variant="outlined"  type="number" value={userInput}  onChange={handleInputChange}  style={{ marginTop: "20px", width: "70%" }} />
-              
-              
-                <ButtonContainer>
-                    <Button variant="contained"  style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }} onClick={handleValidate}  >
-                        Répondre
-                    </Button>
-                    <Button variant="contained" disabled={!isLastQuestion}  onClick={handleClickOpen} > Terminer </Button>
-                </ButtonContainer>
-                
-                
-                {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
-                {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
-            </Box>
-
-        </ActivityWrapper>
-    );
-};
-
-export default C1A2;
+        // Fonction pour lire le texte avec SpeechSynthesis API
+        const readNumberAloud = (numberText) => {
+            const utterance = new SpeechSynthesisUtterance(numberText);
+            utterance.lang = "fr-FR"; // Définit la langue à français
+            window.speechSynthesis.speak(utterance);
+        };
+    
+        return (
+            <ActivityWrapper
+                activityTitle={"C1A2"}
+                explanationVideoUrl={"/Videos/number_sorting.mp4"}
+                onSubmit={checkAnswer}
+                user={currentUser}
+                activityName="C1A2"
+            >
+                <StyledBox>
+                    <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
+                    {/* Ajout du gestionnaire d'événement onClick sur la carte */}
+                    <MessageCard onClick={() => readNumberAloud(writtenNumber(randomNumber, { lang: "fr" }))}>
+                        <CardContent>
+                            <Typography>
+                                Ecrire ce nombre en chiffres : <br></br>
+                                <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
+                                    {writtenNumber(randomNumber, { lang: "fr" })}
+                                </span>
+                            </Typography>
+                        </CardContent>
+                    </MessageCard>
+                </StyledBox>
+                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                    <TextField
+                        label="Entrez le chiffre"
+                        variant="outlined"
+                        type="number"
+                        value={userInput}
+                        onChange={handleInputChange}
+                        style={{ marginTop: "20px", width: "70%" }}
+                    />
+    
+                    <ButtonContainer>
+                        <Button
+                            variant="contained"
+                            style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }}
+                            onClick={handleValidate}
+                        >
+                            Répondre
+                        </Button>
+                        <Button
+                            variant="contained"
+                            disabled={!isLastQuestion}
+                            onClick={handleClickOpen}
+                        >
+                            Terminer
+                        </Button>
+                    </ButtonContainer>
+    
+                    {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
+                    {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
+                </Box>
+            </ActivityWrapper>
+        );
+    };
+    
+    export default C1A2;
+    
