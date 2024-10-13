@@ -6,6 +6,7 @@ import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import correctSoundFile from '../../../../sounds/correct.mp3'; 
 import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
+import AnimationComponent from '../../../../AnnimationSVG/Annimation';
 
 const NumberTable = () => {
     const [userInputs, setUserInputs] = useState(Array(12).fill(""));
@@ -19,6 +20,8 @@ const NumberTable = () => {
 
     const correctSound = new Audio(correctSoundFile);
     const incorrectSound = new Audio(incorrectSoundFile);
+    const [isSuccess, setIsSeccess]=useState(false)
+
 
     useEffect(() => {
         const now = new Date();
@@ -166,8 +169,128 @@ const NumberTable = () => {
                     </p>
                 )}
             </div>
+
+
         </ActivityWrapper>
     );
 };
 
 export default NumberTable;
+
+
+
+
+// Exercice2.js
+// Exercice2.js
+// import React, { useState, useEffect } from 'react';
+// import ConfettiAnimation from './Victoire';
+
+
+// const Exercice2 = ({ currentIndex, segmentIndex }) => {
+//     const [showAnimation, setShowAnimation] = useState(false);
+//     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+//     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+//     const [segment, setSegment] = useState(1);  // Numéro du segment
+
+//     const handleAnimationTrigger = () => {
+//         setShowAnimation(true);
+//         // Masquer l'animation après 3 secondes
+//         setTimeout(() => setShowAnimation(false), 3000);
+//         // // Simuler un changement de segment
+//         // setSegment(segment + 1);
+//     };
+
+//     // Mettre à jour la taille de la fenêtre si elle change
+//     useEffect(() => {
+// console.log(segmentIndex)
+
+
+//         const handleResize = () => {
+//             setWindowWidth(window.innerWidth);
+//             setWindowHeight(window.innerHeight);
+//         };
+
+//         window.addEventListener('resize', handleResize);
+//         return () => window.removeEventListener('resize', handleResize);
+//     }, []);
+
+//     return (
+//         <div>
+//             <h2>Exercice 2</h2>
+//             <button onClick={handleAnimationTrigger}>Déclencher Confetti</button>
+//             {showAnimation && (
+//                 <ConfettiAnimation
+//                     width={windowWidth}
+//                     height={windowHeight}
+//                     segment={segment}  // Envoyer le numéro de segment
+//                 />
+//             )}
+//         </div>
+//     );
+// };
+
+// export default Exercice2;
+
+
+
+// import React, { useState } from 'react';
+// import Confetti from 'react-confetti';
+
+// const SlideComponent = ({ currentIndex, segmentIndex }) => {
+//     const[X, setX]=useState(false)
+
+
+
+
+
+//     // Remplace '2' par l'index du segment où tu veux que les confettis apparaissent
+//     const showConfetti = currentIndex === segmentIndex && segmentIndex === 1;
+// const valide=true
+// const handle=()=>{
+//     if(showConfetti && valide){
+//         setX( ! X)
+
+//     }
+// }
+
+//     return (
+//         <div style={{ position: 'relative', minHeight: '100vh' }}>
+//             <h1>Segment {segmentIndex + 1}</h1>
+//             {/* Si c'est le bon segment, on affiche les confettis */}
+
+//             <button onClick={handle}>ok</button>
+//             {X && <Confetti width={window.innerWidth} height={window.innerHeight} />}
+//         </div>
+//     );
+// };
+
+// export default SlideComponent;
+
+
+
+// import React, { useState } from 'react';
+// import SlideAnimation from './Victoire'
+
+// const SlideComponent = ({ currentIndex, segmentIndex }) => {
+//     const [statusConfetti, setStatusConfetti] = useState(false)
+
+
+//     const handleConfetti = () => {
+
+//         setStatusConfetti(!statusConfetti)
+
+//     }
+//     return (
+//         <div>
+
+// <h1>Segment {segmentIndex + 1}</h1>
+//             <button onClick={handleConfetti}>ok</button>
+
+// <SlideAnimation  currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={statusConfetti}/>
+
+//         </div>
+
+//     )
+// };
+
+// export default SlideComponent;

@@ -11,6 +11,10 @@ import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../Sign_in/v2/firebase";
 
+import SlideAnimation from './Victoire'
+
+
+
 const StyledBox = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
@@ -66,8 +70,7 @@ const imageStyle = {
     marginRight: "auto",
 };
 
-const 
-C1A2 = () => {
+const C1A2 =  ({ currentIndex, segmentIndex }) => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
@@ -83,6 +86,14 @@ C1A2 = () => {
     const correctSound = useRef(new Audio(correctSoundFile));
     const incorrectSound = useRef(new Audio(incorrectSoundFile));
 
+    const [statusConfetti, setStatusConfetti] = useState(false)
+    const [ConfettiActive,setConfettiActive]=useState(false)
+
+
+
+console.log("cuuuuuuuuuuuur",currentIndex)
+
+
     useEffect(() => {
         const now = new Date();
         setEntryTime(now);
@@ -92,7 +103,10 @@ C1A2 = () => {
         getRandomNumber(0);
     }, []);
 
-    const handleValidate = () => {
+    const handleValidate =() => {
+
+
+
         const validation = writtenNumber(parseInt(userInput), { lang: "fr" }) === writtenNumber(randomNumber, { lang: "fr" });
         setIsValid(validation);
         if (!validation) {
@@ -138,6 +152,7 @@ C1A2 = () => {
 
     const handleClickOpen = () => {
         sendActivityData();
+        setConfettiActive(true)
         setSucessDialogOpen(true);
         handleReset();
     };
@@ -170,6 +185,7 @@ C1A2 = () => {
         }
     };
 
+
     const handleReset = () => {
         setProgress(0);
         setRandomNumber(0);
@@ -197,7 +213,10 @@ C1A2 = () => {
                 user={currentUser}
                 activityName="C1A2"
             >
+                {ConfettiActive  && <SlideAnimation  currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true}/>}
+
                 <StyledBox>
+
                     <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
                     {/* Ajout du gestionnaire d'événement onClick sur la carte */}
                     <MessageCard onClick={() => readNumberAloud(writtenNumber(randomNumber, { lang: "fr" }))}>
@@ -241,6 +260,10 @@ C1A2 = () => {
                     {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
                     {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
                 </Box>
+
+
+              {/* {ConfettiActive  && <SlideAnimation  currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true}/>} */}
+
             </ActivityWrapper>
         );
     };

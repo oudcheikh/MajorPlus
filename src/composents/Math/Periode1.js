@@ -36,6 +36,7 @@ function Accueil() {
         <CardButton title="G1" navigateTo="/G1" />
         <CardButton title="G2" navigateTo="/G2" />
         <CardButton title="G3" navigateTo="/G3" />
+        <CardButton title="animation" navigateTo="/animation" />
       </div>
     </div>
   );

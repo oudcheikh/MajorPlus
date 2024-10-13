@@ -7,13 +7,7 @@ const SwipeSection = ({ introProps, question, options, correctAnswer, explanatio
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", height: "100%", padding: "20px" }}>
             <IntroSlide title={introProps.title} imagePath={introProps.imagePath} content={introProps.content} />
             <div style={{ marginTop: "20px" }}>
-
-
-
-
-  <CustomCard question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />
-
-
+                <CustomCard question={question} options={options} correctAnswer={correctAnswer} explanation={explanation} />
             </div>
         </div>
     );
