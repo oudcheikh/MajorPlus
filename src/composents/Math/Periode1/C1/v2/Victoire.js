@@ -1,52 +1,43 @@
-// // ConfettiAnimation.js
-// import React from 'react';
-// import Confetti from 'react-confetti';
-
-// const ConfettiAnimation = ({ width, height, onAnimationComplete, segment }) => {
-//     return (
-//         <div>
-//             <Confetti
-//                 width={width}
-//                 height={height}
-//                 numberOfPieces={200} // Vous pouvez ajuster ce nombre
-//                 onConfettiComplete={onAnimationComplete}
-//             />
-//             <p>Segment actuel : {segment}</p> {/* Affiche le numéro de segment */}
-//         </div>
-//     );
-// };
-
-// export default ConfettiAnimation;
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import Confetti from 'react-confetti';
 
-const SlideComponent = ({ currentIndex, segmentIndex ,isActive}) => {
-    const[X, setX]=useState(false)
+const SlideComponent = ({ currentIndex, segmentIndex, isActive }) => {
+    const [X, setX] = useState(false);
+    const [showConfetti, setShowConfetti] = useState(false);
 
+    useEffect(() => {
+        if (isActive) {
+            setShowConfetti(true);
+            // Arrête l'animation des confettis après 5 secondes (5000 ms)
+            const timer = setTimeout(() => {
+                setShowConfetti(false);
+            }, 5000);
 
+            // Nettoie le timeout si le composant est démonté ou si l'animation est annulée
+            return () => clearTimeout(timer);
+        }
+    }, [isActive]);
 
-
-
-    // Remplace '2' par l'index du segment où tu veux que les confettis apparaissent
-    const showConfetti = currentIndex === segmentIndex && segmentIndex === currentIndex;
-const valide=true
-const handle=()=>{
-    if(isActive){
-        setX( ! X)
-
-    }
-}
+    const handle = () => {
+        if (isActive) {
+            setX(!X);
+        }
+    };
 
     return (
         <div style={{ position: 'relative', minHeight: '10vh' }}>
-      <h1>Bravo{}</h1>
-            {isActive && <Confetti width={window.innerWidth} height={window.innerHeight} />}
+            <h1>Bravo</h1>
+            {isActive && showConfetti && (
+                <Confetti 
+                    width={window.innerWidth} 
+                    height={window.innerHeight} 
+                    numberOfPieces={500}   // Augmente le nombre de confettis
+                    gravity={0.2}          // Ajuste la vitesse de chute
+                    confettiSource={{ x: 0, y: 0, w: window.innerWidth, h: 50 }}  // Zone de lancement des confettis
+                />
+            )}
         </div>
     );
 };
 
 export default SlideComponent;
-
