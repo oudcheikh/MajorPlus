@@ -6,8 +6,8 @@ import ActivityWrapper from "../../../Reusable Components/Slides Content/Activit
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
 import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
 import "../../../../../App.css";
-import correctSoundFile from '../../../../sounds/correct.mp3'; 
-import incorrectSoundFile from '../../../../sounds/incorrect.mp3'; 
+import correctSoundFile from '../../../../sounds/correct.mp3';
+import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../Sign_in/v2/firebase";
 
@@ -70,7 +70,7 @@ const imageStyle = {
     marginRight: "auto",
 };
 
-const C1A2 =  ({ currentIndex, segmentIndex }) => {
+const C1A2 = ({ currentIndex, segmentIndex }) => {
     const [progress, setProgress] = useState(0);
     const [randomNumber, setRandomNumber] = useState(0);
     const [userInput, setUserInput] = useState("");
@@ -87,11 +87,19 @@ const C1A2 =  ({ currentIndex, segmentIndex }) => {
     const incorrectSound = useRef(new Audio(incorrectSoundFile));
 
     const [statusConfetti, setStatusConfetti] = useState(false)
-    const [ConfettiActive,setConfettiActive]=useState(false)
+    const [ConfettiActive, setConfettiActive] = useState(false)
+    const [showMessage, setShowMessage] = useState(false);
 
 
+    const ShowResult = () => {
+        setShowMessage(true);
+        setTimeout(() => {
+            setShowMessage(false);
+        }, 5000);
+    };
 
-console.log("cuuuuuuuuuuuur",currentIndex)
+
+    // console.log("cuuuuuuuuuuuur", currentIndex)
 
 
     useEffect(() => {
@@ -103,9 +111,7 @@ console.log("cuuuuuuuuuuuur",currentIndex)
         getRandomNumber(0);
     }, []);
 
-    const handleValidate =() => {
-
-
+    const handleValidate = () => {
 
         const validation = writtenNumber(parseInt(userInput), { lang: "fr" }) === writtenNumber(randomNumber, { lang: "fr" });
         setIsValid(validation);
@@ -151,8 +157,12 @@ console.log("cuuuuuuuuuuuur",currentIndex)
     };
 
     const handleClickOpen = () => {
+      
+
+       
         sendActivityData();
-        setConfettiActive(true)
+        if(correctAnswers >=3){ setConfettiActive(true)}
+       
         setSucessDialogOpen(true);
         handleReset();
     };
@@ -198,75 +208,76 @@ console.log("cuuuuuuuuuuuur",currentIndex)
         getRandomNumber(0);
     };
 
-        // Fonction pour lire le texte avec SpeechSynthesis API
-        const readNumberAloud = (numberText) => {
-            const utterance = new SpeechSynthesisUtterance(numberText);
-            utterance.lang = "fr-FR"; // Définit la langue à français
-            window.speechSynthesis.speak(utterance);
-        };
-    
-        return (
-            <ActivityWrapper
-                activityTitle={"C1A2"}
-                explanationVideoUrl={"/Videos/number_sorting.mp4"}
-                onSubmit={checkAnswer}
-                user={currentUser}
-                activityName="C1A2"
-            >
-                {ConfettiActive  && <SlideAnimation  currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true}/>}
-
-                <StyledBox>
-
-                    <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
-                    {/* Ajout du gestionnaire d'événement onClick sur la carte */}
-                    <MessageCard onClick={() => readNumberAloud(writtenNumber(randomNumber, { lang: "fr" }))}>
-                        <CardContent>
-                            <Typography>
-                                Ecrire ce nombre en chiffres : <br></br>
-                                <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
-                                    {writtenNumber(randomNumber, { lang: "fr" })}
-                                </span>
-                            </Typography>
-                        </CardContent>
-                    </MessageCard>
-                </StyledBox>
-                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                    <TextField
-                        label="Entrez le chiffre"
-                        variant="outlined"
-                        type="number"
-                        value={userInput}
-                        onChange={handleInputChange}
-                        style={{ marginTop: "20px", width: "70%" }}
-                    />
-    
-                    <ButtonContainer>
-                        <Button
-                            variant="contained"
-                            style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }}
-                            onClick={handleValidate}
-                        >
-                            Répondre
-                        </Button>
-                        <Button
-                            variant="contained"
-                            disabled={!isLastQuestion}
-                            onClick={handleClickOpen}
-                        >
-                            Terminer
-                        </Button>
-                    </ButtonContainer>
-    
-                    {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
-                    {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
-                </Box>
-
-
-              {/* {ConfettiActive  && <SlideAnimation  currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true}/>} */}
-
-            </ActivityWrapper>
-        );
+    // Fonction pour lire le texte avec SpeechSynthesis API
+    const readNumberAloud = (numberText) => {
+        const utterance = new SpeechSynthesisUtterance(numberText);
+        utterance.lang = "fr-FR"; // Définit la langue à français
+        window.speechSynthesis.speak(utterance);
     };
-    
-    export default C1A2;
-    
+
+    return (
+        <ActivityWrapper
+            activityTitle={"C1A2"}
+            explanationVideoUrl={"/Videos/number_sorting.mp4"}
+            onSubmit={checkAnswer}
+            user={currentUser}
+            activityName="C1A2"
+
+        >
+            {ConfettiActive && <SlideAnimation currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true} correectAnsw={correctAnswers} />}
+
+            <StyledBox>
+
+
+                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
+                {/* Ajout du gestionnaire d'événement onClick sur la carte */}
+                <MessageCard onClick={() => readNumberAloud(writtenNumber(randomNumber, { lang: "fr" }))}>
+                    <CardContent>
+                        <Typography>
+                            Ecrire ce nombre en chiffres : <br></br>
+                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
+                                {writtenNumber(randomNumber, { lang: "fr" })}
+                            </span>
+                        </Typography>
+                    </CardContent>
+                </MessageCard>
+            </StyledBox>
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <TextField
+                    label="Entrez le chiffre"
+                    variant="outlined"
+                    type="number"
+                    value={userInput}
+                    onChange={handleInputChange}
+                    style={{ marginTop: "20px", width: "70%" }}
+                />
+
+                <ButtonContainer>
+                    {!isLastQuestion && <Button
+                    variant="contained"
+                    style={{ margin: "20px", marginRight: "80px", marginLeft: "80px" }}
+                    onClick={handleValidate} >
+                    Répondre
+
+                    </Button>}
+
+                {isLastQuestion && <Button
+                    variant="contained"
+                    style={{ margin: "20px", marginRight: "80px", marginLeft: "80px" }}
+                    onClick={handleClickOpen}
+                >
+                    Terminer
+                </Button>}
+                </ButtonContainer>
+               
+
+                {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
+                {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
+            </Box>
+
+
+        </ActivityWrapper>
+    );
+};
+
+export default C1A2;

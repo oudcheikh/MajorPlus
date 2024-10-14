@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'; 
 import Confetti from 'react-confetti';
 
-const SlideComponent = ({ currentIndex, segmentIndex, isActive }) => {
+const SlideComponent = ({ currentIndex, segmentIndex, isActive ,correectAnsw}) => {
     const [X, setX] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
+    const [message, setMessage]=useState("")
 
+   
     useEffect(() => {
         if (isActive) {
             setShowConfetti(true);
-            // Arrête l'animation des confettis après 5 secondes (5000 ms)
+            setMessage("Bravo")
             const timer = setTimeout(() => {
                 setShowConfetti(false);
+                setMessage(" ")
             }, 5000);
 
             // Nettoie le timeout si le composant est démonté ou si l'animation est annulée
@@ -26,7 +29,7 @@ const SlideComponent = ({ currentIndex, segmentIndex, isActive }) => {
 
     return (
         <div style={{ position: 'relative', minHeight: '10vh' }}>
-            <h1>Bravo</h1>
+            <h1>{message}</h1>
             {isActive && showConfetti && (
                 <Confetti 
                     width={window.innerWidth} 
