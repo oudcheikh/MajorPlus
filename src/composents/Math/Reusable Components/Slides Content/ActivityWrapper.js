@@ -5,8 +5,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase"; // Assurez-vous que le chemin est correct
 import "./SlideContent.css";
 import { getStorage, ref, getDownloadURL } from "firebase/storage"; // Import Firebase functions
-
-const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmit, user, activityName }) => {
+import Progress from '../../Periode1/C1/v2/Progress'
+const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmit, user, activityName, progress }) => {
     const [showVideo, setShowVideo] = useState(true);
     const [startTime, setStartTime] = useState(null);
     const [entryTime, setEntryTime] = useState(null);
@@ -74,7 +74,14 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
 
     return (
         <div className="main-container">
-            <div className="activity-title">{activityTitle}</div>
+            <div className="activity-title">
+           
+                <Progress progress={progress} text={activityTitle} />
+           
+            </div>
+   
+
+
             {showVideo ? (
                 <div className="video-wrapper">
                     <ExplanationVideo videoPath={explanationVideoUrl} explanationParagraph={["Video explicatif", "🎥 Regardez la vidéo pour savoir comment réaliser l'activité 🎬"]} altText="Video description" />
@@ -95,7 +102,9 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
                         </Button>
                     </Box>
                 </div>
-            ) : (
+            )
+             :
+            (
                 <div className="activity-wrapper">
                     <div className="children-wrapper">{children}</div>
                     <Box display="flex" justifyContent="center" mt={2}>

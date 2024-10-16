@@ -1,0 +1,29 @@
+/* style.css */
+.smallprogress-container {
+  width: 100%;
+  background-color: #ede7e7;
+  border-radius: 8px;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+}
+
+.small-progress-bar {
+  height: 100%;
+  background-color: blue;
+  transition: width 0.5s ease;
+  border-radius: 8px;
+  
+}
+
+.smallprogress-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  color: white;
+}
+.MuiLinearProgress-bar {
+  transition: width 0.5s ease-in-out;
+}

@@ -9,6 +9,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    align-content: stretch;
+  
+    justify-items: center;
     margin-bottom: 10px; /* Space between the grid and full-width cards */
   }
 
@@ -38,8 +41,12 @@
   
   .full-width-container {
     display: flex;
-    flex-direction: column;
-    margin-top: 20px; /* This adds a margin on the top of the first full-width card */
+    flex-direction: row-reverse;
+    margin-top: 20px;/* This adds a margin on the top of the first full-width card */
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: baseline;
+    justify-content: space-around;
   }
   
   .full-card {

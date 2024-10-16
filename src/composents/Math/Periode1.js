@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { useNavigate } from 'react-router-dom';
 import '../../composents/home/Major.css'; 
-
+import PeriodPagination from'../Math/Reusable Components/Swipeable/PeriodPagination'
 function Accueil() {
   const navigate = useNavigate();
   const { periodeId } = useParams();
@@ -23,7 +23,11 @@ function Accueil() {
 
   return (
     <div className="app-container" style={{ direction: "ltr" }}>
-      <div className="card-grid">
+
+<PeriodPagination />
+
+
+      <div className="card-grid" >
       <CardButton title="C1" navigateTo={`/C1_new/${periodeId}/1`} />
 
       <CardButton title="C2" navigateTo="/C2_new" />

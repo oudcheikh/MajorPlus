@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Button, Typography, TextField, Card, CardContent } from "@mui/material";
-import { styled } from "@mui/system";
+import { margin, styled } from "@mui/system";
 import writtenNumber from "written-number";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
@@ -10,10 +10,8 @@ import correctSoundFile from '../../../../sounds/correct.mp3';
 import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../Sign_in/v2/firebase";
-
-import SlideAnimation from './Victoire'
-
-
+import Progress from './Progress';
+import SlideAnimation from '../../../../Confetti/Victoire';
 
 const StyledBox = styled(Box)({
     display: 'flex',
@@ -44,31 +42,12 @@ const ranges = [
     [1000, 9999],
 ];
 
-const StyledButton = styled(Button)({
-    margin: "10px",
-    backgroundColor: "#007BFF",
-    color: "white",
-    "&:hover, &:focus-visible": {
-        backgroundColor: "#0056b3",
-    },
-    borderRadius: "15px",
-});
-
 const ButtonContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '20px',
 });
-
-const imageStyle = {
-    width: "50%",
-    height: "auto",
-    maxWidth: "70%",
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-};
 
 const C1A2 = ({ currentIndex, segmentIndex }) => {
     const [progress, setProgress] = useState(0);
@@ -82,25 +61,35 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [isLastQuestion, setIsLastQuestion] = useState(false);
     const [entryTime, setEntryTime] = useState(null);
-
+    const [progressValue, setProgressValue] = useState(0);
     const correctSound = useRef(new Audio(correctSoundFile));
     const incorrectSound = useRef(new Audio(incorrectSoundFile));
+    const [ConfettiActive, setConfettiActive] = useState(false);
+    const [begin, setBegin] = useState(true)
+   
+    const totalQuestions = 4;
 
-    const [statusConfetti, setStatusConfetti] = useState(false)
-    const [ConfettiActive, setConfettiActive] = useState(false)
-    const [showMessage, setShowMessage] = useState(false);
 
-
-    const ShowResult = () => {
-        setShowMessage(true);
+    const handleCompleteExercise = () => {
+        setBegin(false)
+         handleClickOpen();
         setTimeout(() => {
-            setShowMessage(false);
-        }, 5000);
+            setBegin(true)
+        }, 5000); 
     };
 
 
-    // console.log("cuuuuuuuuuuuur", currentIndex)
 
+
+
+    useEffect(() => {
+        const progressPerQuestion = 100 / totalQuestions;
+        setProgressValue((questionsAnswered) => questionsAnswered * progressPerQuestion);
+        console.log('Progress updated:', questionsAnswered * progressPerQuestion);
+        setProgressValue(questionsAnswered * progressPerQuestion)
+        console.log('Progress updated:', progressValue)
+
+    }, [questionsAnswered]); // La progression sera mise à jour à chaque fois qu'une question est répondue
 
     useEffect(() => {
         const now = new Date();
@@ -112,7 +101,6 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
     }, []);
 
     const handleValidate = () => {
-
         const validation = writtenNumber(parseInt(userInput), { lang: "fr" }) === writtenNumber(randomNumber, { lang: "fr" });
         setIsValid(validation);
         if (!validation) {
@@ -123,7 +111,11 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
             correctSound.current.play();
         }
 
-        setQuestionsAnswered(prev => prev + 1);
+        setQuestionsAnswered((prev) => {
+            const updated = prev + 1;
+            console.log('Questions answered:', updated); // Log pour vérifier
+            return updated;
+        });
 
         if (progress + 1 < ranges.length) {
             setTimeout(() => {
@@ -136,6 +128,8 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
             }, 3000);
         } else {
             setIsLastQuestion(true);
+            handleCompleteExercise()
+            
         }
     };
 
@@ -150,19 +144,11 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
         setUserInput(event.target.value);
     };
 
-    const checkAnswer = () => {
-        const totalQuestions = questionsAnswered;
-        const allAnswersCorrect = correctAnswers === totalQuestions;
-        return { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers };
-    };
-
     const handleClickOpen = () => {
-      
-
-       
         sendActivityData();
-        if(correctAnswers >=3){ setConfettiActive(true)}
-       
+        if (correctAnswers >= 3) {
+            setConfettiActive(true);
+        }
         setSucessDialogOpen(true);
         handleReset();
     };
@@ -174,13 +160,14 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
     const sendActivityData = async () => {
         const endTime = new Date();
         const timeSpent = (endTime - entryTime) / 1000;
-        const { allAnswersCorrect, totalQuestions, correctAnswers, incorrectAnswers } = checkAnswer();
+        const totalQuestions = questionsAnswered;
+        const allAnswersCorrect = correctAnswers === totalQuestions;
 
         const activityData = {
             userId: currentUser.uid,
             activityName: "C1A2",
             entryTime: entryTime.toISOString(),
-            timeSpent: timeSpent,
+            timeSpent,
             totalQuestions,
             correctAnswers,
             incorrectAnswers,
@@ -195,7 +182,6 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
         }
     };
 
-
     const handleReset = () => {
         setProgress(0);
         setRandomNumber(0);
@@ -208,74 +194,71 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
         getRandomNumber(0);
     };
 
-    // Fonction pour lire le texte avec SpeechSynthesis API
-    const readNumberAloud = (numberText) => {
-        const utterance = new SpeechSynthesisUtterance(numberText);
-        utterance.lang = "fr-FR"; // Définit la langue à français
-        window.speechSynthesis.speak(utterance);
-    };
-
     return (
         <ActivityWrapper
             activityTitle={"C1A2"}
             explanationVideoUrl={"/Videos/number_sorting.mp4"}
-            onSubmit={checkAnswer}
+            onSubmit={handleValidate}
             user={currentUser}
             activityName="C1A2"
-
+            progress={progressValue} text={"C1A2"}
         >
             {ConfettiActive && <SlideAnimation currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true} correectAnsw={correctAnswers} />}
 
-            <StyledBox>
+            {/* <div >
+                <Progress progress={progressValue} text={"C1A2"} />
+            </div> */}
+            
 
-
-                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={imageStyle} />
-                {/* Ajout du gestionnaire d'événement onClick sur la carte */}
-                <MessageCard onClick={() => readNumberAloud(writtenNumber(randomNumber, { lang: "fr" }))}>
-                    <CardContent>
-                        <Typography>
-                            Ecrire ce nombre en chiffres : <br></br>
-                            <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
-                                {writtenNumber(randomNumber, { lang: "fr" })}
-                            </span>
-                        </Typography>
-                    </CardContent>
-                </MessageCard>
+            {!begin && <StyledBox>
+                <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={{ width: '30%', height: 'auto' }} />
             </StyledBox>
-            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <TextField
-                    label="Entrez le chiffre"
-                    variant="outlined"
-                    type="number"
-                    value={userInput}
-                    onChange={handleInputChange}
-                    style={{ marginTop: "20px", width: "70%" }}
-                />
-
-                <ButtonContainer>
-                    {!isLastQuestion && <Button
-                    variant="contained"
-                    style={{ margin: "20px", marginRight: "80px", marginLeft: "80px" }}
-                    onClick={handleValidate} >
-                    Répondre
-
-                    </Button>}
-
-                {isLastQuestion && <Button
-                    variant="contained"
-                    style={{ margin: "20px", marginRight: "80px", marginLeft: "80px" }}
-                    onClick={handleClickOpen}
-                >
-                    Terminer
-                </Button>}
-                </ButtonContainer>
-               
-
-                {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
-                {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
-            </Box>
+            }
 
 
+            {begin && <div>
+                <StyledBox>
+                    <img src="/images/Math/C/C1/pro2.png" alt="Activity" style={{ width: '30%', height: 'auto' }} />
+
+                    <MessageCard>
+                        <CardContent>
+                            <Typography>
+                                Ecrire ce nombre en chiffres : <br />
+                                <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#007BFF' }}>
+                                    {writtenNumber(randomNumber, { lang: "fr" })}
+                                </span>
+                            </Typography>
+                        </CardContent>
+
+                    </MessageCard>
+                </StyledBox>
+
+                <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                    <TextField
+                        label="Entrez le chiffre"
+                        variant="outlined"
+                        type="number"
+                        value={userInput}
+                        onChange={handleInputChange}
+                        style={{ marginTop: "20px", width: "70%" }}
+                    />
+                    <ButtonContainer>
+                        {!isLastQuestion && (
+                            <Button
+                                variant="contained"
+                                onClick={handleValidate}
+                                style={{ margin: "20px" }}
+                            >
+                                Répondre
+                            </Button>
+                        )}
+                    </ButtonContainer>
+
+
+                    {isValid === false && <Typography color="error">La réponse est incorrecte. Essayer encore!</Typography>}
+                    {isValid === true && <Typography color="primary">Bravo, c'est correct !</Typography>}
+                </Box>
+            </div>}
         </ActivityWrapper>
     );
 };

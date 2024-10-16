@@ -23,20 +23,12 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
         navigate(backNavLink);
     };
 
-    const handleNextSlide = () => {
-        setIndex((prevIndex) => Math.min(prevIndex + 1, slides.length - 1));
-    };
-
-    const handlePrevSlide = () => {
-        setIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    };
-
     const goToPrevious = () => {
-        navigate(`/Periode/${periodeId}`);
+        navigate(`/Math`);
     };
 
     return (
-        <div style={{ position: "relative", height: "100vh", direction: "ltr" }}>
+        <div style={{ position: "relative", height: "20vh", direction: "ltr" }}>
             <br />
 
             <div className="pagination">
@@ -50,17 +42,15 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
                     </IconButton>
                 </div>
 
-                <div className="progress-bar">
-                    <Pagination dots={slides.length} index={index} onChangeIndex={handleChangeIndex} />
-                </div>
+               
             </div>
 
            
-
+{/* 
             <SwipeableViews index={index} onChangeIndex={handleChangeIndex} style={{ height: "100%" }}>
                 {slides.map((SlideComponent, idx) => (
                     <div key={idx} style={{ minHeight: "100%" }}>
-                        {/* Passe l'index courant en prop à chaque composant de slide */}
+                        
                         <SlideComponent currentIndex={index} segmentIndex={idx} />
                     </div>
                 ))}
@@ -76,7 +66,7 @@ const SwipeableScreens = ({ slides = [], currentSegmentIndex = 0, backNavLink = 
                 <IconButton onClick={handleNextSlide} disabled={index === slides.length - 1} style={{ zIndex: 10 }}>
                     <ArrowForward />
                 </IconButton>
-            </div>
+            </div> */}
         </div>
     );
 };

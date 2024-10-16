@@ -38,7 +38,7 @@ import P3A3 from "./composents/Math/Periode2/C11/P3A3.js";
 import Triangle from './composents/Math/Periode2/G4/Triangles.js'
 
 import ScoreBoard from './composents/Scorbord.js'
-import Animation from './composents/Math/Periode1/C1/v2/Victoire.js'
+import Animation from './composents/Confetti/Victoire.js'
 import Buuton3D from './composents/3DButton/Button.js';
 
 // Import routes
