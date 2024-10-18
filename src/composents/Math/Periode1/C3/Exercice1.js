@@ -203,7 +203,7 @@ function Exercice({ currentIndex, segmentIndex }) {
 
     return (
         <ActivityWrapper
-            activityTitle={"Exercice 1"}
+            activityTitle={"Exercice 2"}
             explanationVideoUrl={"/Videos/number_sorting.mp4"}
             user={currentUser}
             activityName="C3Exercice1"

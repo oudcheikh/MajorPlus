@@ -207,10 +207,8 @@ function Exercice({ currentIndex, segmentIndex }) {
             progress={progressValue} text={"C1A2"}
         >
 
-
-
-
 {ConfettiActive && <SlideAnimation currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true} correectAnsw={correctAnswers} />}
+
 
 
 {!start && <StyledBox>
