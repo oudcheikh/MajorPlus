@@ -1,6 +1,4 @@
 import Exercice2 from './Exercice2'
-import Exercice3 from './Exercice3'
-import Exercice5 from './Exercice5'
 import Ex3 from './Ex3'
 import Ex5 from './Ex5'
 

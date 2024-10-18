@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Exercice.css"; 
+import "../../Exercice.css"; 
 import useSound from "use-sound";
 import correctSound from "../../../sounds/correct.mp3";
 import incorrectSound from "../../../sounds/incorrect.mp3";

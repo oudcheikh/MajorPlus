@@ -1,88 +1,51 @@
+
 import React, { useEffect, useState } from 'react';
-import { FormulaText } from '../../../Styles/MajorStyles';
-import Modal from '../../../Modals/Modal2';
-import './tabStyle.css';
-import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper"; 
+import styled from 'styled-components';
+import { Box, Button } from '@mui/material';
+import ActivityWrapper from "../../Reusable Components/Slides Content/ActivityWrapper";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Sign_in/v2/firebase";
 import { useAuth } from '../../../Sign_in/v2/context/AuthContext';
-import styled from 'styled-components';
-import { Box, Button } from '@mui/material';
-
-const imageStyle = {
-    width: "80%",
-    height: "auto",
-    maxWidth: "70%",
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-};
-
-export const Orange_NumberDisplay = styled(Box)(({ isActive }) => ({
-    boxSizing: "border-box",
-    width: "80%",
-    height: "auto",
-    margin: "20px auto",
-    padding: "20px",
-    backgroundColor: "beige",
-    border: "3px dashed #B3E5FC",
-    transition: "background-color 0.4s, transform 0.3s",
-    cursor: "pointer",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    fontSize: "1em",
-    fontFamily: "'Comic Sans MS', sans-serif",
-    "&:hover": {
-        transform: "scale(1.05)",
-    },
-}));
+import correctSoundFile from '../../../sounds/correct.mp3';
+import incorrectSoundFile from '../../../sounds/incorrect.mp3';
+import SlideAnimation from '../../../Confetti/Victoire';
 
 const ButtonContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: '20px',
+    width: '100%',
+    maxWidth: '500px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+});
+const StyledBox = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '20px',
 });
+function Exercice({ currentIndex, segmentIndex }) {
 
-function Exercice2() {
+    const [currentRow, setCurrentRow] = useState(0);
     const [réponse, setReponse] = useState("");
-    const [showModal, setShowModal] = useState(false);
-    const { currentUser } = useAuth();
-    const [score, setScore] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const [entryTime, setEntryTime] = useState(null);
-    const [terminer, setTerminer] = useState(true);
+    const [terminer, setTerminer] = useState(false);
+    const { currentUser } = useAuth();
 
-    useEffect(() => {
-        const now = new Date();
-        setEntryTime(now);
-    }, []);
+    const correctSound = new Audio(correctSoundFile);
+    const incorrectSound = new Audio(incorrectSoundFile);
+    const [progressValue, setProgressValue] = useState(0)
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [begin, setBegin] = useState(true)
 
- 
+    const [start, setStart] = useState(true)
+    const [ConfettiActive, setConfettiActive] = useState(false);
 
-    const sendActivityData = async () => {
-        const endTime = new Date();
-        const timeSpent = (endTime - entryTime) / 1000;
-
-        const activityData = {
-            userId: currentUser.uid,
-            activityName: "mesure",
-            entryTime: entryTime.toISOString(),
-            timeSpent: timeSpent,
-            score: score
-          
-        };
-
-        try {
-            await addDoc(collection(db, 'users',currentUser.uid, 'activities'), activityData);
-            console.log('Activity data sent:', activityData);
-        } catch (e) {
-            console.error('Error sending activity data:', e);
-        }
-    };
-
+    const totalQuestions = 3;
     const [tableData, setTableData] = useState([
         { carreaux: '20 ', dm: '', cm: '' },
         { carreaux: '7 ', dm: '', cm: '' },
@@ -95,62 +58,122 @@ function Exercice2() {
         { dm: 0.33, cm: 0.033 }
     ];
 
-    const handleInputChange = (index, key, value) => {
+
+    useEffect(() => {
+        const progressPerQuestion = 100 / totalQuestions;
+        setProgressValue((questionsAnswered) => questionsAnswered * progressPerQuestion);
+        console.log('Progress updated:', questionsAnswered * progressPerQuestion);
+        setProgressValue(questionsAnswered * progressPerQuestion)
+        console.log('Progress updated:', progressValue)
+
+    }, [questionsAnswered]);
+
+
+
+
+    useEffect(() => {
+        const now = new Date();
+        setEntryTime(now);
+
+        const handleClick = () => {
+            console.log("question answ ", questionsAnswered)
+
+        };
+
+        window.addEventListener("click", handleClick);
+
+        return () => {
+            window.removeEventListener("click", handleClick);
+        };
+    }, []);
+
+
+
+    const handleCompleteExercise = () => {
+
+
+        handleFinish()
+        setTimeout(() => {
+            setStart(true)
+        }, 5000);
+    };
+
+    const handleInputChange = (key, value) => {
         const updatedData = [...tableData];
-        updatedData[index][key] = value;
+        updatedData[currentRow][key] = value;
         setTableData(updatedData);
     };
 
-    const checkAnswer = () => {
-        setTerminer(false);
-        let correct = 0;
-        let incorrect = 0;
+    const handleSubmit = () => {
 
-        const userResponses = tableData.map(row => ({ dm: parseFloat(row.dm), cm: parseFloat(row.cm) }));
-        const isValid = userResponses.every(response =>
-            !isNaN(response.dm) && !isNaN(response.cm) && response.dm >= 0 && response.cm >= 0
-        );
+        console.log(currentIndex)
 
-        if (isValid) {
-            bonnesReponses.forEach((br, index) => {
-                if (userResponses[index].dm === br.dm && userResponses[index].cm === br.cm) {
-                    correct += 1;
-                } else {
-                    incorrect += 1;
-                }
-            });
+        console.log(segmentIndex)
+        const userResponse = {
+            dm: parseFloat(tableData[currentRow].dm),
+            cm: parseFloat(tableData[currentRow].cm)
+        };
 
-            if (correct === bonnesReponses.length) {
-                setReponse("Bravo! Toutes les réponses sont correctes.");
-                setScore(100);
-            } else {
-                setReponse(`Désolé, certaines réponses sont incorrectes. ${correct} correct, ${incorrect} incorrect.`);
-                setScore(0);
-            }
-
-            setCorrectAnswers(correct);
-            setIncorrectAnswers(incorrect);
-            setShowModal(true);
-        } else {
-            setReponse("Veuillez entrer des valeurs numériques valides pour les colonnes dm et cm.");
-            incorrect = bonnesReponses.length; // Considérer toutes les réponses comme incorrectes
+        if (isNaN(userResponse.dm) || isNaN(userResponse.cm) || userResponse.dm < 0 || userResponse.cm < 0) {
+            setReponse("Veuillez entrer des valeurs numériques valides.");
+            incorrectSound.play();
+            return;
         }
 
-        return {
-            allAnswersCorrect: correct === bonnesReponses.length,
+        const isCorrect = userResponse.dm === bonnesReponses[currentRow].dm && userResponse.cm === bonnesReponses[currentRow].cm;
+        if (isCorrect) {
+            setReponse("Bravo! La réponse est correcte.");
+            correctSound.play();
+            setCorrectAnswers(correctAnswers + 1);
+            console.log("correct aNSW", correctAnswers)
+
+        } else {
+            setReponse(" réponse est incorrecte");
+            incorrectSound.play();
+            setIncorrectAnswers(incorrectAnswers + 1);
+        }
+
+
+
+        setQuestionsAnswered((prev) => {
+            const updated = prev + 1;
+            console.log('Questions answered:', updated); // Log pour vérifier
+            return updated;
+        });
+
+        // Move to the next row if there is one, or mark the exercise as finished
+        if (currentRow < tableData.length - 1) {
+            setCurrentRow(currentRow + 1);
+        } else {
+            setTerminer(true);
+
+            handleCompleteExercise()
+            setStart(false)
+        }
+    };
+    const sendActivityData = async () => {
+        const endTime = new Date();
+        const timeSpent = (endTime - entryTime) / 1000;
+
+        const activityData = {
+            userId: currentUser.uid,
+            activityName: "Exercice1_C2",
+            entryTime: entryTime.toISOString(),
+            timeSpent: timeSpent,
             totalQuestions: bonnesReponses.length,
-            correctAnswers: correct,
-            incorrectAnswers: incorrect,
-            score
+            correctAnswers,
+            incorrectAnswers,
+            allAnswersCorrect: correctAnswers === bonnesReponses.length,
         };
-    };
 
-    
+        try {
+            await addDoc(collection(db, 'users', currentUser.uid, 'activities'), activityData);
+            console.log('Activity data sent:', activityData);
+        } catch (e) {
+            console.error('Error sending activity data:', e);
+        }
 
-    const handleFinish = () => {
-        sendActivityData();
-        handleReset();
-    };
+    }
 
     const handleReset = () => {
         setTableData([
@@ -158,110 +181,110 @@ function Exercice2() {
             { carreaux: '7', dm: '', cm: '' },
             { carreaux: '33', dm: '', cm: '' },
         ]);
+        setCurrentRow(0);
         setReponse('');
-        setShowModal(false);
-        setScore(0);
         setCorrectAnswers(0);
         setIncorrectAnswers(0);
-        setTerminer(true);
+        setTerminer(false);
+        setProgressValue(0);
+        setBegin(true)
+        setQuestionsAnswered(0)
+    };
+    const handleFinish = async () => {
+        sendActivityData()
+        console.log(correctAnswers)
+        if (correctAnswers >= 2) {
+            setConfettiActive(true);
+        }
+        handleReset();
     };
 
-    const voir_bonne_reponce = () => {
-        const updatedData = tableData.map((row, index) => ({
-            ...row,
-            dm: bonnesReponses[index].dm.toString(),
-            cm: bonnesReponses[index].cm.toString()
-        }));
-        setTableData(updatedData);
-        setReponse('');
-    };
+
 
     return (
-        <div>
-            <ActivityWrapper
-                activityTitle={"Exercice 2"}
-                explanationVideoUrl={"/Videos/number_sorting.mp4"}
-                onSubmit={checkAnswer}
-                user={currentUser}
-                activityName="C3_Exercice2"
-            >
-             
+        <ActivityWrapper
+            activityTitle={"Exercice 1"}
+            explanationVideoUrl={"/Videos/number_sorting.mp4"}
+            user={currentUser}
+            activityName="C3Exercice1"
+            progress={progressValue} text={"C1A2"}
+        >
 
-                <FormulaText>
-                    <strong><span>Passer du Km et du hm vers le mètre :</span></strong>
-                    <br />
 
-                    <ButtonContainer style={{ position: "relative", left: "100px" }}>
-                        <Button variant="contained" onClick={voir_bonne_reponce}>
-                            Voir la Correction
-                        </Button>
-                    </ButtonContainer>
 
-                    <br />
-                    <table className="conversion-table">
-                        <thead>
-                            <tr>
-                                <th>cm</th>
-                                <th>(dm)</th>
-                                <th>(m)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {tableData.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row.carreaux}</td>
-                                    <td>
-                                        <input
-                                            type="number"
-                                            value={row.dm}
-                                            placeholder='---'
-                                            onChange={(e) => handleInputChange(index, 'dm', e.target.value)}
-                                        />
-                                    </td>
-                                    <td>
-                                        <input
-                                            type="number"
-                                            value={row.cm}
-                                            placeholder='---'
-                                            onChange={(e) => handleInputChange(index, 'cm', e.target.value)}
-                                        />
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
 
-                    <div>
-                        <strong style={{ color: 'blue' }}>
-                            <span>{réponse}</span>
-                        </strong>
-                    </div>
+            {ConfettiActive && <SlideAnimation currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true} correectAnsw={correctAnswers} />}
 
-                    <ButtonContainer>
-                        <Button
-                            variant="contained"
-                            style={{ margin: "20px", marginRight: "80px", marginLeft: "1px" }}
-                            onClick={checkAnswer}
-                            disabled={!terminer}
-                        >
-                            Répondre
-                        </Button>
 
-                        <Button
-                            variant="contained"
-                            onClick={handleFinish}
-                            disabled={terminer}
-                        >
-                            Terminer
-                        </Button>
-                    </ButtonContainer>
+            {!start && <StyledBox>
+                <img src="/images/succes_.png" alt="Activity" style={{ width: '60%', height: 'auto' }} />
+            </StyledBox>
+            }
 
-                    <br />
-                    <br />
-                </FormulaText>
-            </ActivityWrapper>
-        </div>
+            {start && <div>
+                <StyledBox>
+                    <img src="/images/serveau.png" alt="Activity" style={{ width: '30%', height: 'auto' }} />
+                </StyledBox>
+                <strong><span>Passer du m vers le cm et dm :</span></strong>
+                <br />
+
+                <table className="conversion-table">
+                    <thead>
+                        <tr>
+                            <th>cm</th>
+                            <th>(dm)</th>
+                            <th>(m)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{tableData[currentRow].carreaux}</td>
+                            <td>
+                                <input
+                                    type="number"
+                                    value={tableData[currentRow].dm}
+                                    placeholder='---'
+                                    onChange={(e) => handleInputChange('dm', e.target.value)}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    value={tableData[currentRow].cm}
+                                    placeholder='---'
+                                    onChange={(e) => handleInputChange('cm', e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <strong style={{ color: 'blue' }}>
+                        <span>{réponse}</span>
+                    </strong>
+                </div>
+
+                <ButtonContainer>
+                    <Button
+                        variant="contained"
+                        style={{ margin: "20px 140px " }}
+                        onClick={handleSubmit}
+                        disabled={terminer}
+                    >
+                        Répondre
+                    </Button>
+
+
+                </ButtonContainer>
+            </div>
+            }
+
+            <br />
+            <br />
+        </ActivityWrapper>
     );
 }
 
-export default Exercice2;
+export default Exercice;
+

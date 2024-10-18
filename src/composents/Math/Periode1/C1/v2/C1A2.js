@@ -4,13 +4,11 @@ import { margin, styled } from "@mui/system";
 import writtenNumber from "written-number";
 import ActivityWrapper from "../../../Reusable Components/Slides Content/ActivityWrapper";
 import { useAuth } from "../../../../Sign_in/v2/context/AuthContext";
-import SuccessDialog from "../../../Reusable Components/Activities/SuccessDialog";
 import "../../../../../App.css";
 import correctSoundFile from '../../../../sounds/correct.mp3';
 import incorrectSoundFile from '../../../../sounds/incorrect.mp3';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../Sign_in/v2/firebase";
-import Progress from './Progress';
 import SlideAnimation from '../../../../Confetti/Victoire';
 
 const StyledBox = styled(Box)({
@@ -153,10 +151,7 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
         handleReset();
     };
 
-    const handleClose = () => {
-        setSucessDialogOpen(false);
-    };
-
+  
     const sendActivityData = async () => {
         const endTime = new Date();
         const timeSpent = (endTime - entryTime) / 1000;
@@ -205,9 +200,7 @@ const C1A2 = ({ currentIndex, segmentIndex }) => {
         >
             {ConfettiActive && <SlideAnimation currentIndex={currentIndex} segmentIndex={segmentIndex} isActive={true} correectAnsw={correctAnswers} />}
 
-            {/* <div >
-                <Progress progress={progressValue} text={"C1A2"} />
-            </div> */}
+           
             
 
             {!begin && <StyledBox>
