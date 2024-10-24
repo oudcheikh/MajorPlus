@@ -4,6 +4,7 @@ import './MathGrid.css';
 import { useNavigate } from 'react-router-dom';
 import '../../composents/home/Major.css';
 import { IconButton } from "@mui/material";
+import PeriodPagination from'../Math/Reusable Components/Swipeable/PeriodPagination'
 
 function MathGrid() {
 
@@ -23,12 +24,14 @@ function MathGrid() {
     <div className="math-section">
 
       <div style={{ width: '100%', textAlign: "left", display: 'block', paddingRight: "40px" }}>
-        <h1><strong>Math     
+        {/* <h1><strong>Math     
                    <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}  onClick={handleBackButton}></i>
         </strong></h1>
    
-        <br></br> 
-      </div>
+        <br></br> */}
+
+<PeriodPagination />
+      </div> 
 
 
       <div className="card-grid">

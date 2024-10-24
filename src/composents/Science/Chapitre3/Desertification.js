@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import QCMC1 from './QCMC3';
-import Desert from '../../Images/Desert.png';
-import Desert2 from '../../Images/Desert2.png';
-import Kiddesert from '../../Images/Kiddesert.png';
-import plant from '../../Images/plant.png';
-import peace from '../../Images/peace.png';
+// import Desert from '../../Images/Desert.png';
+
+
 import Audio from "./Audio3" ;
 import {
   Container, SectionContainer, ImageContainer,FormulaText, Card, FormulaBox,BodyText,Subtitle, ContinueButton
@@ -28,7 +26,7 @@ const C1 = () => {
         <Container>
          <FormulaText><strong>Chapitre 3 : La Desertification</strong></FormulaText>
              
-                  <img src={Desert} alt="Teacher" style={imageStyle} /> 
+                  <img src={"/images/Images/Desert.png"} alt="Teacher" style={imageStyle} /> 
                   <Card>
                        
                        <FormulaText> <strong>  Notre terre, c'est notre maison 🏠 :
@@ -43,7 +41,7 @@ const C1 = () => {
                             <br></br>
                     <br></br>           
  <Card>
- <img src={Desert2} alt="Healthy"  style={{ ...imageStyle, width: '220%' }} /> 
+ <img src={"images/Images/Desert2.png"} alt="Healthy"  style={{ ...imageStyle, width: '220%' }} /> 
 
                         <FormulaText> <strong>  La désertification est la dégradation des terres arables et des écosystèmes dans les régions sèches, due à des facteurs tels que la déforestation, la surutilisation des sols et le changement climatique, transformant les zones fertiles en déserts. </strong> </FormulaText>
 
@@ -69,7 +67,7 @@ const C1 = () => {
                       
                       
                     <Card> <FormulaText><strong>Les Causes de la  desertification</strong></FormulaText>
-                    <img src={Kiddesert} alt="Lait" style={imageStyle} /> <FormulaText>
+                    <img src={"/images/Images/Kiddesert.png"} alt="kidsert" style={imageStyle} /> <FormulaText>
         <strong>Sécheresse </strong> Variation climatique réduit l'eau, entrave la croissance, contribue à la désertification.<br></br>
         <strong>Dégradation des sols:</strong> Érosion, compaction, perte de matière organique, salinisation affaiblissent le sol.<br></br>
         <strong>Déforestation :</strong>  Coupe d'arbres pour agriculture, bois de chauffage, dégrade les écosystèmes.<br></br>
@@ -88,7 +86,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
 
 <Card>  <FormulaText><strong>Lutter contre la desertification</strong></FormulaText>    
-                        <img src={peace} alt="glucides" style={imageStyle} /> 
+                        <img src={"/images/Images/peace.png"} alt="glucides" style={imageStyle} /> 
                     <FormulaText>
 <strong>Gestion de l'eau :</strong>Améliorer l'efficacité de l'irrigation, réduire la surexploitation des ressources en eau.<br></br>
 
@@ -121,7 +119,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <Card>
     <FormulaText><strong>Le ceinture verre </strong></FormulaText>    
-    <img src={plant} alt="Sources de lipides" style={imageStyle} /> 
+    <img src={"/images/Images/plant.png"} alt="Sources de lipides" style={imageStyle} /> 
     <FormulaText>
         Une ceinture verte est une zone périurbaine ou rurale qui est délibérément conçue et aménagée pour promouvoir l'agriculture, la préservation de la nature et la qualité de vie. Les ceintures vertes sont généralement situées autour des zones urbaines et servent de transition entre les environnements urbains denses et les zones agricoles ou naturelles.
     </FormulaText>

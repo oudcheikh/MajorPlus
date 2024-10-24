@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import flaskIcon from '../composents/home/Icones/flask-potion.png'; // Utiliser l'icône flask
-import '../composents/home/Major.css'; // Importer les styles
+import '../composents/home/Major.css';
 
 function Accueil() {
   const navigate = useNavigate();
@@ -29,12 +29,12 @@ function Accueil() {
 
       <div className="card-grid">
         <CardButton title="Equilibre Alimantaire" navigateTo="/EquilibrAlimantaire" />
-        <CardButton title="Equilibre Energitique" navigateTo="/EquilibrEnergitique" />
-        <CardButton title="Desertification" navigateTo="/Desertfication" />
-        <CardButton title="Pollution" navigateTo="/Pollution" />
-        <CardButton title="L'eau et la Santé" navigateTo="/EauEtSante" />
-        <CardButton title="La Vaccination" navigateTo="/Vaccination" />
-        <CardButton title="Sida" navigateTo="/Sida" />
+         <CardButton title="Equilibre Energitique" navigateTo="/EquilibrEnergitique" /> 
+       <CardButton title="Desertification" navigateTo="/Desertfication" />
+      <CardButton title="Pollution" navigateTo="/Pollution" />
+     <CardButton title="L'eau et la Santé" navigateTo="/EauEtSante" />
+           <CardButton title="La Vaccination" navigateTo="/Vaccination" />
+          <CardButton title="Sida" navigateTo="/Sida" />
       </div>
     </div>
   );

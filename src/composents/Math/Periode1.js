@@ -24,7 +24,7 @@ function Accueil() {
   return (
     <div className="app-container" style={{ direction: "ltr" }}>
 
-<PeriodPagination />
+<PeriodPagination  lien={"/"}/>
 
 
       <div className="card-grid" >

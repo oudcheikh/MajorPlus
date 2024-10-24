@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import QCMC1 from './QCMC2';
-import Lait from '../../Images/Lait.png';
-import teacher from '../../Images/Food.png';
-import Healthy from '../../Images/HealthyFood.png';
-import glucides from  '../../Images/glucides .png';
-import lipidesSource from '../../Images/lipides.png';
-import proteines from '../../Images/proteines.png';
-import balance from '../../Images/balance.png';
-import apple from '../../Images/apple.png';
-import man from '../../Images/man.png';
+
+// import Healthy from '../../Images/HealthyFood.png';
+// import glucides from  '../../Images/glucides .png';
+// import lipidesSource from '../../Images/lipides.png';
+// import proteines from '../../Images/proteines.png';
+// import balance from '../../Images/balance.png';
+// import apple from '../../Images/apple.png';
+// import man from '../../Images/man.png';
 
 
 import Audio from "./Audio2" ;
@@ -34,7 +33,7 @@ const C1 = () => {
         <Container>
          <FormulaText><strong>Chapitre 2 : Equilibre Energitique</strong></FormulaText>
              
-                  <img src={man} alt="Teacher" style={imageStyle} /> 
+                  <img src={"/images//Images/man.png"} alt="Teacher" style={imageStyle} /> 
                   <Card>
                        
                        <FormulaText> <strong>  L'équilibre énergétique de notre nutrition est essentiel : nous devons consommer les bonnes quantités d'énergie pour maintenir notre bien-être. C'est là le secret d'une alimentation équilibrée.</strong> </FormulaText>
@@ -52,7 +51,7 @@ const C1 = () => {
                         <FormulaText> <strong>  Pour Avoir l'energie necessaire dans le journée ,On a besoin de  3 plats necessaire, Le petit dejeuné, le repas et le dinné. </strong> </FormulaText>
                         <FormulaText>
 
-                        <img src={Healthy} alt="Healthy"  style={{ ...imageStyle, width: '220%' }} /> 
+                        <img src={"/images/Images/HealthyFood.png"} alt="Healthy"  style={{ ...imageStyle, width: '220%' }} /> 
                        
 
                             
@@ -85,7 +84,7 @@ const C1 = () => {
                     <br></br>
                     <br></br>
                       
-                      <img src={balance} alt="Lait" style={imageStyle} /> 
+                      <img src={"/images/Images/balance.png"} alt="Lait" style={imageStyle} /> 
                      <FormulaText>La consommation d'énergie pour un enfant est la quantité d'énergie nécessaire pour le bon fonctionnement de son corps, provenant des calories des aliments, et joue un rôle crucial dans sa santé globale.</FormulaText>
                      <div style={{ display: "flex", alignItems: "center" }}>
   <Audio/>
@@ -100,7 +99,7 @@ const C1 = () => {
                 <div>
                     <Card>
     <FormulaText><strong>La concept des calories (KJ)</strong></FormulaText>    
-    <img src={apple} alt="protéines" style={imageStyle} /> 
+    <img src={"/images/Images/apple.png"} alt="protéines" style={imageStyle} /> 
     <FormulaText>
     Les calories sont une unité de mesure d'énergie dérivée des aliments que le corps utilise pour ses fonctions vitales et ses activités quotidiennes.
     </FormulaText>
@@ -130,7 +129,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
 
 <Card>  <FormulaText><strong>L'importance de consommer suffisamment de calories </strong></FormulaText>    
-                        <img src={glucides} alt="glucides" style={imageStyle} /> 
+                        <img src={"/images/Images/glucides .png"} alt="glucides" style={imageStyle} /> 
                     <FormulaText>Les enfants ont besoin de consommer suffisamment de calories pour leur croissance, leur activité physique, le bon fonctionnement de leur corps, leur système immunitaire, leur cerveau et leur concentration.</FormulaText>
 <div style={{ display: "flex", alignItems: "center" }}>
   <Audio/>
@@ -144,7 +143,7 @@ const C1 = () => {
                 <div style={{ marginBottom: '50px', width: '100%' }}>
                     <Card>
     <FormulaText><strong>L'importance d'une alimentation équilibrée  </strong></FormulaText>    
-    <img src={lipidesSource} alt="Sources de lipides" style={imageStyle} /> 
+    <img src={"./images/Images/lipides.png"} alt="Sources de lipides" style={imageStyle} /> 
     <FormulaText>
     Il est essentiel que les enfants choisissent des aliments nutritifs pour satisfaire leurs besoins énergétiques. Les parents ont un rôle crucial à jouer en veillant à ce que leurs enfants adoptent une alimentation équilibrée pour favoriser une croissance saine et un développement harmonieux.
     </FormulaText>

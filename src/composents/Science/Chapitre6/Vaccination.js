@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import QCMC1 from './QCMC1';
-import Vac from '../../Images/Vac.png';
-
-import Paludisme from '../../Images/Paludisme.png';
-import parasites from  '../../Images/parasites.png';
-import Guinea from '../../Images/Guinea.png';
-import bilharziose from '../../Images/bilharziose.png';
-import Protegemaladie from '../../Images/Protegemaladie.png';
 import Audio from "./Audio1" ;
-import Vaccination from '../../Images/vaccination.png';
 import {
   Container, SectionContainer, ImageContainer,FormulaText, Card, FormulaBox,BodyText,Subtitle, ContinueButton
 } from '../../Styles/MajorStyles'; 
@@ -32,7 +24,7 @@ const C1 = () => {
         <Container>
          <FormulaText><strong>Chapitre 6 : La Vaccination</strong></FormulaText>
              
-                  <img src={Vaccination} alt="Vaccination" style={imageStyle} /> 
+                  <img src={"/images/Images/vaccination.png"} alt="Vaccination" style={imageStyle} /> 
                   <Card>
                        
                   <FormulaText>
@@ -49,7 +41,7 @@ const C1 = () => {
                             <br></br>
                     <br></br>           
  <Card>
- <img src={Protegemaladie} alt="Protegemaladie" style={imageStyle} /> 
+ <img src={"/images/Images/Protegemaladie.png"} alt="Protegemaladie" style={imageStyle} /> 
  <FormulaText>
     <strong>Se protéger avec la vaccination :</strong> Les vaccins sont de petits super-héros qui combattent les maladies. Ils nous apprennent à nous défendre contre elles. Voici quelques-unes des maladies contre lesquelles nous pouvons nous protéger grâce aux vaccins.
 </FormulaText>
@@ -138,7 +130,7 @@ const C1 = () => {
                     <Card>   
                   
         
-                    <img src={Vac} alt="Vac" style={imageStyle} /> 
+                    <img src={"/images/Images/Vac.png"} alt="Vac" style={imageStyle} /> 
        <FormulaText>             
     <strong>La vaccination offre une protection contre plusieurs maladies dangereuses.</strong>
 </FormulaText>
