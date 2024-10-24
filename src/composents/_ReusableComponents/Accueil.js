@@ -70,7 +70,7 @@ useEffect(() => {
     <div className="app-container">
       <div className="full-width-container">
       <CardButton title="Math" navigateTo="/Math" />
-      <CardButton title="Science" navigateTo="/Math" />
+      <CardButton title="Science" navigateTo="/Science" />
       {/* <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />
         <Card title="Science" content="" icon={flask} full navigateTo="/Science" />
         <Card title="Français" content="" icon={Fraçais} full navigateTo="/Français" /> */}

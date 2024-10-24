@@ -26,15 +26,7 @@ function MathGrid() {
         <h1><strong>Math     
                    <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}  onClick={handleBackButton}></i>
         </strong></h1>
-        {/* <IconButton onClick={handleBackButton} className="home-icon">
-          <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}></i>
-        </IconButton>
-         <div className="pagination">
-            <div className="icon-container">
-                  
-                </div>
-               </div> 
-*/}
+   
         <br></br> 
       </div>
 

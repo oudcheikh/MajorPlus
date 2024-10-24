@@ -45,7 +45,7 @@ import Buuton3D from './composents/3DButton/Button.js';
 import HomeRoutes from "./routes/HomeRoutes.js";
 import MathRoutes from "./routes/MathRoutes.js";
 import PeriodRoutes from "./routes/PeriodRoutes.js";
-
+import Science from './composents/Science.js'
 const initialState = [
     { title: 'les grands nombres', status: 'in-progress', isCurrent: true },
     { title: 'La comparaison', status: 'locked', isCurrent: false },
@@ -100,6 +100,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Acceuil />} />
                         <Route path="/Math" element={<Math />} />
+                        <Route path="/Science" element={<Science />} />
 
 
                         <Route path="/signin" element={<SignIn />} />
