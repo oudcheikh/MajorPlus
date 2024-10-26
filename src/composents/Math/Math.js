@@ -1,53 +1,54 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-//import calculatorIcon from '../../composents/home/Icones/calculator-simple.png'; // Assurez-vous d'avoir le bon chemin
-import '../../composents/home/Major.css'; // Importer les styles
-import { IconButton } from "@mui/material";
+import './MathGrid.css';
 
-function Accueil() {
+import { useNavigate } from 'react-router-dom';
+import '../../composents/home/Major.css';
+import { IconButton } from "@mui/material";
+import PeriodPagination from'../Math/Reusable Components/Swipeable/PeriodPagination'
+
+function MathGrid() {
+
+
   const navigate = useNavigate();
 
   const handleBackButton = () => {
     navigate("/");
-};
+  };
+  const cards = [
+    { title: "Periode1", imageUrl: "/images/cardd1.png", updated: false ,lien:"/Periode/1"},
+    { title: "Periode 2", imageUrl: "/images/bulles.png", updated: false ,lien:'/Periode2'},
 
-
-  const CardButton = ({ title, navigateTo }) => (
-    <div className="card full-card" onClick={() => navigate(navigateTo)}>
-      <img src={"images/Icones/calculator-simple.png"} alt={title} className="card-icon" />
-      <div className="card-content">
-        <h2>{title}</h2>
-      </div>
-    </div>
-  );
+  ];
 
   return (
-    <div className="app-container" style={{ direction: "ltr" }} >
+    <div className="math-section">
 
-<div style={{ position: "relative", height: "20vh", direction: "ltr" }}>
-            <br />
+      <div style={{ width: '100%', textAlign: "left", display: 'block', paddingRight: "40px" }}>
+        {/* <h1><strong>Math     
+                   <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}  onClick={handleBackButton}></i>
+        </strong></h1>
+   
+        <br></br> */}
 
-            <div className="pagination">
-                <div className="icon-container">
-                    <IconButton onClick={handleBackButton} className="home-icon">
-                        <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }}></i>
-                    </IconButton>
-                </div>
-               </div>
-               <br/>
+<PeriodPagination />
+      </div> 
+
+
       <div className="card-grid">
-        {/* ProgressTracker */}
-        <CardButton title="Periode1" navigateTo="/Periode/1" />
-        <CardButton title="Periode2" navigateTo="/Periode2" />
-        <CardButton title="Periode3" navigateTo="/Period3" />
-        <CardButton title="Periode4" navigateTo="/Periode4" />
-       
-
+        {cards.map((card, index) => (
+          <div key={index} className="card full-card">
+            <div className="card-image-wrapper h-48">
+              <img src={card.imageUrl} alt={card.title} className="card-image object-contain h-full" onClick={() => navigate(card.lien)}  />
+              {card.updated && <span className="badge">UPDATED</span>}
+            </div>
+            <div className="card-title">{card.title}</div>
+          </div>
+        ))}
       </div>
-    </div>
-
     </div>
   );
 }
 
-export default Accueil;
+export default MathGrid;
+
+
