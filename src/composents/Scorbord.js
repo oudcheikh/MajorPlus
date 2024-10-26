@@ -107,6 +107,13 @@ function ScoreBoard() {
     setIsSuccess(!isSuccess); // Basculer entre succès et échec
   };
 
+  const calculateSumOfCorrectAnswers = (data) => {
+    return data.reduce((sum, item) => sum + (item["correctAnswers"] || 0), 0);
+};
+
+console.log("____________________________ activities : " , activities)
+
+    console.log("____________________________ activities : " , calculateSumOfCorrectAnswers(activities))
   return (
     <div className="container">
       <div className="profile-section">
