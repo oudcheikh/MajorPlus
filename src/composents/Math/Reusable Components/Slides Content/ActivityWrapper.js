@@ -35,7 +35,7 @@ const ActivityWrapper = ({ activityTitle, explanationVideoUrl, children, onSubmi
     };
 
     const returnToVideo = async () => {
-        await sendActivityData();
+        // await sendActivityData();
         setShowVideo(true);
     };
 

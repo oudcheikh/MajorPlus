@@ -57,6 +57,8 @@
     align-items: center;
     justify-content: center;
     width: 82%;
+    padding-top: 10px; /* Espacement en haut */
+    padding-bottom: 30px; /* Espacement en bas */
     /* background-color: blue; */
     /* color: white;
     height: 3vh;

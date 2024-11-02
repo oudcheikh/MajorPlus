@@ -53,7 +53,21 @@ import Pollution from './composents/Science/Chapitre4/Pollution.js'
 import EauEtSante from './composents/Science/Chapitre5/EauEtSante.js'
 import Vaccination from './composents/Science/Chapitre6/Vaccination.js'
 import Sida from './composents/Science/Chapitre7/Sida.js'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+    components: {
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+            outline: 'none',
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  });
 
 const initialState = [
     { title: 'les grands nombres', status: 'in-progress', isCurrent: true },
@@ -94,6 +108,7 @@ function App() {
 
 
     return (
+        <ThemeProvider theme={theme}>
         <AuthProvider>
             <Router>
 
@@ -179,6 +194,7 @@ function App() {
                 </div>
             </Router>
         </AuthProvider>
+         </ThemeProvider>
     );
 }
 

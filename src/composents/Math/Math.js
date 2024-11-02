@@ -21,7 +21,7 @@ function MathGrid() {
   ];
 
   return (
-    <div className="math-section">
+    <div className="math-section" style={{ direction: "ltr" }}>
 
       <div style={{ width: '100%', textAlign: "left", display: 'block', paddingRight: "40px" }}>
         {/* <h1><strong>Math     

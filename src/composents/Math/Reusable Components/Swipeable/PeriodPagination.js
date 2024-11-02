@@ -18,12 +18,12 @@ const PeriodPagination = ({ lien }) => {
 
     return (
         <div style={{ width: '100%', textAlign: "left", display: 'block', paddingRight: "40px" }}>
-            <h1>
+           {/*  <h1>
                 <strong>
                     <i className="fas fa-home" style={{ fontSize: "24px", color: "#339fff" }} onClick={handleBackButton}></i>
                 </strong>
-            </h1>
-            <IconButton onClick={goToPrevious} className="arrow-icon" style={{ padding: '0px' }}>
+            </h1> */}
+            <IconButton onClick={handleBackButton} className="arrow-icon" style={{ padding: '0px' }}>
                 <i className="fas fa-arrow-left" style={{ fontSize: "24px", color: "#339fff" }}></i>
             </IconButton>
 
